@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpaceshipSpawner : MonoBehaviour
 {
+    public GameObject ObjectToSpawn;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +14,9 @@ public class SpaceshipSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
+        if (Input.GetKeyDown("space"))
+        {
+            Instantiate(ObjectToSpawn);
+        }
+        }
 }
