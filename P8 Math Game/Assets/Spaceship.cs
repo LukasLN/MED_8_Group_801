@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class Spaceship : MonoBehaviour
 {
+
+    //public enum Cargo {Water, Food, Fuel, Parts, Empty };
+    //public Cargo[] Cargotype = { Cargo.Empty, Cargo.Empty, Cargo.Empty };
     public int[] Cargotype = { 0, 0, 0 };
 
     // Start is called before the first frame update
@@ -21,7 +24,7 @@ public class Spaceship : MonoBehaviour
         {
             Cargotype[2] = Random.Range(0, 4);
         }
-
+        Debug.Log(Cargotype.ToString());
     }
 
     // Update is called once per frame
@@ -58,4 +61,25 @@ public class Spaceship : MonoBehaviour
 
         return result;
     }
-}
+
+    public string AssertCargo(int num)
+    {
+        if (num == 0) {
+            return "Water";
+           }
+        else if (num == 1)
+        {
+            return "Food";
+        }
+        else if (num == 2)
+        {
+            return "Fuel";
+        }
+        else if (num == 3)
+        {
+            return "Parts";
+        }
+        else { return "Empty";
+        }
+    }
+    }
