@@ -1,4 +1,3 @@
-using Meta.WitAi.Lib;
 using UnityEngine;
 
 namespace AstroMath
@@ -6,7 +5,7 @@ namespace AstroMath
     public static class PositionGenerator
     {
         /// <summary>
-        /// Returns a continuous value 3-dimensional position (e.g. <4.0,2.2,1.9>).
+        /// Returns a continuous value 3-dimensional position (e.g. <4.0,2.5,1.9>).
         /// </summary>
         public static Vector3 ContinuousPosition(float min, float max, bool debug = false)
         {
@@ -48,7 +47,9 @@ namespace AstroMath
             return position;
         }
 
-
+        /// <summary>
+        /// Returns a continuous value 3-dimensional position, within a ring around the origin.
+        /// </summary>
         public static Vector3 ContinuousRingPosition(float inner, float outer, bool debug = false)
         {
             Vector3 position;
@@ -61,6 +62,9 @@ namespace AstroMath
             return position;
         }
 
+        /// <summary>
+        /// Returns a discrete value 3-dimensional position, within a ring around the origin.
+        /// </summary>
         public static Vector3 DiscreteRingPosition(float inner, float outer, bool inclusive = true, bool debug = false)
         {
             //Debug.Log($"Min before: {min}");
