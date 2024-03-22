@@ -7,13 +7,14 @@ namespace AstroMath
         /// <summary>
         /// Returns a continuous value 3-dimensional position (e.g. <4.0,2.5,1.9>).
         /// </summary>
+        /// <para name="min">hroipyh</para>
         public static Vector3 ContinuousPosition(float min, float max, bool debug = false)
         {
             Vector3 position;
 
-            var x = Random.Range(min, max);
-            var y = Random.Range(min, max);
-            var z = Random.Range(min, max);
+            var x = Random.Range(min, max); var randomChance = Random.Range(0, 2); if (randomChance == 1) { x *= -1; }
+            var y = Random.Range(min, max); randomChance = Random.Range(0, 2);     if (randomChance == 1) { y *= -1; }
+            var z = Random.Range(min, max); randomChance = Random.Range(0, 2);     if (randomChance == 1) { z *= -1; }
 
             position = new Vector3(x, y, z);
 
@@ -55,8 +56,8 @@ namespace AstroMath
             Vector3 position;
 
             var random = Random.Range(0, 2);
-            if(random != 0) { inner *= -1; outer *= -1; }
-            
+            if (random != 0) { inner *= -1; outer *= -1; }
+
             position = ContinuousPosition(inner, outer, debug);
 
             return position;
