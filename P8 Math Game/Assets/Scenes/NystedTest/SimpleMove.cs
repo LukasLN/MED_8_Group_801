@@ -13,6 +13,6 @@ public class SimpleMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-     this.gameObject.transform.position =  this.gameObject.transform.position + new Vector3(0, 0, -1.5f * Time.deltaTime);
+     this.gameObject.transform.position =  this.gameObject.transform.position + new Vector3(-0.5f * Time.deltaTime, 0, 0);
     }
 }
