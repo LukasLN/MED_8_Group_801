@@ -47,8 +47,8 @@ namespace AstroMath
             MathProblem newMathProblem = new MathProblem();
             newMathProblem.type = (MathProblem.Type)randomNumber;
 
-            newMathProblem.spaceshipPosition = PositionGenerator.DiscreteRingPosition(11, 20);
-            newMathProblem.parkingPosition = PositionGenerator.DiscreteRingPosition(0, 10);
+            newMathProblem.spaceshipPosition = PositionGenerator.ContinuousRingPosition(0, 2);
+            newMathProblem.parkingPosition = PositionGenerator.ContinuousRingPosition(0, 2);
             newMathProblem.directionAnswer = newMathProblem.parkingPosition - newMathProblem.spaceshipPosition;
 
             switch (randomNumber)
