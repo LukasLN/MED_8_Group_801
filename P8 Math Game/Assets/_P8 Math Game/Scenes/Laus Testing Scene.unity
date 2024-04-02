@@ -1156,6 +1156,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hologram Spaceship Interactable
       objectReference: {fileID: 0}
+    - target: {fileID: 1481320718119979391, guid: 6724e02764ba86845baaa0c137a4acbd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2596679885215627619, guid: 6724e02764ba86845baaa0c137a4acbd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8898,7 +8903,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mathProblems: []
   spaceships: []
-  spaceshipPF: {fileID: 6272786552588755504, guid: c5c000fa4879c4448b949aca54c25674,
+  spaceshipPF: {fileID: 1481320718119979391, guid: 6724e02764ba86845baaa0c137a4acbd,
     type: 3}
   spaceshipParentTF: {fileID: 1082314388}
   numberOfProblemsToCreate: 1
