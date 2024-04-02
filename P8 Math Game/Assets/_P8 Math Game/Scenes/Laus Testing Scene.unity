@@ -1094,7 +1094,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2120759440}
-        m_TargetAssemblyTypeName: AstroMath.MathProblemHolder, Assembly-CSharp
+        m_TargetAssemblyTypeName: AstroMath.MathProblemGeneratorPanel, Assembly-CSharp
         m_MethodName: DecreaseNumberOfProblemToCreate
         m_Mode: 3
         m_Arguments:
@@ -2875,6 +2875,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 602957386}
   m_CullTransparentMesh: 1
+--- !u!1 &608209241
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 608209242}
+  - component: {fileID: 608209243}
+  m_Layer: 0
+  m_Name: Math Problem Holder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &608209242
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 608209241}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1773074823}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &608209243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 608209241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8522f9f071407f940a9b28e9c879d6c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mathProblems: []
 --- !u!1 &615207452
 GameObject:
   m_ObjectHideFlags: 0
@@ -3161,7 +3206,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2120759440}
-        m_TargetAssemblyTypeName: AstroMath.MathProblemHolder, Assembly-CSharp
+        m_TargetAssemblyTypeName: AstroMath.MathProblemGeneratorPanel, Assembly-CSharp
         m_MethodName: IncreaseNumberOfProblemToCreate
         m_Mode: 3
         m_Arguments:
@@ -5734,7 +5779,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2120759440}
-        m_TargetAssemblyTypeName: AstroMath.MathProblemHolder, Assembly-CSharp
+        m_TargetAssemblyTypeName: AstroMath.MathProblemGeneratorPanel, Assembly-CSharp
         m_MethodName: CreateMathProblems
         m_Mode: 1
         m_Arguments:
@@ -7563,6 +7608,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1731885401}
   m_CullTransparentMesh: 1
+--- !u!1 &1773074822
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1773074823}
+  m_Layer: 0
+  m_Name: ----- BACKEND -----
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1773074823
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1773074822}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 608209242}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1849063052
 GameObject:
   m_ObjectHideFlags: 0
@@ -8867,7 +8944,7 @@ GameObject:
   - component: {fileID: 2120759439}
   - component: {fileID: 2120759440}
   m_Layer: 0
-  m_Name: Math Problem Holder
+  m_Name: Math Problem Generator Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8898,16 +8975,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 2120759438}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8522f9f071407f940a9b28e9c879d6c0, type: 3}
+  m_Script: {fileID: 11500000, guid: 0293e77f53871d44faf4bb56fbef6027, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mathProblems: []
+  numberOfProblemsToCreate: 1
+  numberOfProblemsToCreateText: {fileID: 2060641637}
   spaceships: []
   spaceshipPF: {fileID: 1481320718119979391, guid: 6724e02764ba86845baaa0c137a4acbd,
     type: 3}
   spaceshipParentTF: {fileID: 1082314388}
-  numberOfProblemsToCreate: 1
-  numberOfProblemsToCreateText: {fileID: 2060641637}
 --- !u!1 &2125902269
 GameObject:
   m_ObjectHideFlags: 0
@@ -9082,6 +9158,7 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1773074823}
   - {fileID: 791774208}
   - {fileID: 942062531}
   - {fileID: 1307258587}
