@@ -14,7 +14,7 @@ public class HologramOnOf : MonoBehaviour
 
     void Start()
     {
-        StartupController.position = new Vector3(0 ,15, 0);
+        StartupController.localPosition = new Vector3(0 ,12, 0);
     }
 
     void Update()
@@ -42,7 +42,7 @@ public class HologramOnOf : MonoBehaviour
         yield return new WaitForSeconds(3);
             t_pressed = true;
            
-        yield return new WaitForSeconds(6);
+        yield return new WaitForSeconds(10);
             t_pressed = false;
             can_press_t_again = true;
     }
