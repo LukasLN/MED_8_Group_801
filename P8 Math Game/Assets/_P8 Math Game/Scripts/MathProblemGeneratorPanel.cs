@@ -15,8 +15,13 @@ namespace AstroMath
         [SerializeField] GameObject spaceshipPF; //PF = Prefab
         [SerializeField] Transform spaceshipParentTF; //TF = Transform
 
+        public List<GameObject> parkings;
+        [SerializeField] GameObject parkingPF; //PF = Prefab
+        [SerializeField] Transform parkingParentTF; //TF = Transform
+
         [SerializeField] int minSP, maxSP, minPP, maxPP;
         [SerializeField, Range(-100, 1)] float worldToHologramScale;
+        [SerializeField] Vector3 spawnOffset;
 
         private void Awake()
         {
@@ -40,28 +45,43 @@ namespace AstroMath
                 Vector3 mathProblemSpaceshipPosition = MathProblemHolder.instance.mathProblems[i].spaceshipPosition;
                 Vector3 positionToSpawnSpaceshipIn = new Vector3(mathProblemSpaceshipPosition.x, mathProblemSpaceshipPosition.y, mathProblemSpaceshipPosition.z);
 
+                Vector3 mathProblemParkingPosition = MathProblemHolder.instance.mathProblems[i].parkingPosition;
+                Vector3 positionToSpawnParkingIn = new Vector3(mathProblemParkingPosition.x, mathProblemParkingPosition.y, mathProblemParkingPosition.z);
+
                 var scalar = worldToHologramScale;
                 if (scalar < 0) scalar *= -1;
                 positionToSpawnSpaceshipIn /= scalar;
+                positionToSpawnParkingIn /= scalar;
 
-                var newSpaceship = Instantiate(spaceshipPF, positionToSpawnSpaceshipIn, Quaternion.identity, spaceshipParentTF);
+                var newSpaceship = Instantiate(spaceshipPF, positionToSpawnSpaceshipIn + spawnOffset, Quaternion.identity, spaceshipParentTF);
+                Vector3 randomRotation = new Vector3(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
 
-                newSpaceship.GetComponent<HologramSpaceship>().mathProblem = newMathProblem;
-                newSpaceship.GetComponent<HologramSpaceship>().SetPositions();
+                var newParking = Instantiate(parkingPF, positionToSpawnParkingIn + spawnOffset, Quaternion.Euler(randomRotation), parkingParentTF);
+
+                if(newSpaceship == null) { Debug.LogError("<<SPACESHIP>> DOES NOT EXIST!"); }
+                if(newSpaceship.GetComponent<HologramSpaceship>() == null) { Debug.LogError("<<HOLOGRAM COMPONENT>> DOES NOT EXIST!"); }
+                if(newSpaceship.GetComponent<HologramSpaceship>().infoPanelGO == null) { Debug.LogError("<<INFO PANEL>> DOES NOT EXIST!"); }
+
+                newSpaceship.GetComponent<HologramSpaceship>().infoPanelGO.GetComponent<InfoPanel>().mathProblem = newMathProblem;
+                newSpaceship.GetComponent<HologramSpaceship>().infoPanelGO.GetComponent<InfoPanel>().SetPositions();
 
                 spaceships.Add(newSpaceship);
+                parkings.Add(newParking);
             }
         }
 
         public void ClearMathProblems()
         {
-            for (int i = 0; i < MathProblemHolder.instance.mathProblems.Count; i++)
+            if(MathProblemHolder.instance.mathProblems.Count > 0)
             {
-                Destroy(spaceships[i]);
-            }
+                for (int i = 0; i < MathProblemHolder.instance.mathProblems.Count; i++)
+                {
+                    Destroy(spaceships[i]);
+                }
 
-            MathProblemHolder.instance.mathProblems.Clear();
-            spaceships.Clear();
+                MathProblemHolder.instance.mathProblems.Clear();
+                spaceships.Clear();
+            }
         }
 
         public void IncreaseNumberOfProblemToCreate(int increaseAmount)
