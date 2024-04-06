@@ -1,17 +1,15 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HologramOnOf : MonoBehaviour
 {
-    bool t_pressed = false;
-    bool can_press_t_again = true;
+    [SerializeField] bool t_pressed = false;
+    [SerializeField] bool can_press_t_again = true;
 
     [SerializeField] Material HologramMat;
     [SerializeField] Transform StartupController;
 
-   
-
+  
     void Start()
     {
         StartupController.localPosition = new Vector3(0 ,12, 0);
