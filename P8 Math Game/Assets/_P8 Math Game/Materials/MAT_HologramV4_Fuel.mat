@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: HologramV4
+  m_Name: MAT_HologramV4_Fuel
   m_Shader: {fileID: -6465566751694194690, guid: d367a9ca61e24b7499a003a596410415,
     type: 3}
   m_Parent: {fileID: 0}
@@ -129,9 +129,9 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Fresnel_Strength: {r: 10.680627, g: 10.680627, b: 10.680627, a: 0}
     - _HologramTiling: {r: 10, g: 10, b: 0, a: 0}
-    - _MainColor: {r: 0.03312373, g: 0.24443029, b: 0.2600826, a: 0}
+    - _MainColor: {r: 0.9792532, g: 1, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _Startup: {r: 0, g: 3.992704, b: 0, a: 0}
+    - _Startup: {r: 0, g: 3.9834213, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &4999435801749795031
 MonoBehaviour:
