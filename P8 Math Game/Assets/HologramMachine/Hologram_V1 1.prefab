@@ -19732,6 +19732,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fbc7d046eef44340972ace12ec1746a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  t_pressed: 0
+  can_press_t_again: 1
   particlesystems:
   - {fileID: 1216240833452527135}
   - {fileID: 3493094281543492908}
@@ -19755,6 +19757,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fbc7d046eef44340972ace12ec1746a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  t_pressed: 0
+  can_press_t_again: 1
   particlesystems:
   - {fileID: 1216240833452527135}
   - {fileID: 3493094281543492908}
@@ -19784,6 +19788,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fbc7d046eef44340972ace12ec1746a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  t_pressed: 0
+  can_press_t_again: 1
   particlesystems:
   - {fileID: 1216240833452527135}
   - {fileID: 3493094281543492908}
@@ -19898,6 +19904,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 5647930200274504657}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9bf834e4fbe492f478b4255a48a67324,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4614852612375052996}
   m_SourcePrefab: {fileID: 100100000, guid: 9bf834e4fbe492f478b4255a48a67324, type: 3}
 --- !u!4 &8453009178796478496 stripped
 Transform:
@@ -19923,5 +19933,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a039daae5886e5543adb1c4b61df1728, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  t_pressed: 0
+  can_press_t_again: 1
   HologramMat: {fileID: 2100000, guid: 098ad960f7411b54b9d769e8786dc870, type: 2}
   StartupController: {fileID: 9178095314841231737}
+--- !u!135 &4614852612375052996
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9080611049617984154}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.010000006
+  m_Center: {x: -0.0000000046566146, y: 0.0000000037252916, z: 8.961022e-16}

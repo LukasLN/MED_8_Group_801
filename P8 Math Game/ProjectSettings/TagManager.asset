@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - GameManager
+  - Hand
   layers:
   - Default
   - TransparentFX

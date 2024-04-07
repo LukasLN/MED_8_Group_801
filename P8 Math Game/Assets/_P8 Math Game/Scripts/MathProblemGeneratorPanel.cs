@@ -45,7 +45,7 @@ namespace AstroMath
                 Vector3 mathProblemSpaceshipPosition = MathProblemHolder.instance.mathProblems[i].spaceshipPosition;
                 Vector3 positionToSpawnSpaceshipIn = new Vector3(mathProblemSpaceshipPosition.x, mathProblemSpaceshipPosition.y, mathProblemSpaceshipPosition.z);
 
-                Vector3 mathProblemParkingPosition = MathProblemHolder.instance.mathProblems[i].parkingPosition;
+                Vector3 mathProblemParkingPosition = MathProblemHolder.instance.mathProblems[i].targetPosition;
                 Vector3 positionToSpawnParkingIn = new Vector3(mathProblemParkingPosition.x, mathProblemParkingPosition.y, mathProblemParkingPosition.z);
 
                 var scalar = worldToHologramScale;
