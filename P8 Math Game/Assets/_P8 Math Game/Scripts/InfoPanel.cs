@@ -15,7 +15,7 @@ namespace AstroMath
         [SerializeField] InputFieldOnlyNumbers x_inputField, y_inputField, z_inputField;
         [SerializeField] GameObject correctImageGO, wrongImageGO;
         GameObject assessmentImageToShowGO;
-        [SerializeField] float secondsBeforeHideAssessment;
+        [SerializeField] float secondsBeforeHideAssessment;//
 
         bool result;
 
@@ -25,9 +25,9 @@ namespace AstroMath
                                          $"({mathProblem.spaceshipPosition.y})\n" +
                                          $"({mathProblem.spaceshipPosition.z})";
 
-            dockPositionText.text = $"({mathProblem.parkingPosition.x})\n" +
-                                    $"({mathProblem.parkingPosition.y})\n" +
-                                    $"({mathProblem.parkingPosition.z})";
+            dockPositionText.text = $"({mathProblem.targetPosition.x})\n" +
+                                    $"({mathProblem.targetPosition.y})\n" +
+                                    $"({mathProblem.targetPosition.z})";
         }
 
         public void CheckIfIsCorrect()
