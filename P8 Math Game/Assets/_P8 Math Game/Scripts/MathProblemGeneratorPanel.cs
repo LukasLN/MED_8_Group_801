@@ -60,10 +60,6 @@ namespace AstroMath
 
                 if(newSpaceship == null) { Debug.LogError("<<SPACESHIP>> DOES NOT EXIST!"); }
                 if(newSpaceship.GetComponent<HologramSpaceship>() == null) { Debug.LogError("<<HOLOGRAM COMPONENT>> DOES NOT EXIST!"); }
-                if(newSpaceship.GetComponent<HologramSpaceship>().infoPanelGO == null) { Debug.LogError("<<INFO PANEL>> DOES NOT EXIST!"); }
-
-                newSpaceship.GetComponent<HologramSpaceship>().infoPanelGO.GetComponent<InfoPanel>().mathProblem = newMathProblem;
-                newSpaceship.GetComponent<HologramSpaceship>().infoPanelGO.GetComponent<InfoPanel>().SetPositions();
 
                 spaceships.Add(newSpaceship);
                 parkings.Add(newParking);
