@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace AstroMath
@@ -9,6 +10,7 @@ namespace AstroMath
         #region Info Panel
         [Header("Info Panel")]
         [SerializeField] GameObject infoPanelGO; //GO = GameObject
+        InfoPanel infoPanel;
         #endregion
 
         #region Line
@@ -17,23 +19,26 @@ namespace AstroMath
         LineRenderer lineRenderer;
         [SerializeField] Transform lineStartPoint;
         [SerializeField] float maxDistance;
+        public Vector3 rayHitPoint;
         #endregion
 
         private void Awake()
         {
             lineRenderer = lineGO.GetComponent<LineRenderer>();
             lineRenderer.SetPosition(0, lineStartPoint.localPosition);
+            infoPanel = infoPanelGO.GetComponent<InfoPanel>();
         }
 
         private void Start()
         {
             startPosition = transform.position;
+            
         }
 
         private void Update()
         {
             directionVector = transform.forward;
-            Debug.Log($"Direction Vector: {directionVector}");
+
         }
 
         public void DrawLine()
@@ -47,6 +52,8 @@ namespace AstroMath
             if (Physics.Raycast(ray, out hit, maxDistance))
             {
                 Vector3 hitPosition = hit.point;
+                rayHitPoint = hit.point;
+                infoPanel.rayEndPoint = rayHitPoint;
                 distance = Vector3.Distance(lineStartPoint.position, hitPosition);
                 //Debug.DrawRay(startPoint.position, startPoint.forward * distance, Color.red);
 

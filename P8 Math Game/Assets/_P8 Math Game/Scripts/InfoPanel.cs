@@ -9,6 +9,9 @@ namespace AstroMath
     {
         public TMP_Text spaceshipPositionText;
         public TMP_Text dockPositionText;
+        public TMP_Text directionVectorText;
+
+        public Vector3 rayEndPoint;
 
         [HideInInspector] public MathProblem mathProblem;
 
@@ -28,6 +31,10 @@ namespace AstroMath
             dockPositionText.text = $"({mathProblem.targetPosition.x})\n" +
                                     $"({mathProblem.targetPosition.y})\n" +
                                     $"({mathProblem.targetPosition.z})";
+
+            directionVectorText.text = $"({rayEndPoint.x-mathProblem.spaceshipPosition.x})\n" +
+                                       $"({rayEndPoint.y - mathProblem.spaceshipPosition.y})\n" +
+                                       $"({rayEndPoint.z - mathProblem.spaceshipPosition.y})";
         }
 
         public void CheckIfIsCorrect()
