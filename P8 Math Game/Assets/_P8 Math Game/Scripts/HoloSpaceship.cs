@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace AstroMath
 {
-    public class HologramSpaceship : MonoBehaviour
+    public class HoloSpaceship : MonoBehaviour
     {
         Vector3 startPosition, directionVector;
 
@@ -33,7 +33,7 @@ namespace AstroMath
         private void Update()
         {
             directionVector = transform.forward;
-            //Debug.Log($"Direction Vector: {directionVector}");
+            Debug.Log($"Direction Vector: {directionVector}");
         }
 
         public void DrawLine()
