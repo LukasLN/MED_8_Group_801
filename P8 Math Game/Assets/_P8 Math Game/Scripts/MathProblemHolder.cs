@@ -12,5 +12,10 @@ namespace AstroMath
         {
             instance = this;
         }
+
+        private void Update()
+        {
+            
+        }
     }
 }

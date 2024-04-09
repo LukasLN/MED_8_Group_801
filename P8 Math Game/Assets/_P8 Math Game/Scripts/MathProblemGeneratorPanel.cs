@@ -59,11 +59,7 @@ namespace AstroMath
                 var newParking = Instantiate(parkingPF, positionToSpawnParkingIn + spawnOffset, Quaternion.Euler(randomRotation), parkingParentTF);
 
                 if(newSpaceship == null) { Debug.LogError("<<SPACESHIP>> DOES NOT EXIST!"); }
-                if(newSpaceship.GetComponent<HologramSpaceship>() == null) { Debug.LogError("<<HOLOGRAM COMPONENT>> DOES NOT EXIST!"); }
-                if(newSpaceship.GetComponent<HologramSpaceship>().infoPanelGO == null) { Debug.LogError("<<INFO PANEL>> DOES NOT EXIST!"); }
-
-                newSpaceship.GetComponent<HologramSpaceship>().infoPanelGO.GetComponent<InfoPanel>().mathProblem = newMathProblem;
-                newSpaceship.GetComponent<HologramSpaceship>().infoPanelGO.GetComponent<InfoPanel>().SetPositions();
+                if(newSpaceship.GetComponent<HoloSpaceship>() == null) { Debug.LogError("<<HOLOGRAM COMPONENT>> DOES NOT EXIST!"); }
 
                 spaceships.Add(newSpaceship);
                 parkings.Add(newParking);
