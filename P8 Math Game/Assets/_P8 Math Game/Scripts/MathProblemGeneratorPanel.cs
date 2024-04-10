@@ -39,8 +39,8 @@ namespace AstroMath
 
             for (int i = 0; i < numberOfProblemsToCreate; i++)
             {
-                var newMathProblem = MathProblemGenerator.GenerateMathProblem(minSP, maxSP, minPP, maxPP, false, 0);
-                MathProblemHolder.instance.mathProblems.Add(newMathProblem);
+                //var newMathProblem = MathProblemGenerator.GenerateMathProblem(minSP, maxSP, minPP, maxPP, false, 0);
+                //MathProblemHolder.instance.mathProblems.Add(newMathProblem);
 
                 Vector3 mathProblemSpaceshipPosition = MathProblemHolder.instance.mathProblems[i].spaceshipPosition;
                 Vector3 positionToSpawnSpaceshipIn = new Vector3(mathProblemSpaceshipPosition.x, mathProblemSpaceshipPosition.y, mathProblemSpaceshipPosition.z);

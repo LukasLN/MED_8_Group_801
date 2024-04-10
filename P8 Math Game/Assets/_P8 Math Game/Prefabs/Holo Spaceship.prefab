@@ -4072,7 +4072,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d46d032983a31e44887b6e87788339d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mathProblem:
+    type: 0
+    cargo: 0
+    directionAnswer: {x: 0, y: 0, z: 0}
+    collisionAnswer: 0
+    scaleAnswer: 0
+    spaceshipPosition: {x: 0, y: 0, z: 0}
+    targetPosition: {x: 0, y: 0, z: 0}
+  isSelected: 0
+  modelsGO:
+  - {fileID: 8638212745341598116}
+  - {fileID: 5499368851379888877}
+  - {fileID: 3749012522901367364}
   infoPanelGO: {fileID: 2076028923965789648}
+  infoPanel: {fileID: 0}
   lineGO: {fileID: 6121286697376511541}
   lineStartPoint: {fileID: 713180027345591882}
   maxDistance: 10
@@ -4134,12 +4148,36 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 2946021569488790138}
+        m_TargetAssemblyTypeName: AstroMath.HoloSpaceship, Assembly-CSharp
+        m_MethodName: SetIsSelected
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   _whenUnselect:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6121286697376511541}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2946021569488790138}
+        m_TargetAssemblyTypeName: AstroMath.HoloSpaceship, Assembly-CSharp
+        m_MethodName: SetIsSelected
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4269,7 +4307,7 @@ MonoBehaviour:
         Min: 0
         Max: 0
     ZAxis:
-      ConstrainAxis: 0
+      ConstrainAxis: 1
       AxisRange:
         Min: 0
         Max: 0
