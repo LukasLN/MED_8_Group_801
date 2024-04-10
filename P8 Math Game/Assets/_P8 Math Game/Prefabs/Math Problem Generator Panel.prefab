@@ -179,12 +179,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0293e77f53871d44faf4bb56fbef6027, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfProblemsToCreate: 1
+  numberOfProblemsToCreate: 0
   numberOfProblemsToCreateText: {fileID: 1109374002167267923}
   spaceships: []
-  spaceshipPF: {fileID: 1481320718119979391, guid: 6724e02764ba86845baaa0c137a4acbd,
+  spaceshipPF: {fileID: 6799107395553818876, guid: 103e6fec921da714e8be053d5d204530,
     type: 3}
   spaceshipParentTF: {fileID: 0}
+  parkings: []
+  parkingPF: {fileID: 6157536605882474597, guid: 5a148827475f331449d63a99a645a47f,
+    type: 3}
+  parkingParentTF: {fileID: 0}
+  minSP: 6
+  maxSP: 10
+  minPP: 1
+  maxPP: 4
+  worldToHologramScale: -10
+  spawnOffset: {x: 0, y: 1, z: 0}
 --- !u!1 &4340145516641353589
 GameObject:
   m_ObjectHideFlags: 0

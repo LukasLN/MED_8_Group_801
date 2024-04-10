@@ -32,9 +32,6 @@ public class HologramOnOf : MonoBehaviour
      
     }
 
-
-
-
     IEnumerator T_Timer()
     {
         yield return new WaitForSeconds(3);

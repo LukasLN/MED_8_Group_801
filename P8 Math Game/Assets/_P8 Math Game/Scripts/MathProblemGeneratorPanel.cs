@@ -54,7 +54,7 @@ namespace AstroMath
                 positionToSpawnParkingIn /= scalar;
 
                 var newSpaceship = Instantiate(spaceshipPF, positionToSpawnSpaceshipIn + spawnOffset, Quaternion.identity, spaceshipParentTF);
-                Vector3 randomRotation = new Vector3(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
+                Vector3 randomRotation = new Vector3(0, Random.Range(0, 360), 0);
 
                 var newParking = Instantiate(parkingPF, positionToSpawnParkingIn + spawnOffset, Quaternion.Euler(randomRotation), parkingParentTF);
 

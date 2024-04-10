@@ -112,6 +112,28 @@ namespace AstroMath
             return position;
         }
 
+        public static Vector3 ContinuousDiscPosition(float minDistance, float maxDistance, float discHeight, bool debug = false)
+        {
+            Vector3 position = ContinuousRingPosition(minDistance, maxDistance, debug);
+
+            var y = Random.Range(-(discHeight / 2), discHeight / 2);
+            position.y = y;
+
+            return position;
+        }
+
+        public static Vector3 DiscreteDiscPosition(int minDistance, int maxDistance, int discHeight, bool inclusive = true, bool debug = false)
+        {
+            if (!inclusive) { minDistance += 1; maxDistance -= 1; }
+
+            Vector3 position = ContinuousDiscPosition(minDistance, maxDistance, discHeight, debug);
+            position.x = Mathf.RoundToInt(position.x);
+            position.y = Mathf.RoundToInt(position.y);
+            position.z = Mathf.RoundToInt(position.z);
+
+            return position;
+        }
+
         static Vector3 RandomDirection()
         {
             var x = Random.Range(-1f, 1f);
