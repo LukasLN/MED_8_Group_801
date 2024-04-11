@@ -43,7 +43,7 @@ namespace AstroMath
         /// <param name="type">Specifies the type of math problem.</param>
         /// <param name="debug">Whether or not to debug relevant information to the console.</param>
         /// <returns></returns>
-        public static MathProblem GenerateMathProblem(int minSP, int maxSP, int minPP, int maxPP, bool randomType = true, int type = 0, bool randomCargo = true, int cargo = 0, bool debug = false)
+        public static MathProblem GenerateMathProblem(float minDistance, float maxDistance, bool randomType = true, int type = 0, bool randomCargo = true, int cargo = 0, bool debug = false)
         {
             MathProblem newMathProblem = new MathProblem();
 
@@ -72,11 +72,12 @@ namespace AstroMath
             #endregion
 
             #region Setting POSITIONS and DIRECTION answer of the MATH PROBLEM
-            newMathProblem.spaceshipPosition = PositionGenerator.DiscretePosition(minSP, maxSP);
-            newMathProblem.targetPosition = PositionGenerator.DiscretePosition(minPP, maxPP);
+            newMathProblem.spaceshipPosition = PositionGenerator.ContinuousRingPosition(minDistance, maxDistance);
+            newMathProblem.targetPosition = FixedPositionsContainer.instance.TakeSampleParkingPosition();
             newMathProblem.directionAnswer = newMathProblem.targetPosition - newMathProblem.spaceshipPosition;
             #endregion
 
+            /*
             #region Generating answers to MATH PROBLEM TYPE 1 (collision) and 2 (t scalar)
             switch (mathProblemType)
             {
@@ -110,6 +111,7 @@ namespace AstroMath
                     break;
             }
             #endregion
+            */
 
             return newMathProblem;
         }

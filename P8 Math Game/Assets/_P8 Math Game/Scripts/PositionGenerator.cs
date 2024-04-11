@@ -4,6 +4,17 @@ namespace AstroMath
 {
     public static class PositionGenerator
     {
+        public static float Map(float value, float fromMin, float fromMax, float toMin, float toMax)
+        {
+            //Debug.Log("Value BEFORE: " + value);
+
+            var mappedValue = (value - fromMin) * (toMax - toMin) / (fromMax - fromMin) + toMin;
+
+            //Debug.Log("Value AFTER: " + mappedValue);
+
+            return mappedValue;
+        }
+
         /// <summary>
         /// Returns a continuous value 3-dimensional position (e.g. <4.0,2.5,1.9>).
         /// </summary>
@@ -87,9 +98,12 @@ namespace AstroMath
         public static Vector3 ContinuousRingPosition(float minDistance, float maxDistance, bool debug = false)
         {
             Vector3 direction = RandomDirection();
+            //Debug.Log("Direction: " + direction);
             float distance = Random.Range(minDistance, maxDistance);
+            //Debug.Log("Distance: " + distance);
 
             Vector3 position = direction * distance;
+            //Debug.Log("Continuous Ring Position: " + position);
 
             return position;
         }

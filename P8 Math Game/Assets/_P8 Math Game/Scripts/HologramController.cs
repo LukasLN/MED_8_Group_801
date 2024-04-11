@@ -83,6 +83,7 @@ namespace AstroMath
             //> calculate distance and travel speed of the 'controller point' of the hologram
             distanceToTravel = Vector3.Distance(startPointTF.position, endPointTF.position); 
             travelSpeed = distanceToTravel / timeToChange;
+            Toggle();
         }
 
         private void Update()

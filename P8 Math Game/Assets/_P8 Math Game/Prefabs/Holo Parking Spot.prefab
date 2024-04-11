@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5293562972685630590}
   - component: {fileID: 1727929121501451754}
+  - component: {fileID: 5280452962444226853}
   m_Layer: 0
   m_Name: Holo Parking Spot
   m_TagString: Untagged
@@ -54,6 +55,18 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.19
   m_Center: {x: 0, y: 0, z: -0.1}
+--- !u!114 &5280452962444226853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6157536605882474597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d766b5e0b770c1341858b2f14ad798b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7897082672487318215
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,34 +7,88 @@ namespace AstroMath
 {
     public class InfoPanel : MonoBehaviour
     {
+        [HideInInspector] public MathProblem mathProblem;
+
+        [SerializeField] bool isSelected;
+
         public TMP_Text spaceshipPositionText;
-        public TMP_Text dockPositionText;
         public TMP_Text directionVectorText;
 
-        public Vector3 rayEndPoint;
+        public Vector3 rayHitPoint;
 
-        [HideInInspector] public MathProblem mathProblem;
+        [SerializeField] Image cargoImage;
+        [SerializeField] Sprite[] cargoSprites;
+        [SerializeField] TMP_Text problemTypeText;
+
+        #region Color
+        [Header("Color")]
+        [SerializeField] bool changePanelColor;
+        [SerializeField] Image panelImage;
+        [SerializeField] Color[] panelColors;
+        #endregion
 
         [SerializeField] InputFieldOnlyNumbers x_inputField, y_inputField, z_inputField;
         [SerializeField] GameObject correctImageGO, wrongImageGO;
         GameObject assessmentImageToShowGO;
-        [SerializeField] float secondsBeforeHideAssessment;//
+        [SerializeField] float secondsBeforeHideAssessment;
 
         bool result;
 
-        public void SetPositions()
+        private void Update()
         {
-            spaceshipPositionText.text = $"({mathProblem.spaceshipPosition.x})\n" +
-                                         $"({mathProblem.spaceshipPosition.y})\n" +
-                                         $"({mathProblem.spaceshipPosition.z})";
+            if(isSelected == true)
+            {
+                UpdateDirectionVectorText();
+            }
+        }
 
-            dockPositionText.text = $"({mathProblem.targetPosition.x})\n" +
-                                    $"({mathProblem.targetPosition.y})\n" +
-                                    $"({mathProblem.targetPosition.z})";
+        public void UpdateGraphics()
+        {
+            UpdateCargoImage();
+            UpdateProblemTypeText();
 
-            directionVectorText.text = $"({rayEndPoint.x-mathProblem.spaceshipPosition.x})\n" +
-                                       $"({rayEndPoint.y - mathProblem.spaceshipPosition.y})\n" +
-                                       $"({rayEndPoint.z - mathProblem.spaceshipPosition.y})";
+            if(changePanelColor == true)
+            {
+                UpdatePanelColor();
+            }
+        }
+
+        void UpdateCargoImage()
+        {
+            cargoImage.sprite = cargoSprites[(int)mathProblem.cargo];
+        }
+
+        void UpdateProblemTypeText()
+        {
+            var correctText = "A";
+            switch ((int)mathProblem.type)
+            {
+                case 0: //Direction problem
+                    correctText = "A";
+                    break;
+                case 1: //Collision problem
+                    correctText = "B";
+                    break;
+                case 2: //Scalar t problem
+                    correctText = "C";
+                    break;
+            }
+
+            problemTypeText.text = correctText;
+        }
+
+        void UpdatePanelColor()
+        {
+            panelImage.color = panelColors[(int)mathProblem.cargo];
+        }
+
+        public void UpdateDirectionVectorText()
+        {
+            Vector3 direction = rayHitPoint - mathProblem.spaceshipPosition;
+
+            directionVectorText.text = $"({direction.x:F1})\n" +
+                                       $"({direction.y:F1})\n" +
+                                       $"({direction.z:F1})";
         }
 
         public void CheckIfIsCorrect()
@@ -88,6 +142,11 @@ namespace AstroMath
             }
 
             return result;
+        }
+
+        public void SetIsSelected(bool newBool)
+        {
+            isSelected = newBool;
         }
     }
 }
