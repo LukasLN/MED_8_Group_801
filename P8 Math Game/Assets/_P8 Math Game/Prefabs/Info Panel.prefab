@@ -417,7 +417,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: db8946c391bf8274ba4e175af9f05783, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 814e7b3778fab13479000ad7eada939c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -910,7 +910,7 @@ MonoBehaviour:
   isSelected: 0
   spaceshipPositionText: {fileID: 0}
   directionVectorText: {fileID: 4558739982398740590}
-  rayEndPoint: {x: 0, y: 0, z: 0}
+  rayHitPoint: {x: 0, y: 0, z: 0}
   cargoImage: {fileID: 336732026702018339}
   cargoSprites:
   - {fileID: 21300000, guid: f8a8b1b7da66dbd49a180b14623270fe, type: 3}

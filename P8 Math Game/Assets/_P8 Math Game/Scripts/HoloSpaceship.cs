@@ -46,6 +46,7 @@ namespace AstroMath
             if(isSelected == true)
             {
                 DrawLine();
+                //UpdateGraphics();
             }
         }
 
