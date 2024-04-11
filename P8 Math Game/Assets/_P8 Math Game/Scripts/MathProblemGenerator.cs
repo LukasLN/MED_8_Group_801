@@ -14,12 +14,20 @@ namespace AstroMath
         }
         public Type type;
 
+        public enum Cargo
+        {
+            Water = 0,
+            Food = 1,
+            Fuel = 2
+        }
+        public Cargo cargo;
+
         public Vector3 directionAnswer;
         public bool collisionAnswer;
         public int scaleAnswer;
 
         public Vector3 spaceshipPosition;
-        public Vector3 parkingPosition;
+        public Vector3 targetPosition;//
     }
 
     public static class MathProblemGenerator
@@ -27,36 +35,55 @@ namespace AstroMath
         /// <summary>
         /// Returns a math problem of type 'number' (0 = direction problem, 1 = collision problem, 2 = scale (t) problem).
         /// </summary>
-        /// <param name="random">Whether or not to generate a random type of math problem.</param>
-        /// <param name="number">Specifies the type of math problem.</param>
+        /// <param name="minSP">Minimum value for the spaceship position.</param>
+        /// <param name="maxSP">Maximum value for the spaceship position.</param>
+        /// <param name="minPP">Minimum value for the parking position.</param>
+        /// <param name="maxPP">Maximum value for the parking position.</param>
+        /// <param name="randomType">Whether or not to generate a random type of math problem.</param>
+        /// <param name="type">Specifies the type of math problem.</param>
         /// <param name="debug">Whether or not to debug relevant information to the console.</param>
         /// <returns></returns>
-        public static MathProblem GenerateMathProblem(bool random = true, int number = 0, bool debug = false)
+        public static MathProblem GenerateMathProblem(float minDistance, float maxDistance, bool randomType = true, int type = 0, bool randomCargo = true, int cargo = 0, bool debug = false)
         {
-            var randomNumber = number;
+            MathProblem newMathProblem = new MathProblem();
 
-            if (random)
+            var mathProblemType = type;
+            var cargoType = cargo;
+
+            #region if MATH PROBLEM TYPE is to be random...
+            if (randomType)
             {
                 var numberOfMathProblemTypes = Enum.GetNames(typeof(MathProblem.Type)).Length;
-
-                Debug.Log($"Number of Math Problem types: {numberOfMathProblemTypes}");
-
-                randomNumber = UnityEngine.Random.Range(0, numberOfMathProblemTypes);
+                mathProblemType = UnityEngine.Random.Range(0, numberOfMathProblemTypes);
             }
+            #endregion
 
-            MathProblem newMathProblem = new MathProblem();
-            newMathProblem.type = (MathProblem.Type)randomNumber;
-
-            newMathProblem.spaceshipPosition = PositionGenerator.DiscreteRingPosition(11, 20);
-            newMathProblem.parkingPosition = PositionGenerator.DiscreteRingPosition(0, 10);
-            newMathProblem.directionAnswer = newMathProblem.parkingPosition - newMathProblem.spaceshipPosition;
-
-            switch (randomNumber)
+            #region if CARGO is to be random...
+            if (randomCargo)
             {
-                case 0:
-                    //direction math problem chosen
+                var numberOfCargoTypes = Enum.GetNames(typeof(MathProblem.Cargo)).Length;
+                cargoType = UnityEngine.Random.Range(0, numberOfCargoTypes);
+            }
+            #endregion
+
+            #region Setting MATH PROBLEM TYPE and CARGO
+            newMathProblem.type = (MathProblem.Type)mathProblemType;
+            newMathProblem.cargo = (MathProblem.Cargo)cargoType;
+            #endregion
+
+            #region Setting POSITIONS and DIRECTION answer of the MATH PROBLEM
+            newMathProblem.spaceshipPosition = PositionGenerator.ContinuousRingPosition(minDistance, maxDistance);
+            newMathProblem.targetPosition = FixedPositionsContainer.instance.TakeSampleParkingPosition();
+            newMathProblem.directionAnswer = newMathProblem.targetPosition - newMathProblem.spaceshipPosition;
+            #endregion
+
+            /*
+            #region Generating answers to MATH PROBLEM TYPE 1 (collision) and 2 (t scalar)
+            switch (mathProblemType)
+            {
+                case 0: //direction type math problem
                     break;
-                case 1:
+                case 1: //collision type math problem
                     //generate whether to produce a collision or no collision
                     var chance = UnityEngine.Random.Range(0, 2);
                     if(chance == 0) //no collision will happen
@@ -73,16 +100,18 @@ namespace AstroMath
                         newMathProblem.scaleAnswer = t;
 
                         Vector3 collisionPosition = newMathProblem.spaceshipPosition + t * newMathProblem.directionAnswer;
-                        newMathProblem.parkingPosition = collisionPosition;
+                        newMathProblem.targetPosition = collisionPosition;
                     }
                     break;
-                case 2:
+                case 2: //t scalar type math problem
                     //generate something else
                     newMathProblem.scaleAnswer = 1;
                     break;
                 default:
                     break;
             }
+            #endregion
+            */
 
             return newMathProblem;
         }
