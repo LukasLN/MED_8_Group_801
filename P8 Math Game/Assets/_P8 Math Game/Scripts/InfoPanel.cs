@@ -84,8 +84,7 @@ namespace AstroMath
 
         public void UpdateDirectionVectorText()
         {
-            
-              // magic numbers are limits of holorgram 'cookie' and spawning sphere
+            // magic numbers are limits of holorgram 'cookie' and spawning sphere
             float x = PositionGenerator.Map(rayHitPoint.x, -4.5f, 4.5f, -100, 100);
             float y = PositionGenerator.Map(rayHitPoint.y, -0.5f, 0.5f, -100, 100);
             float z = PositionGenerator.Map(rayHitPoint.z, -4.5f, 4.5f, -100, 100);

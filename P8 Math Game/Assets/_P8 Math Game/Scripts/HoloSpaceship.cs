@@ -1,3 +1,4 @@
+using Oculus.Interaction;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ namespace AstroMath
         Vector3 startPosition, directionVector;
 
         [SerializeField] bool isSelected;
+        [SerializeField] bool hasSavedRotation;
 
         [SerializeField] GameObject[] modelsGO; //GO = GameObject
 
@@ -25,6 +27,7 @@ namespace AstroMath
         LineRenderer lineRenderer;
         [SerializeField] Transform lineStartPoint;
         [SerializeField] float maxDistance;
+        RaycastHit hit;
         #endregion
 
         private void Awake()
@@ -48,6 +51,13 @@ namespace AstroMath
                 DrawLine();
                 //UpdateGraphics();
             }
+
+            if(hasSavedRotation == true)
+            {
+                transform.LookAt(hit.transform.position);
+                //Debug.Log("Hit Transform Position: " + hit.transform.position);
+                //infoPanel.
+            }
         }
 
         public void UpdateGraphics()
@@ -67,15 +77,44 @@ namespace AstroMath
             float distance = maxDistance;
 
             Ray ray = new Ray(lineStartPoint.position, lineStartPoint.forward);
-            RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit, maxDistance))
             {
                 Vector3 hitPosition = hit.point;
-                Debug.Log("Hit Position: " + hitPosition);
-                infoPanel.rayHitPoint = hitPosition;//
+
+                #region Debugging to figure out mapping issue
+
+                Debug.Log("BEFORE Hit Position: " + hitPosition);
+                Debug.Log("BEFORE Spaceship Position: " + transform.position);
+
+                float x = PositionGenerator.Map(hitPosition.x, -4.5f, 4.5f, -100, 100);
+                float y = PositionGenerator.Map(hitPosition.y, -0.5f + 1.5f, 0.5f + 1.5f, -100, 100);
+                float z = PositionGenerator.Map(hitPosition.z, -4.5f, 4.5f, -100, 100);
+
+                Debug.Log("AFTER Hit Position: " + new Vector3(x,y,z));
+                Debug.Log("AFTER Spaceship Position: " + mathProblem.spaceshipPosition);
+
+                #endregion
+
+                infoPanel.rayHitPoint = hitPosition; //
                 distance = Vector3.Distance(lineStartPoint.position, hitPosition);
                 //Debug.DrawRay(startPoint.position, startPoint.forward * distance, Color.red);
+
+                if (hit.collider.gameObject.tag == "Parking")
+                {
+                    Debug.Log("Collided with PARKING!");
+
+                    hasSavedRotation = true;
+
+                    //Debug.Log("Saved Rotation: " + savedRotation);
+                    //GetComponent<OneGrabFreeTransformer>().transform.rotation = savedRotation;
+                    //var grabRotation = GetComponent<OneGrabFreeTransformer>().transform.rotation;
+                    //Debug.Log("OneGrabFreeTransformer Rotation: " + grabRotation);
+                }
+                else
+                {
+                    hasSavedRotation = false;
+                }
 
             }
             #endregion

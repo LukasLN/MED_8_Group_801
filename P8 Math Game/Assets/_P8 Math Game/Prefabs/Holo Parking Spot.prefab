@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5280452962444226853}
   m_Layer: 0
   m_Name: Holo Parking Spot
-  m_TagString: Untagged
+  m_TagString: Parking
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53,7 +53,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.19
+  m_Radius: 0.25
   m_Center: {x: 0, y: 0, z: -0.1}
 --- !u!114 &5280452962444226853
 MonoBehaviour:
