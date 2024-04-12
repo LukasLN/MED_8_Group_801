@@ -6,7 +6,7 @@ namespace AstroMath
 {
     public class HoloSpaceship : MonoBehaviour
     {
-        [HideInInspector] public MathProblem mathProblem;
+        public MathProblem mathProblem;
 
         Vector3 startPosition, directionVector;
 
@@ -32,6 +32,7 @@ namespace AstroMath
 
         private void Awake()
         {
+
             lineRenderer = lineGO.GetComponent<LineRenderer>();
             lineRenderer.SetPosition(0, lineStartPoint.localPosition);
             infoPanel = infoPanelGO.GetComponent<InfoPanel>();
