@@ -84,7 +84,12 @@ namespace AstroMath
 
         public void UpdateDirectionVectorText()
         {
-            Vector3 direction = rayHitPoint - mathProblem.spaceshipPosition;
+            
+              // magic numbers are limits of holorgram 'cookie' and spawning sphere
+            float x = PositionGenerator.Map(rayHitPoint.x, -4.5f, 4.5f, -100, 100);
+            float y = PositionGenerator.Map(rayHitPoint.y, -0.5f, 0.5f, -100, 100);
+            float z = PositionGenerator.Map(rayHitPoint.z, -4.5f, 4.5f, -100, 100);
+            Vector3 direction = new Vector3(x, y, z) - mathProblem.spaceshipPosition;
 
             directionVectorText.text = $"({direction.x:F1})\n" +
                                        $"({direction.y:F1})\n" +
