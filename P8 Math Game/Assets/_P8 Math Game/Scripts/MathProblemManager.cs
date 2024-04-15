@@ -17,6 +17,11 @@ namespace AstroMath
             instance = this;
         }
 
+        private void Start()
+        {
+            CreateNumberOfProblems(numberOfProblemsToCreate);
+        }
+
         private void Update()
         {
             if(Input.GetKeyDown(KeyCode.C))

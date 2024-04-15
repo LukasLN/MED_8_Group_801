@@ -8,10 +8,11 @@ namespace AstroMath
     {
         public MathProblem mathProblem;
 
-        Vector3 startPosition, directionVector;
+        [HideInInspector] public Vector3 directionVector;
 
         [SerializeField] bool isSelected;
-        [SerializeField] bool hasSavedRotation;
+        [SerializeField] bool hasTarget;
+        [HideInInspector] public GameObject targetGO;
 
         [SerializeField] GameObject[] modelsGO; //GO = GameObject
 
@@ -32,30 +33,23 @@ namespace AstroMath
 
         private void Awake()
         {
-
             lineRenderer = lineGO.GetComponent<LineRenderer>();
             lineRenderer.SetPosition(0, lineStartPoint.localPosition);
             infoPanel = infoPanelGO.GetComponent<InfoPanel>();
         }
 
-        private void Start()
-        {
-            startPosition = transform.position;
-        }
-
         private void Update()
         {
-            directionVector = transform.forward;
-            
             if(isSelected == true)
             {
                 DrawLine();
+                UpdateDirectionVector();
                 //UpdateGraphics();
             }
 
-            if(hasSavedRotation == true)
+            if(hasTarget == true)
             {
-                transform.LookAt(hit.transform.position);
+                transform.LookAt(targetGO.transform);
                 //Debug.Log("Hit Transform Position: " + hit.transform.position);
                 //infoPanel.
             }
@@ -75,53 +69,71 @@ namespace AstroMath
         public void DrawLine()
         {
             #region Shooting a ray to get distance to edge
-            float distance = maxDistance;
+            float raylength = maxDistance;
 
             Ray ray = new Ray(lineStartPoint.position, lineStartPoint.forward);
 
             if (Physics.Raycast(ray, out hit, maxDistance))
             {
-                Vector3 hitPosition = hit.point;
+                Debug.Log("hit gameobject name: " + hit.transform.gameObject.name);
 
-                #region Debugging to figure out mapping issue
+                raylength = Vector3.Distance(lineStartPoint.position, hit.point);
 
-                Debug.Log("BEFORE Hit Position: " + hitPosition);
-                Debug.Log("BEFORE Spaceship Position: " + transform.position);
-
-                float x = PositionGenerator.Map(hitPosition.x, -4.5f, 4.5f, -100, 100);
-                float y = PositionGenerator.Map(hitPosition.y, -0.5f + 1.5f, 0.5f + 1.5f, -100, 100);
-                float z = PositionGenerator.Map(hitPosition.z, -4.5f, 4.5f, -100, 100);
-
-                Debug.Log("AFTER Hit Position: " + new Vector3(x,y,z));
-                Debug.Log("AFTER Spaceship Position: " + mathProblem.spaceshipPosition);
-
-                #endregion
-
-                infoPanel.rayHitPoint = hitPosition; //
-                distance = Vector3.Distance(lineStartPoint.position, hitPosition);
-                //Debug.DrawRay(startPoint.position, startPoint.forward * distance, Color.red);
-
-                if (hit.collider.gameObject.tag == "Parking")
+                if (hit.collider.gameObject.tag == "Parking" ||
+                    hit.collider.gameObject.tag == "Asteroid")
                 {
-                    Debug.Log("Collided with PARKING!");
-
-                    hasSavedRotation = true;
-
-                    //Debug.Log("Saved Rotation: " + savedRotation);
-                    //GetComponent<OneGrabFreeTransformer>().transform.rotation = savedRotation;
-                    //var grabRotation = GetComponent<OneGrabFreeTransformer>().transform.rotation;
-                    //Debug.Log("OneGrabFreeTransformer Rotation: " + grabRotation);
+                    hasTarget = true;
+                    targetGO = hit.collider.gameObject;
                 }
                 else
                 {
-                    hasSavedRotation = false;
+                    hasTarget = false;
+                    targetGO = null;
                 }
-
             }
             #endregion
 
-            Vector3 endPosition = new Vector3(lineStartPoint.localPosition.x, lineStartPoint.localPosition.y, lineStartPoint.localPosition.z + distance);
-            lineRenderer.SetPosition(1, endPosition);
+            Vector3 rayEndPosition = new Vector3(lineStartPoint.localPosition.x,
+                                              lineStartPoint.localPosition.y,
+                                              lineStartPoint.localPosition.z + raylength);
+            lineRenderer.SetPosition(1, rayEndPosition);
+        }
+
+        void UpdateDirectionVector()
+        {
+            var newDirectionVector = new Vector3(0, 0, 0);
+
+            if(hasTarget == true) //if we are hitting a target (i.e. PARKING or ASTEROID)
+            {
+                newDirectionVector = targetGO.GetComponent<HoloParkingSpot>().mathProblem.targetPosition -
+                                                                              mathProblem.spaceshipPosition;
+            }
+            else
+            {
+                var originalVector = new Vector3(0,0,0);
+
+                if(hit.transform.gameObject != null) //if we are hitting something that is NOT A TARGET
+                {
+                    originalVector = hit.point;
+                }
+                else //if we are not hitting anything at all
+                {
+                    originalVector = transform.forward * maxDistance;
+                }
+
+                var mappedX = PositionGenerator.Map(originalVector.x, -4.5f, 4.5f, -100f, 100f);
+                var mappedY = PositionGenerator.Map(originalVector.y, 1f, 2f, -100f, 100f);
+                var mappedZ = PositionGenerator.Map(originalVector.z, -4.5f, 4.5f, -100f, 100f);
+
+                newDirectionVector = new Vector3(mappedX, mappedY, mappedZ) - mathProblem.spaceshipPosition;
+            }
+
+            newDirectionVector.x = (int)newDirectionVector.x;
+            newDirectionVector.y = (int)newDirectionVector.y;
+            newDirectionVector.z = (int)newDirectionVector.z;
+
+            infoPanel.directionVector = newDirectionVector;
+            directionVector = newDirectionVector;
         }
 
         public void SetMathProblem(MathProblem newMathProblem)

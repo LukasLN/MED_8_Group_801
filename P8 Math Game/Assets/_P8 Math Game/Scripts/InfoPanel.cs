@@ -10,8 +10,9 @@ namespace AstroMath
         [HideInInspector] public MathProblem mathProblem;
 
         [SerializeField] bool isSelected;
+        [HideInInspector] public Vector3 directionVector;
 
-        public TMP_Text spaceshipPositionText;
+        public TMP_Text startPositionText;
         public TMP_Text directionVectorText;
 
         public Vector3 rayHitPoint;
@@ -33,6 +34,14 @@ namespace AstroMath
         [SerializeField] float secondsBeforeHideAssessment;
 
         bool result;
+
+        private void Start()
+        {
+            directionVector = new Vector3(0, 0, 0);
+
+            startPositionText.text = "0\n0\n0";
+            directionVectorText.text = "0\n0\n0";
+        }
 
         private void Update()
         {
@@ -60,17 +69,17 @@ namespace AstroMath
 
         void UpdateProblemTypeText()
         {
-            var correctText = "A";
+            var correctText = "";
             switch ((int)mathProblem.type)
             {
                 case 0: //Direction problem
-                    correctText = "A";
+                    correctText = "Retning";
                     break;
                 case 1: //Collision problem
-                    correctText = "B";
+                    correctText = "Kollision";
                     break;
                 case 2: //Scalar t problem
-                    correctText = "C";
+                    correctText = "Skalering";
                     break;
             }
 
@@ -85,14 +94,14 @@ namespace AstroMath
         public void UpdateDirectionVectorText()
         {
             // magic numbers are limits of holorgram 'cookie' and spawning sphere
-            float x = PositionGenerator.Map(rayHitPoint.x, -4.5f, 4.5f, -100, 100);
-            float y = PositionGenerator.Map(rayHitPoint.y, -0.5f, 0.5f, -100, 100);
-            float z = PositionGenerator.Map(rayHitPoint.z, -4.5f, 4.5f, -100, 100);
-            Vector3 direction = new Vector3(x, y, z) - mathProblem.spaceshipPosition;
+            //float x = PositionGenerator.Map(rayHitPoint.x, -4.5f, 4.5f, -100, 100);
+            //float y = PositionGenerator.Map(rayHitPoint.y, -0.5f, 0.5f, -100, 100);
+            //float z = PositionGenerator.Map(rayHitPoint.z, -4.5f, 4.5f, -100, 100);
+            //Vector3 direction = new Vector3(x, y, z) - mathProblem.spaceshipPosition;
 
-            directionVectorText.text = $"({direction.x:F1})\n" +
-                                       $"({direction.y:F1})\n" +
-                                       $"({direction.z:F1})";
+            directionVectorText.text = $"{directionVector.x}\n" +
+                                       $"{directionVector.y}\n" +
+                                       $"{directionVector.z}";
         }
 
         public void CheckIfIsCorrect()

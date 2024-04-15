@@ -377,8 +377,10 @@ MonoBehaviour:
     scaleAnswer: 0
     spaceshipPosition: {x: 0, y: 0, z: 0}
     targetPosition: {x: 0, y: 0, z: 0}
+  directionVector: {x: 0, y: 0, z: 0}
   isSelected: 0
-  hasSavedRotation: 0
+  hasTarget: 0
+  targetGO: {fileID: 0}
   modelsGO:
   - {fileID: 4581205533729709300}
   - {fileID: 4458491295358296453}
@@ -983,6 +985,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2609664874914013513, guid: 89eddb845a838cc4fae6beda7ec8055b,
+        type: 3}
+      propertyPath: _rigidbody
+      value: 
+      objectReference: {fileID: 5758218127830021648}
+    - target: {fileID: 5841755323714558673, guid: 89eddb845a838cc4fae6beda7ec8055b,
         type: 3}
       propertyPath: _rigidbody
       value: 
