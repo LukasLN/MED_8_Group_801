@@ -1,3 +1,4 @@
+using Oculus.Interaction;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -5,11 +6,13 @@ namespace AstroMath
 {
     public class HoloSpaceship : MonoBehaviour
     {
-        [HideInInspector] public MathProblem mathProblem;
+        public MathProblem mathProblem;
 
-        Vector3 startPosition, directionVector;
+        [HideInInspector] public Vector3 directionVector;
 
         [SerializeField] bool isSelected;
+        [SerializeField] bool hasTarget;
+        [HideInInspector] public GameObject targetGO;
 
         [SerializeField] GameObject[] modelsGO; //GO = GameObject
 
@@ -25,6 +28,7 @@ namespace AstroMath
         LineRenderer lineRenderer;
         [SerializeField] Transform lineStartPoint;
         [SerializeField] float maxDistance;
+        RaycastHit hit;
         #endregion
 
         private void Awake()
@@ -34,19 +38,20 @@ namespace AstroMath
             infoPanel = infoPanelGO.GetComponent<InfoPanel>();
         }
 
-        private void Start()
-        {
-            startPosition = transform.position;
-        }
-
         private void Update()
         {
-            directionVector = transform.forward;
-            
             if(isSelected == true)
             {
                 DrawLine();
+                UpdateDirectionVector();
                 //UpdateGraphics();
+            }
+
+            if(hasTarget == true)
+            {
+                transform.LookAt(targetGO.transform);
+                //Debug.Log("Hit Transform Position: " + hit.transform.position);
+                //infoPanel.
             }
         }
 
@@ -64,24 +69,71 @@ namespace AstroMath
         public void DrawLine()
         {
             #region Shooting a ray to get distance to edge
-            float distance = maxDistance;
+            float raylength = maxDistance;
 
             Ray ray = new Ray(lineStartPoint.position, lineStartPoint.forward);
-            RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit, maxDistance))
             {
-                Vector3 hitPosition = hit.point;
-                Debug.Log("Hit Position: " + hitPosition);
-                infoPanel.rayHitPoint = hitPosition;//
-                distance = Vector3.Distance(lineStartPoint.position, hitPosition);
-                //Debug.DrawRay(startPoint.position, startPoint.forward * distance, Color.red);
+                Debug.Log("hit gameobject name: " + hit.transform.gameObject.name);
 
+                raylength = Vector3.Distance(lineStartPoint.position, hit.point);
+
+                if (hit.collider.gameObject.tag == "Parking" ||
+                    hit.collider.gameObject.tag == "Asteroid")
+                {
+                    hasTarget = true;
+                    targetGO = hit.collider.gameObject;
+                }
+                else
+                {
+                    hasTarget = false;
+                    targetGO = null;
+                }
             }
             #endregion
 
-            Vector3 endPosition = new Vector3(lineStartPoint.localPosition.x, lineStartPoint.localPosition.y, lineStartPoint.localPosition.z + distance);
-            lineRenderer.SetPosition(1, endPosition);
+            Vector3 rayEndPosition = new Vector3(lineStartPoint.localPosition.x,
+                                              lineStartPoint.localPosition.y,
+                                              lineStartPoint.localPosition.z + raylength);
+            lineRenderer.SetPosition(1, rayEndPosition);
+        }
+
+        void UpdateDirectionVector()
+        {
+            var newDirectionVector = new Vector3(0, 0, 0);
+
+            if(hasTarget == true) //if we are hitting a target (i.e. PARKING or ASTEROID)
+            {
+                newDirectionVector = targetGO.GetComponent<HoloParkingSpot>().mathProblem.targetPosition -
+                                                                              mathProblem.spaceshipPosition;
+            }
+            else
+            {
+                var originalVector = new Vector3(0,0,0);
+
+                if(hit.transform.gameObject != null) //if we are hitting something that is NOT A TARGET
+                {
+                    originalVector = hit.point;
+                }
+                else //if we are not hitting anything at all
+                {
+                    originalVector = transform.forward * maxDistance;
+                }
+
+                var mappedX = PositionGenerator.Map(originalVector.x, -4.5f, 4.5f, -100f, 100f);
+                var mappedY = PositionGenerator.Map(originalVector.y, 1f, 2f, -100f, 100f);
+                var mappedZ = PositionGenerator.Map(originalVector.z, -4.5f, 4.5f, -100f, 100f);
+
+                newDirectionVector = new Vector3(mappedX, mappedY, mappedZ) - mathProblem.spaceshipPosition;
+            }
+
+            newDirectionVector.x = (int)newDirectionVector.x;
+            newDirectionVector.y = (int)newDirectionVector.y;
+            newDirectionVector.z = (int)newDirectionVector.z;
+
+            infoPanel.directionVector = newDirectionVector;
+            directionVector = newDirectionVector;
         }
 
         public void SetMathProblem(MathProblem newMathProblem)

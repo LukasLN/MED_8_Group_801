@@ -74,6 +74,7 @@ namespace AstroMath
 
             GameObject newParkingSpot = Instantiate(holoParkingSpotPF, mappedPosition, Quaternion.identity, holoParkingSpotParentTF);
             newParkingSpot.name = "Holo Parking Spot " + mappedPosition;
+            newParkingSpot.GetComponent<HoloParkingSpot>().SetMathProblem(mathProblem);
 
             holoParkingSpots.Add(newParkingSpot);
             #endregion

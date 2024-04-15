@@ -17,15 +17,15 @@ namespace AstroMath
             instance = this;
         }
 
+        private void Start()
+        {
+            CreateNumberOfProblems(numberOfProblemsToCreate);
+        }
+
         private void Update()
         {
             if(Input.GetKeyDown(KeyCode.C))
             {
-                RemoveAllProblems();
-
-                FixedPositionsContainer.instance.CreateNewSampleParkingPositions(5);
-                FixedPositionsContainer.instance.CreateNewSampleAsteroidPositions(5);
-
                 CreateNumberOfProblems(numberOfProblemsToCreate);
             }
 
@@ -38,6 +38,11 @@ namespace AstroMath
 
         public void CreateNumberOfProblems(int numberOfProblems)
         {
+            RemoveAllProblems();
+
+            FixedPositionsContainer.instance.CreateNewSampleParkingPositions(5);
+            FixedPositionsContainer.instance.CreateNewSampleAsteroidPositions(5);
+
             for (int i = 0; i < numberOfProblems; i++)
             {
                 CreateProblem();

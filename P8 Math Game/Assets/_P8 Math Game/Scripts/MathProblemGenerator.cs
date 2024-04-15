@@ -72,7 +72,7 @@ namespace AstroMath
             #endregion
 
             #region Setting POSITIONS and DIRECTION answer of the MATH PROBLEM
-            newMathProblem.spaceshipPosition = PositionGenerator.ContinuousRingPosition(minDistance, maxDistance);
+            newMathProblem.spaceshipPosition = PositionGenerator.DiscreteRingPosition((int)minDistance, (int)maxDistance);
             newMathProblem.targetPosition = FixedPositionsContainer.instance.TakeSampleParkingPosition();
             newMathProblem.directionAnswer = newMathProblem.targetPosition - newMathProblem.spaceshipPosition;
             #endregion
