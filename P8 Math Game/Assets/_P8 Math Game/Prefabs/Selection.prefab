@@ -332,7 +332,7 @@ GameObject:
   - component: {fileID: 9060221703286031219}
   - component: {fileID: 6720611894314862146}
   m_Layer: 0
-  m_Name: Holo Spaceship
+  m_Name: Selection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -354,7 +354,6 @@ Transform:
   - {fileID: 7121363067315285996}
   - {fileID: 3221578070172680117}
   - {fileID: 3698579801232733433}
-  - {fileID: 2076028923965789652}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2946021569488790138
@@ -385,7 +384,7 @@ MonoBehaviour:
   - {fileID: 4581205533729709300}
   - {fileID: 4458491295358296453}
   - {fileID: 7572986271238667980}
-  infoPanelGO: {fileID: 2076028923965789648}
+  infoPanelGO: {fileID: 0}
   infoPanel: {fileID: 0}
   lineGO: {fileID: 6121286697376511541}
   lineStartPoint: {fileID: 713180027345591882}
@@ -406,7 +405,7 @@ MonoBehaviour:
   _whenHover:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2076028923965789648}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -421,7 +420,7 @@ MonoBehaviour:
   _whenUnhover:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2076028923965789648}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -935,81 +934,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5676534638571724210, guid: 436a226a86cdc6f4593692d3630f390d,
     type: 3}
   m_PrefabInstance: {fileID: 1372291619208596157}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &2152972091730618010
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 7613831965388320986}
-    m_Modifications:
-    - target: {fileID: 85407844870140746, guid: 89eddb845a838cc4fae6beda7ec8055b,
-        type: 3}
-      propertyPath: m_Name
-      value: Info Panel
-      objectReference: {fileID: 0}
-    - target: {fileID: 85407844870140746, guid: 89eddb845a838cc4fae6beda7ec8055b,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 85407844870140750, guid: 89eddb845a838cc4fae6beda7ec8055b,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.34
-      objectReference: {fileID: 0}
-    - target: {fileID: 85407844870140750, guid: 89eddb845a838cc4fae6beda7ec8055b,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 85407844870140750, guid: 89eddb845a838cc4fae6beda7ec8055b,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 85407844870140750, guid: 89eddb845a838cc4fae6beda7ec8055b,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 17
-      objectReference: {fileID: 0}
-    - target: {fileID: 85407844870140750, guid: 89eddb845a838cc4fae6beda7ec8055b,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 85407844870140750, guid: 89eddb845a838cc4fae6beda7ec8055b,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2609664874914013513, guid: 89eddb845a838cc4fae6beda7ec8055b,
-        type: 3}
-      propertyPath: _rigidbody
-      value: 
-      objectReference: {fileID: 5758218127830021648}
-    - target: {fileID: 5841755323714558673, guid: 89eddb845a838cc4fae6beda7ec8055b,
-        type: 3}
-      propertyPath: _rigidbody
-      value: 
-      objectReference: {fileID: 5758218127830021648}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 89eddb845a838cc4fae6beda7ec8055b, type: 3}
---- !u!1 &2076028923965789648 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 85407844870140746, guid: 89eddb845a838cc4fae6beda7ec8055b,
-    type: 3}
-  m_PrefabInstance: {fileID: 2152972091730618010}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &2076028923965789652 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 85407844870140750, guid: 89eddb845a838cc4fae6beda7ec8055b,
-    type: 3}
-  m_PrefabInstance: {fileID: 2152972091730618010}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5278144545552969351
 PrefabInstance:

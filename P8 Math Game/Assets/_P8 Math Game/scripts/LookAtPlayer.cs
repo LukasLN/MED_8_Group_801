@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class LookAtPlayer : MonoBehaviour
 {
-
     public GameObject player;
-    // Start is called before the first frame update
-    void Start()
-    {
 
-    }
-
-    // Update is called once per frame
     void Update()
     {
+        // Look at the player's position
         transform.LookAt(player.transform);
+
+        // Rotate the object 180 degrees around the y-axis
+        transform.Rotate(0, 180, 0);
     }
 }
