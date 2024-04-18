@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LookAtPlayer : MonoBehaviour
@@ -15,6 +13,20 @@ public class LookAtPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+<<<<<<< Updated upstream
+=======
+        //################################################
+        //
+        // > I think we should change this so that the
+        //   panel only looks at the player, when the
+        //   player has selected the spaceship.
+        //
+        // - Lau
+        //
+        //################################################
+
+        // Look at the player's position
+>>>>>>> Stashed changes
         transform.LookAt(player.transform);
     }
 }
