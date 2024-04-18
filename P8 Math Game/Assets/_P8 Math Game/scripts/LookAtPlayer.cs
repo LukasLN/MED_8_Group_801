@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LookAtPlayer : MonoBehaviour
@@ -8,6 +6,16 @@ public class LookAtPlayer : MonoBehaviour
 
     void Update()
     {
+        //################################################
+        //
+        // > I think we should change this so that the
+        //   panel only looks at the player, when the
+        //   player has selected the spaceship.
+        //
+        // - Lau
+        //
+        //################################################
+
         // Look at the player's position
         transform.LookAt(player.transform);
 

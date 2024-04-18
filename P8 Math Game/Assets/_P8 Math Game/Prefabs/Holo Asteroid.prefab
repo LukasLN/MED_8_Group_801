@@ -81,7 +81,7 @@ PrefabInstance:
     - target: {fileID: 3219506191680102735, guid: 957daba53b6e0c545a5ea30367de64a0,
         type: 3}
       propertyPath: m_Name
-      value: Hologram Asteroid Variant
+      value: Holo Asteroid
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
