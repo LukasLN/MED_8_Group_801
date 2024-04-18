@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holoSpawnArea: {fileID: 0}
-  holoSpaceshipPF: {fileID: 6799107395553818876, guid: 103e6fec921da714e8be053d5d204530,
+  holoSpaceshipPF: {fileID: 1809961114373649867, guid: 3099e165679b6c444b9c314ed3289134,
     type: 3}
   holoSpaceshipParentTF: {fileID: 0}
   holoSpaceships: []

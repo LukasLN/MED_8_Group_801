@@ -28,10 +28,7 @@ namespace AstroMath
         [SerializeField] Color[] panelColors;
         #endregion
 
-        [SerializeField] InputFieldOnlyNumbers x_inputField, y_inputField, z_inputField;
-        [SerializeField] GameObject correctImageGO, wrongImageGO;
-        GameObject assessmentImageToShowGO;
-        [SerializeField] float secondsBeforeHideAssessment;
+
 
         bool result;
 
@@ -102,59 +99,6 @@ namespace AstroMath
             directionVectorText.text = $"{directionVector.x}\n" +
                                        $"{directionVector.y}\n" +
                                        $"{directionVector.z}";
-        }
-
-        public void CheckIfIsCorrect()
-        {
-            result = IsCorrect();
-            
-            if(result == true)
-            {
-                assessmentImageToShowGO = correctImageGO;
-            }
-            else
-            {
-                assessmentImageToShowGO = wrongImageGO;
-            }
-
-            assessmentImageToShowGO.SetActive(true);
-            StartCoroutine(WaitBeforeHideAssessment());
-        }
-
-        IEnumerator WaitBeforeHideAssessment()
-        {
-            yield return new WaitForSeconds(secondsBeforeHideAssessment);
-            assessmentImageToShowGO.SetActive(false);
-            if(result == true)
-            {
-                int index = MathProblemHolder.instance.mathProblems.IndexOf(mathProblem);
-                MathProblemHolder.instance.mathProblems.RemoveAt(index);
-                Destroy(MathProblemGeneratorPanel.instance.spaceships[index]);
-                MathProblemGeneratorPanel.instance.spaceships.RemoveAt(index);
-                Destroy(MathProblemGeneratorPanel.instance.parkings[index]);
-                MathProblemGeneratorPanel.instance.parkings.RemoveAt(index);
-            }
-        }
-
-        bool IsCorrect()
-        {
-            bool result = false;
-
-            switch(mathProblem.type)
-            {
-                case MathProblem.Type.Direction:
-                    Vector3 answerGiven = new Vector3(x_inputField.number, y_inputField.number, z_inputField.number);
-                    result = answerGiven == mathProblem.directionAnswer;
-                    break;
-                case MathProblem.Type.Collision:
-
-                    break;
-                case MathProblem.Type.Scale:
-
-                    break;
-            }
-
-            return result;
         }
 
         public void SetIsSelected(bool newBool)
