@@ -25,6 +25,7 @@ namespace AstroMath
         [Header("Color")]
         [SerializeField] bool changePanelColor;
         [SerializeField] Image panelImage;
+        [SerializeField] Image confirmButtonImage;
         [SerializeField] Color[] panelColors;
         #endregion
 
@@ -108,6 +109,7 @@ namespace AstroMath
         void UpdatePanelColor()
         {
             panelImage.color = panelColors[(int)mathProblem.cargo];
+            confirmButtonImage.color = panelColors[(int)mathProblem.cargo];
         }
 
         public void UpdateDirectionVectorText()

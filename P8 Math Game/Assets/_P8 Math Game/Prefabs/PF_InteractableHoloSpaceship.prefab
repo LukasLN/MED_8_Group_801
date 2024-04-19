@@ -331,7 +331,7 @@ GameObject:
   - component: {fileID: 8615118160535198225}
   - component: {fileID: 9060221703286031219}
   - component: {fileID: 6720611894314862146}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PF_InteractableHoloSpaceship
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -389,6 +389,9 @@ MonoBehaviour:
   lineGO: {fileID: 6121286697376511541}
   lineStartPoint: {fileID: 713180027345591882}
   maxDistance: 10
+  layerMaskToIgnore:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &1843231209155682316
 MonoBehaviour:
   m_ObjectHideFlags: 0

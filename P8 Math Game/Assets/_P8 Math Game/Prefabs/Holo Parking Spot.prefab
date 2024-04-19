@@ -53,7 +53,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.3
+  m_Radius: 0.2
   m_Center: {x: 0, y: 0, z: -0.1}
 --- !u!114 &5280452962444226853
 MonoBehaviour:
@@ -67,6 +67,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d766b5e0b770c1341858b2f14ad798b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mathProblem:
+    type: 0
+    cargo: 0
+    directionSolution: {x: 0, y: 0, z: 0}
+    collisionSolution: 0
+    scaleSolution: 0
+    spaceshipPosition: {x: 0, y: 0, z: 0}
+    targetPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &7897082672487318215
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ namespace AstroMath
 
         [SerializeField] bool isSelected;
         [SerializeField] bool hasTarget;
-        [HideInInspector] public GameObject targetGO;
+        public GameObject targetGO;
 
         [SerializeField] GameObject[] modelsGO; //GO = GameObject
 
@@ -28,6 +28,7 @@ namespace AstroMath
         LineRenderer lineRenderer;
         [SerializeField] Transform lineStartPoint;
         [SerializeField] float maxDistance;
+        [SerializeField] LayerMask layerMaskToIgnore;
         RaycastHit hit;
         #endregion
 
@@ -73,9 +74,9 @@ namespace AstroMath
 
             Ray ray = new Ray(lineStartPoint.position, lineStartPoint.forward);
 
-            if (Physics.Raycast(ray, out hit, maxDistance))
+            if (Physics.Raycast(ray, out hit, maxDistance, ~layerMaskToIgnore))
             {
-                Debug.Log("hit gameobject name: " + hit.transform.gameObject.name);
+                Debug.Log("Name of hit GameObject: " + hit.transform.gameObject.name);
 
                 raylength = Vector3.Distance(lineStartPoint.position, hit.point);
 
@@ -112,18 +113,28 @@ namespace AstroMath
             {
                 var originalVector = new Vector3(0,0,0);
 
-                if(hit.transform.gameObject != null) //if we are hitting something that is NOT A TARGET
-                {
-                    originalVector = hit.point;
-                }
-                else //if we are not hitting anything at all
+                var mappedX = 0f;
+                var mappedY = 0f;
+                var mappedZ = 0f;
+
+                if (hit.transform == null) //if we are not hitting anything at all
                 {
                     originalVector = transform.forward * maxDistance;
-                }
 
-                var mappedX = PositionGenerator.Map(originalVector.x, -4.5f, 4.5f, -100f, 100f);
-                var mappedY = PositionGenerator.Map(originalVector.y, 1f, 2f, -100f, 100f);
-                var mappedZ = PositionGenerator.Map(originalVector.z, -4.5f, 4.5f, -100f, 100f);
+                    //HARD-CODED NUMBERS!!!
+                    mappedX = PositionGenerator.Map(originalVector.x, -4.5f, 4.5f, -100f, 100f);
+                    mappedY = PositionGenerator.Map(originalVector.y, -1f, 1f, -100f, 100f);
+                    mappedZ = PositionGenerator.Map(originalVector.z, -4.5f, 4.5f, -100f, 100f);
+                }
+                else //if we are hitting something that is NOT A TARGET
+                {
+                    originalVector = hit.point;
+
+                    //HARD-CODED NUMBERS!!!
+                    mappedX = PositionGenerator.Map(originalVector.x, -4.5f, 4.5f, -100f, 100f);
+                    mappedY = PositionGenerator.Map(originalVector.y, 0.15f, 8f, -100f, 100f); //Not perfect :/
+                    mappedZ = PositionGenerator.Map(originalVector.z, -4.5f, 4.5f, -100f, 100f);
+                }
 
                 newDirectionVector = new Vector3(mappedX, mappedY, mappedZ) - mathProblem.spaceshipPosition;
             }
