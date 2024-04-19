@@ -7,6 +7,8 @@ namespace AstroMath
     {
         public static MathProblemManager instance;
 
+        [SerializeField] bool spawnAtStart;
+
         public float minDistance, maxDistance;
         [SerializeField] int numberOfProblemsToCreate;
 
@@ -19,7 +21,10 @@ namespace AstroMath
 
         private void Start()
         {
-            CreateNumberOfProblems(numberOfProblemsToCreate);
+            if(spawnAtStart == true)
+            {
+                CreateNumberOfProblems(numberOfProblemsToCreate);
+            }
         }
 
         private void Update()
