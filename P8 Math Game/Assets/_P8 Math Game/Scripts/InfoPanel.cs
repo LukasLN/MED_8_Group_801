@@ -7,7 +7,7 @@ namespace AstroMath
 {
     public class InfoPanel : MonoBehaviour
     {
-        [HideInInspector] public MathProblem mathProblem;
+        public MathProblem mathProblem;
 
         [SerializeField] bool isSelected;
         [HideInInspector] public Vector3 directionVector;
@@ -28,10 +28,6 @@ namespace AstroMath
         [SerializeField] Color[] panelColors;
         #endregion
 
-
-
-        bool result;
-
         private void Start()
         {
             directionVector = new Vector3(0, 0, 0);
@@ -45,6 +41,32 @@ namespace AstroMath
             if(isSelected == true)
             {
                 UpdateDirectionVectorText();
+            }
+        }
+
+        public void ConfirmAnswer()
+        {
+            switch(mathProblem.type)
+            {
+                case MathProblem.Type.Direction:
+                    // Check if the direction vector is correct
+                    if(directionVector == mathProblem.directionSolution)
+                    {
+                        Debug.Log("Correct Direction!");
+                    }
+                    else
+                    {
+                        Debug.Log("Incorrect Direction!");
+                    }
+                    break;
+                case MathProblem.Type.Collision:
+                    // Check if the collision is correct
+                    Debug.LogWarning("Not implemented yet!");
+                    break;
+                case MathProblem.Type.Scale:
+                    // Check if the scale is correct
+                    Debug.LogWarning("Not implemented yet!");
+                    break;
             }
         }
 

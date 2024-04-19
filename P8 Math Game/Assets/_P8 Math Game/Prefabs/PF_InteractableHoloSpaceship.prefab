@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5604163445528626149}
   m_Layer: 0
-  m_Name: Passenger Spaceship Model
+  m_Name: Power Spaceship
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -125,7 +125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4724649706160873754}
   m_Layer: 0
-  m_Name: Water Spaceship Model
+  m_Name: Water Spaceship
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -332,7 +332,7 @@ GameObject:
   - component: {fileID: 9060221703286031219}
   - component: {fileID: 6720611894314862146}
   m_Layer: 0
-  m_Name: PF_HoloSpaceship
+  m_Name: PF_InteractableHoloSpaceship
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -371,9 +371,9 @@ MonoBehaviour:
   mathProblem:
     type: 0
     cargo: 0
-    directionAnswer: {x: 0, y: 0, z: 0}
-    collisionAnswer: 0
-    scaleAnswer: 0
+    directionSolution: {x: 0, y: 0, z: 0}
+    collisionSolution: 0
+    scaleSolution: 0
     spaceshipPosition: {x: 0, y: 0, z: 0}
     targetPosition: {x: 0, y: 0, z: 0}
   directionVector: {x: 0, y: 0, z: 0}
@@ -382,8 +382,8 @@ MonoBehaviour:
   targetGO: {fileID: 0}
   modelsGO:
   - {fileID: 4581205533729709300}
-  - {fileID: 4458491295358296453}
   - {fileID: 7572986271238667980}
+  - {fileID: 4458491295358296453}
   infoPanelGO: {fileID: 0}
   infoPanel: {fileID: 0}
   lineGO: {fileID: 6121286697376511541}
@@ -661,7 +661,7 @@ GameObject:
   m_Component:
   - component: {fileID: 637062760540343904}
   m_Layer: 0
-  m_Name: Science Spaceship Model
+  m_Name: Food Spaceship
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -713,8 +713,8 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4724649706160873754}
-  - {fileID: 5604163445528626149}
   - {fileID: 637062760540343904}
+  - {fileID: 5604163445528626149}
   m_Father: {fileID: 7613831965388320986}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &445551746859832164
@@ -790,6 +790,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpaceShip_Passenger
       objectReference: {fileID: 0}
+    - target: {fileID: 4028131983222398510, guid: 4cce55b8546448a4798d08ca3faf4ed4,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4028131983222398510, guid: 4cce55b8546448a4798d08ca3faf4ed4,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fb4871a1f76a7a04eb3b5ba3da17bd26, type: 2}
     - target: {fileID: 4096399851318978418, guid: 4cce55b8546448a4798d08ca3faf4ed4,
         type: 3}
       propertyPath: m_IsActive
@@ -909,6 +919,16 @@ PrefabInstance:
       propertyPath: HoloCylinderHeight
       value: -1.007
       objectReference: {fileID: 0}
+    - target: {fileID: 6812880745881364189, guid: 436a226a86cdc6f4593692d3630f390d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6812880745881364189, guid: 436a226a86cdc6f4593692d3630f390d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c7613dbe09b39dd4b94ef16f3aa32fda, type: 2}
     - target: {fileID: 7046742695640756533, guid: 436a226a86cdc6f4593692d3630f390d,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -1008,6 +1028,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4359485640352134908, guid: c55aee6ea6395c542b84f472f37c9b03,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4f851b11df59b7b4482cd2fb10a5d7d8, type: 2}
     - target: {fileID: 5768750462314686553, guid: c55aee6ea6395c542b84f472f37c9b03,
         type: 3}
       propertyPath: m_IsActive

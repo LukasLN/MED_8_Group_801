@@ -22,9 +22,9 @@ namespace AstroMath
         }
         public Cargo cargo;
 
-        public Vector3 directionAnswer;
-        public bool collisionAnswer;
-        public int scaleAnswer;
+        public Vector3 directionSolution;
+        public bool collisionSolution;
+        public int scaleSolution;
 
         public Vector3 spaceshipPosition;
         public Vector3 targetPosition;//
@@ -74,7 +74,7 @@ namespace AstroMath
             #region Setting POSITIONS and DIRECTION answer of the MATH PROBLEM
             newMathProblem.spaceshipPosition = PositionGenerator.DiscreteRingPosition((int)minDistance, (int)maxDistance);
             newMathProblem.targetPosition = FixedPositionsContainer.instance.TakeSampleParkingPosition();
-            newMathProblem.directionAnswer = newMathProblem.targetPosition - newMathProblem.spaceshipPosition;
+            newMathProblem.directionSolution = newMathProblem.targetPosition - newMathProblem.spaceshipPosition;
             #endregion
 
             /*

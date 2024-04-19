@@ -74,7 +74,7 @@ PrefabInstance:
     - target: {fileID: 6799107395553818876, guid: 103e6fec921da714e8be053d5d204530,
         type: 3}
       propertyPath: m_Name
-      value: PF_HoloSpaceship
+      value: PF_InteractableHoloSpaceship
       objectReference: {fileID: 0}
     - target: {fileID: 7613831965388320986, guid: 103e6fec921da714e8be053d5d204530,
         type: 3}
@@ -148,22 +148,12 @@ PrefabInstance:
     - target: {fileID: 85407844870140746, guid: 89eddb845a838cc4fae6beda7ec8055b,
         type: 3}
       propertyPath: m_Name
-      value: Info Panel
+      value: PF_InfoPanel
       objectReference: {fileID: 0}
     - target: {fileID: 85407844870140746, guid: 89eddb845a838cc4fae6beda7ec8055b,
         type: 3}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 85407844870140750, guid: 89eddb845a838cc4fae6beda7ec8055b,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.16520575
-      objectReference: {fileID: 0}
-    - target: {fileID: 85407844870140750, guid: 89eddb845a838cc4fae6beda7ec8055b,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.16520575
       objectReference: {fileID: 0}
     - target: {fileID: 85407844870140750, guid: 89eddb845a838cc4fae6beda7ec8055b,
         type: 3}
