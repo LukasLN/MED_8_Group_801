@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8151455165145132717}
   m_Layer: 0
-  m_Name: SPACESHIP
+  m_Name: PF_Spaceship
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,6 +41,31 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8151455165145132717}
     m_Modifications:
+    - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8922363973198462111}
+    - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
+      propertyPath: _whenUnhover.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8922363973198462111}
+    - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
+      propertyPath: _whenUnhover.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2946021569488790138, guid: 103e6fec921da714e8be053d5d204530,
         type: 3}
       propertyPath: infoPanelGO
@@ -49,7 +74,7 @@ PrefabInstance:
     - target: {fileID: 6799107395553818876, guid: 103e6fec921da714e8be053d5d204530,
         type: 3}
       propertyPath: m_Name
-      value: Selection
+      value: PF_HoloSpaceship
       objectReference: {fileID: 0}
     - target: {fileID: 7613831965388320986, guid: 103e6fec921da714e8be053d5d204530,
         type: 3}
@@ -124,6 +149,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Info Panel
+      objectReference: {fileID: 0}
+    - target: {fileID: 85407844870140746, guid: 89eddb845a838cc4fae6beda7ec8055b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 85407844870140750, guid: 89eddb845a838cc4fae6beda7ec8055b,
         type: 3}

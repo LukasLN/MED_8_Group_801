@@ -23,7 +23,6 @@ public class Keypad : MonoBehaviour
 
     public void PressNumber(string number)
 	{
-		//check if can add more numbers
 		if (currentSlotIndex >= enteredCode.Length)
 		{
 			Debug.LogWarning($"Can't enter anymore numbers! Max code length of {enteredCode.Length} reached!");
@@ -31,11 +30,6 @@ public class Keypad : MonoBehaviour
         }
 
 		AddNumber(number);
-
-  //      string tempCurString = myText.text;
-
-		//string tempNewString = tempCurString + number;
-		//myText.text = tempNewString;
 	}
 
 	void AddNumber(string number)
@@ -64,16 +58,6 @@ public class Keypad : MonoBehaviour
         enteredCode[currentSlotIndex] = "";
 		slotTexts[currentSlotIndex].text = "";
     }
-
-	//public void ClickBackspace()
-	//{
-	//	string tempGetString = myText.text;
-	//	if (tempGetString.Length > 0)
-	//	{
-	//		string tempString = tempGetString.Substring(0, tempGetString.Length - 1);
-	//		myText.text = tempString;
-	//	}
-	//}
 
 	public void PressEnter()
 	{

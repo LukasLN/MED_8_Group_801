@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c15edd2e361c5a4da6638400246cab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnAtStart: 0
   minDistance: 0
   maxDistance: 100
   numberOfProblemsToCreate: 5
