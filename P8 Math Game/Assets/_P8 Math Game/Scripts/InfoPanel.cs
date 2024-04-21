@@ -8,6 +8,7 @@ namespace AstroMath
     public class InfoPanel : MonoBehaviour
     {
         public MathProblem mathProblem;
+        public int problemID;
 
         [SerializeField] bool isSelected;
         [HideInInspector] public Vector3 directionVector;
@@ -47,6 +48,8 @@ namespace AstroMath
 
         public void ConfirmAnswer()
         {
+            bool isCorrect = false;
+
             switch(mathProblem.type)
             {
                 case MathProblem.Type.Direction:
@@ -54,6 +57,7 @@ namespace AstroMath
                     if(directionVector == mathProblem.directionSolution)
                     {
                         Debug.Log("Correct Direction!");
+                        isCorrect = true;
                     }
                     else
                     {
@@ -68,6 +72,14 @@ namespace AstroMath
                     // Check if the scale is correct
                     Debug.LogWarning("Not implemented yet!");
                     break;
+            }
+
+            if(isCorrect == true)
+            {
+                if(HoloObjectManager.instance != null)
+                {
+                    HoloObjectManager.instance.DespawnHoloObjects(problemID);
+                }
             }
         }
 
