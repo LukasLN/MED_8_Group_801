@@ -22,6 +22,8 @@ namespace AstroMath
     {
         public static FixedPositionsContainer instance;
 
+        [SerializeField] int numberOfSamplesToCreate;
+
         [SerializeField] FixedPositionObject[] fixedParkingSpots;
         [SerializeField] FixedPositionObject[] fixedAsteroids;
 
@@ -36,16 +38,16 @@ namespace AstroMath
         private void Start()
         {
             //> THIS SHOULD BE CHANGED SO THAT IT HAPPENS WHENEVER A MATH PROBLEM IS GENERATED
-            CreateNewSampleParkingPositions(5);
-            CreateNewSampleAsteroidPositions(5);
+            CreateNewSampleParkingPositions(numberOfSamplesToCreate);
+            CreateNewSampleAsteroidPositions(numberOfSamplesToCreate);
         }
 
         private void Update()
         {
             if(Input.GetKeyDown(KeyCode.N))
             {
-                CreateNewSampleParkingPositions(5);
-                CreateNewSampleAsteroidPositions(5);
+                CreateNewSampleParkingPositions(numberOfSamplesToCreate);
+                CreateNewSampleAsteroidPositions(numberOfSamplesToCreate);
             }
 
             if (Input.GetKeyDown(KeyCode.P))

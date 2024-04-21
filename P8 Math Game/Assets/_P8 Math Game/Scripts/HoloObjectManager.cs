@@ -96,5 +96,26 @@ namespace AstroMath
             holoSpaceships.RemoveAt(index);
             holoParkingSpots.RemoveAt(index);
         }
+
+        public void DespawnHoloObjects(Transform childTransform, float delay = 0)
+        {
+            int childIndex = GetChildIndex(childTransform);
+
+            DespawnHoloObjects(childIndex, delay);
+        }
+
+        int GetChildIndex(Transform child)
+        {
+            var parent = holoSpaceshipParentTF;
+            for (int i = 0; i < parent.childCount; i++)
+            {
+                if(parent.GetChild(i) == child)
+                {
+                    return i;
+                }
+            }
+
+            return -1;
+        }
     }
 }

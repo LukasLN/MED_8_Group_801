@@ -6354,7 +6354,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4251130389849148256}
         m_TargetAssemblyTypeName: Keypad, Assembly-CSharp
-        m_MethodName: PressEnter
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9872,7 +9872,6 @@ MonoBehaviour:
     collisionSolution: 0
     scaleSolution: 0
     pinCode: 
-  problemID: 0
   isSelected: 0
   directionVector: {x: 0, y: 0, z: 0}
   startPositionText: {fileID: 1572663849590939908}

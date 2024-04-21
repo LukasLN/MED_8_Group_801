@@ -83,8 +83,12 @@ namespace AstroMath
             {
                 if(HoloObjectManager.instance != null)
                 {
-                    //HoloObjectManager.instance.DespawnHoloObjects(problemID);
+                    HoloObjectManager.instance.DespawnHoloObjects(transform.parent);
                 }
+            }
+            else
+            {
+                Debug.Log("Do bad stuff to the player >:)");
             }
         }
 
