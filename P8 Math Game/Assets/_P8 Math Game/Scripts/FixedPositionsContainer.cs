@@ -14,6 +14,7 @@ namespace AstroMath
             Asteroid = 1
         }
         public Type type;
+        public string id;
         public Vector3 position;
     }
 
@@ -51,7 +52,7 @@ namespace AstroMath
             {
                 if(sampledParkingPositions.Count > 0)
                 {
-                    var position = TakeSampleParkingPosition();
+                    var position = TakeSampleObject();
                     Debug.Log(position);
                 }
             }
@@ -59,28 +60,25 @@ namespace AstroMath
             {
                 if (sampledAsteroidPositions.Count > 0)
                 {
-                    var position = TakeSampleAsteroidPosition();
+                    var position = TakeSampleObject(1);
                     Debug.Log(position);
                 }
             }
         }
 
-        public Vector3 TakeSampleParkingPosition()
+        public FixedPositionObject TakeSampleObject(int type = 0, bool random = true, int index = 0)
         {
-            var randomIndex = UnityEngine.Random.Range(0, sampledParkingPositions.Count);
-            var sample = sampledParkingPositions[randomIndex];
-            sampledParkingPositions.RemoveAt(randomIndex);
+            var list = sampledParkingPositions;
+            if(type == 1) { list = sampledAsteroidPositions; }
 
-            return sample.position;
-        }
+            var chosenIndex = 0;
+            if(random) { chosenIndex = UnityEngine.Random.Range(0, list.Count); }
+            else       { chosenIndex = index; }
 
-        public Vector3 TakeSampleAsteroidPosition()
-        {
-            var randomIndex = UnityEngine.Random.Range(0, sampledAsteroidPositions.Count);
-            var sample = sampledAsteroidPositions[randomIndex];
-            sampledAsteroidPositions.RemoveAt(randomIndex);
+            var sample = list[chosenIndex];
+            list.RemoveAt(chosenIndex);
 
-            return sample.position;
+            return sample;
         }
 
         public void CreateNewSampleParkingPositions(int sampleSize)

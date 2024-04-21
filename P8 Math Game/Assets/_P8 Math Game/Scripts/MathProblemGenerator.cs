@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 namespace AstroMath
 {
@@ -22,12 +23,21 @@ namespace AstroMath
         }
         public Cargo cargo;
 
+        public Vector3 spaceshipPosition;
+        public Vector3 targetPosition;
+        public string targetID;
+
         public Vector3 directionSolution;
         public bool collisionSolution;
         public int scaleSolution;
 
-        public Vector3 spaceshipPosition;
-        public Vector3 targetPosition;//
+        public static string[,] pinCodes = new string[3, 3]
+        {
+            {"9264", "5738", "3487"},
+            {"8093", "6152", "4276"},
+            {"7029", "1845", "2361"}
+        };
+        public string pinCode;
     }
 
     public static class MathProblemGenerator
@@ -73,8 +83,16 @@ namespace AstroMath
 
             #region Setting POSITIONS and DIRECTION answer of the MATH PROBLEM
             newMathProblem.spaceshipPosition = PositionGenerator.DiscreteRingPosition((int)minDistance, (int)maxDistance);
-            newMathProblem.targetPosition = FixedPositionsContainer.instance.TakeSampleParkingPosition();
+
+            var sampleObject = FixedPositionsContainer.instance.TakeSampleObject();
+            newMathProblem.targetID = sampleObject.id;
+            newMathProblem.targetPosition = sampleObject.position;
+
             newMathProblem.directionSolution = newMathProblem.targetPosition - newMathProblem.spaceshipPosition;
+            #endregion
+
+            #region Setting the PUZZLES of the MATH PROBLEM
+            newMathProblem.pinCode = MathProblem.pinCodes[(int)newMathProblem.type, (int)newMathProblem.cargo];
             #endregion
 
             /*

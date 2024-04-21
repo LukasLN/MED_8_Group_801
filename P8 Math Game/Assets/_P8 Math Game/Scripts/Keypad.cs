@@ -1,14 +1,29 @@
+using System.Collections;
 using UnityEngine;
 using TMPro;
+using AstroMath;
 
 public class Keypad : MonoBehaviour
 {
+	[SerializeField] bool isSolved, isOccupied;
+
+	[SerializeField] InfoPanel infoPanel;
+
     [SerializeField] Transform pinCodeSlotsTF; //TF = Transform
-
+	
+	public string correctCode;
     public string[] enteredCode;
-    [SerializeField] TMP_Text[] slotTexts;
 
+	[SerializeField] GameObject targetIDGroupGO;
+	public TMP_Text targetIDText;
+
+	[SerializeField] TMP_Text[] slotTexts;
     [SerializeField] int currentSlotIndex;
+
+	[SerializeField] float assessmentVisibilityTime;
+	[SerializeField] GameObject assessmentBackgroundImageGO;
+    [SerializeField] GameObject correctImageGO;
+    [SerializeField] GameObject wrongImageGO;
 
     private void Start()
     {
@@ -23,7 +38,19 @@ public class Keypad : MonoBehaviour
 
     public void PressNumber(string number)
 	{
-		if (currentSlotIndex >= enteredCode.Length)
+        if(isSolved == true)
+		{
+			Debug.LogWarning("The code has already been solved!");
+			return;
+		}
+
+        if(isOccupied == true)
+        {
+            Debug.LogWarning("Can't enter code right now! Wait for X to disappear!");
+            return;
+        }
+
+        if (currentSlotIndex >= enteredCode.Length)
 		{
 			Debug.LogWarning($"Can't enter anymore numbers! Max code length of {enteredCode.Length} reached!");
 			return;
@@ -42,7 +69,19 @@ public class Keypad : MonoBehaviour
 
 	public void PressBackspace()
 	{
-		if(currentSlotIndex <= 0)
+        if (isSolved == true)
+        {
+            Debug.LogWarning("The code has already been solved!");
+            return;
+        }
+
+        if (isOccupied == true)
+        {
+            Debug.LogWarning("Can't enter code right now! Wait for X to disappear!");
+            return;
+        }
+
+        if (currentSlotIndex <= 0)
 		{
 			Debug.LogWarning("Can't remove anymore numbers! No numbers to remove!");
 			return;
@@ -61,6 +100,37 @@ public class Keypad : MonoBehaviour
 
 	public void PressEnter()
 	{
+        if (isSolved == true)
+        {
+            Debug.LogWarning("The code has already been solved!");
+            return;
+        }
 
+        string concatenatedCode = string.Join("", enteredCode);
+
+        if (concatenatedCode == correctCode)
+		{
+            //Debug.Log("Correct Code Entered!");
+            isSolved = true;
+            correctImageGO.SetActive(true);
+            targetIDGroupGO.SetActive(true);
+			infoPanel.ShowStartPosition();
+        }
+        else
+		{
+            //Debug.Log("Incorrect Code Entered!");
+            isOccupied = true;
+            assessmentBackgroundImageGO.SetActive(true);
+            wrongImageGO.SetActive(true);
+            StartCoroutine(WaitBeforeHideImage(wrongImageGO));
+        }
 	}
+
+	IEnumerator WaitBeforeHideImage(GameObject imageToShow)
+	{
+        yield return new WaitForSeconds(assessmentVisibilityTime);
+        isOccupied = false;
+        imageToShow.SetActive(false);
+        assessmentBackgroundImageGO.SetActive(false);
+    }
 }

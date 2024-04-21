@@ -68,6 +68,11 @@ namespace AstroMath
             infoPanel.UpdateGraphics();
         }
 
+        public void UpdatePuzzleInformation()
+        {
+            infoPanel.UpdatePuzzleInformation();
+        }
+
         public void DrawLine()
         {
             #region Shooting a ray to get distance to edge
@@ -154,11 +159,11 @@ namespace AstroMath
             infoPanel.mathProblem = newMathProblem;
         }
 
-        public void SetProblemID(int newProblemID)
-        {
-            problemID = newProblemID;
-            infoPanel.problemID = newProblemID;
-        }
+        //public void SetProblemID(int newProblemID)
+        //{
+        //    problemID = newProblemID;
+        //    infoPanel.problemID = newProblemID;
+        //}
 
         public void SetIsSelected(bool newBool)
         {

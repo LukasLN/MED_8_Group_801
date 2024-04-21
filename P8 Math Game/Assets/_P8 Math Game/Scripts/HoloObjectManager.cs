@@ -57,9 +57,10 @@ namespace AstroMath
             newSpaceship.name = "Holo Spaceship " + mappedPosition;
 
             newSpaceship.transform.GetChild(0).gameObject.GetComponent<HoloSpaceship>().SetMathProblem(mathProblem);
-            var problemID = holoSpaceships.Count;
-            newSpaceship.transform.GetChild(0).gameObject.GetComponent<HoloSpaceship>().SetProblemID(problemID);
+            //var problemID = holoSpaceships.Count;
+            //newSpaceship.transform.GetChild(0).gameObject.GetComponent<HoloSpaceship>().SetProblemID(problemID);
             newSpaceship.transform.GetChild(0).gameObject.GetComponent<HoloSpaceship>().UpdateGraphics();
+            newSpaceship.transform.GetChild(0).gameObject.GetComponent<HoloSpaceship>().UpdatePuzzleInformation();
 
             holoSpaceships.Add(newSpaceship);
             #endregion
@@ -78,7 +79,7 @@ namespace AstroMath
             GameObject newParkingSpot = Instantiate(holoParkingSpotPF, mappedPosition, Quaternion.identity, holoParkingSpotParentTF);
             newParkingSpot.name = "Holo Parking Spot " + mappedPosition;
             newParkingSpot.GetComponent<HoloParkingSpot>().SetMathProblem(mathProblem);
-            newParkingSpot.GetComponent<HoloParkingSpot>().SetProblemID(problemID);
+            //newParkingSpot.GetComponent<HoloParkingSpot>().SetProblemID(problemID);
 
             holoParkingSpots.Add(newParkingSpot);
             #endregion
