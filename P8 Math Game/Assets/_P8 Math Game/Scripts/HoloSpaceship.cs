@@ -85,7 +85,7 @@ namespace AstroMath
                 //Debug.Log("Name of hit GameObject: " + hit.transform.gameObject.name);
 
                 raylength = Vector3.Distance(lineStartPoint.position, hit.point);
-
+                //
                 if (hit.collider.gameObject.tag == "Parking" ||
                     hit.collider.gameObject.tag == "Asteroid")
                 {
