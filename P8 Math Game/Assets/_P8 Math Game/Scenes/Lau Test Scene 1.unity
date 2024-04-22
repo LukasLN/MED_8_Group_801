@@ -562,20 +562,65 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 942062531}
     m_Modifications:
+    - target: {fileID: 22523649847644113, guid: 048b8389081a71f4d94d1eb3fb22c869,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 67944301851640167, guid: 048b8389081a71f4d94d1eb3fb22c869,
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 177684885120506789, guid: 048b8389081a71f4d94d1eb3fb22c869,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1761207129644726231, guid: 048b8389081a71f4d94d1eb3fb22c869,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2329777242295627917, guid: 048b8389081a71f4d94d1eb3fb22c869,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3197828840627521577, guid: 048b8389081a71f4d94d1eb3fb22c869,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368730766058979159, guid: 048b8389081a71f4d94d1eb3fb22c869,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3370464392689789313, guid: 048b8389081a71f4d94d1eb3fb22c869,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -40.82
       objectReference: {fileID: 0}
+    - target: {fileID: 3464516964208782639, guid: 048b8389081a71f4d94d1eb3fb22c869,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3632508770662409588, guid: 048b8389081a71f4d94d1eb3fb22c869,
         type: 3}
       propertyPath: m_Name
       value: Start Up Controller
+      objectReference: {fileID: 0}
+    - target: {fileID: 3718582105550293863, guid: 048b8389081a71f4d94d1eb3fb22c869,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3965985417331564923, guid: 048b8389081a71f4d94d1eb3fb22c869,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4896304090804247782, guid: 048b8389081a71f4d94d1eb3fb22c869,
         type: 3}
@@ -632,6 +677,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4917017682876700308, guid: 048b8389081a71f4d94d1eb3fb22c869,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5000905796903571548, guid: 048b8389081a71f4d94d1eb3fb22c869,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147644664852648761, guid: 048b8389081a71f4d94d1eb3fb22c869,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5470130165029779822, guid: 048b8389081a71f4d94d1eb3fb22c869,
         type: 3}
       propertyPath: m_Enabled
@@ -647,6 +707,11 @@ PrefabInstance:
       propertyPath: hologramMeshRenderer
       value: 
       objectReference: {fileID: 375927664}
+    - target: {fileID: 5897465273444556343, guid: 048b8389081a71f4d94d1eb3fb22c869,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6081135920630516736, guid: 048b8389081a71f4d94d1eb3fb22c869,
         type: 3}
       propertyPath: m_Enabled
@@ -666,6 +731,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Intensity
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571678138230748034, guid: 048b8389081a71f4d94d1eb3fb22c869,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8079025421745793958, guid: 048b8389081a71f4d94d1eb3fb22c869,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8561400655252121711, guid: 048b8389081a71f4d94d1eb3fb22c869,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8797008698120413602, guid: 048b8389081a71f4d94d1eb3fb22c869,
         type: 3}
@@ -697,6 +777,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Spacestation
+      objectReference: {fileID: 0}
+    - target: {fileID: 9201759567268504441, guid: 048b8389081a71f4d94d1eb3fb22c869,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

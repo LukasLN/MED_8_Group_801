@@ -82,7 +82,7 @@ namespace AstroMath
 
             if (Physics.Raycast(ray, out hit, maxDistance, ~layerMaskToIgnore))
             {
-                Debug.Log("Name of hit GameObject: " + hit.transform.gameObject.name);
+                //Debug.Log("Name of hit GameObject: " + hit.transform.gameObject.name);
 
                 raylength = Vector3.Distance(lineStartPoint.position, hit.point);
 

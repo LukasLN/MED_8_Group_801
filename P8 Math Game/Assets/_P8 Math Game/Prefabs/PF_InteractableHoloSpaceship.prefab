@@ -371,11 +371,14 @@ MonoBehaviour:
   mathProblem:
     type: 0
     cargo: 0
+    spaceshipPosition: {x: 0, y: 0, z: 0}
+    targetPosition: {x: 0, y: 0, z: 0}
+    targetID: 
     directionSolution: {x: 0, y: 0, z: 0}
     collisionSolution: 0
     scaleSolution: 0
-    spaceshipPosition: {x: 0, y: 0, z: 0}
-    targetPosition: {x: 0, y: 0, z: 0}
+    pinCode: 
+  problemID: 0
   directionVector: {x: 0, y: 0, z: 0}
   isSelected: 0
   hasTarget: 0
@@ -910,6 +913,11 @@ PrefabInstance:
     - target: {fileID: 5676534638571724210, guid: 436a226a86cdc6f4593692d3630f390d,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940332452053961133, guid: 436a226a86cdc6f4593692d3630f390d,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5940332452053961133, guid: 436a226a86cdc6f4593692d3630f390d,

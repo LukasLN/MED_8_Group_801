@@ -96,7 +96,7 @@ namespace AstroMath
         {
             UpdateCargoImage();
             UpdateProblemTypeText();
-            Debug.Log("Start Position: " + mathProblem.spaceshipPosition);
+            //Debug.Log("Start Position: " + mathProblem.spaceshipPosition);
             startPositionText.text = $"{mathProblem.spaceshipPosition.x}\n" +
                                     $"{mathProblem.spaceshipPosition.y}\n" +
                                     $"{mathProblem.spaceshipPosition.z}";
