@@ -395,6 +395,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8122504763623628180}
   - component: {fileID: 4251130389849148256}
+  - component: {fileID: 5126712004300329030}
   m_Layer: 0
   m_Name: Keypad
   m_TagString: Untagged
@@ -459,6 +460,63 @@ MonoBehaviour:
   assessmentBackgroundImageGO: {fileID: 7841021840853696209}
   correctImageGO: {fileID: 8713420701520491962}
   wrongImageGO: {fileID: 1141092579260647596}
+--- !u!114 &5126712004300329030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 387771732480016965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92064ddfc8e30314aa330a96972092f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
+  soundEffects:
+  - name: 0
+    loop: 0
+    audioClip: {fileID: 0}
+  - name: 1
+    loop: 0
+    audioClip: {fileID: 8300000, guid: 97066053f7447d849a0f5f2bfef53401, type: 3}
+  - name: 2
+    loop: 0
+    audioClip: {fileID: 8300000, guid: 0eddb0727a5e4dc4e983a95d64a165fe, type: 3}
+  - name: 3
+    loop: 0
+    audioClip: {fileID: 8300000, guid: 510e65112b404334e9987828cffd9d1c, type: 3}
+  - name: 4
+    loop: 0
+    audioClip: {fileID: 8300000, guid: adac5376b1a1db1458a2411ed1d62f7b, type: 3}
+  - name: 5
+    loop: 0
+    audioClip: {fileID: 8300000, guid: 0d27c0e9a2267ab4090d47e34a48caba, type: 3}
+  - name: 6
+    loop: 0
+    audioClip: {fileID: 8300000, guid: 967174e31340eeb4a958f45653faf91e, type: 3}
+  - name: 7
+    loop: 0
+    audioClip: {fileID: 8300000, guid: 94c70e64f0b906348a9cb624bca709a1, type: 3}
+  - name: 8
+    loop: 0
+    audioClip: {fileID: 0}
+  - name: 9
+    loop: 0
+    audioClip: {fileID: 0}
+  - name: Backspace
+    loop: 0
+    audioClip: {fileID: 8300000, guid: fc3f85bf3d198d142a2c0ecfb33000db, type: 3}
+  - name: Enter
+    loop: 0
+    audioClip: {fileID: 0}
+  - name: Correct
+    loop: 0
+    audioClip: {fileID: 8300000, guid: 9f2988379e107a44bbdf5aa7aa26e17f, type: 3}
+  - name: Incorrect
+    loop: 0
+    audioClip: {fileID: 8300000, guid: abfe689ec65f4cf4a8b7e67816d3028b, type: 3}
+  music: []
 --- !u!1 &447291102000726678
 GameObject:
   m_ObjectHideFlags: 0
@@ -9837,6 +9895,10 @@ PrefabInstance:
         type: 3}
       insertIndex: 1
       addedObject: {fileID: 587329779659254739}
+    - targetCorrespondingSourceObject: {fileID: 7114770129336771053, guid: df64bf5efda75be4db0c812f9277d678,
+        type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 7668502357141303519}
   m_SourcePrefab: {fileID: 100100000, guid: df64bf5efda75be4db0c812f9277d678, type: 3}
 --- !u!224 &85407843483784724 stripped
 RectTransform:
@@ -9897,6 +9959,19 @@ MonoBehaviour:
   startPositionLock: {fileID: 250436229152483686}
   directionVectorLock: {fileID: 8754090266666682597}
   keypad: {fileID: 4251130389849148256}
+--- !u!114 &7668502357141303519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85407844870140746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50f243c9212a513468c5163e03c645d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
 --- !u!4 &85407844870140750 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7114770129336771049, guid: df64bf5efda75be4db0c812f9277d678,

@@ -25,6 +25,8 @@ public class Keypad : MonoBehaviour
     [SerializeField] GameObject correctImageGO;
     [SerializeField] GameObject wrongImageGO;
 
+    AudioPlayer audioPlayer;
+
     private void Start()
     {
         enteredCode = new string[pinCodeSlotsTF.childCount];
@@ -34,6 +36,8 @@ public class Keypad : MonoBehaviour
         {
 			slotTexts[i] = pinCodeSlotsTF.GetChild(i).GetChild(1).GetComponent<TMP_Text>();
         }
+
+        audioPlayer = GetComponent<AudioPlayer>();
     }
 
     public void PressNumber(string number)
@@ -56,7 +60,8 @@ public class Keypad : MonoBehaviour
 			return;
         }
 
-		AddNumber(number);
+        audioPlayer.PlaySoundEffect(number);
+        AddNumber(number);
 	}
 
 	void AddNumber(string number)
@@ -84,10 +89,11 @@ public class Keypad : MonoBehaviour
         if (currentSlotIndex <= 0)
 		{
 			Debug.LogWarning("Can't remove anymore numbers! No numbers to remove!");
-			return;
-		}
+            return;
+        }
 
-		RemoveNumber();
+        audioPlayer.PlaySoundEffect("Backspace");
+        RemoveNumber();
     }
 
 	void RemoveNumber()
@@ -115,6 +121,8 @@ public class Keypad : MonoBehaviour
             correctImageGO.SetActive(true);
             targetIDGroupGO.SetActive(true);
 			infoPanel.ShowStartPosition();
+
+            audioPlayer.PlaySoundEffect("Correct");
         }
         else
 		{
@@ -123,6 +131,8 @@ public class Keypad : MonoBehaviour
             assessmentBackgroundImageGO.SetActive(true);
             wrongImageGO.SetActive(true);
             StartCoroutine(WaitBeforeHideImage(wrongImageGO));
+
+            audioPlayer.PlaySoundEffect("Incorrect");
         }
 	}
 

@@ -56,11 +56,11 @@ namespace AstroMath
             GameObject newSpaceship = Instantiate(holoSpaceshipPF, mappedPosition, Quaternion.identity, holoSpaceshipParentTF);
             newSpaceship.name = "Holo Spaceship " + mappedPosition;
 
-            newSpaceship.transform.GetChild(0).gameObject.GetComponent<HoloSpaceship>().SetMathProblem(mathProblem);
+            newSpaceship.transform.GetChild(1).gameObject.GetComponent<HoloSpaceship>().SetMathProblem(mathProblem);
             //var problemID = holoSpaceships.Count;
-            //newSpaceship.transform.GetChild(0).gameObject.GetComponent<HoloSpaceship>().SetProblemID(problemID);
-            newSpaceship.transform.GetChild(0).gameObject.GetComponent<HoloSpaceship>().UpdateGraphics();
-            newSpaceship.transform.GetChild(0).gameObject.GetComponent<HoloSpaceship>().UpdatePuzzleInformation();
+            //newSpaceship.transform.GetChild(1).gameObject.GetComponent<HoloSpaceship>().SetProblemID(problemID);
+            newSpaceship.transform.GetChild(1).gameObject.GetComponent<HoloSpaceship>().UpdateGraphics();
+            newSpaceship.transform.GetChild(1).gameObject.GetComponent<HoloSpaceship>().UpdatePuzzleInformation();
 
             holoSpaceships.Add(newSpaceship);
             #endregion
