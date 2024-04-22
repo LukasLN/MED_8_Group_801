@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2607764398163086683}
   - component: {fileID: 6283163671448764470}
   m_Layer: 0
-  m_Name: PF_HoloSpawnArea
+  m_Name: PF_SpawnArea
   m_TagString: Untagged
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
