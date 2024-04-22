@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static AstroMath.MathProblemManager;
 
 namespace AstroMath
 {
@@ -7,6 +8,14 @@ namespace AstroMath
     {
         public static MathProblemManager instance;
 
+        public enum MathProblemType
+        {
+            Direction = 0,
+            Collision = 1,
+            Scale = 2,
+            Random = 3
+        }
+        public MathProblemType mathProblemType;
         [SerializeField] bool spawnAtStart;
 
         public float minDistance, maxDistance;
@@ -45,8 +54,8 @@ namespace AstroMath
         {
             RemoveAllProblems();
 
-            FixedPositionsContainer.instance.CreateNewSampleParkingPositions(5);
-            FixedPositionsContainer.instance.CreateNewSampleAsteroidPositions(5);
+            FixedPositionsContainer.instance.CreateNewSampleParkingPositions(numberOfProblems);
+            FixedPositionsContainer.instance.CreateNewSampleAsteroidPositions(numberOfProblems);
 
             for (int i = 0; i < numberOfProblems; i++)
             {
@@ -56,7 +65,16 @@ namespace AstroMath
 
         void CreateProblem()
         {
-            MathProblem newMathProblem = MathProblemGenerator.GenerateMathProblem(minDistance, maxDistance);
+            MathProblem newMathProblem;
+            if (mathProblemType == MathProblemType.Random)
+            {
+                newMathProblem = MathProblemGenerator.GenerateMathProblem(minDistance, maxDistance);
+            }
+            else
+            {
+                newMathProblem = MathProblemGenerator.GenerateMathProblem(minDistance, maxDistance, false, (int)mathProblemType);
+            }
+
             mathProblems.Add(newMathProblem);
 
             HoloObjectManager.instance.SpawnHoloObjects(newMathProblem);

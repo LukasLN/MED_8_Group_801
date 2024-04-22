@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -8,88 +7,92 @@ namespace AstroMath
     {
         public static MathProblemGeneratorPanel instance;
 
+        #region Amount
+        [Header("Amount")]
         [SerializeField] int numberOfProblemsToCreate;
+        [SerializeField] int minNumberOfProblems = 5;
+        [SerializeField] int maxNumberOfProblems = 20;
+        [SerializeField] int increaseAmount = 5;
+        [SerializeField] int decreaseAmount = 5;
         [SerializeField] TMP_Text numberOfProblemsToCreateText;
+        #endregion
 
-        public List<GameObject> spaceships;
-        [SerializeField] GameObject spaceshipPF; //PF = Prefab
-        [SerializeField] Transform spaceshipParentTF; //TF = Transform
-
-        public List<GameObject> parkings;
-        [SerializeField] GameObject parkingPF; //PF = Prefab
-        [SerializeField] Transform parkingParentTF; //TF = Transform
-
-        [SerializeField] int minSP, maxSP, minPP, maxPP;
-        [SerializeField, Range(-100, 1)] float worldToHologramScale;
-        [SerializeField] Vector3 spawnOffset;
+        #region Type
+        public enum ProblemType
+        {
+            Direction = 0,
+            Collision = 1,
+            Scale = 2,
+            Random = 3
+        }
+        [Header("Type")]
+        [SerializeField] ProblemType mathProblemType;
+        [SerializeField] TMP_Text mathProblemTypeText;
+        #endregion
 
         private void Awake()
         {
             instance = this;
         }
 
-        void Start()
+        private void Start()
         {
-            numberOfProblemsToCreateText.text = numberOfProblemsToCreate.ToString(); ;
+            numberOfProblemsToCreate = minNumberOfProblems;
+        }
+
+        public void IncreaseMathProblemType()
+        {
+            mathProblemType++;
+
+            if((int)mathProblemType > 3)
+                mathProblemType = 0;
+
+            MathProblemManager.instance.mathProblemType = (MathProblemManager.MathProblemType)(int)mathProblemType;
+
+            mathProblemTypeText.text = mathProblemType.ToString();
+        }
+
+        public void DecreaseMathProblemType()
+        {
+            mathProblemType--;
+
+            if((int)mathProblemType < 0)
+                mathProblemType = (ProblemType)3;
+
+            MathProblemManager.instance.mathProblemType = (MathProblemManager.MathProblemType)(int)mathProblemType;
+
+            mathProblemTypeText.text = mathProblemType.ToString();
+        }
+
+        public void IncreaseNumberOfProblemToCreate()
+        {
+            if(numberOfProblemsToCreate >= maxNumberOfProblems)
+                return;
+
+            numberOfProblemsToCreate += increaseAmount;
+
+            if(numberOfProblemsToCreate > maxNumberOfProblems)
+                numberOfProblemsToCreate = maxNumberOfProblems;
+
+            numberOfProblemsToCreateText.text = numberOfProblemsToCreate.ToString();
+        }
+
+        public void DecreaseNumberOfProblemToCreate()
+        {
+            if(numberOfProblemsToCreate <= minNumberOfProblems)
+                return;
+
+            numberOfProblemsToCreate -= decreaseAmount;
+
+            if(numberOfProblemsToCreate < minNumberOfProblems)
+                numberOfProblemsToCreate = minNumberOfProblems;
+
+            numberOfProblemsToCreateText.text = numberOfProblemsToCreate.ToString();
         }
 
         public void CreateMathProblems()
         {
-            ClearMathProblems();
-
-            for (int i = 0; i < numberOfProblemsToCreate; i++)
-            {
-                //var newMathProblem = MathProblemGenerator.GenerateMathProblem(minSP, maxSP, minPP, maxPP, false, 0);
-                //MathProblemHolder.instance.mathProblems.Add(newMathProblem);
-
-                Vector3 mathProblemSpaceshipPosition = MathProblemHolder.instance.mathProblems[i].spaceshipPosition;
-                Vector3 positionToSpawnSpaceshipIn = new Vector3(mathProblemSpaceshipPosition.x, mathProblemSpaceshipPosition.y, mathProblemSpaceshipPosition.z);
-
-                Vector3 mathProblemParkingPosition = MathProblemHolder.instance.mathProblems[i].targetPosition;
-                Vector3 positionToSpawnParkingIn = new Vector3(mathProblemParkingPosition.x, mathProblemParkingPosition.y, mathProblemParkingPosition.z);
-
-                var scalar = worldToHologramScale;
-                if (scalar < 0) scalar *= -1;
-                positionToSpawnSpaceshipIn /= scalar;
-                positionToSpawnParkingIn /= scalar;
-
-                var newSpaceship = Instantiate(spaceshipPF, positionToSpawnSpaceshipIn + spawnOffset, Quaternion.identity, spaceshipParentTF);
-                Vector3 randomRotation = new Vector3(0, Random.Range(0, 360), 0);
-
-                var newParking = Instantiate(parkingPF, positionToSpawnParkingIn + spawnOffset, Quaternion.Euler(randomRotation), parkingParentTF);
-
-                if(newSpaceship == null) { Debug.LogError("<<SPACESHIP>> DOES NOT EXIST!"); }
-                if(newSpaceship.GetComponent<HoloSpaceship>() == null) { Debug.LogError("<<HOLOGRAM COMPONENT>> DOES NOT EXIST!"); }
-
-                spaceships.Add(newSpaceship);
-                parkings.Add(newParking);
-            }
-        }
-
-        public void ClearMathProblems()
-        {
-            if(MathProblemHolder.instance.mathProblems.Count > 0)
-            {
-                for (int i = 0; i < MathProblemHolder.instance.mathProblems.Count; i++)
-                {
-                    Destroy(spaceships[i]);
-                }
-
-                MathProblemHolder.instance.mathProblems.Clear();
-                spaceships.Clear();
-            }
-        }
-
-        public void IncreaseNumberOfProblemToCreate(int increaseAmount)
-        {
-            numberOfProblemsToCreate += increaseAmount;
-            numberOfProblemsToCreateText.text = numberOfProblemsToCreate.ToString();
-        }
-
-        public void DecreaseNumberOfProblemToCreate(int decreaseAmount)
-        {
-            numberOfProblemsToCreate -= decreaseAmount;
-            numberOfProblemsToCreateText.text = numberOfProblemsToCreate.ToString();//
+            MathProblemManager.instance.CreateNumberOfProblems(numberOfProblemsToCreate);
         }
     }
 }

@@ -8,6 +8,7 @@ namespace AstroMath
     public class InfoPanel : MonoBehaviour
     {
         public MathProblem mathProblem;
+        //public int problemID;
 
         [SerializeField] bool isSelected;
         [HideInInspector] public Vector3 directionVector;
@@ -24,17 +25,22 @@ namespace AstroMath
         #region Color
         [Header("Color")]
         [SerializeField] bool changePanelColor;
-        [SerializeField] Image panelImage;
-        [SerializeField] Image confirmButtonImage;
+        [SerializeField] Image[] panelImages;
+        [SerializeField] Image[] confirmButtonImages;
         [SerializeField] Color[] panelColors;
         #endregion
+
+        #region Locks
+        [Header("Locks")]
+        [SerializeField] GameObject startPositionLock;
+        [SerializeField] GameObject directionVectorLock;
+        #endregion
+
+        public Keypad keypad;
 
         private void Start()
         {
             directionVector = new Vector3(0, 0, 0);
-
-            startPositionText.text = "0\n0\n0";
-            directionVectorText.text = "0\n0\n0";
         }
 
         private void Update()
@@ -47,6 +53,8 @@ namespace AstroMath
 
         public void ConfirmAnswer()
         {
+            bool isCorrect = false;
+
             switch(mathProblem.type)
             {
                 case MathProblem.Type.Direction:
@@ -54,6 +62,7 @@ namespace AstroMath
                     if(directionVector == mathProblem.directionSolution)
                     {
                         Debug.Log("Correct Direction!");
+                        isCorrect = true;
                     }
                     else
                     {
@@ -69,17 +78,41 @@ namespace AstroMath
                     Debug.LogWarning("Not implemented yet!");
                     break;
             }
+
+            if(isCorrect == true)
+            {
+                if(HoloObjectManager.instance != null)
+                {
+                    HoloObjectManager.instance.DespawnHoloObjects(transform.parent);
+                }
+            }
+            else
+            {
+                Debug.Log("Do bad stuff to the player >:)");
+            }
         }
 
         public void UpdateGraphics()
         {
             UpdateCargoImage();
             UpdateProblemTypeText();
+            Debug.Log("Start Position: " + mathProblem.spaceshipPosition);
+            startPositionText.text = $"{mathProblem.spaceshipPosition.x}\n" +
+                                    $"{mathProblem.spaceshipPosition.y}\n" +
+                                    $"{mathProblem.spaceshipPosition.z}";
 
             if(changePanelColor == true)
             {
                 UpdatePanelColor();
+                UpdateConfirmButtonColor();
             }
+        }
+
+        public void UpdatePuzzleInformation()
+        {
+            keypad.correctCode = mathProblem.pinCode;
+            //Debug.Log("The pin code of this math problem is: " + mathProblem.pinCode);
+            keypad.targetIDText.text = "# " + mathProblem.targetID;
         }
 
         void UpdateCargoImage()
@@ -108,8 +141,18 @@ namespace AstroMath
 
         void UpdatePanelColor()
         {
-            panelImage.color = panelColors[(int)mathProblem.cargo];
-            confirmButtonImage.color = panelColors[(int)mathProblem.cargo];
+            for (int i = 0; i < panelImages.Length; i++)
+            {
+                panelImages[i].color = panelColors[(int)mathProblem.cargo];
+            }
+        }
+
+        void UpdateConfirmButtonColor()
+        {
+            for (int i = 0; i < confirmButtonImages.Length; i++)
+            {
+                confirmButtonImages[i].color = panelColors[(int)mathProblem.cargo];
+            }
         }
 
         public void UpdateDirectionVectorText()
@@ -128,6 +171,21 @@ namespace AstroMath
         public void SetIsSelected(bool newBool)
         {
             isSelected = newBool;
+        }
+
+        public void ShowStartPosition()
+        {
+            SetActivation(startPositionLock, false);
+        }
+
+        public void ShowDirectionVector()
+        {
+            SetActivation(directionVectorLock, false);
+        }
+
+        void SetActivation(GameObject gameObject, bool newBool)
+        {
+            gameObject.SetActive(newBool);
         }
     }
 }

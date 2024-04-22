@@ -14,12 +14,15 @@ namespace AstroMath
             Asteroid = 1
         }
         public Type type;
+        public string id;
         public Vector3 position;
     }
 
     public class FixedPositionsContainer : MonoBehaviour
     {
         public static FixedPositionsContainer instance;
+
+        [SerializeField] int numberOfSamplesToCreate;
 
         [SerializeField] FixedPositionObject[] fixedParkingSpots;
         [SerializeField] FixedPositionObject[] fixedAsteroids;
@@ -35,23 +38,23 @@ namespace AstroMath
         private void Start()
         {
             //> THIS SHOULD BE CHANGED SO THAT IT HAPPENS WHENEVER A MATH PROBLEM IS GENERATED
-            CreateNewSampleParkingPositions(5);
-            CreateNewSampleAsteroidPositions(5);
+            CreateNewSampleParkingPositions(numberOfSamplesToCreate);
+            CreateNewSampleAsteroidPositions(numberOfSamplesToCreate);
         }
 
         private void Update()
         {
             if(Input.GetKeyDown(KeyCode.N))
             {
-                CreateNewSampleParkingPositions(5);
-                CreateNewSampleAsteroidPositions(5);
+                CreateNewSampleParkingPositions(numberOfSamplesToCreate);
+                CreateNewSampleAsteroidPositions(numberOfSamplesToCreate);
             }
 
             if (Input.GetKeyDown(KeyCode.P))
             {
                 if(sampledParkingPositions.Count > 0)
                 {
-                    var position = TakeSampleParkingPosition();
+                    var position = TakeSampleObject();
                     Debug.Log(position);
                 }
             }
@@ -59,28 +62,25 @@ namespace AstroMath
             {
                 if (sampledAsteroidPositions.Count > 0)
                 {
-                    var position = TakeSampleAsteroidPosition();
+                    var position = TakeSampleObject(1);
                     Debug.Log(position);
                 }
             }
         }
 
-        public Vector3 TakeSampleParkingPosition()
+        public FixedPositionObject TakeSampleObject(int type = 0, bool random = true, int index = 0)
         {
-            var randomIndex = UnityEngine.Random.Range(0, sampledParkingPositions.Count);
-            var sample = sampledParkingPositions[randomIndex];
-            sampledParkingPositions.RemoveAt(randomIndex);
+            var list = sampledParkingPositions;
+            if(type == 1) { list = sampledAsteroidPositions; }
 
-            return sample.position;
-        }
+            var chosenIndex = 0;
+            if(random) { chosenIndex = UnityEngine.Random.Range(0, list.Count); }
+            else       { chosenIndex = index; }
 
-        public Vector3 TakeSampleAsteroidPosition()
-        {
-            var randomIndex = UnityEngine.Random.Range(0, sampledAsteroidPositions.Count);
-            var sample = sampledAsteroidPositions[randomIndex];
-            sampledAsteroidPositions.RemoveAt(randomIndex);
+            var sample = list[chosenIndex];
+            list.RemoveAt(chosenIndex);
 
-            return sample.position;
+            return sample;
         }
 
         public void CreateNewSampleParkingPositions(int sampleSize)

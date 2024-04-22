@@ -57,7 +57,10 @@ namespace AstroMath
             newSpaceship.name = "Holo Spaceship " + mappedPosition;
 
             newSpaceship.transform.GetChild(0).gameObject.GetComponent<HoloSpaceship>().SetMathProblem(mathProblem);
+            //var problemID = holoSpaceships.Count;
+            //newSpaceship.transform.GetChild(0).gameObject.GetComponent<HoloSpaceship>().SetProblemID(problemID);
             newSpaceship.transform.GetChild(0).gameObject.GetComponent<HoloSpaceship>().UpdateGraphics();
+            newSpaceship.transform.GetChild(0).gameObject.GetComponent<HoloSpaceship>().UpdatePuzzleInformation();
 
             holoSpaceships.Add(newSpaceship);
             #endregion
@@ -76,21 +79,43 @@ namespace AstroMath
             GameObject newParkingSpot = Instantiate(holoParkingSpotPF, mappedPosition, Quaternion.identity, holoParkingSpotParentTF);
             newParkingSpot.name = "Holo Parking Spot " + mappedPosition;
             newParkingSpot.GetComponent<HoloParkingSpot>().SetMathProblem(mathProblem);
+            //newParkingSpot.GetComponent<HoloParkingSpot>().SetProblemID(problemID);
 
             holoParkingSpots.Add(newParkingSpot);
             #endregion
         }
 
-        public void DespawnHoloObjects(int index)
+        public void DespawnHoloObjects(int index, float delay = 0)
         {
             var holoSpaceship   = holoSpaceships[index];
             var holoParkingSpot = holoParkingSpots[index];
 
-            Destroy(holoSpaceship);
-            Destroy(holoParkingSpot);
+            Destroy(holoSpaceship, delay);
+            Destroy(holoParkingSpot, delay);
 
             holoSpaceships.RemoveAt(index);
             holoParkingSpots.RemoveAt(index);
+        }
+
+        public void DespawnHoloObjects(Transform childTransform, float delay = 0)
+        {
+            int childIndex = GetChildIndex(childTransform);
+
+            DespawnHoloObjects(childIndex, delay);
+        }
+
+        int GetChildIndex(Transform child)
+        {
+            var parent = holoSpaceshipParentTF;
+            for (int i = 0; i < parent.childCount; i++)
+            {
+                if(parent.GetChild(i) == child)
+                {
+                    return i;
+                }
+            }
+
+            return -1;
         }
     }
 }

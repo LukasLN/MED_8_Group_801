@@ -7,6 +7,7 @@ namespace AstroMath
     public class HoloSpaceship : MonoBehaviour
     {
         public MathProblem mathProblem;
+        public int problemID;
 
         [HideInInspector] public Vector3 directionVector;
 
@@ -65,6 +66,11 @@ namespace AstroMath
             }
 
             infoPanel.UpdateGraphics();
+        }
+
+        public void UpdatePuzzleInformation()
+        {
+            infoPanel.UpdatePuzzleInformation();
         }
 
         public void DrawLine()
@@ -152,6 +158,12 @@ namespace AstroMath
             mathProblem = newMathProblem;
             infoPanel.mathProblem = newMathProblem;
         }
+
+        //public void SetProblemID(int newProblemID)
+        //{
+        //    problemID = newProblemID;
+        //    infoPanel.problemID = newProblemID;
+        //}
 
         public void SetIsSelected(bool newBool)
         {
