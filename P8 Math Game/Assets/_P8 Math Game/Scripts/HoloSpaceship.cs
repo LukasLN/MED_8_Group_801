@@ -1,5 +1,6 @@
 using Oculus.Interaction;
 using Unity.VisualScripting;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 namespace AstroMath
@@ -21,6 +22,7 @@ namespace AstroMath
         [Header("Info Panel")]
         [SerializeField] GameObject infoPanelGO; //GO = GameObject
         [HideInInspector] public InfoPanel infoPanel;
+        [HideInInspector] InfoPanelMovement infoPanelMovement;
         #endregion
 
         #region Line
@@ -38,6 +40,10 @@ namespace AstroMath
             lineRenderer = lineGO.GetComponent<LineRenderer>();
             lineRenderer.SetPosition(0, lineStartPoint.localPosition);
             infoPanel = infoPanelGO.GetComponent<InfoPanel>();
+
+            OVRCameraRig cameraRig = FindObjectOfType<OVRCameraRig>();
+            infoPanelMovement = infoPanelGO.GetComponent<InfoPanelMovement>();
+            infoPanelMovement.player = cameraRig.centerEyeAnchor;
         }
 
         private void Update()
