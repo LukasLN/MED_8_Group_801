@@ -1,20 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LookAtPlayer : MonoBehaviour
 {
-
     public GameObject player;
-    // Start is called before the first frame update
-    void Start()
-    {
 
-    }
-
-    // Update is called once per frame
     void Update()
     {
+        //################################################
+        //
+        // > I think we should change this so that the
+        //   panel only looks at the player, when the
+        //   player has selected the spaceship.
+        //
+        // - Lau
+        //
+        //################################################
+
+        // Look at the player's position
         transform.LookAt(player.transform);
+
+        // Rotate the object 180 degrees around the y-axis
+        transform.Rotate(0, 180, 0);
     }
 }
