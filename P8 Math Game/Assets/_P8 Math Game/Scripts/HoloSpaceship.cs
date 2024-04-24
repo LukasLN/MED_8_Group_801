@@ -15,6 +15,7 @@ namespace AstroMath
         [SerializeField] bool isSelected;
         [SerializeField] bool hasTarget;
         public GameObject targetGO;
+        public bool lineVisible;
 
         [SerializeField] GameObject[] modelsGO; //GO = GameObject
 
@@ -30,6 +31,8 @@ namespace AstroMath
         [SerializeField] GameObject lineGO; //GO = GameObject
         LineRenderer lineRenderer;
         [SerializeField] Transform lineStartPoint;
+        [SerializeField] Transform lineEndPoint;
+        [SerializeField] GameObject sphere;
         [SerializeField] float maxDistance;
         [SerializeField] LayerMask layerMaskToIgnore;
         RaycastHit hit;
@@ -44,23 +47,34 @@ namespace AstroMath
             OVRCameraRig cameraRig = FindObjectOfType<OVRCameraRig>();
             infoPanelMovement = infoPanelGO.GetComponent<InfoPanelMovement>();
             infoPanelMovement.player = cameraRig.centerEyeAnchor;
+
+
+            if (mathProblem.type == MathProblem.Type.Scale)
+            {
+                lineVisible = true;
+                var sphereInstance=  Instantiate(sphere,lineEndPoint);
+                sphereInstance.transform.SetParent(transform);
+            }
         }
 
         private void Update()
         {
-            if(isSelected == true)
+            if (isSelected == true || lineVisible==true)
             {
+            
                 DrawLine();
                 UpdateDirectionVector();
                 //UpdateGraphics();
             }
 
-            if(hasTarget == true)
+            if (hasTarget == true)
             {
                 transform.LookAt(targetGO.transform);
                 //Debug.Log("Hit Transform Position: " + hit.transform.position);
                 //infoPanel.
             }
+        
+            
         }
 
         public void UpdateGraphics()
