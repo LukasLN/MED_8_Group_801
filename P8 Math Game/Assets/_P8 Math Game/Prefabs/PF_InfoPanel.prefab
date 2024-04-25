@@ -512,10 +512,10 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: 0d577446dcc249249a698e66547d99f7, type: 3}
   - name: Correct
     loop: 0
-    audioClip: {fileID: 8300000, guid: 0d577446dcc249249a698e66547d99f7, type: 3}
+    audioClip: {fileID: 8300000, guid: 69fd689cbeac5b04eabc54560d52b182, type: 3}
   - name: Incorrect
     loop: 0
-    audioClip: {fileID: 8300000, guid: 0d577446dcc249249a698e66547d99f7, type: 3}
+    audioClip: {fileID: 8300000, guid: de0ccbf47ee1ffa4cbec260716b744d4, type: 3}
   music: []
 --- !u!1 &447291102000726678
 GameObject:
