@@ -917,6 +917,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Math Problem Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 2730855471268109594, guid: cc8fedae5a8bb9a48ba1599814bc7864,
+        type: 3}
+      propertyPath: spaceshipsParentTF
+      value: 
+      objectReference: {fileID: 1082314388}
+    - target: {fileID: 2730855471268109594, guid: cc8fedae5a8bb9a48ba1599814bc7864,
+        type: 3}
+      propertyPath: hologramSpawnAreaGO
+      value: 
+      objectReference: {fileID: 1716602429}
+    - target: {fileID: 2730855471268109594, guid: cc8fedae5a8bb9a48ba1599814bc7864,
+        type: 3}
+      propertyPath: parkingSpotsParentTF
+      value: 
+      objectReference: {fileID: 1154456630}
     - target: {fileID: 6489240070762418905, guid: cc8fedae5a8bb9a48ba1599814bc7864,
         type: 3}
       propertyPath: m_LocalPosition.x
