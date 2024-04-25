@@ -100,8 +100,9 @@ namespace AstroMath
 
             for (int i = 0; i < numberOfDummyParkingSpots; i++)
             {
-                var sample = FixedPositionsContainer.instance.TakeSampleObject();
-                SpawnParkingSpot(sample.position);
+                var dummyMathProblem = MathProblemGenerator.GenerateMathProblem(0, problemSpaceMaxCoordinate, false, (int)mathProblemType);
+
+                SpawnParkingSpot(dummyMathProblem);
             }
         }
 
@@ -142,14 +143,6 @@ namespace AstroMath
             newParkingSpot.name = "Parking Spot " + mathProblem.targetPosition;
 
             newParkingSpot.GetComponent<HoloParkingSpot>().SetMathProblem(mathProblem);
-        }
-
-        void SpawnParkingSpot(Vector3 position)
-        {
-            Vector3 spawnPosition = MapProblemSpaceToCookieSpace(position);
-
-            GameObject newParkingSpot = Instantiate(parkingSpotPF, spawnPosition, Quaternion.identity, parkingSpotsParentTF);
-            newParkingSpot.name = "Parking Spot " + position;
         }
 
         Vector3 MapProblemSpaceToCookieSpace(Vector3 problemPosition)

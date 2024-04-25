@@ -40,6 +40,12 @@ namespace AstroMath
         RaycastHit hit;
         #endregion
 
+        #region Temporary Correct Wrong 
+        [Header("Temporary Correct Wrong")]
+        [SerializeField] GameObject correctGO;
+        [SerializeField] GameObject wrongGO;
+        #endregion
+
         private void Awake()
         {
             lineRenderer = lineGO.GetComponent<LineRenderer>();
@@ -225,12 +231,12 @@ namespace AstroMath
             if (isCorrect == true)
             {
                 //success sound
-                
+                correctGO.SetActive(true);
             }
             else
             {
                 //failure sound
-                
+                wrongGO.SetActive(true);
             }
             #endregion
 

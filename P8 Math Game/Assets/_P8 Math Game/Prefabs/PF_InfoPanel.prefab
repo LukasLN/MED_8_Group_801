@@ -3240,7 +3240,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 587329779659254739}
         m_TargetAssemblyTypeName: AstroMath.InfoPanel, Assembly-CSharp
-        m_MethodName: LockInAnswer
+        m_MethodName: ConfirmAnswer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9937,6 +9937,7 @@ MonoBehaviour:
   directionVector: {x: 0, y: 0, z: 0}
   startPositionText: {fileID: 1572663849590939908}
   directionVectorText: {fileID: 8347122896064114657}
+  EndPointTF: {fileID: 0}
   rayHitPoint: {x: 0, y: 0, z: 0}
   cargoImage: {fileID: 1397566124574582598}
   cargoSprites:
@@ -9959,7 +9960,7 @@ MonoBehaviour:
   directionVectorLock: {fileID: 8754090266666682597}
   keypad: {fileID: 4251130389849148256}
   confirmButton: {fileID: 1390239469168556540}
-  interactableSpaceshipGO: {fileID: 0}
+  spaceshipGO: {fileID: 0}
 --- !u!114 &7668502357141303519
 MonoBehaviour:
   m_ObjectHideFlags: 0

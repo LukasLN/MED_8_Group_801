@@ -196,6 +196,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6859621521282747753, guid: 048b8389081a71f4d94d1eb3fb22c869,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9201759567268504441, guid: 048b8389081a71f4d94d1eb3fb22c869,
         type: 3}
       propertyPath: m_Name
@@ -632,80 +637,6 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
---- !u!1001 &1032544425
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1261935246}
-    m_Modifications:
-    - target: {fileID: 1609244408607592185, guid: c1b0246fdd080f448b5bd5c6aa86a499,
-        type: 3}
-      propertyPath: m_Name
-      value: PF_HologramRoom
-      objectReference: {fileID: 0}
-    - target: {fileID: 9097957702716378533, guid: c1b0246fdd080f448b5bd5c6aa86a499,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9097957702716378533, guid: c1b0246fdd080f448b5bd5c6aa86a499,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9097957702716378533, guid: c1b0246fdd080f448b5bd5c6aa86a499,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9097957702716378533, guid: c1b0246fdd080f448b5bd5c6aa86a499,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9097957702716378533, guid: c1b0246fdd080f448b5bd5c6aa86a499,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9097957702716378533, guid: c1b0246fdd080f448b5bd5c6aa86a499,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9097957702716378533, guid: c1b0246fdd080f448b5bd5c6aa86a499,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9097957702716378533, guid: c1b0246fdd080f448b5bd5c6aa86a499,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9097957702716378533, guid: c1b0246fdd080f448b5bd5c6aa86a499,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9097957702716378533, guid: c1b0246fdd080f448b5bd5c6aa86a499,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c1b0246fdd080f448b5bd5c6aa86a499, type: 3}
---- !u!4 &1032544426 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 9097957702716378533, guid: c1b0246fdd080f448b5bd5c6aa86a499,
-    type: 3}
-  m_PrefabInstance: {fileID: 1032544425}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1124928769
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -734,11 +665,6 @@ PrefabInstance:
       propertyPath: parkingSpotsParentTF
       value: 
       objectReference: {fileID: 326325819}
-    - target: {fileID: 2730855471268109594, guid: cc8fedae5a8bb9a48ba1599814bc7864,
-        type: 3}
-      propertyPath: numberOfDummyParkingSpots
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6489240070762418905, guid: cc8fedae5a8bb9a48ba1599814bc7864,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -866,7 +792,6 @@ Transform:
   - {fileID: 187369535}
   - {fileID: 1699628781}
   - {fileID: 326325819}
-  - {fileID: 1032544426}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1422152161
