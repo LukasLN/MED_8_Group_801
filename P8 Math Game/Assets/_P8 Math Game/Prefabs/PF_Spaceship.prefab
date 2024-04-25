@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8151455165145132717}
   - component: {fileID: 9125671250214101296}
+  - component: {fileID: 2790575749575737965}
   m_Layer: 0
   m_Name: PF_Spaceship
   m_TagString: Untagged
@@ -52,6 +53,19 @@ MonoBehaviour:
     loop: 0
     audioClip: {fileID: 8300000, guid: 4300d103988ed61428efa9eb3abcb6fc, type: 3}
   music: []
+--- !u!114 &2790575749575737965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809961114373649867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d367dc06ae1ed424c9d4e509f65941ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactableSpaceshipGO: {fileID: 5731282847047765601}
 --- !u!1 &5001582751306871182
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,7 +295,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1284321137331091101}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 5731282847047765601}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d46d032983a31e44887b6e87788339d7, type: 3}
@@ -290,6 +304,12 @@ MonoBehaviour:
 --- !u!4 &4424658449400432936 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3221578070172680117, guid: 103e6fec921da714e8be053d5d204530,
+    type: 3}
+  m_PrefabInstance: {fileID: 1284321137331091101}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5731282847047765601 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6799107395553818876, guid: 103e6fec921da714e8be053d5d204530,
     type: 3}
   m_PrefabInstance: {fileID: 1284321137331091101}
   m_PrefabAsset: {fileID: 0}
@@ -372,6 +392,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 587329779659254739, guid: 89eddb845a838cc4fae6beda7ec8055b,
+        type: 3}
+      propertyPath: spaceshipGO
+      value: 
+      objectReference: {fileID: 5731282847047765601}
     - target: {fileID: 8754090266666682597, guid: 89eddb845a838cc4fae6beda7ec8055b,
         type: 3}
       propertyPath: m_IsActive

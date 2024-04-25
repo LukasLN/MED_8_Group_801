@@ -38,6 +38,7 @@ namespace AstroMath
 
         public Keypad keypad;
         public Button confirmButton;
+        [SerializeField] GameObject spaceshipGO;
 
         private void Start()
         {
@@ -91,8 +92,9 @@ namespace AstroMath
             }
 
             //> make the spaceship fly to the target
+            spaceshipGO.GetComponent<HoloSpaceship>().LockInAnswer();
 
-            MathProblemManager.instance.CreateMathProblem();
+            //MathProblemManager.instance.CreateMathProblem(); //gets rid of the old problem and create a new one
         }
 
         public void UpdateGraphics()

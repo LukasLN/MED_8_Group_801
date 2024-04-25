@@ -1,9 +1,12 @@
+using Oculus.Interaction;
 using UnityEngine;
 
 namespace AstroMath
 {
     public class HoloSpaceship : MonoBehaviour
     {
+        public bool isMoving; //used for when the player clicks confirm button
+
         public MathProblem mathProblem;
         public int problemID;
 
@@ -180,6 +183,15 @@ namespace AstroMath
 
             infoPanel.directionVector = newDirectionVector;
             directionVector = newDirectionVector;
+        }
+
+        public void LockInAnswer()
+        {
+            isMoving = true;
+            GetComponent<InteractableUnityEventWrapper>().enabled = false;
+            infoPanelGO.SetActive(false);
+            lineGO.SetActive(false);
+            transform.parent.GetComponent<SpaceshipMovement>().StartMovement(targetGO);
         }
 
         public void SetMathProblem(MathProblem newMathProblem)
