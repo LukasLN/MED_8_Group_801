@@ -107,14 +107,34 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
         type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
+      propertyPath: _whenUnhover.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
       propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 8922363973198462111}
+      objectReference: {fileID: 9125671250214101296}
     - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
         type: 3}
       propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1195153171125616394}
+      objectReference: {fileID: 9125671250214101296}
     - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
         type: 3}
       propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[2].m_Target
@@ -129,7 +149,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _whenUnhover.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 8922363973198462111}
+      objectReference: {fileID: 1195153171125616394}
     - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
         type: 3}
       propertyPath: _whenUnhover.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -142,6 +162,21 @@ PrefabInstance:
       objectReference: {fileID: 4120947896388523239}
     - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
         type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlaySoundEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlaySoundEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
+      propertyPath: _whenUnhover.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActivation
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
       propertyPath: _whenUnselect.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
       value: 2
       objectReference: {fileID: 0}
@@ -152,8 +187,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
         type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AstroMath.AudioPlayer, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: AstroMath.AudioPlayer, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
+      propertyPath: _whenUnhover.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AstroMath.InfoPanelMovement, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
       propertyPath: _whenUnselect.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: AstroMath.HoloSpaceship, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: ShipSelection
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
+      value: ShipSelection
       objectReference: {fileID: 0}
     - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
         type: 3}
@@ -394,6 +454,11 @@ PrefabInstance:
       propertyPath: spaceshipGO
       value: 
       objectReference: {fileID: 5731282847047765601}
+    - target: {fileID: 7668502357141303519, guid: 89eddb845a838cc4fae6beda7ec8055b,
+        type: 3}
+      propertyPath: isActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8754090266666682597, guid: 89eddb845a838cc4fae6beda7ec8055b,
         type: 3}
       propertyPath: m_IsActive
