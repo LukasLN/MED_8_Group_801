@@ -734,6 +734,11 @@ PrefabInstance:
       propertyPath: parkingSpotsParentTF
       value: 
       objectReference: {fileID: 326325819}
+    - target: {fileID: 2730855471268109594, guid: cc8fedae5a8bb9a48ba1599814bc7864,
+        type: 3}
+      propertyPath: numberOfDummyParkingSpots
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6489240070762418905, guid: cc8fedae5a8bb9a48ba1599814bc7864,
         type: 3}
       propertyPath: m_LocalPosition.x

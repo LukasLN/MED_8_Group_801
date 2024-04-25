@@ -56,48 +56,7 @@ namespace AstroMath
 
         public void ConfirmAnswer()
         {
-            bool isCorrect = false;
-
-            switch(mathProblem.type)
-            {
-                case MathProblem.Type.Direction:
-                    // Check if the direction vector is correct
-                    if(directionVector == mathProblem.directionSolution)
-                    {
-                        Debug.Log("Correct Direction!");
-                        isCorrect = true;
-                        
-                    }
-                    else
-                    {
-                        Debug.Log("Incorrect Direction!");
-                    }
-                    ProgressManager.instance.step = 4; //always called
-                    break;
-                case MathProblem.Type.Collision:
-                    // Check if the collision is correct
-                    Debug.LogWarning("Not implemented yet!");
-                    break;
-                case MathProblem.Type.Scale:
-                    // Check if the scale is correct
-                    Debug.LogWarning("Not implemented yet!");
-                    break;
-            }
-
-            if(isCorrect == true)
-            {
-                //success sound
-            }
-            else
-            {
-                //failure sound
-                //Debug.Log("Do bad stuff to the player >:)");
-            }
-
-            //> make the spaceship fly to the target
             spaceshipGO.GetComponent<HoloSpaceship>().LockInAnswer();
-
-            //MathProblemManager.instance.CreateMathProblem(); //gets rid of the old problem and create a new one
         }
 
         public void UpdateGraphics()

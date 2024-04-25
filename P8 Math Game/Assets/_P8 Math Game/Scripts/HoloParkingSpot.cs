@@ -35,7 +35,6 @@ namespace AstroMath
             {
                 Graphics.transform.GetComponent<Renderer>().material = DefaultMaterial;
             }
-
         }
 
         //public void SetProblemID(int newProblemID)

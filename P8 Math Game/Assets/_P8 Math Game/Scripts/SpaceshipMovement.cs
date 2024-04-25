@@ -1,7 +1,4 @@
-using TMPro;
 using UnityEngine;
-using static OVRPlugin;
-using static UnityEngine.GraphicsBuffer;
 
 namespace AstroMath
 {
@@ -11,6 +8,7 @@ namespace AstroMath
         
         [SerializeField] float timeToMove;
         float moveSpeed;
+        Vector3 targetPosition;
 
         bool isMoving;
         
@@ -19,26 +17,39 @@ namespace AstroMath
         {
             if(isMoving == true)
             {
-                MoveToTarget();
+                MoveForward();
+
+                if (Vector3.Distance(transform.position, targetPosition) < 0.1f) //if we are not at the target position
+                {
+                    isMoving = false;
+                    Debug.Log("Reached target position");
+
+                    interactableSpaceshipGO.GetComponent<HoloSpaceship>().ShowResult();
+                }
+            }
+            else
+            {
+                Debug.Log("Not moving...");
             }
         }
 
-        void MoveToTarget()
+        void MoveForward()
         {
-            
+            Debug.Log("Moving forward...");
+            transform.position += transform.forward * moveSpeed * Time.deltaTime;
+            //Vector3.MoveTowards(transform.position, targetPosition, 2); //moves spaceship
         }
 
-        public void StartMovement(GameObject target) //Activated when confirm button is pressed
+        public void SetTarget(GameObject targetGO) //Activated when confirm button is pressed
         {
-            var targetPosition = target.transform.position;
+            Debug.Log("Setting target...");
+
+            targetPosition = targetGO.transform.position;
+            
             var distanceToTravel = Vector3.Distance(transform.position, targetPosition);
             moveSpeed = distanceToTravel / timeToMove;
 
             //transform.position = Vector3.MoveTowards(interactableSpaceshipGO.transform.position, target.transform.position, step); //moves spaceship
-            if (Vector3.Distance(interactableSpaceshipGO.transform.position, target.transform.position) < 0.5f) //destroys ship if it reaches destination.
-            {
-                //Destroy(interactableSpaceshipGO);
-            }
             
             isMoving = true;
         }        

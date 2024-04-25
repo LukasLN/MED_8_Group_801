@@ -110,6 +110,7 @@ MonoBehaviour:
     scaleSolution: 0
     pinCode: 
   highlightIsActive: 0
+  landingSpotTF: {fileID: 0}
   Graphics: {fileID: 4836889198280130528}
   DefaultMaterial: {fileID: 2100000, guid: c7613dbe09b39dd4b94ef16f3aa32fda, type: 2}
   HighlightMaterial: {fileID: 2100000, guid: b98a894573f802249bb0c47a3a5d2843, type: 2}

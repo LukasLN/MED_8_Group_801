@@ -1,4 +1,5 @@
 using Oculus.Interaction;
+using System.Collections;
 using UnityEngine;
 
 namespace AstroMath
@@ -9,6 +10,7 @@ namespace AstroMath
 
         public MathProblem mathProblem;
         public int problemID;
+        [SerializeField] float timeBeforeDestroy;
 
         [HideInInspector] public Vector3 directionVector;
 
@@ -191,7 +193,54 @@ namespace AstroMath
             GetComponent<InteractableUnityEventWrapper>().enabled = false;
             infoPanelGO.SetActive(false);
             lineGO.SetActive(false);
-            transform.parent.GetComponent<SpaceshipMovement>().StartMovement(targetGO);
+            GetComponent<SpaceshipMovement>().SetTarget(targetGO);
+        }
+
+        public void ShowResult()
+        {
+            #region Determine result
+            bool isCorrect = false;
+
+            switch(mathProblem.type)
+            {
+                case MathProblem.Type.Direction:
+                    // Check if the direction vector is correct
+                    if(directionVector == mathProblem.directionSolution)
+                    {
+                        isCorrect = true;
+                    }
+                    break;
+                case MathProblem.Type.Collision:
+                    // Check if the collision is correct
+                    Debug.LogWarning("Not implemented yet!");
+                    break;
+                case MathProblem.Type.Scale:
+                    // Check if the scale is correct
+                    Debug.LogWarning("Not implemented yet!");
+                    break;
+            }
+            #endregion
+
+            # region Show Result
+            if (isCorrect == true)
+            {
+                //success sound
+                
+            }
+            else
+            {
+                //failure sound
+                
+            }
+            #endregion
+
+            StartCoroutine(WaitBeforeDestroy()); //wait before destroying the spaceship
+        }
+
+        IEnumerator WaitBeforeDestroy()
+        {
+            yield return new WaitForSeconds(timeBeforeDestroy);
+            MathProblemManager.instance.CreateMathProblem();
         }
 
         public void SetMathProblem(MathProblem newMathProblem)

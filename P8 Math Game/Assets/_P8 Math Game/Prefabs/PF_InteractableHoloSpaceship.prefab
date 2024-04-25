@@ -178,6 +178,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3221578070172680117}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6105722511557183251
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1629998972651379341}
+  m_Layer: 0
+  m_Name: Line End Position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1629998972651379341
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6105722511557183251}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3221578070172680117}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6121286697376511541
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,6 +240,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 713180027345591882}
+  - {fileID: 1629998972651379341}
   m_Father: {fileID: 7613831965388320986}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!120 &7315133165182419584
@@ -325,6 +357,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7613831965388320986}
   - component: {fileID: 2946021569488790138}
+  - component: {fileID: 9137867433641032216}
   - component: {fileID: 1843231209155682316}
   - component: {fileID: 7927232362940679965}
   - component: {fileID: 5758218127830021648}
@@ -368,6 +401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d46d032983a31e44887b6e87788339d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMoving: 0
   mathProblem:
     type: 0
     cargo: 0
@@ -379,6 +413,7 @@ MonoBehaviour:
     scaleSolution: 0
     pinCode: 
   problemID: 0
+  timeBeforeDestroy: 1
   directionVector: {x: 0, y: 0, z: 0}
   isSelected: 0
   hasTarget: 0
@@ -392,12 +427,26 @@ MonoBehaviour:
   infoPanel: {fileID: 0}
   lineGO: {fileID: 6121286697376511541}
   lineStartPoint: {fileID: 713180027345591882}
-  lineEndPoint: {fileID: 0}
-  sphere: {fileID: 0}
+  lineEndPoint: {fileID: 1629998972651379341}
+  sphere: {fileID: 1781826783323264109}
   maxDistance: 10
   layerMaskToIgnore:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &9137867433641032216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6799107395553818876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d367dc06ae1ed424c9d4e509f65941ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactableSpaceshipGO: {fileID: 6799107395553818876}
+  timeToMove: 3
 --- !u!114 &1843231209155682316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -436,6 +485,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: AstroMath.AudioPlayer, Assembly-CSharp
+        m_MethodName: PlaySoundEffect
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: ShipSelection
           m_BoolArgument: 1
         m_CallState: 2
   _whenUnhover:
