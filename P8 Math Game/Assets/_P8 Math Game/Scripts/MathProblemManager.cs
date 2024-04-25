@@ -77,7 +77,7 @@ namespace AstroMath
         }
 
 
-        void CreateMathProblem()
+        public void CreateMathProblem()
         {
             DestroyMathProblem(0);
 
@@ -141,6 +141,8 @@ namespace AstroMath
 
             GameObject newParkingSpot = Instantiate(parkingSpotPF, spawnPosition, Quaternion.identity, parkingSpotsParentTF);
             newParkingSpot.name = "Parking Spot " + mathProblem.targetPosition;
+
+            newParkingSpot.GetComponent<HoloParkingSpot>().SetMathProblem(mathProblem);
         }
 
         void SpawnParkingSpot(Vector3 position)

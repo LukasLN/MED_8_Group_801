@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 4656861913278142043}
   - component: {fileID: 5712982789112842519}
   m_Layer: 0
-  m_Name: PF_Hologram_V3
+  m_Name: PF_HologramMachine_V3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

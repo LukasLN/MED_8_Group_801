@@ -33,7 +33,7 @@ namespace AstroMath
             }
             else
             {
-                Graphics.transform.GetComponent<Renderer>().material = HighlightMaterial;
+                Graphics.transform.GetComponent<Renderer>().material = DefaultMaterial;
             }
 
         }
