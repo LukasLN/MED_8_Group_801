@@ -506,7 +506,7 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: 0d577446dcc249249a698e66547d99f7, type: 3}
   - name: Backspace
     loop: 0
-    audioClip: {fileID: 8300000, guid: 0d577446dcc249249a698e66547d99f7, type: 3}
+    audioClip: {fileID: 8300000, guid: 762f0f457ecb9a941bb91b044320b291, type: 3}
   - name: Enter
     loop: 0
     audioClip: {fileID: 8300000, guid: 0d577446dcc249249a698e66547d99f7, type: 3}
