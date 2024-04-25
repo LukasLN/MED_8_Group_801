@@ -232,6 +232,7 @@ namespace AstroMath
             {
                 //success sound
                 correctGO.SetActive(true);
+                StartCoroutine(WaitBeforeIncrementSolved()); //wait before incrementing score
             }
             else
             {
@@ -247,6 +248,12 @@ namespace AstroMath
         {
             yield return new WaitForSeconds(timeBeforeDestroy);
             MathProblemManager.instance.CreateMathProblem();
+        }
+
+        IEnumerator WaitBeforeIncrementSolved()
+        {
+            yield return new WaitForSeconds(timeBeforeDestroy);
+            GameTimer.instance.IncrementSolved();   
         }
 
         public void SetMathProblem(MathProblem newMathProblem)
