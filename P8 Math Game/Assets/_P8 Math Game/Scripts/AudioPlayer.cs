@@ -35,6 +35,12 @@ namespace AstroMath
             PlayAudio(soundEffects, soundName, loop);
         }
 
+        public void PlaySoundEffect(string soundName)
+        {
+            var arrayToSearch = soundEffects;
+            PlayAudio(soundEffects, soundName, false);
+        }
+
         public void PlayMusic(string musicName, bool loop = false)
         {
             var arrayToSearch = music;
