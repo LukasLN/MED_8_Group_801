@@ -6,6 +6,7 @@ namespace AstroMath
 {
     public class ProgressManager : MonoBehaviour
     {
+        public static ProgressManager instance;
         //[SerializeField] GameObject bigRedButton;
         [SerializeField] AudioPlayer holoAudioplayer;
         public int step = 0;

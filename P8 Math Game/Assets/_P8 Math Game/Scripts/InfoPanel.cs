@@ -66,11 +66,13 @@ namespace AstroMath
                     {
                         Debug.Log("Correct Direction!");
                         isCorrect = true;
+                        
                     }
                     else
                     {
                         Debug.Log("Incorrect Direction!");
                     }
+                    ProgressManager.instance.step = 4; //always called
                     break;
                 case MathProblem.Type.Collision:
                     // Check if the collision is correct
