@@ -37,6 +37,7 @@ namespace AstroMath
         #endregion
 
         public Keypad keypad;
+        public Button confirmButton;
 
         private void Start()
         {

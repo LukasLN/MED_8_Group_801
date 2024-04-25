@@ -3234,7 +3234,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 3976321226084890242}
   m_OnClick:
     m_PersistentCalls:
@@ -7909,7 +7909,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2438626935356553181
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8834,7 +8834,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5409680023178976228
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9959,6 +9959,7 @@ MonoBehaviour:
   startPositionLock: {fileID: 250436229152483686}
   directionVectorLock: {fileID: 8754090266666682597}
   keypad: {fileID: 4251130389849148256}
+  confirmButton: {fileID: 1390239469168556540}
 --- !u!114 &7668502357141303519
 MonoBehaviour:
   m_ObjectHideFlags: 0
