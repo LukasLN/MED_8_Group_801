@@ -13,7 +13,7 @@ namespace AstroMath
 
     public class AudioPlayer : MonoBehaviour
     {
-        [SerializeField] AudioSource audioSource;
+        AudioSource audioSource;
         [SerializeField] Audio[] soundEffects;
         [SerializeField] Audio[] music;
 

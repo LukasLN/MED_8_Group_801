@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1346889851344756673}
   - component: {fileID: 4656861913278142043}
+  - component: {fileID: 5712982789112842519}
   m_Layer: 0
   m_Name: PF_Hologram_V3
   m_TagString: Untagged
@@ -93,6 +94,38 @@ MonoBehaviour:
   generatorsTF: []
   particleSystems: []
   timeToChange: 13
+--- !u!114 &5712982789112842519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3746111167649702301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92064ddfc8e30314aa330a96972092f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundEffects:
+  - name: Tutorial1
+    loop: 0
+    audioClip: {fileID: 8300000, guid: e37018bb7e4c563419bf2487e6cc33e1, type: 3}
+  - name: Tutorial2
+    loop: 0
+    audioClip: {fileID: 8300000, guid: 0cd979ab2aef5454da934c1a205a73d3, type: 3}
+  - name: Tutorial3
+    loop: 0
+    audioClip: {fileID: 8300000, guid: 7d96c03961809f245bb0f141bb395131, type: 3}
+  - name: Flight
+    loop: 0
+    audioClip: {fileID: 8300000, guid: a70f3ecc52ea2d2459d4bc1a24474249, type: 3}
+  - name: Failed
+    loop: 0
+    audioClip: {fileID: 8300000, guid: d66cd9ee7e14a82448ab5a4b36c48872, type: 3}
+  - name: Success
+    loop: 0
+    audioClip: {fileID: 8300000, guid: 56d31a39c382ec644b9f0734c6644550, type: 3}
+  music: []
 --- !u!1 &4063344279215490394
 GameObject:
   m_ObjectHideFlags: 0
