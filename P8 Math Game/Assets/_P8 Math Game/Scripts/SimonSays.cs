@@ -8,18 +8,19 @@ namespace AstroMath
     public class SimonSays : MonoBehaviour
     {
         List<int> Sequence = new List<int>();
-        List<GameObject> Buttons = new List<GameObject>();
+        [SerializeField] List<GameObject> Buttons = new List<GameObject>();
         int round = 0;
         bool hasWon = false;
         bool StartButtonDisabled = false;
         bool SimonButtonsDisabled = false;
 
-        void RoundManger()
+        public void RoundManager()
         {
             round++;
             if(round > 5)
             {
                 hasWon = true;
+                Debug.Log("Has Won");
                 ResetSequence();
             }
             else
@@ -32,18 +33,22 @@ namespace AstroMath
         }
 
 
-        void CheckAnswer(int ButtonValue)
+        public void CheckAnswer(int ButtonValue)
         {
             if (ButtonValue == Sequence[0])
             {
-                Sequence.Remove(0);
+                //Debug.Log("Sequence" + Sequence[0]);
+                Sequence.RemoveAt(0);
+                //Debug.Log("Sequence2" + Sequence[0]);
+                //Debug.Log("Removed" + Sequence.Count);
                 if (Sequence.Count == 0)
                 {
-                    RoundManger();
+                    Debug.Log("NewRound");
+                    RoundManager();
                 }
             }
             else 
-            {
+            {   Debug.Log("Did not Remove");
                 ResetSequence();
                 hasWon = false;
                 generateRandomSequence(2);
@@ -55,7 +60,7 @@ namespace AstroMath
         {
             for(int i = 0; i < SequenceLength; i++)
             {
-                Sequence.Add(Random.Range(0, 6));
+                Sequence.Add(Random.Range(0, 5));
             }
         }
 
@@ -68,14 +73,14 @@ namespace AstroMath
 
         IEnumerator SimonCounts()
         {
-            for(int i = 0; i < Sequence.Count + 1; i++)
+            for(int i = 0; i < Sequence.Count; i++)
             {
                 SimonButtonsDisabled = true;
                 yield return new WaitForSeconds(1);
-                Buttons[Sequence[i]].GetComponent<Image>().color = new Color32(139, 255, 0, 100);
+                Buttons[Sequence[i]].GetComponent<Image>().color = new Color32(139, 255, 0, 255);
                 //play sound
                 yield return new WaitForSeconds(1);
-                Buttons[Sequence[i]].GetComponent<Image>().color = new Color32(255, 255, 255, 100);
+                Buttons[Sequence[i]].GetComponent<Image>().color = new Color32(255, 255, 255, 255);
             }
             SimonButtonsDisabled = false;
             yield return new WaitForSeconds(0);
