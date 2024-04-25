@@ -6,7 +6,7 @@ namespace AstroMath
     public class InfoPanelMovement : MonoBehaviour
     {
         [HideInInspector] public Transform player;
-        bool isActive;
+        public bool isActive;
 
         private void Update()
         {
