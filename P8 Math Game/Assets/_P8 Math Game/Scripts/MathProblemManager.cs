@@ -76,7 +76,6 @@ namespace AstroMath
             }
         }
 
-
         public void CreateMathProblem()
         {
             DestroyMathProblem(0);

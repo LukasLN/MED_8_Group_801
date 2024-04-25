@@ -15,6 +15,7 @@ namespace AstroMath
 
         public TMP_Text startPositionText;
         public TMP_Text directionVectorText;
+        public Transform EndPointTF;
 
         public Vector3 rayHitPoint;
 
@@ -38,6 +39,7 @@ namespace AstroMath
 
         public Keypad keypad;
         public Button confirmButton;
+        [SerializeField] GameObject spaceshipGO;
 
         private void Start()
         {
@@ -64,11 +66,13 @@ namespace AstroMath
                     {
                         Debug.Log("Correct Direction!");
                         isCorrect = true;
+                        
                     }
                     else
                     {
                         Debug.Log("Incorrect Direction!");
                     }
+                    ProgressManager.instance.step = 4; //always called
                     break;
                 case MathProblem.Type.Collision:
                     // Check if the collision is correct
@@ -91,8 +95,9 @@ namespace AstroMath
             }
 
             //> make the spaceship fly to the target
+            spaceshipGO.GetComponent<HoloSpaceship>().LockInAnswer();
 
-            MathProblemManager.instance.CreateMathProblem();
+            //MathProblemManager.instance.CreateMathProblem(); //gets rid of the old problem and create a new one
         }
 
         public void UpdateGraphics()
@@ -123,6 +128,12 @@ namespace AstroMath
             cargoImage.sprite = cargoSprites[(int)mathProblem.cargo];
         }
 
+        void FollowEndPoint()
+        {
+            if(mathProblem.type == MathProblem.Type.Scale) {
+                transform.parent = EndPointTF;
+            }
+        }
         void UpdateProblemTypeText()
         {
             var correctText = "";
