@@ -15,6 +15,7 @@ namespace AstroMath
 
         public TMP_Text startPositionText;
         public TMP_Text directionVectorText;
+        public Transform EndPointTF;
 
         public Vector3 rayHitPoint;
 
@@ -125,6 +126,12 @@ namespace AstroMath
             cargoImage.sprite = cargoSprites[(int)mathProblem.cargo];
         }
 
+        void FollowEndPoint()
+        {
+            if(mathProblem.type == MathProblem.Type.Scale) {
+                transform.parent = EndPointTF;
+            }
+        }
         void UpdateProblemTypeText()
         {
             var correctText = "";
