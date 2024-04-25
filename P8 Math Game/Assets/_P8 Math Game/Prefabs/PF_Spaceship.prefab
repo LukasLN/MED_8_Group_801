@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8151455165145132717}
+  - component: {fileID: 9125671250214101296}
   m_Layer: 0
   m_Name: PF_Spaceship
   m_TagString: Untagged
@@ -33,6 +34,24 @@ Transform:
   - {fileID: 8681550918360565319}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9125671250214101296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809961114373649867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92064ddfc8e30314aa330a96972092f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
+  soundEffects:
+  - name: ShipSelection
+    loop: 0
+    audioClip: {fileID: 8300000, guid: 4300d103988ed61428efa9eb3abcb6fc, type: 3}
+  music: []
 --- !u!1 &5001582751306871182
 GameObject:
   m_ObjectHideFlags: 0
@@ -74,6 +93,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
         type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
       propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 8922363973198462111}
@@ -84,6 +113,11 @@ PrefabInstance:
       objectReference: {fileID: 1195153171125616394}
     - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
         type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 9125671250214101296}
+    - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
       propertyPath: _whenUnhover.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 8922363973198462111}
@@ -92,6 +126,36 @@ PrefabInstance:
       propertyPath: _whenUnhover.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1195153171125616394}
+    - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: PlaySoundEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: AstroMath.AudioPlayer, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_StringArgument
+      value: ShipSelection
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2946021569488790138, guid: 103e6fec921da714e8be053d5d204530,
         type: 3}
       propertyPath: infoPanelGO
