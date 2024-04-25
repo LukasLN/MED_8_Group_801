@@ -476,46 +476,46 @@ MonoBehaviour:
   soundEffects:
   - name: 0
     loop: 0
-    audioClip: {fileID: 0}
+    audioClip: {fileID: 8300000, guid: 0d577446dcc249249a698e66547d99f7, type: 3}
   - name: 1
     loop: 0
-    audioClip: {fileID: 8300000, guid: 97066053f7447d849a0f5f2bfef53401, type: 3}
+    audioClip: {fileID: 8300000, guid: 0d577446dcc249249a698e66547d99f7, type: 3}
   - name: 2
     loop: 0
-    audioClip: {fileID: 8300000, guid: 0eddb0727a5e4dc4e983a95d64a165fe, type: 3}
+    audioClip: {fileID: 8300000, guid: 0d577446dcc249249a698e66547d99f7, type: 3}
   - name: 3
     loop: 0
-    audioClip: {fileID: 8300000, guid: 510e65112b404334e9987828cffd9d1c, type: 3}
+    audioClip: {fileID: 8300000, guid: 0d577446dcc249249a698e66547d99f7, type: 3}
   - name: 4
     loop: 0
-    audioClip: {fileID: 8300000, guid: adac5376b1a1db1458a2411ed1d62f7b, type: 3}
+    audioClip: {fileID: 8300000, guid: 0d577446dcc249249a698e66547d99f7, type: 3}
   - name: 5
-    loop: 0
-    audioClip: {fileID: 8300000, guid: 0d27c0e9a2267ab4090d47e34a48caba, type: 3}
+    loop: 1
+    audioClip: {fileID: 8300000, guid: 0d577446dcc249249a698e66547d99f7, type: 3}
   - name: 6
     loop: 0
-    audioClip: {fileID: 8300000, guid: 967174e31340eeb4a958f45653faf91e, type: 3}
+    audioClip: {fileID: 8300000, guid: 0d577446dcc249249a698e66547d99f7, type: 3}
   - name: 7
     loop: 0
-    audioClip: {fileID: 8300000, guid: 94c70e64f0b906348a9cb624bca709a1, type: 3}
+    audioClip: {fileID: 8300000, guid: 0d577446dcc249249a698e66547d99f7, type: 3}
   - name: 8
     loop: 0
-    audioClip: {fileID: 0}
+    audioClip: {fileID: 8300000, guid: 0d577446dcc249249a698e66547d99f7, type: 3}
   - name: 9
     loop: 0
-    audioClip: {fileID: 0}
+    audioClip: {fileID: 8300000, guid: 0d577446dcc249249a698e66547d99f7, type: 3}
   - name: Backspace
     loop: 0
-    audioClip: {fileID: 8300000, guid: fc3f85bf3d198d142a2c0ecfb33000db, type: 3}
+    audioClip: {fileID: 8300000, guid: 0d577446dcc249249a698e66547d99f7, type: 3}
   - name: Enter
     loop: 0
-    audioClip: {fileID: 0}
+    audioClip: {fileID: 8300000, guid: 0d577446dcc249249a698e66547d99f7, type: 3}
   - name: Correct
     loop: 0
-    audioClip: {fileID: 8300000, guid: 9f2988379e107a44bbdf5aa7aa26e17f, type: 3}
+    audioClip: {fileID: 8300000, guid: 0d577446dcc249249a698e66547d99f7, type: 3}
   - name: Incorrect
     loop: 0
-    audioClip: {fileID: 8300000, guid: abfe689ec65f4cf4a8b7e67816d3028b, type: 3}
+    audioClip: {fileID: 8300000, guid: 0d577446dcc249249a698e66547d99f7, type: 3}
   music: []
 --- !u!1 &447291102000726678
 GameObject:
