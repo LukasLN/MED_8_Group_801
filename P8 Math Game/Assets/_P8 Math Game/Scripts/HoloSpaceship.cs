@@ -58,7 +58,6 @@ namespace AstroMath
         {
             if (isSelected == true || lineVisible==true)
             {
-            
                 DrawLine();
                 UpdateDirectionVector();
                 //UpdateGraphics();
@@ -70,8 +69,6 @@ namespace AstroMath
                 //Debug.Log("Hit Transform Position: " + hit.transform.position);
                 //infoPanel.
             }
-        
-            
         }
 
         public void UpdateGraphics()
@@ -108,11 +105,13 @@ namespace AstroMath
                 {
                     hasTarget = true;
                     targetGO = hit.collider.gameObject;
+                    infoPanel.confirmButton.interactable = true;
                 }
                 else
                 {
                     hasTarget = false;
                     targetGO = null;
+                    infoPanel.confirmButton.interactable = false;
                 }
             }
             #endregion

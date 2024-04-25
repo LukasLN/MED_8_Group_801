@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace AstroMath
@@ -11,7 +9,6 @@ namespace AstroMath
         bool ismoving = false;
         int speed = 2;
 
-        // Update is called once per frame
         void Update()
         {
             if(ismoving == true)

@@ -52,7 +52,7 @@ MonoBehaviour:
   spaceshipPF: {fileID: 1809961114373649867, guid: 3099e165679b6c444b9c314ed3289134,
     type: 3}
   spaceshipsParentTF: {fileID: 0}
-  parkingSpotPF: {fileID: 6157536605882474597, guid: 5a148827475f331449d63a99a645a47f,
+  parkingSpotPF: {fileID: 6157536605882474597, guid: c62dd5de261418a45b99d5881e7e5a4e,
     type: 3}
   parkingSpotsParentTF: {fileID: 0}
   numberOfDummyParkingSpots: 4
