@@ -383,6 +383,7 @@ MonoBehaviour:
   isSelected: 0
   hasTarget: 0
   targetGO: {fileID: 0}
+  lineVisible: 0
   modelsGO:
   - {fileID: 4581205533729709300}
   - {fileID: 7572986271238667980}
@@ -391,6 +392,8 @@ MonoBehaviour:
   infoPanel: {fileID: 0}
   lineGO: {fileID: 6121286697376511541}
   lineStartPoint: {fileID: 713180027345591882}
+  lineEndPoint: {fileID: 0}
+  sphere: {fileID: 0}
   maxDistance: 10
   layerMaskToIgnore:
     serializedVersion: 2
@@ -423,12 +426,36 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: AstroMath.InfoPanelMovement, Assembly-CSharp
+        m_MethodName: SetActivation
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   _whenUnhover:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: AstroMath.InfoPanelMovement, Assembly-CSharp
+        m_MethodName: SetActivation
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
