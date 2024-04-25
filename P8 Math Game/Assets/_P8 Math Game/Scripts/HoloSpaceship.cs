@@ -67,7 +67,14 @@ namespace AstroMath
             {
                 transform.LookAt(targetGO.transform);
                 //Debug.Log("Hit Transform Position: " + hit.transform.position);
-                //infoPanel.
+            }
+        }
+
+        public void LookAtTargetOnUnselect()
+        {
+            if (hasTarget == true)
+            {
+                transform.LookAt(targetGO.transform);
             }
         }
 
@@ -106,13 +113,19 @@ namespace AstroMath
                     hasTarget = true;
                     targetGO = hit.collider.gameObject;
                     infoPanel.confirmButton.interactable = true;
+
+                    targetGO.GetComponent<HoloParkingSpot>().SetHighlightActivation(true);
                 }
-                else
+            }
+            else
+            {
+                hasTarget = false;
+                if(targetGO != null)
                 {
-                    hasTarget = false;
-                    targetGO = null;
-                    infoPanel.confirmButton.interactable = false;
+                    targetGO.GetComponent<HoloParkingSpot>().SetHighlightActivation(false);
                 }
+                targetGO = null;
+                infoPanel.confirmButton.interactable = false;
             }
             #endregion
 

@@ -267,12 +267,86 @@ Transform:
   m_Children:
   - {fileID: 1837573153149523119}
   - {fileID: 6117192423089577642}
-  - {fileID: 8488750761442492295}
+  - {fileID: 8837547197397302786}
   - {fileID: 5989956734050183760}
   - {fileID: 5404911714221375884}
   - {fileID: 3093949126807837512}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &353310510494331815
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4907907977936391517}
+    m_Modifications:
+    - target: {fileID: 1609244408607592185, guid: c1b0246fdd080f448b5bd5c6aa86a499,
+        type: 3}
+      propertyPath: m_Name
+      value: Hologram Room
+      objectReference: {fileID: 0}
+    - target: {fileID: 9097957702716378533, guid: c1b0246fdd080f448b5bd5c6aa86a499,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9097957702716378533, guid: c1b0246fdd080f448b5bd5c6aa86a499,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9097957702716378533, guid: c1b0246fdd080f448b5bd5c6aa86a499,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9097957702716378533, guid: c1b0246fdd080f448b5bd5c6aa86a499,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9097957702716378533, guid: c1b0246fdd080f448b5bd5c6aa86a499,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9097957702716378533, guid: c1b0246fdd080f448b5bd5c6aa86a499,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9097957702716378533, guid: c1b0246fdd080f448b5bd5c6aa86a499,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9097957702716378533, guid: c1b0246fdd080f448b5bd5c6aa86a499,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9097957702716378533, guid: c1b0246fdd080f448b5bd5c6aa86a499,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9097957702716378533, guid: c1b0246fdd080f448b5bd5c6aa86a499,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c1b0246fdd080f448b5bd5c6aa86a499, type: 3}
+--- !u!4 &8837547197397302786 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9097957702716378533, guid: c1b0246fdd080f448b5bd5c6aa86a499,
+    type: 3}
+  m_PrefabInstance: {fileID: 353310510494331815}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4724703473751209361
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -334,7 +408,7 @@ PrefabInstance:
     - target: {fileID: 3746111167649702301, guid: 1efc9f85e38ac384a8fc9e244ca302a0,
         type: 3}
       propertyPath: m_Name
-      value: PF_Hologram_V3
+      value: Hologram Machine
       objectReference: {fileID: 0}
     - target: {fileID: 3746111167649702301, guid: 1efc9f85e38ac384a8fc9e244ca302a0,
         type: 3}
@@ -356,85 +430,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1346889851344756673, guid: 1efc9f85e38ac384a8fc9e244ca302a0,
     type: 3}
   m_PrefabInstance: {fileID: 4724703473751209361}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &5063556177267206887
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 4907907977936391517}
-    m_Modifications:
-    - target: {fileID: 3714137447221957984, guid: 38f0c6ca59bd02240a276cd1ef7dfac1,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3714137447221957984, guid: 38f0c6ca59bd02240a276cd1ef7dfac1,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3714137447221957984, guid: 38f0c6ca59bd02240a276cd1ef7dfac1,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3714137447221957984, guid: 38f0c6ca59bd02240a276cd1ef7dfac1,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3714137447221957984, guid: 38f0c6ca59bd02240a276cd1ef7dfac1,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3714137447221957984, guid: 38f0c6ca59bd02240a276cd1ef7dfac1,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3714137447221957984, guid: 38f0c6ca59bd02240a276cd1ef7dfac1,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3714137447221957984, guid: 38f0c6ca59bd02240a276cd1ef7dfac1,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3714137447221957984, guid: 38f0c6ca59bd02240a276cd1ef7dfac1,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3714137447221957984, guid: 38f0c6ca59bd02240a276cd1ef7dfac1,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4089432258519519194, guid: 38f0c6ca59bd02240a276cd1ef7dfac1,
-        type: 3}
-      propertyPath: m_Name
-      value: Hologram_V2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4089432258519519194, guid: 38f0c6ca59bd02240a276cd1ef7dfac1,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 38f0c6ca59bd02240a276cd1ef7dfac1, type: 3}
---- !u!4 &8488750761442492295 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3714137447221957984, guid: 38f0c6ca59bd02240a276cd1ef7dfac1,
-    type: 3}
-  m_PrefabInstance: {fileID: 5063556177267206887}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6148894554262712364
 PrefabInstance:
@@ -497,7 +492,7 @@ PrefabInstance:
     - target: {fileID: 6720696244503654687, guid: a8776bbfd1ba6304da1c4850103340af,
         type: 3}
       propertyPath: m_Name
-      value: PF_Axis
+      value: Axes
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -521,7 +516,7 @@ PrefabInstance:
     - target: {fileID: 642806685713588108, guid: 23b4e4055a917e84ab391d577ea7bddd,
         type: 3}
       propertyPath: m_Name
-      value: Holo Spawn Area
+      value: Spawn Area
       objectReference: {fileID: 0}
     - target: {fileID: 4987322993829392253, guid: 23b4e4055a917e84ab391d577ea7bddd,
         type: 3}

@@ -82,15 +82,17 @@ namespace AstroMath
 
             if(isCorrect == true)
             {
-                if(HoloObjectManager.instance != null)
-                {
-                    HoloObjectManager.instance.DespawnHoloObjects(transform.parent);
-                }
+                //success sound
             }
             else
             {
-                Debug.Log("Do bad stuff to the player >:)");
+                //failure sound
+                //Debug.Log("Do bad stuff to the player >:)");
             }
+
+            //> make the spaceship fly to the target
+
+            MathProblemManager.instance.CreateMathProblem();
         }
 
         public void UpdateGraphics()
