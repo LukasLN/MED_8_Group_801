@@ -12,7 +12,12 @@ namespace AstroMath
         public int step = 0;
 
         // Update is called once per frame
-       void state()
+
+        void Awake()
+        { 
+            instance = this;    
+        }
+            void state()
         {
             switch (step)
             {
