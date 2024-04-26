@@ -17,7 +17,7 @@ namespace AstroMath
         { 
             instance = this;    
         }
-            void state()
+            void Update()
         {
             switch (step)
             {
