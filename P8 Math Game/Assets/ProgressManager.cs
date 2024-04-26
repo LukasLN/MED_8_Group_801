@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace AstroMath
@@ -17,32 +15,46 @@ namespace AstroMath
         { 
             instance = this;    
         }
-            void Update()
-        {
-            switch (step)
-            {
-                case 0: //red button not pressed
 
-                    break;
-                case 1: //red button pressed
-                    holoAudioplayer.PlaySoundEffect("Tutorial1",true);
-                    break;
-                case 2: //correct pincode inserted
-                    holoAudioplayer.PlaySoundEffect("Tutorial2", true);
-                    break;
-                case 3: //complete minigame
-                    holoAudioplayer.PlaySoundEffect("Tutorial3", true);
-                    break;
-                case 4: //flight initiated
-                    holoAudioplayer.PlaySoundEffect("Flight", true);
-                    break;
-                case 5: // wrong direction vector
-                    holoAudioplayer.PlaySoundEffect("Success", true);
-                    break;
-                case 6: // wrong direction vector
-                    holoAudioplayer.PlaySoundEffect("Failed", true);
-                    break;
+        public void PlayTutorialLine(int index)
+        {
+            if(index > 2)
+            {
+                Debug.Log("Index out of range");
+                return;
             }
+
+            step = index;
+            holoAudioplayer.PlaySoundEffect("Tutorial" + index);
+        }
+
+        public void NextTutoriaLine()
+        {
+            step++;
+
+            if (step > 2)
+            {
+                Debug.Log("No more tutorial lines to playback");
+                return;
+            }
+
+            PlayTutorialLine(step);
+        }
+
+
+        void Update()
+        {
+            
+            //    case 4: //flight initiated
+            //        holoAudioplayer.PlaySoundEffect("Flight");
+            //        break;
+            //    case 5: // wrong direction vector
+            //        holoAudioplayer.PlaySoundEffect("Success");
+            //        break;
+            //    case 6: // wrong direction vector
+            //        holoAudioplayer.PlaySoundEffect("Failed");
+            //        break;
+            //}
         }
     }
 }

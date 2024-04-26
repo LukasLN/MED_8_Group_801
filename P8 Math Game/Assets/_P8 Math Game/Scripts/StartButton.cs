@@ -45,6 +45,7 @@ namespace AstroMath
 
         public void StartGame()
         {
+            ProgressManager.instance.PlayTutorialLine(1);
             hasStartedCountdown = true;
             countdownText.gameObject.SetActive(true);
             HologramController.instance.Toggle();

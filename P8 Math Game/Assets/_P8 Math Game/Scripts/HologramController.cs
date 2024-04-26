@@ -40,7 +40,7 @@ namespace AstroMath
         #region Time, Distance and Speed
         [Header("Time, Distance and Speed")]
         [Tooltip("The amount of time in seconds that the opening/closing of the hologram should last.")]
-        public float timeToChange = 1;
+        public float timeToChange;
         float distanceToTravel; //the distance between 'startPointTF' and 'endPointTF'
         float travelSpeed; //the speed at which the 'startUpController' will travel
         #endregion
