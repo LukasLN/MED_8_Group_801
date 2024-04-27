@@ -123,6 +123,7 @@ public class Keypad : MonoBehaviour
 			infoPanel.ShowStartPosition();
 
             audioPlayer.PlaySoundEffect("Correct");
+            ProgressManager.instance.step = 2;
         }
         else
 		{

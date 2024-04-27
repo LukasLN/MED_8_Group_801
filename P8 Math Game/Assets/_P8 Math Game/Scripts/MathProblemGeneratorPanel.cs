@@ -92,7 +92,7 @@ namespace AstroMath
 
         public void CreateMathProblems()
         {
-            MathProblemManager.instance.CreateNumberOfProblems(numberOfProblemsToCreate);
+            //MathProblemManager.instance.CreateNumberOfProblems(numberOfProblemsToCreate);
         }
     }
 }

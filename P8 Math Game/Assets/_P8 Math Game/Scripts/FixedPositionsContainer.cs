@@ -22,7 +22,7 @@ namespace AstroMath
     {
         public static FixedPositionsContainer instance;
 
-        [SerializeField] int numberOfSamplesToCreate;
+        public int numberOfSamplesToCreate;
 
         [SerializeField] FixedPositionObject[] fixedParkingSpots;
         [SerializeField] FixedPositionObject[] fixedAsteroids;

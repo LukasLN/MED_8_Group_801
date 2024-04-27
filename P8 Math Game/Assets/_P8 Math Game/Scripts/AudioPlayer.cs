@@ -13,7 +13,7 @@ namespace AstroMath
 
     public class AudioPlayer : MonoBehaviour
     {
-        [SerializeField] AudioSource audioSource;
+        AudioSource audioSource;
         [SerializeField] Audio[] soundEffects;
         [SerializeField] Audio[] music;
 
@@ -33,6 +33,12 @@ namespace AstroMath
         {
             var arrayToSearch = soundEffects;
             PlayAudio(soundEffects, soundName, loop);
+        }
+
+        public void PlaySoundEffect(string soundName)
+        {
+            var arrayToSearch = soundEffects;
+            PlayAudio(soundEffects, soundName, false);
         }
 
         public void PlayMusic(string musicName, bool loop = false)

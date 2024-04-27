@@ -9,8 +9,8 @@ namespace AstroMath
         public int problemID;
         public Vector3 FollowOffset;
         [HideInInspector] public Transform player;
-        bool isActive;
-        
+        public bool isActive;
+
 
         private void Update()
         {

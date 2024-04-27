@@ -44,8 +44,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c15edd2e361c5a4da6638400246cab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mathProblemType: 0
   spawnAtStart: 0
-  minDistance: 0
-  maxDistance: 100
-  numberOfProblemsToCreate: 5
+  problemSpaceMaxCoordinate: 100
+  hologramSpawnAreaGO: {fileID: 0}
+  numberOfProblemsToCreate: 1
+  spaceshipPF: {fileID: 1809961114373649867, guid: 3099e165679b6c444b9c314ed3289134,
+    type: 3}
+  spaceshipsParentTF: {fileID: 0}
+  parkingSpotPF: {fileID: 8840485896273341119, guid: 33f5c9e8c41e9624b935aad0a251e17d,
+    type: 3}
+  parkingSpotsParentTF: {fileID: 0}
+  numberOfDummyParkingSpots: 4
   mathProblems: []

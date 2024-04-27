@@ -15,6 +15,7 @@ namespace AstroMath
 
         public TMP_Text startPositionText;
         public TMP_Text directionVectorText;
+        public Transform EndPointTF;
 
         public Vector3 rayHitPoint;
 
@@ -37,6 +38,8 @@ namespace AstroMath
         #endregion
 
         public Keypad keypad;
+        public Button confirmButton;
+        [SerializeField] GameObject spaceshipGO;
 
         private void Start()
         {
@@ -53,43 +56,7 @@ namespace AstroMath
 
         public void ConfirmAnswer()
         {
-            bool isCorrect = false;
-
-            switch(mathProblem.type)
-            {
-                case MathProblem.Type.Direction:
-                    // Check if the direction vector is correct
-                    if(directionVector == mathProblem.directionSolution)
-                    {
-                        Debug.Log("Correct Direction!");
-                        isCorrect = true;
-                    }
-                    else
-                    {
-                        Debug.Log("Incorrect Direction!");
-                    }
-                    break;
-                case MathProblem.Type.Collision:
-                    // Check if the collision is correct
-                    Debug.LogWarning("Not implemented yet!");
-                    break;
-                case MathProblem.Type.Scale:
-                    // Check if the scale is correct
-                    Debug.LogWarning("Not implemented yet!");
-                    break;
-            }
-
-            if(isCorrect == true)
-            {
-                if(HoloObjectManager.instance != null)
-                {
-                    HoloObjectManager.instance.DespawnHoloObjects(transform.parent);
-                }
-            }
-            else
-            {
-                Debug.Log("Do bad stuff to the player >:)");
-            }
+            spaceshipGO.GetComponent<HoloSpaceship>().LockInAnswer();
         }
 
         public void UpdateGraphics()
@@ -120,6 +87,12 @@ namespace AstroMath
             cargoImage.sprite = cargoSprites[(int)mathProblem.cargo];
         }
 
+        void FollowEndPoint()
+        {
+            if(mathProblem.type == MathProblem.Type.Scale) {
+                transform.parent = EndPointTF;
+            }
+        }
         void UpdateProblemTypeText()
         {
             var correctText = "";

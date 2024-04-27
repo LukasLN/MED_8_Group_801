@@ -1,14 +1,16 @@
 using Oculus.Interaction;
-using Unity.VisualScripting;
-using UnityEditor.Rendering;
+using System.Collections;
 using UnityEngine;
 
 namespace AstroMath
 {
     public class HoloSpaceship : MonoBehaviour
     {
+        public bool isMoving; //used for when the player clicks confirm button
+
         public MathProblem mathProblem;
         public int problemID;
+        [SerializeField] float timeBeforeDestroy;
 
         [HideInInspector] public Vector3 directionVector;
 
@@ -38,6 +40,12 @@ namespace AstroMath
         RaycastHit hit;
         #endregion
 
+        #region Temporary Correct Wrong 
+        [Header("Temporary Correct Wrong")]
+        [SerializeField] GameObject correctGO;
+        [SerializeField] GameObject wrongGO;
+        #endregion
+
         private void Awake()
         {
             lineRenderer = lineGO.GetComponent<LineRenderer>();
@@ -61,7 +69,6 @@ namespace AstroMath
         {
             if (isSelected == true || lineVisible==true)
             {
-            
                 DrawLine();
                 UpdateDirectionVector();
                 //UpdateGraphics();
@@ -71,10 +78,15 @@ namespace AstroMath
             {
                 transform.LookAt(targetGO.transform);
                 //Debug.Log("Hit Transform Position: " + hit.transform.position);
-                //infoPanel.
             }
-        
-            
+        }
+
+        public void LookAtTargetOnUnselect()
+        {
+            if (hasTarget == true)
+            {
+                transform.LookAt(targetGO.transform);
+            }
         }
 
         public void UpdateGraphics()
@@ -111,12 +123,20 @@ namespace AstroMath
                 {
                     hasTarget = true;
                     targetGO = hit.collider.gameObject;
+                    infoPanel.confirmButton.interactable = true;
+
+                    targetGO.GetComponent<HoloParkingSpot>().SetHighlightActivation(true);
                 }
-                else
+            }
+            else
+            {
+                hasTarget = false;
+                if(targetGO != null)
                 {
-                    hasTarget = false;
-                    targetGO = null;
+                    targetGO.GetComponent<HoloParkingSpot>().SetHighlightActivation(false);
                 }
+                targetGO = null;
+                infoPanel.confirmButton.interactable = false;
             }
             #endregion
 
@@ -171,6 +191,69 @@ namespace AstroMath
 
             infoPanel.directionVector = newDirectionVector;
             directionVector = newDirectionVector;
+        }
+
+        public void LockInAnswer()
+        {
+            isMoving = true;
+            GetComponent<InteractableUnityEventWrapper>().enabled = false;
+            infoPanelGO.SetActive(false);
+            lineGO.SetActive(false);
+            GetComponent<SpaceshipMovement>().SetTarget(targetGO);
+        }
+
+        public void ShowResult()
+        {
+            #region Determine result
+            bool isCorrect = false;
+
+            switch(mathProblem.type)
+            {
+                case MathProblem.Type.Direction:
+                    // Check if the direction vector is correct
+                    if(directionVector == mathProblem.directionSolution)
+                    {
+                        isCorrect = true;
+                    }
+                    break;
+                case MathProblem.Type.Collision:
+                    // Check if the collision is correct
+                    Debug.LogWarning("Not implemented yet!");
+                    break;
+                case MathProblem.Type.Scale:
+                    // Check if the scale is correct
+                    Debug.LogWarning("Not implemented yet!");
+                    break;
+            }
+            #endregion
+
+            # region Show Result
+            if (isCorrect == true)
+            {
+                //success sound
+                correctGO.SetActive(true);
+                StartCoroutine(WaitBeforeIncrementSolved()); //wait before incrementing score
+            }
+            else
+            {
+                //failure sound
+                wrongGO.SetActive(true);
+            }
+            #endregion
+
+            StartCoroutine(WaitBeforeDestroy()); //wait before destroying the spaceship
+        }
+
+        IEnumerator WaitBeforeDestroy()
+        {
+            yield return new WaitForSeconds(timeBeforeDestroy);
+            MathProblemManager.instance.CreateMathProblem();
+        }
+
+        IEnumerator WaitBeforeIncrementSolved()
+        {
+            yield return new WaitForSeconds(timeBeforeDestroy);
+            GameTimer.instance.IncrementSolved();   
         }
 
         public void SetMathProblem(MathProblem newMathProblem)

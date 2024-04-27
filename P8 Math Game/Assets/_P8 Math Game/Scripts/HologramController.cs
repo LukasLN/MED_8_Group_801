@@ -1,11 +1,12 @@
 using System.Collections;
-using System.ComponentModel;
 using UnityEngine;
 
 namespace AstroMath
 {
     public class HologramController : MonoBehaviour
     {
+        public static HologramController instance;
+
         #region Status
         [Header("Status")]
         [SerializeField] bool isOn; //whether or not the hologram is turned ON or OFF
@@ -39,10 +40,15 @@ namespace AstroMath
         #region Time, Distance and Speed
         [Header("Time, Distance and Speed")]
         [Tooltip("The amount of time in seconds that the opening/closing of the hologram should last.")]
-        [SerializeField] float timeToChange = 1;
+        public float timeToChange;
         float distanceToTravel; //the distance between 'startPointTF' and 'endPointTF'
         float travelSpeed; //the speed at which the 'startUpController' will travel
         #endregion
+
+        private void Awake()
+        {
+            instance = this;
+        }
 
         void Start()
         {
@@ -83,15 +89,16 @@ namespace AstroMath
             //> calculate distance and travel speed of the 'controller point' of the hologram
             distanceToTravel = Vector3.Distance(startPointTF.position, endPointTF.position); 
             travelSpeed = distanceToTravel / timeToChange;
-            Toggle();
+            
+            //Toggle();
         }
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.T)) //if the <T> key is pressed...
-            {
-                Toggle(); //we toggle the activation of the hologram
-            }
+            //if (Input.GetKeyDown(KeyCode.T)) //if the <T> key is pressed...
+            //{
+            //    Toggle(); //we toggle the activation of the hologram
+            //}
 
             if (isMoving == true) //if the hologram should be moving...
             {

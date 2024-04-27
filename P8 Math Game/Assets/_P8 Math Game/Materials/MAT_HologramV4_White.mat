@@ -126,7 +126,7 @@ Material:
     - _ZWriteControl: 0
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.32900676, g: 0.79622644, b: 0.77711713, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Fresnel_Strength: {r: 10.680627, g: 10.680627, b: 10.680627, a: 0}
     - _HologramTiling: {r: 10, g: 10, b: 0, a: 0}

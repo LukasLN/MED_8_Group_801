@@ -43,7 +43,7 @@ namespace AstroMath
             //Spawn spaceship at mapped position
             Vector3 originalPosition = mathProblem.spaceshipPosition;
 
-            Vector2 spaceBounds = new Vector2(-MathProblemManager.instance.maxDistance, MathProblemManager.instance.maxDistance);
+            Vector2 spaceBounds = new Vector2(-MathProblemManager.instance.problemSpaceMaxCoordinate, MathProblemManager.instance.problemSpaceMaxCoordinate);
 
             float x = PositionGenerator.Map(originalPosition.x, spaceBounds.x, spaceBounds.y, minHoloDistance, maxHoloDistance);
             float y = PositionGenerator.Map(originalPosition.y, spaceBounds.x, spaceBounds.y,
