@@ -685,6 +685,26 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 1195153171125616394, guid: 3099e165679b6c444b9c314ed3289134,
+        type: 3}
+      propertyPath: FollowOffset.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1195153171125616394, guid: 3099e165679b6c444b9c314ed3289134,
+        type: 3}
+      propertyPath: FollowOffset.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1195153171125616394, guid: 3099e165679b6c444b9c314ed3289134,
+        type: 3}
+      propertyPath: FollowOffset.z
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1195153171125616394, guid: 3099e165679b6c444b9c314ed3289134,
+        type: 3}
+      propertyPath: mathProblem.type
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1809961114373649867, guid: 3099e165679b6c444b9c314ed3289134,
         type: 3}
       propertyPath: m_Name
