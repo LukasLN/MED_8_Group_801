@@ -1,144 +1,237 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 namespace AstroMath
 {
     public class SimonSays : MonoBehaviour
     {
-        List<int> Sequence = new List<int>();
-        [SerializeField] List<GameObject> Buttons = new List<GameObject>();
-        [SerializeField] Color onColor;
-        [SerializeField] Color offColor;
-        int round = 0;
-        [SerializeField] int numberOfRoundsToWin;
-        bool isSolved = false;
-        bool StartButtonDisabled = false;
-        bool SimonButtonsDisabled = false;
-
-        [SerializeField] bool isOccupied;
-
-        [SerializeField] InfoPanel infoPanel;
-
-        #region Assessment
-        [SerializeField] float assessmentVisibilityTime;
-        [SerializeField] GameObject assessmentBackgroundImageGO;
-        [SerializeField] GameObject correctImageGO;
-        [SerializeField] GameObject wrongImageGO;
+        #region Rounds
+        [SerializeField] int currentRound;
+        [SerializeField] int numberOfRounds;
         #endregion
 
-        AudioPlayer audioPlayer;
+        #region Sequence
+        [Header("Sequence")]
+        [SerializeField] int sequenceStartLength;
+        [SerializeField] int sequenceCurrentLength;
+        [SerializeField] int sequenceIncreaseAmount;
+        [SerializeField] int activeIndexInSequence;
+        [SerializeField] List<int> sequence = new List<int>();
+        #endregion
+
+        #region Timing
+        [Header("Timing")]
+        [SerializeField] bool isLightedUp;
+        [SerializeField] bool isWaitingForNextLightUp;
+        [SerializeField] float lightUpDuration;
+        [SerializeField] float timeBetweenLightUp;
+        [SerializeField] float lightUpTimer;
+        [SerializeField] float timeBetweenLightUpTimer;
+        #endregion
+
+        #region Buttons
+        [Header("Buttons")]
+        [SerializeField] Transform buttonsParent;
+        Button[] buttons;
+
+        [SerializeField] Color buttonDefaultColor;
+        [SerializeField] Color buttonLightUpColor;
+        [SerializeField] Color buttonCorrectColor;
+        [SerializeField] Color buttonWrongColor;
+        #endregion
+
+        #region LEDs
+        [Header("LEDs")]
+        [SerializeField] Transform ledsParent;
+        Image[] LEDs;
+
+        [SerializeField] Color ledOnColor;
+        [SerializeField] Color ledOffColor;
+        [SerializeField] Color ledDisabledColor;
+        #endregion
+
+        #region Symbols
+        [Header("Symbols")]
+        [SerializeField] bool useRandomSymbols;
+        [SerializeField] string[] symbols;
+        string[] symbolsToUse;
+        #endregion
 
         private void Start()
         {
-            audioPlayer = GetComponent<AudioPlayer>();
+            #region Rounds
+            currentRound = 1;
+            #endregion
+
+            #region Timing
+            lightUpTimer = lightUpDuration;
+            timeBetweenLightUpTimer = timeBetweenLightUp;
+
+            isLightedUp = false;
+            isWaitingForNextLightUp = true;
+            #endregion
+
+            #region Setting Buttons Array
+            buttons = new Button[buttonsParent.childCount];
+            for (int i = 0; i < buttonsParent.childCount; i++)
+            {
+                buttons[i] = buttonsParent.GetChild(i).GetComponent<Button>();
+            }
+            TurnOffAllButtonLights();
+            #endregion
+
+            #region Setting LEDs Array
+            LEDs = new Image[ledsParent.childCount];
+            for (int i = 0; i < ledsParent.childCount; i++)
+            {
+                LEDs[i] = ledsParent.GetChild(i).GetComponent<Image>();
+            }
+            TurnOffAllLEDs();
+            #endregion
+
+            #region Picking Random Symbols
+            if (useRandomSymbols)
+            {
+                SelectRandomSymbols();
+                SetButtonsSymbol();
+            }
+            #endregion
+
+            #region Setting Sequence
+            sequenceCurrentLength = sequenceStartLength;
+            CreateSequence();
+            #endregion
         }
 
-        public void RoundManager()
+        private void Update()
         {
-            round++;
-            if(round > numberOfRoundsToWin)
-            {
-                assessmentBackgroundImageGO.SetActive(true);
-                correctImageGO.SetActive(true);
+            //wait the time in between light ups
 
-                infoPanel.ShowDirectionVector();
-                isSolved = true;
-            }
-            else
-            {
-                StartButtonDisabled = true;
-                GenerateRandomSequence(round+2);
-                StartCoroutine(SimonCounts());
-            }
-        }
 
-        public void CheckAnswer(int ButtonValue)
-        {
-            if (isSolved == true)
-            {
-                Debug.LogWarning("The mini game has already been solved!");
-                return;
-            }
+            //wait the time the button is lit up
 
-            if (isOccupied == true)
+            if (isLightedUp)
             {
-                Debug.LogWarning("Can't press buttons right now! Wait for X to disappear!");
-                return;
-            }
-
-            if (ButtonValue == Sequence[0])
-            {
-                //audioPlayer.PlaySoundEffect("Correct");
-                //
-
-                //Debug.Log("Sequence" + Sequence[0]);
-                Sequence.RemoveAt(0);
-                //Debug.Log("Sequence2" + Sequence[0]);
-                //Debug.Log("Removed" + Sequence.Count);
-                if (Sequence.Count == 0)
+                lightUpTimer -= Time.deltaTime;
+                if (lightUpTimer <= 0)
                 {
-                    //show checkmark
-                    assessmentBackgroundImageGO.SetActive(true);
-                    correctImageGO.SetActive(true);
-                    StartCoroutine(WaitBeforeHideImage(correctImageGO));
+                    activeIndexInSequence++;
+                    if (activeIndexInSequence >= sequence.Count)
+                    {
+                        activeIndexInSequence = 0;
+                        TurnOffAllLEDs();
+                    }
 
-                    Debug.Log("NewRound");
-                    RoundManager();
+                    TurnOffAllButtonLights();
+
+                    lightUpTimer = lightUpDuration;
+                    isLightedUp = false;
+                    isWaitingForNextLightUp = true;
                 }
             }
-            else 
+            else if(isWaitingForNextLightUp)
             {
-                //show cross
-                wrongImageGO.SetActive(true);
-                StartCoroutine(WaitBeforeHideImage(wrongImageGO));
-                //audioPlayer.PlaySoundEffect("Incorrect");
-                //
-
-                Debug.Log("Did not Remove");
-                ResetSequence();
-                RoundManager();
+                timeBetweenLightUpTimer -= Time.deltaTime;
+                if(timeBetweenLightUpTimer <= 0)
+                {
+                    TurnOnActiveButtonLight(activeIndexInSequence);
+                    isLightedUp = true;
+                    isWaitingForNextLightUp = false;
+                    timeBetweenLightUpTimer = timeBetweenLightUp;
+                }
             }
         }
 
-        IEnumerator WaitBeforeHideImage(GameObject imageToShow)
+        void TurnOnActiveButtonLight(int activeIndex)
         {
-            yield return new WaitForSeconds(assessmentVisibilityTime);
-            isOccupied = false;
-            imageToShow.SetActive(false);
-            assessmentBackgroundImageGO.SetActive(false);
+            buttons[sequence[activeIndex]].image.color = buttonLightUpColor;
+            LEDs[activeIndex].color = ledOnColor;
         }
 
-        void GenerateRandomSequence(int SequenceLength)
+        void TurnOffAllButtonLights()
         {
-            for(int i = 0; i < SequenceLength; i++)
+            for (int i = 0; i < buttons.Length; i++)
             {
-                Sequence.Add(Random.Range(0, 5));
+                TurnOffButtonLight(i);
             }
         }
 
-        void ResetSequence()
+        void TurnOffAllLEDs()
         {
-            Sequence.Clear();
-            round = 0;
+            for(int i = 0; i < LEDs.Length; i++)
+            {
+                if(i < sequence.Count)
+                {
+                    LEDs[i].color = ledOffColor;
+                }
+                else
+                {
+                    LEDs[i].color = ledDisabledColor;
+                }
+            }
         }
 
-        IEnumerator SimonCounts() //for "lighting up" the buttons
+        void TurnOffButtonLight(int index)
         {
-            isOccupied = true;
-            for(int i = 0; i < Sequence.Count; i++)
+            buttons[index].image.color = buttonDefaultColor;
+        }
+
+        void UpdateButtonLights()
+        {
+            for (int i = 0; i < buttons.Length; i++)
             {
-                SimonButtonsDisabled = true;
-                yield return new WaitForSeconds(1);
-                Buttons[Sequence[i]].GetComponent<Image>().color = onColor;
-                //play sound
-                yield return new WaitForSeconds(1);
-                Buttons[Sequence[i]].GetComponent<Image>().color = offColor;
+                if (i == sequence[activeIndexInSequence])
+                {
+                    buttons[i].GetComponent<Image>().color = buttonLightUpColor;
+                }
+                else
+                {
+                    buttons[i].GetComponent<Image>().color = buttonDefaultColor;
+                }
             }
-            SimonButtonsDisabled = false;
-            yield return new WaitForSeconds(0);
-            isOccupied = false;
+        }
+
+        void GoThroughSequence()
+        {
+
+        }
+
+        void CreateSequence()
+        {
+            for (int i = 0; i < sequenceCurrentLength; i++)
+            {
+                sequence.Add(Random.Range(0, buttons.Length));
+            }
+        }
+
+        void ClearSequence()
+        {
+            sequence.Clear();
+        }
+
+        void SelectRandomSymbols()
+        {
+            symbolsToUse = new string[buttons.Length];
+            List<string> list = symbols.ToList();
+
+            for (int i = 0; i < symbolsToUse.Length; i++)
+            {
+                var index = Random.Range(0, list.Count);
+                symbolsToUse[i] = list[index];
+                list.RemoveAt(index);
+            }
+        }
+
+        void SetButtonsSymbol()
+        {
+            for (int i = 0; i < buttons.Length; i++)
+            {
+                buttons[i].GetComponentInChildren<TMP_Text>().text = symbolsToUse[i];
+                buttons[i].gameObject.name = $"{i} {symbolsToUse[i]} Button";
+            }
         }
     }
 }
