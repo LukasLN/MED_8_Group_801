@@ -8,7 +8,10 @@ namespace AstroMath
 {
     public class SimonSays : MonoBehaviour
     {
+        [SerializeField] InfoPanel infoPanel;
+
         #region Rounds
+        [Header("Rounds")]
         [SerializeField] int currentRound;
         [SerializeField] int numberOfRounds;
         #endregion
@@ -18,7 +21,8 @@ namespace AstroMath
         [SerializeField] int sequenceStartLength;
         [SerializeField] int sequenceCurrentLength;
         [SerializeField] int sequenceIncreaseAmount;
-        [SerializeField] int activeIndexInSequence;
+        int activeLightUpIndexInSequence;
+        [SerializeField] int activeInputIndexInSequence;
         [SerializeField] List<int> sequence = new List<int>();
         #endregion
 
@@ -26,10 +30,16 @@ namespace AstroMath
         [Header("Timing")]
         [SerializeField] bool isLightedUp;
         [SerializeField] bool isWaitingForNextLightUp;
-        [SerializeField] float lightUpDuration;
-        [SerializeField] float timeBetweenLightUp;
+        [SerializeField] bool isWaitingForInput;
+        [SerializeField] bool hasStartedInput;
+
         [SerializeField] float lightUpTimer;
         [SerializeField] float timeBetweenLightUpTimer;
+        [SerializeField] float waitForInputTimer;
+
+        [SerializeField] float lightUpDuration;
+        [SerializeField] float timeBetweenLightUp;
+        [SerializeField] float waitForInputDuration;
         #endregion
 
         #region Buttons
@@ -50,6 +60,7 @@ namespace AstroMath
 
         [SerializeField] Color ledOnColor;
         [SerializeField] Color ledOffColor;
+        [SerializeField] Color ledWrongColor;
         [SerializeField] Color ledDisabledColor;
         #endregion
 
@@ -60,8 +71,20 @@ namespace AstroMath
         string[] symbolsToUse;
         #endregion
 
+        #region Animation
+        [Header("Animation")]
+        Animator gateAnimator;
+        #endregion
+
+        #region Assessment
+        [Header("Assessment")]
+        [SerializeField] GameObject assessmentGO;
+        #endregion
+
         private void Start()
         {
+            gateAnimator = GetComponent<Animator>();
+
             #region Rounds
             currentRound = 1;
             #endregion
@@ -69,9 +92,11 @@ namespace AstroMath
             #region Timing
             lightUpTimer = lightUpDuration;
             timeBetweenLightUpTimer = timeBetweenLightUp;
+            waitForInputTimer = waitForInputDuration;
 
             isLightedUp = false;
             isWaitingForNextLightUp = true;
+            isWaitingForInput = false;
             #endregion
 
             #region Setting Buttons Array
@@ -81,15 +106,6 @@ namespace AstroMath
                 buttons[i] = buttonsParent.GetChild(i).GetComponent<Button>();
             }
             TurnOffAllButtonLights();
-            #endregion
-
-            #region Setting LEDs Array
-            LEDs = new Image[ledsParent.childCount];
-            for (int i = 0; i < ledsParent.childCount; i++)
-            {
-                LEDs[i] = ledsParent.GetChild(i).GetComponent<Image>();
-            }
-            TurnOffAllLEDs();
             #endregion
 
             #region Picking Random Symbols
@@ -104,45 +120,161 @@ namespace AstroMath
             sequenceCurrentLength = sequenceStartLength;
             CreateSequence();
             #endregion
+
+            #region Setting LEDs Array
+            LEDs = new Image[ledsParent.childCount];
+            for (int i = 0; i < ledsParent.childCount; i++)
+            {
+                LEDs[i] = ledsParent.GetChild(i).GetComponent<Image>();
+            }
+            TurnOffAllLEDs();
+            #endregion
         }
 
         private void Update()
         {
-            //wait the time in between light ups
-
-
-            //wait the time the button is lit up
-
-            if (isLightedUp)
+            if (isLightedUp) //if a button is lit up
             {
-                lightUpTimer -= Time.deltaTime;
-                if (lightUpTimer <= 0)
+                DisableAllButtons();
+
+                //> wait the time the button should be lit up
+                lightUpTimer -= Time.deltaTime; //the timer is counting down
+                if (lightUpTimer <= 0) //if we reach zero
                 {
-                    activeIndexInSequence++;
-                    if (activeIndexInSequence >= sequence.Count)
+                    lightUpTimer = lightUpDuration; //we reset the timer
+                    isLightedUp = false; //we set this to false, meaning that no button is to be lit up right now
+                    TurnOffAllButtonLights(); //we turn off all button lights
+
+                    activeLightUpIndexInSequence++; //we increase the active button index
+
+                    if (activeLightUpIndexInSequence >= sequence.Count) //if we reach the end of the sequence
                     {
-                        activeIndexInSequence = 0;
-                        TurnOffAllLEDs();
+                        activeLightUpIndexInSequence = 0; //we reset the active button index
+                        
+                        isWaitingForInput = true; //we set this to true, meaning that we are waiting for the player to input the sequence
+
                     }
-
-                    TurnOffAllButtonLights();
-
-                    lightUpTimer = lightUpDuration;
-                    isLightedUp = false;
-                    isWaitingForNextLightUp = true;
+                    else //if we haven't reached the end of the sequence
+                    {
+                        isWaitingForNextLightUp = true;
+                    }
                 }
             }
-            else if(isWaitingForNextLightUp)
+            else if(isWaitingForNextLightUp) //if waiting for the next button to light up
             {
+                DisableAllButtons();
+
+                //> wait the time in-between light ups
                 timeBetweenLightUpTimer -= Time.deltaTime;
                 if(timeBetweenLightUpTimer <= 0)
                 {
-                    TurnOnActiveButtonLight(activeIndexInSequence);
+                    TurnOnActiveButtonLight(activeLightUpIndexInSequence);
                     isLightedUp = true;
                     isWaitingForNextLightUp = false;
                     timeBetweenLightUpTimer = timeBetweenLightUp;
                 }
             }
+            else if(isWaitingForInput) //if waiting for the player to input the sequence
+            {
+                EnableAllButtons();
+
+                waitForInputTimer -= Time.deltaTime;
+
+                //> turn off all the LEDs
+                if (waitForInputTimer <= 0)
+                {
+                    waitForInputTimer = waitForInputDuration;
+                    isWaitingForInput = false;
+                    isWaitingForNextLightUp = true;
+                    TurnOffAllLEDs();
+                    DisableAllButtons();
+                }
+
+                //> blink the LEDs
+                if (waitForInputTimer % 0.5f < 0.25f)
+                {
+                    TurnOffActiveLEDs();
+                }
+                else
+                {
+                    TurnOnActiveLEDs();
+                }
+                //TurnOnActiveLEDs();
+                //TurnOffActiveLEDs();
+            }
+        }
+
+        public void PressSymbol(int buttonIndex)
+        {
+            if(hasStartedInput == false) //if we haven't started inputting the sequence yet
+            {
+                hasStartedInput = true;
+                TurnOffAllLEDs();
+            }
+
+            isLightedUp = false;
+            isWaitingForNextLightUp = false;
+            isWaitingForInput = false;
+            waitForInputTimer = waitForInputDuration;
+
+            if (buttonIndex == sequence[activeInputIndexInSequence]) //if our input is CORRECT
+            {
+                LEDs[activeInputIndexInSequence].color = ledOnColor; //we turn on the next LED
+
+                activeInputIndexInSequence++; //we increase the active input index
+
+                if (activeInputIndexInSequence >= sequence.Count) //if we reach the end of the sequence
+                {
+                    hasStartedInput = false;
+                    ShowCorrect(); //we show that inputtet sequence is correct
+                    sequenceCurrentLength += sequenceIncreaseAmount; //we increase the sequence length
+                    activeInputIndexInSequence = 0; //we reset the active input index
+                    currentRound++; //we increase the current round
+
+                    CloseGate();
+                }
+            }
+            else //if our input is WRONG
+            {
+                LEDs[activeInputIndexInSequence].color = ledWrongColor; //we turn on the next LED, but this was a mistake so we turn it red
+
+                activeInputIndexInSequence = 0;
+                hasStartedInput = false;
+                ShowWrong();
+
+                CloseGate();
+            }
+        }
+
+        void OpenGate()
+        {
+            if (currentRound > numberOfRounds) //if we reached the end of the game
+            {
+                assessmentGO.SetActive(true); //we show that the game is over
+                infoPanel.ShowDirectionVector(); //we show the direction vector
+            }
+            else
+            {
+                ClearSequence(); //we clear the sequence
+                CreateSequence(); //we create a new sequence
+                TurnOffAllButtonLights(); //we turn off all button lights
+                TurnOffAllLEDs(); //we turn off all LEDs
+
+                if(useRandomSymbols)
+                {
+                    SelectRandomSymbols();
+                    SetButtonsSymbol();
+                }
+
+                isWaitingForNextLightUp = true;
+
+                gateAnimator.SetTrigger("Open");
+            }
+        }
+
+        void CloseGate()
+        {
+            gateAnimator.SetTrigger("Close");
         }
 
         void TurnOnActiveButtonLight(int activeIndex)
@@ -156,6 +288,28 @@ namespace AstroMath
             for (int i = 0; i < buttons.Length; i++)
             {
                 TurnOffButtonLight(i);
+            }
+        }
+
+        void TurnOnActiveLEDs()
+        {
+            for (int i = 0; i < LEDs.Length; i++)
+            {
+                if (i < sequence.Count)
+                {
+                    LEDs[i].color = ledOnColor;
+                }
+            }
+        }
+
+        void TurnOffActiveLEDs()
+        {
+            for (int i = 0; i < LEDs.Length; i++)
+            {
+                if (i < sequence.Count)
+                {
+                    LEDs[i].color = ledOffColor;
+                }
             }
         }
 
@@ -179,18 +333,19 @@ namespace AstroMath
             buttons[index].image.color = buttonDefaultColor;
         }
 
-        void UpdateButtonLights()
+        void ShowCorrect()
         {
             for (int i = 0; i < buttons.Length; i++)
             {
-                if (i == sequence[activeIndexInSequence])
-                {
-                    buttons[i].GetComponent<Image>().color = buttonLightUpColor;
-                }
-                else
-                {
-                    buttons[i].GetComponent<Image>().color = buttonDefaultColor;
-                }
+                buttons[i].image.color = buttonCorrectColor;
+            }
+        }
+
+        void ShowWrong()
+        {
+            for (int i = 0; i < buttons.Length; i++)
+            {
+                buttons[i].image.color = buttonWrongColor;
             }
         }
 
@@ -231,6 +386,22 @@ namespace AstroMath
             {
                 buttons[i].GetComponentInChildren<TMP_Text>().text = symbolsToUse[i];
                 buttons[i].gameObject.name = $"{i} {symbolsToUse[i]} Button";
+            }
+        }
+
+        void EnableAllButtons()
+        {
+            for (int i = 0; i < buttons.Length; i++)
+            {
+                buttons[i].interactable = true;
+            }
+        }
+
+        void DisableAllButtons()
+        {
+            for (int i = 0; i < buttons.Length; i++)
+            {
+                buttons[i].interactable = false;
             }
         }
     }
