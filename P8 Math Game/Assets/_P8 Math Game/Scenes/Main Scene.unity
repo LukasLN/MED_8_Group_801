@@ -773,11 +773,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 5033661331729152981, guid: 4cb463c40924c664484c47f2fc5da751,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1393211033}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4cb463c40924c664484c47f2fc5da751, type: 3}
 --- !u!4 &1005245895 stripped
@@ -929,51 +925,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6706152862028502609, guid: 8409379b1c3e27b4fbec36a9767d562c,
     type: 3}
   m_PrefabInstance: {fileID: 1225664979}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1279528491 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5033661331729152981, guid: 4cb463c40924c664484c47f2fc5da751,
-    type: 3}
-  m_PrefabInstance: {fileID: 1005245894}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &1393211032
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1279528491}
-    m_Modifications:
-    - target: {fileID: 136075810754398457, guid: 6f8a2d142e837ed47b3743c39f20e119,
-        type: 3}
-      propertyPath: m_Name
-      value: PF_WristWatch
-      objectReference: {fileID: 0}
-    - target: {fileID: 136075810754398461, guid: 6f8a2d142e837ed47b3743c39f20e119,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 136075810754398461, guid: 6f8a2d142e837ed47b3743c39f20e119,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 136075810754398461, guid: 6f8a2d142e837ed47b3743c39f20e119,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6f8a2d142e837ed47b3743c39f20e119, type: 3}
---- !u!4 &1393211033 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 136075810754398461, guid: 6f8a2d142e837ed47b3743c39f20e119,
-    type: 3}
-  m_PrefabInstance: {fileID: 1393211032}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1450642764
 PrefabInstance:
