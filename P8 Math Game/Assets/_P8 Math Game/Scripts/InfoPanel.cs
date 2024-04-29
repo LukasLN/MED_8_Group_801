@@ -41,8 +41,12 @@ namespace AstroMath
         public Button confirmButton;
         [SerializeField] GameObject spaceshipGO;
 
+        AudioPlayer audioPlayer;
+
         private void Start()
         {
+            audioPlayer = GetComponent<AudioPlayer>();
+
             directionVector = new Vector3(0, 0, 0);
         }
 
@@ -159,6 +163,11 @@ namespace AstroMath
         void SetActivation(GameObject gameObject, bool newBool)
         {
             gameObject.SetActive(newBool);
+        }
+
+        public void PlayButtonPressSound()
+        {
+            audioPlayer.PlaySoundEffect("ButtonPress");
         }
     }
 }

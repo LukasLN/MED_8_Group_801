@@ -42,7 +42,9 @@ public class Keypad : MonoBehaviour
 
     public void PressNumber(string number)
 	{
-        if(isSolved == true)
+        audioPlayer.PlaySoundEffect(number);
+
+        if (isSolved == true)
 		{
 			Debug.LogWarning("The code has already been solved!");
 			return;
@@ -60,7 +62,6 @@ public class Keypad : MonoBehaviour
 			return;
         }
 
-        audioPlayer.PlaySoundEffect(number);
         AddNumber(number);
 	}
 
@@ -74,6 +75,8 @@ public class Keypad : MonoBehaviour
 
 	public void PressBackspace()
 	{
+        audioPlayer.PlaySoundEffect("Backspace");
+
         if (isSolved == true)
         {
             Debug.LogWarning("The code has already been solved!");
@@ -92,7 +95,6 @@ public class Keypad : MonoBehaviour
             return;
         }
 
-        audioPlayer.PlaySoundEffect("Backspace");
         RemoveNumber();
     }
 
@@ -133,7 +135,7 @@ public class Keypad : MonoBehaviour
             wrongImageGO.SetActive(true);
             StartCoroutine(WaitBeforeHideImage(wrongImageGO));
 
-            audioPlayer.PlaySoundEffect("Incorrect");
+            audioPlayer.PlaySoundEffect("Wrong");
         }
 	}
 

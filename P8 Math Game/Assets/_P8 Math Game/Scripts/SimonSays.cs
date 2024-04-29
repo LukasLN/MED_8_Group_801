@@ -81,9 +81,12 @@ namespace AstroMath
         [SerializeField] GameObject assessmentGO;
         #endregion
 
+        AudioPlayer audioPlayer;
+
         private void Start()
         {
             gateAnimator = GetComponent<Animator>();
+            audioPlayer = GetComponent<AudioPlayer>();
 
             #region Rounds
             currentRound = 1;
@@ -206,6 +209,8 @@ namespace AstroMath
 
         public void PressSymbol(int buttonIndex)
         {
+            audioPlayer.PlaySoundEffect("ButtonPress");
+
             if(hasStartedInput == false) //if we haven't started inputting the sequence yet
             {
                 hasStartedInput = true;
@@ -225,6 +230,8 @@ namespace AstroMath
 
                 if (activeInputIndexInSequence >= sequence.Count) //if we reach the end of the sequence
                 {
+                    audioPlayer.PlaySoundEffect("Correct");
+
                     hasStartedInput = false;
                     ShowCorrect(); //we show that inputtet sequence is correct
                     sequenceCurrentLength += sequenceIncreaseAmount; //we increase the sequence length
@@ -236,6 +243,8 @@ namespace AstroMath
             }
             else //if our input is WRONG
             {
+                audioPlayer.PlaySoundEffect("Wrong");
+
                 LEDs[activeInputIndexInSequence].color = ledWrongColor; //we turn on the next LED, but this was a mistake so we turn it red
 
                 activeInputIndexInSequence = 0;
@@ -347,11 +356,6 @@ namespace AstroMath
             {
                 buttons[i].image.color = buttonWrongColor;
             }
-        }
-
-        void GoThroughSequence()
-        {
-
         }
 
         void CreateSequence()

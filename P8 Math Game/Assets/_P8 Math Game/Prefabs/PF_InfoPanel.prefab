@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3710535937097622030}
   - component: {fileID: 18957553762866378}
   m_Layer: 0
-  m_Name: Delete Button
+  m_Name: Backspace Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -180,7 +180,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8122504763623628180}
   - component: {fileID: 4251130389849148256}
-  - component: {fileID: 5126712004300329030}
+  - component: {fileID: 5920621600283514220}
   m_Layer: 0
   m_Name: Keypad
   m_TagString: Untagged
@@ -245,7 +245,7 @@ MonoBehaviour:
   assessmentBackgroundImageGO: {fileID: 7841021840853696209}
   correctImageGO: {fileID: 8713420701520491962}
   wrongImageGO: {fileID: 1141092579260647596}
---- !u!114 &5126712004300329030
+--- !u!114 &5920621600283514220
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -257,50 +257,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92064ddfc8e30314aa330a96972092f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundEffects:
-  - name: 0
-    loop: 0
-    audioClip: {fileID: 8300000, guid: 0d577446dcc249249a698e66547d99f7, type: 3}
-  - name: 1
-    loop: 0
-    audioClip: {fileID: 8300000, guid: 0d577446dcc249249a698e66547d99f7, type: 3}
-  - name: 2
-    loop: 0
-    audioClip: {fileID: 8300000, guid: 0d577446dcc249249a698e66547d99f7, type: 3}
-  - name: 3
-    loop: 0
-    audioClip: {fileID: 8300000, guid: 0d577446dcc249249a698e66547d99f7, type: 3}
-  - name: 4
-    loop: 0
-    audioClip: {fileID: 8300000, guid: 0d577446dcc249249a698e66547d99f7, type: 3}
-  - name: 5
-    loop: 1
-    audioClip: {fileID: 8300000, guid: 0d577446dcc249249a698e66547d99f7, type: 3}
-  - name: 6
-    loop: 0
-    audioClip: {fileID: 8300000, guid: 0d577446dcc249249a698e66547d99f7, type: 3}
-  - name: 7
-    loop: 0
-    audioClip: {fileID: 8300000, guid: 0d577446dcc249249a698e66547d99f7, type: 3}
-  - name: 8
-    loop: 0
-    audioClip: {fileID: 8300000, guid: 0d577446dcc249249a698e66547d99f7, type: 3}
-  - name: 9
-    loop: 0
-    audioClip: {fileID: 8300000, guid: 0d577446dcc249249a698e66547d99f7, type: 3}
-  - name: Backspace
-    loop: 0
-    audioClip: {fileID: 8300000, guid: 762f0f457ecb9a941bb91b044320b291, type: 3}
-  - name: Enter
-    loop: 0
-    audioClip: {fileID: 8300000, guid: 0d577446dcc249249a698e66547d99f7, type: 3}
-  - name: Correct
-    loop: 0
-    audioClip: {fileID: 8300000, guid: 69fd689cbeac5b04eabc54560d52b182, type: 3}
-  - name: Incorrect
-    loop: 0
-    audioClip: {fileID: 8300000, guid: de0ccbf47ee1ffa4cbec260716b744d4, type: 3}
-  music: []
 --- !u!1 &394939283962221064
 GameObject:
   m_ObjectHideFlags: 0
@@ -3220,6 +3176,18 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 587329779659254739}
         m_TargetAssemblyTypeName: AstroMath.InfoPanel, Assembly-CSharp
+        m_MethodName: PlayButtonPressSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 587329779659254739}
+        m_TargetAssemblyTypeName: AstroMath.InfoPanel, Assembly-CSharp
         m_MethodName: ConfirmAnswer
         m_Mode: 1
         m_Arguments:
@@ -3849,6 +3817,7 @@ GameObject:
   - component: {fileID: 1075844940113578067}
   - component: {fileID: 8167221389507042409}
   - component: {fileID: 3378637902287569089}
+  - component: {fileID: 2582510292431594539}
   m_Layer: 0
   m_Name: Simon Says
   m_TagString: Untagged
@@ -3920,7 +3889,7 @@ MonoBehaviour:
   ledOffColor: {r: 0.050980397, g: 0.19607845, b: 0, a: 1}
   ledWrongColor: {r: 1, g: 0, b: 0, a: 1}
   ledDisabledColor: {r: 0, g: 0, b: 0, a: 1}
-  useRandomSymbols: 0
+  useRandomSymbols: 1
   symbols:
   - "\u0391"
   - "\u0392"
@@ -3968,6 +3937,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2582510292431594539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3128810332611037640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92064ddfc8e30314aa330a96972092f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3174951636901232636
 GameObject:
   m_ObjectHideFlags: 0
@@ -4461,37 +4442,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1 &3494217601297751689
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6171579216795518905}
-  m_Layer: 0
-  m_Name: Image
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &6171579216795518905
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3494217601297751689}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.14780942, y: -0, z: -0, w: 0.9890159}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 6.0530586, y: 6.0530586, z: 6.0530586}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 85407844870140750}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3539946403147835463
 GameObject:
   m_ObjectHideFlags: 0
@@ -5421,6 +5371,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 587329779659254739}
+        m_TargetAssemblyTypeName: AstroMath.InfoPanel, Assembly-CSharp
+        m_MethodName: PlayButtonPressSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 7574890185713254022}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -6789,6 +6751,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 587329779659254739}
+        m_TargetAssemblyTypeName: AstroMath.InfoPanel, Assembly-CSharp
+        m_MethodName: PlayButtonPressSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 6760088797880592271}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -9441,6 +9415,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 587329779659254739}
+        m_TargetAssemblyTypeName: AstroMath.InfoPanel, Assembly-CSharp
+        m_MethodName: PlayButtonPressSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 8354554916494215655}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -9737,6 +9723,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 587329779659254739}
+        m_TargetAssemblyTypeName: AstroMath.InfoPanel, Assembly-CSharp
+        m_MethodName: PlayButtonPressSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 8354554916494215655}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -11351,6 +11349,16 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -25
       objectReference: {fileID: 0}
+    - target: {fileID: 7114770129336771048, guid: df64bf5efda75be4db0c812f9277d678,
+        type: 3}
+      propertyPath: _whenSelectedEmpty.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7114770129336771048, guid: df64bf5efda75be4db0c812f9277d678,
+        type: 3}
+      propertyPath: _whenSelectedHovered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7114770129336771049, guid: df64bf5efda75be4db0c812f9277d678,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11519,12 +11527,12 @@ PrefabInstance:
     - target: {fileID: 8615701476296194156, guid: df64bf5efda75be4db0c812f9277d678,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8615701476296194156, guid: df64bf5efda75be4db0c812f9277d678,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.02
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8705040523801422731, guid: df64bf5efda75be4db0c812f9277d678,
         type: 3}
@@ -11590,11 +11598,8 @@ PrefabInstance:
     - {fileID: 7114770130731238583, guid: df64bf5efda75be4db0c812f9277d678, type: 3}
     m_RemovedGameObjects:
     - {fileID: 4912986489766473926, guid: df64bf5efda75be4db0c812f9277d678, type: 3}
+    - {fileID: 7114770130331732509, guid: df64bf5efda75be4db0c812f9277d678, type: 3}
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 7114770129336771049, guid: df64bf5efda75be4db0c812f9277d678,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6171579216795518905}
     - targetCorrespondingSourceObject: {fileID: 7114770130731238579, guid: df64bf5efda75be4db0c812f9277d678,
         type: 3}
       insertIndex: -1
@@ -11616,6 +11621,10 @@ PrefabInstance:
         type: 3}
       insertIndex: 2
       addedObject: {fileID: 7668502357141303519}
+    - targetCorrespondingSourceObject: {fileID: 7114770129336771053, guid: df64bf5efda75be4db0c812f9277d678,
+        type: 3}
+      insertIndex: 3
+      addedObject: {fileID: 1934825236359058400}
   m_SourcePrefab: {fileID: 100100000, guid: df64bf5efda75be4db0c812f9277d678, type: 3}
 --- !u!224 &85407843483784724 stripped
 RectTransform:
@@ -11705,9 +11714,15 @@ MonoBehaviour:
   FollowOffset: {x: 0, y: 0, z: 0}
   player: {fileID: 0}
   isActive: 0
---- !u!4 &85407844870140750 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7114770129336771049, guid: df64bf5efda75be4db0c812f9277d678,
-    type: 3}
-  m_PrefabInstance: {fileID: 7175307638302413479}
+--- !u!114 &1934825236359058400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85407844870140746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92064ddfc8e30314aa330a96972092f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

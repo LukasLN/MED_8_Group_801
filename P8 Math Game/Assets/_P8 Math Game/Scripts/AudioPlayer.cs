@@ -3,19 +3,9 @@ using UnityEngine;
 
 namespace AstroMath
 {
-    [Serializable]
-    public struct Audio
-    {
-        public string name;
-        public bool loop;
-        public AudioClip audioClip;
-    }
-
     public class AudioPlayer : MonoBehaviour
     {
         AudioSource audioSource;
-        [SerializeField] Audio[] soundEffects;
-        [SerializeField] Audio[] music;
 
         private void Awake()
         {
@@ -27,24 +17,35 @@ namespace AstroMath
             {
                 audioSource = GetComponent<AudioSource>();
             }
-        }
 
-        public void PlaySoundEffect(string soundName, bool loop = false)
-        {
-            var arrayToSearch = soundEffects;
-            PlayAudio(soundEffects, soundName, loop);
+            audioSource.playOnAwake = false;
         }
 
         public void PlaySoundEffect(string soundName)
         {
-            var arrayToSearch = soundEffects;
-            PlayAudio(soundEffects, soundName, false);
+            var arrayToSearch = AudioContainer.instance.soundEffects;
+            PlayAudio(arrayToSearch, soundName);
+        }
+
+        public void PlayDialogue(string dialogueName)
+        {
+            var arrayToSearch = AudioContainer.instance.dialogues;
+            PlayAudio(arrayToSearch, dialogueName);
         }
 
         public void PlayMusic(string musicName, bool loop = false)
         {
-            var arrayToSearch = music;
-            PlayAudio(music, musicName, loop);
+            var arrayToSearch = AudioContainer.instance.music;
+            PlayAudio(arrayToSearch, musicName, loop);
+        }
+
+        public void PlayMusicWithLoop(string musicName)
+        {
+            PlayMusic(musicName, true);
+        }
+        public void PlayMusicNoLoop(string musicName)
+        {
+            PlayMusic(musicName);
         }
 
         void PlayAudio(Audio[] array, string audioName, bool loop = false)
