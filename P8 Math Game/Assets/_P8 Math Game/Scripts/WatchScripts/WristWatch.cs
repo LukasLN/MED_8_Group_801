@@ -5,14 +5,15 @@ using TMPro;
 
 namespace AstroMath
 {
-    public class GameTimer : MonoBehaviour
+    public class WristWatch : MonoBehaviour
     {
-        public static GameTimer instance;
+        public static WristWatch instance;
 
     [SerializeField] TextMeshProUGUI timerText;
     [SerializeField] float remainingTime;
     [SerializeField] TMP_Text solvedText;
     int solvedCounter = 0;
+    bool countDownHasplayed = false;
     
         void Start()
         {
@@ -37,6 +38,7 @@ namespace AstroMath
             int minutes = Mathf.FloorToInt(remainingTime / 60);
             int seconds = Mathf.FloorToInt(remainingTime % 60);
             timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+
         }
 
         public void IncrementSolved()

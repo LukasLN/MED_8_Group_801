@@ -253,7 +253,7 @@ namespace AstroMath
         IEnumerator WaitBeforeIncrementSolved()
         {
             yield return new WaitForSeconds(timeBeforeDestroy);
-            GameTimer.instance.IncrementSolved();   
+            WristWatch.instance.IncrementSolved();   
         }
 
         public void SetMathProblem(MathProblem newMathProblem)
