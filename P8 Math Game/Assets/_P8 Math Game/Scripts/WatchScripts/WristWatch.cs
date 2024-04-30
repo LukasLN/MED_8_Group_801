@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Meta.Voice.Audio;
+using Unity.VisualScripting;
 
 namespace AstroMath
 {
@@ -12,12 +14,14 @@ namespace AstroMath
     [SerializeField] TextMeshProUGUI timerText;
     [SerializeField] float remainingTime;
     [SerializeField] TMP_Text solvedText;
+    AudioPlayer audioPlayer;
     int solvedCounter = 0;
     bool countDownHasplayed = false;
+
     
         void Start()
         {
-        
+            audioPlayer = GetComponent<AudioPlayer>();
         }
         void Awake()
         {
@@ -29,6 +33,11 @@ namespace AstroMath
              {
                 remainingTime -= Time.deltaTime;
              }
+             else if (remainingTime < 10 && !countDownHasplayed)
+            {
+                //play da countdown audio
+                audioPlayer.PlaySoundEffect("countDown");
+            }
              else if ( remainingTime < 0 )
              {
                 remainingTime = 0;

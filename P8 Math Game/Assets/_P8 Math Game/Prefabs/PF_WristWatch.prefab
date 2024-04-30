@@ -1936,7 +1936,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerText: {fileID: 5713902282353682511}
   remainingTime: 0
-  solvedText: {fileID: 0}
+  solvedText: {fileID: 1270329552002268429}
 --- !u!4 &136075810754398461 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7114770129336771049, guid: df64bf5efda75be4db0c812f9277d678,
