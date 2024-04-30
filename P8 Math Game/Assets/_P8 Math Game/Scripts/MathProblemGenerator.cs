@@ -82,7 +82,13 @@ namespace AstroMath
             #region Setting POSITIONS and DIRECTION answer of the MATH PROBLEM
             newMathProblem.spaceshipPosition = PositionGenerator.DiscreteRingPosition((int)minDistance, (int)maxDistance);
 
-            var sampleObject = FixedPositionsContainer.instance.TakeSampleObject();
+            var targetIndex = 0;
+            if(newMathProblem.type == MathProblem.Type.Collision)
+            {
+                targetIndex = 1;
+            }
+            var sampleObject = FixedPositionsContainer.instance.TakeSampleObject(targetIndex);
+
             newMathProblem.targetID = sampleObject.id;
             newMathProblem.targetPosition = sampleObject.position;
 

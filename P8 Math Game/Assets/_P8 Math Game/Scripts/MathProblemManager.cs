@@ -42,6 +42,13 @@ namespace AstroMath
         [SerializeField] int numberOfDummyParkingSpots;
         #endregion
 
+        #region Asteroids
+        [Header("Asteroids")]
+        [SerializeField] GameObject asteroidPF;
+        [SerializeField] Transform asteroidsParentTF;
+        [SerializeField] int numberOfDummyAsteroids;
+        #endregion
+
         [SerializeField] List<MathProblem> mathProblems;
 
         private void Awake()
@@ -78,11 +85,13 @@ namespace AstroMath
 
         public void CreateMathProblem()
         {
-            DestroyMathProblem(0);
+            DestroyMathProblem(0); //Destroying the previous math problem
 
-            FixedPositionsContainer.instance.CreateNewSampleParkingPositions(FixedPositionsContainer.instance.numberOfSamplesToCreate);
-            FixedPositionsContainer.instance.CreateNewSampleAsteroidPositions(FixedPositionsContainer.instance.numberOfSamplesToCreate);
+            //> Creating new sample positions for parking spots and asteroids
+            FixedPositionsContainer.instance.CreateNewSampleParkingPositions(numberOfDummyParkingSpots+1);
+            FixedPositionsContainer.instance.CreateNewSampleAsteroidPositions(numberOfDummyAsteroids+1);
 
+            #region Generating new MATH PROBLEM
             MathProblem newMathProblem;
             if (mathProblemType == MathProblemType.Random)
             {
@@ -96,14 +105,41 @@ namespace AstroMath
             mathProblems.Add(newMathProblem);
 
             SpawnSpaceship(newMathProblem);
-            SpawnParkingSpot(newMathProblem);
+            #endregion
 
-            for (int i = 0; i < numberOfDummyParkingSpots; i++)
+            switch (newMathProblem.type)
             {
-                var dummyMathProblem = MathProblemGenerator.GenerateMathProblem(0, problemSpaceMaxCoordinate, false, (int)mathProblemType);
+                case MathProblem.Type.Direction:
+                    #region Problem Type 1 (Direction)
+                    SpawnParkingSpot(newMathProblem);
 
-                SpawnParkingSpot(dummyMathProblem);
+                    for (int i = 0; i < numberOfDummyParkingSpots; i++)
+                    {
+                        var dummyMathProblem = MathProblemGenerator.GenerateMathProblem(0, problemSpaceMaxCoordinate, false, (int)mathProblemType);
+
+                        SpawnParkingSpot(dummyMathProblem);
+                    }
+                    #endregion
+                    break;
+                case MathProblem.Type.Collision:
+                    #region Problem Type 2 (Collision)
+                    SpawnAsteroid(newMathProblem);
+
+                    for (int i = 0; i < numberOfDummyAsteroids; i++)
+                    {
+                        var dummyMathProblem = MathProblemGenerator.GenerateMathProblem(0, problemSpaceMaxCoordinate, false, (int)mathProblemType);
+
+                        SpawnAsteroid(dummyMathProblem);
+                    }
+                    #endregion
+                    break;
+                case MathProblem.Type.Scale:
+                    #region Problem Type 3 (Scale)
+                    SpawnParkingSpot(newMathProblem);
+                    #endregion
+                    break;
             }
+            
         }
 
         void DestroyMathProblem(int index)
@@ -130,9 +166,10 @@ namespace AstroMath
             GameObject newSpaceship = Instantiate(spaceshipPF, spawnPosition, Quaternion.identity, spaceshipsParentTF);
             newSpaceship.name = "Spaceship " + mathProblem.spaceshipPosition;
 
-            newSpaceship.transform.GetChild(1).gameObject.GetComponent<HoloSpaceship>().SetMathProblem(mathProblem);
-            newSpaceship.transform.GetChild(1).gameObject.GetComponent<HoloSpaceship>().UpdateGraphics();
-            newSpaceship.transform.GetChild(1).gameObject.GetComponent<HoloSpaceship>().UpdatePuzzleInformation();
+            newSpaceship.transform.GetChild(1).gameObject.GetComponent<Spaceship>().SetMathProblem(mathProblem);
+            newSpaceship.transform.GetChild(1).gameObject.GetComponent<Spaceship>().UpdateInteractions();
+            newSpaceship.transform.GetChild(1).gameObject.GetComponent<Spaceship>().UpdateGraphics();
+            newSpaceship.transform.GetChild(1).gameObject.GetComponent<Spaceship>().UpdatePuzzleInformation();
         }
 
         void SpawnParkingSpot(MathProblem mathProblem)
@@ -143,6 +180,16 @@ namespace AstroMath
             newParkingSpot.name = "Parking Spot " + mathProblem.targetPosition;
 
             newParkingSpot.GetComponent<HoloParkingSpot>().SetMathProblem(mathProblem);
+        }
+
+        void SpawnAsteroid(MathProblem mathProblem)
+        {
+            Vector3 spawnPosition = MapProblemSpaceToCookieSpace(mathProblem.targetPosition);
+
+            GameObject newAsteroid = Instantiate(asteroidPF, spawnPosition, Quaternion.identity, asteroidsParentTF);
+            newAsteroid.name = "Asteroid " + mathProblem.targetID + " " + mathProblem.targetPosition;
+
+            //newAsteroid.GetComponent<HoloAsteroid>().SetMathProblem(mathProblem);
         }
 
         Vector3 MapProblemSpaceToCookieSpace(Vector3 problemPosition)
@@ -157,52 +204,5 @@ namespace AstroMath
 
             return new Vector3(x, y, z);
         }
-
-        /*
-        public void CreateNumberOfProblems(int numberOfProblems)
-        {
-            RemoveAllProblems();
-
-            FixedPositionsContainer.instance.CreateNewSampleParkingPositions(numberOfProblems);
-            FixedPositionsContainer.instance.CreateNewSampleAsteroidPositions(numberOfProblems);
-
-            for (int i = 0; i < numberOfProblems; i++)
-            {
-                CreateProblem();
-            }
-        }
-
-        void CreateProblem()
-        {
-            MathProblem newMathProblem;
-            if (mathProblemType == MathProblemType.Random)
-            {
-                newMathProblem = MathProblemGenerator.GenerateMathProblem(minDistance, maxDistance);
-            }
-            else
-            {
-                newMathProblem = MathProblemGenerator.GenerateMathProblem(minDistance, maxDistance, false, (int)mathProblemType);
-            }
-
-            mathProblems.Add(newMathProblem);
-
-            HoloObjectManager.instance.SpawnHoloObjects(newMathProblem);
-        }
-
-        void RemoveAllProblems()
-        {
-            var count = mathProblems.Count;
-
-            for (int i = 0; i < count; i++)
-            {
-                RemoveProblem(0);
-            }
-        }
-
-        void RemoveProblem(int index)
-        {
-            HoloObjectManager.instance.DespawnHoloObjects(index);
-            mathProblems.RemoveAt(index);
-        }*/
     }
 }

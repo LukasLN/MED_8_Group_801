@@ -22,28 +22,20 @@ namespace AstroMath
                 if (Vector3.Distance(transform.position, targetPosition) < 0.1f) //if we are not at the target position
                 {
                     isMoving = false;
-                    Debug.Log("Reached target position");
-
-                    interactableSpaceshipGO.GetComponent<HoloSpaceship>().ShowResult();
+                    
+                    interactableSpaceshipGO.GetComponent<Spaceship>().ShowResult();
                 }
-            }
-            else
-            {
-                Debug.Log("Not moving...");
             }
         }
 
         void MoveForward()
         {
-            Debug.Log("Moving forward...");
             transform.position += transform.forward * moveSpeed * Time.deltaTime;
             //Vector3.MoveTowards(transform.position, targetPosition, 2); //moves spaceship
         }
 
         public void SetTarget(GameObject targetGO) //Activated when confirm button is pressed
         {
-            Debug.Log("Setting target...");
-
             targetPosition = targetGO.transform.position;
             
             var distanceToTravel = Vector3.Distance(transform.position, targetPosition);

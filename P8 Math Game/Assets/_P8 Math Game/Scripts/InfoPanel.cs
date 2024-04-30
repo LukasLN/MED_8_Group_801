@@ -35,6 +35,7 @@ namespace AstroMath
         [Header("Locks")]
         [SerializeField] GameObject startPositionLock;
         [SerializeField] GameObject directionVectorLock;
+        [SerializeField] GameObject tScalarLock;
         #endregion
 
         public Keypad keypad;
@@ -60,7 +61,7 @@ namespace AstroMath
 
         public void ConfirmAnswer()
         {
-            spaceshipGO.GetComponent<HoloSpaceship>().LockInAnswer();
+            spaceshipGO.GetComponent<Spaceship>().LockInAnswer();
         }
 
         public void UpdateGraphics()

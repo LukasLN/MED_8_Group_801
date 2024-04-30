@@ -56,4 +56,8 @@ MonoBehaviour:
     type: 3}
   parkingSpotsParentTF: {fileID: 0}
   numberOfDummyParkingSpots: 4
+  asteroidPF: {fileID: 1175618016481567340, guid: 791756fa5923b10419d288d9c5611ae2,
+    type: 3}
+  asteroidsParentTF: {fileID: 0}
+  numberOfDummyAsteroids: 4
   mathProblems: []

@@ -1,5 +1,4 @@
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 namespace AstroMath
 {
@@ -11,6 +10,11 @@ namespace AstroMath
         [HideInInspector] public Transform player;
         public bool isActive;
 
+        #region Scaling Problem
+        [Header("Scaling Problem")]
+        [SerializeField] Transform endPointTF; //TF = Transform
+        public bool isForScaling;
+        #endregion
 
         private void Update()
         {
@@ -23,8 +27,11 @@ namespace AstroMath
             {
                 FollowPlayer();
             }
+        }
 
-
+        public void SetEndPointAsParent()
+        {
+            transform.SetParent(endPointTF);
         }
 
         void FollowPlayer()

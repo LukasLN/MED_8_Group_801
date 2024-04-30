@@ -46,42 +46,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92064ddfc8e30314aa330a96972092f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundEffects:
-  - name: ShipSelection
-    loop: 0
-    audioClip: {fileID: 8300000, guid: 4300d103988ed61428efa9eb3abcb6fc, type: 3}
-  music: []
---- !u!1 &5001582751306871182
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 525857004787739664}
-  m_Layer: 0
-  m_Name: Line End Position
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &525857004787739664
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5001582751306871182}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4424658449400432936}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1284321137331091101
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -272,13 +236,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 3221578070172680117, guid: 103e6fec921da714e8be053d5d204530,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 525857004787739664}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 103e6fec921da714e8be053d5d204530, type: 3}
+--- !u!4 &525857004787739664 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1629998972651379341, guid: 103e6fec921da714e8be053d5d204530,
+    type: 3}
+  m_PrefabInstance: {fileID: 1284321137331091101}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &4120947896388523239 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2946021569488790138, guid: 103e6fec921da714e8be053d5d204530,
@@ -291,12 +257,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d46d032983a31e44887b6e87788339d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &4424658449400432936 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3221578070172680117, guid: 103e6fec921da714e8be053d5d204530,
-    type: 3}
-  m_PrefabInstance: {fileID: 1284321137331091101}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5731282847047765601 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6799107395553818876, guid: 103e6fec921da714e8be053d5d204530,

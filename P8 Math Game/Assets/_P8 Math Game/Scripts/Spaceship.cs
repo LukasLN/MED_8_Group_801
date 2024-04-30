@@ -1,10 +1,11 @@
 using Oculus.Interaction;
+using Oculus.Interaction.HandGrab;
 using System.Collections;
 using UnityEngine;
 
 namespace AstroMath
 {
-    public class HoloSpaceship : MonoBehaviour
+    public class Spaceship : MonoBehaviour
     {
         public bool isMoving; //used for when the player clicks confirm button
 
@@ -15,7 +16,7 @@ namespace AstroMath
         [HideInInspector] public Vector3 directionVector;
 
         [SerializeField] bool isSelected;
-        [SerializeField] bool hasTarget;
+        public bool hasTarget;
         public GameObject targetGO;
         public bool lineVisible;
 
@@ -86,6 +87,15 @@ namespace AstroMath
             if (hasTarget == true)
             {
                 transform.LookAt(targetGO.transform);
+            }
+        }
+
+        public void UpdateInteractions()
+        {
+            if(mathProblem.type == MathProblem.Type.Scale)
+            {
+                GetComponent<Grabbable>().enabled = false;
+                GetComponent<HandGrabInteractable>().enabled = false;
             }
         }
 
