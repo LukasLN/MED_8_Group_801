@@ -49,6 +49,16 @@ MonoBehaviour:
   problemSpaceMaxCoordinate: 100
   hologramSpawnAreaGO: {fileID: 0}
   numberOfProblemsToCreate: 1
+  minDirectionDistance: 0
+  maxDirectionDistance: 100
+  minCollisionDistance: -50
+  maxCollisionDistance: 50
+  minScaleDistance: 0
+  maxScaleDistance: 100
+  minParkingDistance: 0
+  maxParkingDistance: 0
+  minAsteroidDistance: 75
+  maxAsteroidDistance: 100
   spaceshipPF: {fileID: 1809961114373649867, guid: 3099e165679b6c444b9c314ed3289134,
     type: 3}
   spaceshipsParentTF: {fileID: 0}

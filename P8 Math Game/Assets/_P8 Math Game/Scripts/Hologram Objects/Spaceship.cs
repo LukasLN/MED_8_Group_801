@@ -1,5 +1,4 @@
 using Oculus.Interaction;
-using Oculus.Interaction.HandGrab;
 using System.Collections;
 using UnityEngine;
 
@@ -7,10 +6,6 @@ namespace AstroMath
 {
     public class Spaceship : MonoBehaviour
     {
-        public bool isMoving; //used for when the player clicks confirm button
-
-        public MathProblem mathProblem;
-        public int problemID;
         [SerializeField] float timeBeforeDestroy;
 
         [HideInInspector] public Vector3 directionVector;
@@ -20,7 +15,7 @@ namespace AstroMath
         public GameObject targetGO;
         public bool lineVisible;
 
-        [SerializeField] GameObject[] modelsGO; //GO = GameObject
+        [SerializeField] InteractableSpaceship interactableSpaceship;
 
         #region Info Panel
         [Header("Info Panel")]
@@ -49,8 +44,8 @@ namespace AstroMath
 
         private void Awake()
         {
-            lineRenderer = lineGO.GetComponent<LineRenderer>();
-            lineRenderer.SetPosition(0, lineStartPoint.localPosition);
+            //lineRenderer = lineGO.GetComponent<LineRenderer>();
+            //lineRenderer.SetPosition(0, lineStartPoint.localPosition);
             infoPanel = infoPanelGO.GetComponent<InfoPanel>();
 
             OVRCameraRig cameraRig = FindObjectOfType<OVRCameraRig>();
@@ -58,7 +53,7 @@ namespace AstroMath
             infoPanelMovement.player = cameraRig.centerEyeAnchor;
 
 
-            if (mathProblem.type == MathProblem.Type.Scale)
+            //if (mathProblem.m_type == MathProblem.Type.Scale)
             {
                 lineVisible = true;
                 var sphereInstance=  Instantiate(sphere,lineEndPoint);
@@ -70,7 +65,7 @@ namespace AstroMath
         {
             if (isSelected == true || lineVisible==true)
             {
-                DrawLine();
+                //DrawLine();
                 UpdateDirectionVector();
                 //UpdateGraphics();
             }
@@ -92,22 +87,18 @@ namespace AstroMath
 
         public void UpdateInteractions()
         {
-            if(mathProblem.type == MathProblem.Type.Scale)
-            {
-                GetComponent<Grabbable>().enabled = false;
-                GetComponent<HandGrabInteractable>().enabled = false;
-            }
+            //if(mathProblem.m_type == MathProblem.Type.Scale)
+            //{
+            //    GetComponent<Grabbable>().enabled = false;
+            //    GetComponent<HandGrabInteractable>().enabled = false;
+            //}
         }
 
-        public void UpdateGraphics()
+        public void UpdateGraphics(int type, int cargo)
         {
-            for (int i = 0; i < modelsGO.Length; i++)
-            {
-                //Debug.Log("i: " + i + ", Math Problem Type: " + (int)mathProblem.cargo);
-                modelsGO[i].SetActive((int)mathProblem.cargo == i);
-            }
+            interactableSpaceship.SetActiveModel(cargo);
 
-            infoPanel.UpdateGraphics();
+            infoPanel.UpdateGraphics(type, cargo);
         }
 
         public void UpdatePuzzleInformation()
@@ -162,8 +153,8 @@ namespace AstroMath
 
             if(hasTarget == true) //if we are hitting a target (i.e. PARKING or ASTEROID)
             {
-                newDirectionVector = targetGO.GetComponent<HoloParkingSpot>().mathProblem.targetPosition -
-                                                                              mathProblem.spaceshipPosition;
+                //newDirectionVector = targetGO.GetComponent<HoloParkingSpot>().mathProblem.targetPosition -
+                //                                                              mathProblem.spaceshipPosition;
             }
             else
             {
@@ -192,7 +183,7 @@ namespace AstroMath
                     mappedZ = PositionGenerator.Map(originalVector.z, -4.5f, 4.5f, -100f, 100f);
                 }
 
-                newDirectionVector = new Vector3(mappedX, mappedY, mappedZ) - mathProblem.spaceshipPosition;
+                //newDirectionVector = new Vector3(mappedX, mappedY, mappedZ) - mathProblem.spaceshipPosition;
             }
 
             newDirectionVector.x = (int)newDirectionVector.x;
@@ -205,11 +196,11 @@ namespace AstroMath
 
         public void LockInAnswer()
         {
-            isMoving = true;
+            //isMoving = true;
             GetComponent<InteractableUnityEventWrapper>().enabled = false;
             infoPanelGO.SetActive(false);
             lineGO.SetActive(false);
-            GetComponent<SpaceshipMovement>().SetTarget(targetGO);
+            //SetTarget(targetGO);
         }
 
         public void ShowResult()
@@ -217,24 +208,24 @@ namespace AstroMath
             #region Determine result
             bool isCorrect = false;
 
-            switch(mathProblem.type)
-            {
-                case MathProblem.Type.Direction:
-                    // Check if the direction vector is correct
-                    if(directionVector == mathProblem.directionSolution)
-                    {
-                        isCorrect = true;
-                    }
-                    break;
-                case MathProblem.Type.Collision:
-                    // Check if the collision is correct
-                    Debug.LogWarning("Not implemented yet!");
-                    break;
-                case MathProblem.Type.Scale:
-                    // Check if the scale is correct
-                    Debug.LogWarning("Not implemented yet!");
-                    break;
-            }
+            //switch(mathProblem.m_type)
+            //{
+            //    case MathProblem.Type.Direction:
+            //        // Check if the direction vector is correct
+            //        if(directionVector == mathProblem.directionSolution)
+            //        {
+            //            isCorrect = true;
+            //        }
+            //        break;
+            //    case MathProblem.Type.Collision:
+            //        // Check if the collision is correct
+            //        Debug.LogWarning("Not implemented yet!");
+            //        break;
+            //    case MathProblem.Type.Scale:
+            //        // Check if the scale is correct
+            //        Debug.LogWarning("Not implemented yet!");
+            //        break;
+            //}
             #endregion
 
             # region Show Result
@@ -268,7 +259,7 @@ namespace AstroMath
 
         public void SetMathProblem(MathProblem newMathProblem)
         {
-            mathProblem = newMathProblem;
+            //mathProblem = newMathProblem;
             infoPanel.mathProblem = newMathProblem;
         }
 

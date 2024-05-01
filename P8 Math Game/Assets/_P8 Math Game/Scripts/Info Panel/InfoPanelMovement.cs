@@ -20,13 +20,13 @@ namespace AstroMath
         {
             if(isActive == true)
             {
-                LookAtPlayer();
+                //LookAtPlayer();
             }
 
-            if (mathProblem.type == MathProblem.Type.Scale)
-            {
-                FollowPlayer();
-            }
+            //if (mathProblem.m_type == MathProblem.Type.Scale)
+            //{
+            //    FollowPlayer();
+            //}
         }
 
         public void SetEndPointAsParent()

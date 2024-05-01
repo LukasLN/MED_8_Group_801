@@ -2,53 +2,17 @@ using System;
 using UnityEngine;
 namespace AstroMath
 {
-    [Serializable]
-    public struct MathProblem
-    {
-        public enum Type
-        {
-            Direction = 0,
-            Collision = 1,
-            Scale = 2
-        }
-        public Type type;
-
-        public enum Cargo
-        {
-            Water = 0,
-            Food = 1,
-            Fuel = 2
-        }
-        public Cargo cargo;
-
-        public Vector3 spaceshipPosition;
-        public Vector3 targetPosition;
-        public string targetID;
-
-        public Vector3 directionSolution;
-        public bool collisionSolution;
-        public int scaleSolution;
-
-        public static string[,] pinCodes = new string[3, 3]
-        {
-            {"9264", "5738", "3487"},
-            {"8093", "6152", "4276"},
-            {"7029", "1845", "2361"}
-        };
-        public string pinCode;
-    }
-
     public static class MathProblemGenerator
     {
         /// <summary>
-        /// Returns a math problem of type 'number' (0 = direction problem, 1 = collision problem, 2 = scale (t) problem).
+        /// Returns a math problem of m_type 'number' (0 = direction problem, 1 = collision problem, 2 = scale (t) problem).
         /// </summary>
         /// <param name="minSP">Minimum value for the spaceship position.</param>
         /// <param name="maxSP">Maximum value for the spaceship position.</param>
         /// <param name="minPP">Minimum value for the parking position.</param>
         /// <param name="maxPP">Maximum value for the parking position.</param>
-        /// <param name="randomType">Whether or not to generate a random type of math problem.</param>
-        /// <param name="type">Specifies the type of math problem.</param>
+        /// <param name="randomType">Whether or not to generate a random m_type of math problem.</param>
+        /// <param name="type">Specifies the m_type of math problem.</param>
         /// <param name="debug">Whether or not to debug relevant information to the console.</param>
         /// <returns></returns>
         public static MathProblem GenerateMathProblem(float minDistance, float maxDistance, bool randomType = true, int type = 0, bool randomCargo = true, int cargo = 0, bool debug = false)
@@ -75,37 +39,37 @@ namespace AstroMath
             #endregion
 
             #region Setting MATH PROBLEM TYPE and CARGO
-            newMathProblem.type = (MathProblem.Type)mathProblemType;
-            newMathProblem.cargo = (MathProblem.Cargo)cargoType;
+            //newMathProblem.m_type = (MathProblem.Type)mathProblemType;
+            //newMathProblem.m_cargo = (MathProblem.Cargo)cargoType;
             #endregion
 
             #region Setting POSITIONS and DIRECTION answer of the MATH PROBLEM
-            newMathProblem.spaceshipPosition = PositionGenerator.DiscreteRingPosition((int)minDistance, (int)maxDistance);
+            //newMathProblem.spaceshipPosition = PositionGenerator.DiscreteRingPosition((int)minDistance, (int)maxDistance);
 
             var targetIndex = 0;
-            if(newMathProblem.type == MathProblem.Type.Collision)
+            //if(newMathProblem.m_type == MathProblem.Type.Collision)
             {
                 targetIndex = 1;
             }
-            var sampleObject = FixedPositionsContainer.instance.TakeSampleObject(targetIndex);
+            var sampleObject = FixedPositionsContainer.instance.TakeSampleTarget(targetIndex);
 
-            newMathProblem.targetID = sampleObject.id;
-            newMathProblem.targetPosition = sampleObject.position;
+            //newMathProblem.targetName = sampleObject.name;
+            //newMathProblem.targetPosition = sampleObject.position;
 
-            newMathProblem.directionSolution = newMathProblem.targetPosition - newMathProblem.spaceshipPosition;
+            //newMathProblem.directionSolution = newMathProblem.targetPosition - newMathProblem.spaceshipPosition;
             #endregion
 
             #region Setting the PUZZLES of the MATH PROBLEM
-            newMathProblem.pinCode = MathProblem.pinCodes[(int)newMathProblem.type, (int)newMathProblem.cargo];
+            //newMathProblem.pinCode = MathProblem.pinCodes[(int)newMathProblem.m_type, (int)newMathProblem.m_cargo];
             #endregion
 
             /*
             #region Generating answers to MATH PROBLEM TYPE 1 (collision) and 2 (t scalar)
             switch (mathProblemType)
             {
-                case 0: //direction type math problem
+                case 0: //direction m_type math problem
                     break;
-                case 1: //collision type math problem
+                case 1: //collision m_type math problem
                     //generate whether to produce a collision or no collision
                     var chance = UnityEngine.Random.Range(0, 2);
                     if(chance == 0) //no collision will happen
@@ -125,7 +89,7 @@ namespace AstroMath
                         newMathProblem.targetPosition = collisionPosition;
                     }
                     break;
-                case 2: //t scalar type math problem
+                case 2: //t scalar m_type math problem
                     //generate something else
                     newMathProblem.scaleAnswer = 1;
                     break;

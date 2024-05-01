@@ -44,140 +44,80 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfe189d72781ccf4ca7643c9846fbcec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfSamplesToCreate: 5
-  fixedParkingSpots:
+  numberOfSamplesToCreate: 1
+  parkingTargets:
   - type: 0
-    id: 1
+    name: 1
     position: {x: 37, y: -86, z: 72}
   - type: 0
-    id: 2
-    position: {x: -53, y: 70, z: 21}
+    name: 1
+    position: {x: 37, y: -86, z: 72}
   - type: 0
-    id: 3
-    position: {x: 85, y: 64, z: -12}
+    name: 1
+    position: {x: 37, y: -86, z: 72}
   - type: 0
-    id: 4
-    position: {x: -66, y: 39, z: -76}
+    name: 1
+    position: {x: 37, y: -86, z: 72}
   - type: 0
-    id: 5
-    position: {x: -97, y: 48, z: 33}
+    name: 1
+    position: {x: 37, y: -86, z: 72}
   - type: 0
-    id: 6
-    position: {x: -45, y: -89, z: -55}
+    name: 1
+    position: {x: 37, y: -86, z: 72}
   - type: 0
-    id: 7
-    position: {x: -72, y: -28, z: -91}
+    name: 1
+    position: {x: 37, y: -86, z: 72}
   - type: 0
-    id: 8
-    position: {x: -84, y: -71, z: 54}
+    name: 1
+    position: {x: 37, y: -86, z: 72}
   - type: 0
-    id: 9
-    position: {x: 29, y: -74, z: 92}
+    name: 1
+    position: {x: 37, y: -86, z: 72}
   - type: 0
-    id: 10
-    position: {x: 63, y: -20, z: -89}
+    name: 1
+    position: {x: 37, y: -86, z: 72}
   - type: 0
-    id: 11
-    position: {x: 81, y: -42, z: 53}
+    name: 1
+    position: {x: 37, y: -86, z: 72}
   - type: 0
-    id: 12
-    position: {x: -93, y: 81, z: -38}
+    name: 1
+    position: {x: 37, y: -86, z: 72}
   - type: 0
-    id: 13
-    position: {x: -58, y: -49, z: 87}
+    name: 1
+    position: {x: 37, y: -86, z: 72}
   - type: 0
-    id: 14
-    position: {x: 46, y: 65, z: 78}
+    name: 1
+    position: {x: 37, y: -86, z: 72}
   - type: 0
-    id: 15
-    position: {x: -60, y: 85, z: -43}
+    name: 1
+    position: {x: 37, y: -86, z: 72}
   - type: 0
-    id: 16
-    position: {x: -76, y: -17, z: -67}
+    name: 1
+    position: {x: 37, y: -86, z: 72}
   - type: 0
-    id: 17
-    position: {x: 28, y: 96, z: 14}
+    name: 1
+    position: {x: 37, y: -86, z: 72}
   - type: 0
-    id: 18
-    position: {x: -12, y: 83, z: -88}
+    name: 1
+    position: {x: 37, y: -86, z: 72}
   - type: 0
-    id: 19
-    position: {x: -98, y: -32, z: 61}
+    name: 1
+    position: {x: 37, y: -86, z: 72}
   - type: 0
-    id: 20
-    position: {x: 79, y: -56, z: 46}
-  fixedAsteroids:
+    name: 1
+    position: {x: 37, y: -86, z: 72}
+  asteroidTargets:
   - type: 1
-    id: "\u03B1"
+    name: "\u03B1"
     position: {x: 76, y: 89, z: 98}
   - type: 1
-    id: "\u03B2"
+    name: "\u03B2"
     position: {x: 87, y: 97, z: 85}
   - type: 1
-    id: "\u03B3"
+    name: "\u03B3"
     position: {x: 90, y: 78, z: 89}
   - type: 1
-    id: "\u03B4"
+    name: "\u03B4"
     position: {x: 83, y: 96, z: 84}
-  - type: 1
-    id: "\u03B5"
-    position: {x: 80, y: 85, z: 96}
-  - type: 1
-    id: "\u03B6"
-    position: {x: 84, y: 97, z: 88}
-  - type: 1
-    id: "\u03B7"
-    position: {x: -88, y: 84, z: 79}
-  - type: 1
-    id: "\u03B8"
-    position: {x: -97, y: 98, z: 82}
-  - type: 1
-    id: "\u03B9"
-    position: {x: -91, y: 89, z: 93}
-  - type: 1
-    id: "\u03BA"
-    position: {x: -85, y: 95, z: 88}
-  - type: 1
-    id: "\u03BB"
-    position: {x: -83, y: 76, z: 92}
-  - type: 1
-    id: "\u03BC"
-    position: {x: -94, y: 90, z: 79}
-  - type: 1
-    id: "\u03BD"
-    position: {x: -93, y: -81, z: -92}
-  - type: 1
-    id: "\u03BE"
-    position: {x: -96, y: -99, z: -90}
-  - type: 1
-    id: "\u03BF"
-    position: {x: -99, y: -92, z: -91}
-  - type: 1
-    id: "\u03C0"
-    position: {x: -97, y: -94, z: -82}
-  - type: 1
-    id: "\u03C1"
-    position: {x: -94, y: -88, z: -97}
-  - type: 1
-    id: "\u03C3"
-    position: {x: -95, y: -79, z: -91}
-  - type: 1
-    id: "\u03C4"
-    position: {x: 79, y: -81, z: -93}
-  - type: 1
-    id: "\u03C5"
-    position: {x: 82, y: -98, z: -78}
-  - type: 1
-    id: "\u03C6"
-    position: {x: 88, y: -84, z: -98}
-  - type: 1
-    id: "\u03C7"
-    position: {x: 95, y: -79, z: -91}
-  - type: 1
-    id: "\u03C8"
-    position: {x: 99, y: -90, z: -83}
-  - type: 1
-    id: "\u03C9"
-    position: {x: 97, y: -94, z: -82}
-  sampledParkingPositions: []
-  sampledAsteroidPositions: []
+  sampledParkingTargets: []
+  sampledAsteroidTargets: []

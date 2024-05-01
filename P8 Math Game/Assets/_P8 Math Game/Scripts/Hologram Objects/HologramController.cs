@@ -95,10 +95,10 @@ namespace AstroMath
 
         private void Update()
         {
-            //if (Input.GetKeyDown(KeyCode.T)) //if the <T> key is pressed...
-            //{
-            //    Toggle(); //we toggle the activation of the hologram
-            //}
+            if (Input.GetKeyDown(KeyCode.T)) //if the <T> key is pressed...
+            {
+                Toggle(); //we toggle the activation of the hologram
+            }
 
             if (isMoving == true) //if the hologram should be moving...
             {

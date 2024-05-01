@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Collections;
 
 namespace AstroMath
 {
@@ -64,14 +63,15 @@ namespace AstroMath
             spaceshipGO.GetComponent<Spaceship>().LockInAnswer();
         }
 
-        public void UpdateGraphics()
+        public void UpdateGraphics(int type, int cargo)
         {
-            UpdateCargoImage();
-            UpdateProblemTypeText();
+            UpdateProblemTypeText(type);
+            UpdateCargoImage(cargo);
+            
             //Debug.Log("Start Position: " + mathProblem.spaceshipPosition);
-            startPositionText.text = $"{mathProblem.spaceshipPosition.x}\n" +
-                                    $"{mathProblem.spaceshipPosition.y}\n" +
-                                    $"{mathProblem.spaceshipPosition.z}";
+            //startPositionText.text = $"{mathProblem.spaceshipPosition.x}\n" +
+                                    //$"{mathProblem.spaceshipPosition.y}\n" +
+                                    //$"{mathProblem.spaceshipPosition.z}";
 
             if(changePanelColor == true)
             {
@@ -82,26 +82,15 @@ namespace AstroMath
 
         public void UpdatePuzzleInformation()
         {
-            keypad.correctCode = mathProblem.pinCode;
+            //keypad.correctCode = mathProblem.pinCode;
             //Debug.Log("The pin code of this math problem is: " + mathProblem.pinCode);
-            keypad.targetIDText.text = "# " + mathProblem.targetID;
+            //keypad.targetIDText.text = "# " + mathProblem.targetName;
         }
 
-        void UpdateCargoImage()
-        {
-            cargoImage.sprite = cargoSprites[(int)mathProblem.cargo];
-        }
-
-        void FollowEndPoint()
-        {
-            if(mathProblem.type == MathProblem.Type.Scale) {
-                transform.parent = EndPointTF;
-            }
-        }
-        void UpdateProblemTypeText()
+        void UpdateProblemTypeText(int type)
         {
             var correctText = "";
-            switch ((int)mathProblem.type)
+            switch (type)
             {
                 case 0: //Direction problem
                     correctText = "Retning";
@@ -117,11 +106,24 @@ namespace AstroMath
             problemTypeText.text = correctText;
         }
 
+        void UpdateCargoImage(int cargo)
+        {
+            cargoImage.sprite = cargoSprites[cargo];
+        }
+
+        void FollowEndPoint()
+        {
+            //if(mathProblem.m_type == MathProblem.Type.Scale) {
+            //    transform.parent = EndPointTF;
+            //}
+        }
+        
+
         void UpdatePanelColor()
         {
             for (int i = 0; i < panelImages.Length; i++)
             {
-                panelImages[i].color = panelColors[(int)mathProblem.cargo];
+                //panelImages[i].color = panelColors[(int)mathProblem.m_cargo];
             }
         }
 
@@ -129,7 +131,7 @@ namespace AstroMath
         {
             for (int i = 0; i < confirmButtonImages.Length; i++)
             {
-                confirmButtonImages[i].color = panelColors[(int)mathProblem.cargo];
+                //confirmButtonImages[i].color = panelColors[(int)mathProblem.m_cargo];
             }
         }
 
