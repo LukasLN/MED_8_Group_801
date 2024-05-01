@@ -90,5 +90,8 @@ MonoBehaviour:
   - name: 0
     loop: 0
     audioClip: {fileID: 8300000, guid: 5267b9a7e4746c84a9cc651fa8421e23, type: 3}
+  - name: countDown
+    loop: 0
+    audioClip: {fileID: 8300000, guid: 318a814b56a0b4b46bb40a96b98920dd, type: 3}
   dialogues: []
   music: []
