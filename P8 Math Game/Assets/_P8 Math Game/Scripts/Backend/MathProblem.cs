@@ -49,11 +49,6 @@ namespace AstroMath
         [SerializeField] Transform m_asteroidsParentTF;
         #endregion
 
-        private void Awake()
-        {
-            
-        }
-
         private void Update()
         {
             if(Input.GetKeyDown(KeyCode.O))
@@ -61,6 +56,12 @@ namespace AstroMath
                 GenerateNewCharacteristics();
                 UpdateHoloObjects();
             }
+        }
+
+        public void New()
+        {
+            GenerateNewCharacteristics();
+            UpdateHoloObjects();
         }
 
         public void GenerateNewCharacteristics()

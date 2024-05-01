@@ -6,6 +6,8 @@ namespace AstroMath
     public class MathProblemManager : MonoBehaviour
     {
         public static MathProblemManager instance;
+        [SerializeField] GameObject mathProblemPF;
+        [SerializeField] MathProblem currentMathProblem;
 
         #region Enums
         public enum MathProblemType
@@ -88,75 +90,86 @@ namespace AstroMath
 
         private void Update()
         {
-            if(Input.GetKeyDown(KeyCode.C))
-            {
-                CreateMathProblem();
-            }
+            //if(Input.GetKeyDown(KeyCode.C))
+            //{
+            //    CreateMathProblem();
+            //}
 
-            if(Input.GetKeyDown(KeyCode.R))
-            {
-                //RemoveProblem(0);
-            }
+            //if(Input.GetKeyDown(KeyCode.R))
+            //{
+            //    //RemoveProblem(0);
+            //}
         }
 
         public void CreateMathProblem()
         {
-            DestroyMathProblem(0); //Destroying the previous math problem
-
-            //> Creating new sample positions for parking spots and asteroids
-            FixedPositionsContainer.instance.CreateSampleParkingTargets();
-            FixedPositionsContainer.instance.CreateSampleAsteroidTargets();
-
-            #region Generating new MATH PROBLEM
-            MathProblem newMathProblem;
-            if (mathProblemType == MathProblemType.Random)
+            if(currentMathProblem == null)
             {
-                newMathProblem = MathProblemGenerator.GenerateMathProblem(0, problemSpaceMaxCoordinate);
-            }
-            else
-            {
-                newMathProblem = MathProblemGenerator.GenerateMathProblem(0, problemSpaceMaxCoordinate, false, (int)mathProblemType);
+                GameObject newMathProblem = Instantiate(mathProblemPF, Vector3.zero, Quaternion.identity);
+                currentMathProblem = newMathProblem.GetComponent<MathProblem>();
             }
 
-            mathProblems.Add(newMathProblem);
-
-            SpawnSpaceship(newMathProblem);
-            #endregion
-
-            //switch (newMathProblem.m_type)
-            //{
-            //    case MathProblem.Type.Direction:
-            //        #region Problem Type 1 (Direction)
-            //        SpawnParkingSpot(newMathProblem);
-
-            //        for (int i = 0; i < numberOfDummyParkingSpots; i++)
-            //        {
-            //            var dummyMathProblem = MathProblemGenerator.GenerateMathProblem(0, problemSpaceMaxCoordinate, false, (int)mathProblemType);
-
-            //            SpawnParkingSpot(dummyMathProblem);
-            //        }
-            //        #endregion
-            //        break;
-            //    case MathProblem.Type.Collision:
-            //        #region Problem Type 2 (Collision)
-            //        SpawnAsteroid(newMathProblem);
-
-            //        for (int i = 0; i < numberOfDummyAsteroids; i++)
-            //        {
-            //            var dummyMathProblem = MathProblemGenerator.GenerateMathProblem(0, problemSpaceMaxCoordinate, false, (int)mathProblemType);
-
-            //            SpawnAsteroid(dummyMathProblem);
-            //        }
-            //        #endregion
-            //        break;
-            //    case MathProblem.Type.Scale:
-            //        #region Problem Type 3 (Scale)
-            //        SpawnParkingSpot(newMathProblem);
-            //        #endregion
-            //        break;
-            //}
-            
+            currentMathProblem.GetComponent<MathProblem>().New();
         }
+
+        //public void CreateMathProblem()
+        //{
+        //    DestroyMathProblem(0); //Destroying the previous math problem
+            
+        //    //> Creating new sample positions for parking spots and asteroids
+        //    FixedPositionsContainer.instance.CreateSampleParkingTargets();
+        //    FixedPositionsContainer.instance.CreateSampleAsteroidTargets();
+
+        //    #region Generating new MATH PROBLEM
+        //    MathProblem newMathProblem;
+        //    if (mathProblemType == MathProblemType.Random)
+        //    {
+        //        newMathProblem = MathProblemGenerator.GenerateMathProblem(0, problemSpaceMaxCoordinate);
+        //    }
+        //    else
+        //    {
+        //        newMathProblem = MathProblemGenerator.GenerateMathProblem(0, problemSpaceMaxCoordinate, false, (int)mathProblemType);
+        //    }
+
+        //    mathProblems.Add(newMathProblem);
+
+        //    SpawnSpaceship(newMathProblem);
+        //    #endregion
+
+        //    //switch (newMathProblem.m_type)
+        //    //{
+        //    //    case MathProblem.Type.Direction:
+        //    //        #region Problem Type 1 (Direction)
+        //    //        SpawnParkingSpot(newMathProblem);
+
+        //    //        for (int i = 0; i < numberOfDummyParkingSpots; i++)
+        //    //        {
+        //    //            var dummyMathProblem = MathProblemGenerator.GenerateMathProblem(0, problemSpaceMaxCoordinate, false, (int)mathProblemType);
+
+        //    //            SpawnParkingSpot(dummyMathProblem);
+        //    //        }
+        //    //        #endregion
+        //    //        break;
+        //    //    case MathProblem.Type.Collision:
+        //    //        #region Problem Type 2 (Collision)
+        //    //        SpawnAsteroid(newMathProblem);
+
+        //    //        for (int i = 0; i < numberOfDummyAsteroids; i++)
+        //    //        {
+        //    //            var dummyMathProblem = MathProblemGenerator.GenerateMathProblem(0, problemSpaceMaxCoordinate, false, (int)mathProblemType);
+
+        //    //            SpawnAsteroid(dummyMathProblem);
+        //    //        }
+        //    //        #endregion
+        //    //        break;
+        //    //    case MathProblem.Type.Scale:
+        //    //        #region Problem Type 3 (Scale)
+        //    //        SpawnParkingSpot(newMathProblem);
+        //    //        #endregion
+        //    //        break;
+        //    //}
+            
+        //}
 
         void DestroyMathProblem(int index)
         {

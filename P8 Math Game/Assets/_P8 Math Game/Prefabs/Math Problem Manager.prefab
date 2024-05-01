@@ -44,10 +44,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c15edd2e361c5a4da6638400246cab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mathProblemPF: {fileID: 55766031746427333, guid: 37afa348423fcbf47b0306acb41ec1c7,
+    type: 3}
+  currentMathProblem: {fileID: 0}
   mathProblemType: 0
   spawnAtStart: 0
   problemSpaceMaxCoordinate: 100
   hologramSpawnAreaGO: {fileID: 0}
+  bounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
   numberOfProblemsToCreate: 1
   minDirectionDistance: 0
   maxDirectionDistance: 100

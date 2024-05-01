@@ -16,11 +16,16 @@ namespace AstroMath
         public bool isForScaling;
         #endregion
 
+        private void Start()
+        {
+            player = FindObjectOfType<OVRCameraRig>().centerEyeAnchor;
+        }
+
         private void Update()
         {
             if(isActive == true)
             {
-                //LookAtPlayer();
+                LookAtPlayer();
             }
 
             //if (mathProblem.m_type == MathProblem.Type.Scale)
@@ -41,13 +46,11 @@ namespace AstroMath
 
         void LookAtPlayer()
         {
-            //transform.LookAt(player, Vector3.up);
+            transform.LookAt(player, Vector3.up);
 
             Vector3 direction = player.position - transform.position;
             Quaternion lookRotation = Quaternion.LookRotation(-direction);
             transform.rotation = lookRotation;
-
-            
         }
 
         public void SetActivation(bool newBool)
