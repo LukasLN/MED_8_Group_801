@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 3972047540271364389}
   - component: {fileID: 7730073297405222832}
   - component: {fileID: 1776511687912972887}
+  - component: {fileID: 7772700679939484235}
   m_Layer: 0
   m_Name: PF_ParkingSpot
   m_TagString: Parking
@@ -99,20 +100,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d766b5e0b770c1341858b2f14ad798b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mathProblem:
-    type: 0
-    cargo: 0
-    spaceshipPosition: {x: 0, y: 0, z: 0}
-    targetPosition: {x: 0, y: 0, z: 0}
-    targetID: 
-    directionSolution: {x: 0, y: 0, z: 0}
-    collisionSolution: 0
-    scaleSolution: 0
-    pinCode: 
+  mathProblem: {fileID: 0}
   highlightIsActive: 0
   Graphics: {fileID: 4836889198280130528}
   DefaultMaterial: {fileID: 2100000, guid: c7613dbe09b39dd4b94ef16f3aa32fda, type: 2}
   HighlightMaterial: {fileID: 2100000, guid: b98a894573f802249bb0c47a3a5d2843, type: 2}
+--- !u!114 &7772700679939484235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8840485896273341119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23e4d9a622941174c9c19ec408b40df3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5756019000234738353
 PrefabInstance:
   m_ObjectHideFlags: 0

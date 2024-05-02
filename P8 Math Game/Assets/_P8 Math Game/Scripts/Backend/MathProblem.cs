@@ -44,7 +44,7 @@ namespace AstroMath
         [Header("Holo Objects")]
         [SerializeField] GameObject m_spaceshipGO;
         [Tooltip("Could be a Parking Spot or an Asteroid")]
-        [SerializeField] GameObject m_targetGO;
+        [SerializeField] GameObject m_correctTargetGO;
         [SerializeField] Transform m_parkingSpotsParentTF; //TF = Transform
         [SerializeField] Transform m_asteroidsParentTF;
         #endregion
@@ -53,8 +53,7 @@ namespace AstroMath
         {
             if(Input.GetKeyDown(KeyCode.O))
             {
-                GenerateNewCharacteristics();
-                UpdateHoloObjects();
+                New();
             }
         }
 
@@ -125,13 +124,16 @@ namespace AstroMath
             switch (m_type)
             {
                 case Type.Direction:
-                    m_directionSolution = m_targetPosition - m_spaceshipPosition;
+                    //m_directionSolution = m_targetPosition - m_spaceshipPosition;
+                    m_collisionSolution = true;
+                    m_scaleSolution = 1;
                     break;
                 case Type.Collision:
                     var chance = Random.Range(0, 2);
                     if (chance == 0)
                     {
                         m_collisionSolution = false;
+                        m_scaleSolution = 0;
                     }
                     else
                     {
@@ -140,9 +142,12 @@ namespace AstroMath
                     }
                     break;
                 case Type.Scale:
+                    m_collisionSolution = true;
                     m_scaleSolution = GenerateTScalar();
                     break;
             }
+
+            m_directionSolution = m_targetPosition - m_spaceshipPosition;
 
             #endregion
         }
@@ -162,27 +167,58 @@ namespace AstroMath
 
         public void UpdateHoloObjects()
         {
-            #region Enabling/Disabling Target Objects
-            if(m_type == Type.Direction)
+            #region Enabling/Disabling Target Objects (Parking Spots or Asteroids)
+            if (m_type == Type.Direction)
             {
-                m_targetGO = m_parkingSpotsParentTF.GetChild(0).gameObject;
+                m_correctTargetGO = m_parkingSpotsParentTF.GetChild(0).gameObject;
             }
             else if(m_type == Type.Collision || m_type == Type.Scale)
             {
-                m_targetGO = m_asteroidsParentTF.GetChild(0).gameObject;
+                m_correctTargetGO = m_asteroidsParentTF.GetChild(0).gameObject;
             }
 
             m_parkingSpotsParentTF.gameObject.SetActive(m_type == Type.Direction);
             m_asteroidsParentTF.gameObject.SetActive(m_type == Type.Collision || m_type == Type.Scale);
             #endregion
 
-            #region Updating Graphics of Spaceship and Info Panel
+            #region Setting Graphics of Spaceship and Info Panel
             m_spaceshipGO.GetComponent<Spaceship>().UpdateGraphics((int)m_type, (int)m_cargo);
             #endregion
 
+            #region Setting Spaceship and Info Panel Information
+            m_spaceshipGO.GetComponent<Spaceship>().UpdatePuzzleInformation(this);
+            m_spaceshipGO.GetComponent<Spaceship>().SetCorrectDirectionVector(m_directionSolution);
+            m_spaceshipGO.GetComponent<Spaceship>().SetCorrectTScalar(m_scaleSolution);
+            m_spaceshipGO.GetComponent<Spaceship>().SetProblemPosition(m_spaceshipPosition);
+            #endregion
+
             #region Setting Positions
-            m_spaceshipGO.transform.position = MathProblemManager.instance.MapProblemSpaceToCookieSpace(m_spaceshipPosition);
-            m_targetGO.transform.position    = MathProblemManager.instance.MapProblemSpaceToCookieSpace(m_targetPosition);
+            m_spaceshipGO.transform.position     = MathProblemManager.instance.MapProblemSpaceToCookieSpace(m_spaceshipPosition);
+            m_correctTargetGO.transform.position = MathProblemManager.instance.MapProblemSpaceToCookieSpace(m_targetPosition);
+            
+            //> parking spots
+            for (int i = 1; i < m_parkingSpotsParentTF.childCount; i++)
+            {
+                var parkingSpot = m_parkingSpotsParentTF.GetChild(i);
+                var holoTarget = FixedPositionsContainer.instance.TakeSampleTarget(0); //0 = Parking Spot Sample
+                parkingSpot.position = MathProblemManager.instance.MapProblemSpaceToCookieSpace(holoTarget.position);
+                parkingSpot.gameObject.GetComponent<TargetGameObject>().problemPosition = holoTarget.position;
+                parkingSpot.gameObject.name = holoTarget.name;
+            }
+
+            //> asteroids
+            for (int i = 1; i < m_asteroidsParentTF.childCount; i++)
+            {
+                var asteroid = m_asteroidsParentTF.GetChild(i);
+                var holoTarget = FixedPositionsContainer.instance.TakeSampleTarget(1); //1 = Asteroid Sample
+                asteroid.position = MathProblemManager.instance.MapProblemSpaceToCookieSpace(holoTarget.position);
+                asteroid.gameObject.GetComponent<TargetGameObject>().problemPosition = holoTarget.position;
+                asteroid.gameObject.name = holoTarget.name;
+            }
+            #endregion
+
+            #region Setting Target Information
+            m_correctTargetGO.GetComponent<TargetGameObject>().problemPosition = m_targetPosition;
             #endregion
         }
 
@@ -294,6 +330,21 @@ namespace AstroMath
             #endregion
 
             return t;
+        }
+
+        public string GetPinCode()
+        {
+            return m_pinCode;
+        }
+
+        public Type GetType()
+        {
+            return m_type;
+        }
+
+        public string GetTargetName()
+        {
+            return m_targetName;
         }
     }
 }

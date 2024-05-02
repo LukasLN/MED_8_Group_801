@@ -1,9 +1,8 @@
-using System.ComponentModel.Design;
 using UnityEngine;
 
 namespace AstroMath
 {
-    public class HoloParkingSpot : MonoBehaviour
+    public class ParkingSpot : MonoBehaviour
     {
         public MathProblem mathProblem;
         public bool highlightIsActive;

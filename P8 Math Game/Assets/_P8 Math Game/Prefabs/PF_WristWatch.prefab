@@ -368,10 +368,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2759679247503960828}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 7093379221024001039}
+        m_TargetAssemblyTypeName: AstroMath.WristWatch, Assembly-CSharp
+        m_MethodName: ToggleInfoPanel
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1327,6 +1327,91 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &1445916659225059905
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 136075810754398461}
+    m_Modifications:
+    - target: {fileID: 85407844870140746, guid: 89eddb845a838cc4fae6beda7ec8055b,
+        type: 3}
+      propertyPath: m_Name
+      value: PF_InfoPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 85407844870140746, guid: 89eddb845a838cc4fae6beda7ec8055b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 85407844870140750, guid: 89eddb845a838cc4fae6beda7ec8055b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 85407844870140750, guid: 89eddb845a838cc4fae6beda7ec8055b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.075
+      objectReference: {fileID: 0}
+    - target: {fileID: 85407844870140750, guid: 89eddb845a838cc4fae6beda7ec8055b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.175
+      objectReference: {fileID: 0}
+    - target: {fileID: 85407844870140750, guid: 89eddb845a838cc4fae6beda7ec8055b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 85407844870140750, guid: 89eddb845a838cc4fae6beda7ec8055b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 85407844870140750, guid: 89eddb845a838cc4fae6beda7ec8055b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 85407844870140750, guid: 89eddb845a838cc4fae6beda7ec8055b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 85407844870140750, guid: 89eddb845a838cc4fae6beda7ec8055b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 85407844870140750, guid: 89eddb845a838cc4fae6beda7ec8055b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 85407844870140750, guid: 89eddb845a838cc4fae6beda7ec8055b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 89eddb845a838cc4fae6beda7ec8055b, type: 3}
+--- !u!1 &1531083621441065227 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 85407844870140746, guid: 89eddb845a838cc4fae6beda7ec8055b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1445916659225059905}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1531083621441065231 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 85407844870140750, guid: 89eddb845a838cc4fae6beda7ec8055b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1445916659225059905}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7160667908809926932
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1855,6 +1940,10 @@ PrefabInstance:
         type: 3}
       insertIndex: 0
       addedObject: {fileID: 1592118862784570229}
+    - targetCorrespondingSourceObject: {fileID: 7114770129336771049, guid: df64bf5efda75be4db0c812f9277d678,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1531083621441065231}
     - targetCorrespondingSourceObject: {fileID: 7114770130731238579, guid: df64bf5efda75be4db0c812f9277d678,
         type: 3}
       insertIndex: -1
@@ -1890,6 +1979,8 @@ MonoBehaviour:
   timerText: {fileID: 5713902282353682511}
   remainingTime: 0
   solvedText: {fileID: 1270329552002268429}
+  infoPanelGO: {fileID: 1531083621441065227}
+  infoPanelIsVisible: 0
 --- !u!114 &3270069635604295998
 MonoBehaviour:
   m_ObjectHideFlags: 0

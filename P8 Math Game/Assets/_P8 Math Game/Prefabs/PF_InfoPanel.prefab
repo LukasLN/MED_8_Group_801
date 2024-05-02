@@ -268,16 +268,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a9f9d36b70efcd449c49d1270d90aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  infoPanel: {fileID: 587329779659254739}
   isSolved: 0
   isOccupied: 0
-  infoPanel: {fileID: 587329779659254739}
   pinCodeSlotsTF: {fileID: 9035752451613607957}
-  correctCode: 
-  enteredCode: []
-  targetIDGroupGO: {fileID: 2482700589451805084}
-  targetIDText: {fileID: 8105685845554155772}
   slotTexts: []
   currentSlotIndex: 0
+  correctCode: 
+  enteredCode: []
+  targetNameGroupGO: {fileID: 2482700589451805084}
+  targetNameText: {fileID: 8105685845554155772}
+  targetImage: {fileID: 2307212473403729041}
+  targetSprites:
+  - {fileID: 21300000, guid: c8f76e530b6d923408c4b637d2b080f0, type: 3}
+  - {fileID: 21300000, guid: 5c8bf9723c025284caa7b0cd87141d7b, type: 3}
   assessmentVisibilityTime: 1
   assessmentBackgroundImageGO: {fileID: 7841021840853696209}
   correctImageGO: {fileID: 8713420701520491962}
@@ -2019,7 +2023,7 @@ GameObject:
   - component: {fileID: 3438605513470913911}
   - component: {fileID: 8105685845554155772}
   m_Layer: 0
-  m_Name: Target ID Text
+  m_Name: Target Name Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3492,19 +3496,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 107215826403961928}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 250436229152483686}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &2035981637855082686
 GameObject:
   m_ObjectHideFlags: 0
@@ -3858,7 +3850,7 @@ GameObject:
   m_Component:
   - component: {fileID: 74546728115758995}
   m_Layer: 0
-  m_Name: Target ID Group
+  m_Name: Target Group
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4653,7 +4645,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1831631490590166966
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8421,7 +8413,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4049869900203031663
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10556,8 +10548,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 251, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 271.2, y: 0}
+  m_SizeDelta: {x: 146, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3574655543633489781
 CanvasRenderer:
@@ -12230,19 +12222,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 830803241217084666}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4919796381943356943}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &7385505276921673944
 GameObject:
   m_ObjectHideFlags: 0
@@ -13327,19 +13307,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2476173765245603956}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2991524856109735615}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &7895108239098035550
 GameObject:
   m_ObjectHideFlags: 0
@@ -15088,7 +15056,7 @@ GameObject:
   - component: {fileID: 77162882680025309}
   - component: {fileID: 2307212473403729041}
   m_Layer: 0
-  m_Name: Parking Spot Image
+  m_Name: Target Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15111,7 +15079,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 50}
-  m_SizeDelta: {x: 150, y: 150}
+  m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &77162882680025309
 CanvasRenderer:
@@ -15841,6 +15809,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7114770129336771053, guid: df64bf5efda75be4db0c812f9277d678,
         type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7114770129336771053, guid: df64bf5efda75be4db0c812f9277d678,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -16079,20 +16052,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13846c4c1a03494429d80895cff77d5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mathProblem:
-    type: 0
-    cargo: 0
-    spaceshipPosition: {x: 0, y: 0, z: 0}
-    targetPosition: {x: 0, y: 0, z: 0}
-    targetID: 
-    directionSolution: {x: 0, y: 0, z: 0}
-    collisionSolution: 0
-    scaleSolution: 0
-    pinCode: 
+  mathProblem: {fileID: 0}
+  alsoUnlockDirectionVectorWithPinCode: 0
   isSelected: 0
-  directionVector: {x: 0, y: 0, z: 0}
+  startPosition: {x: 0, y: 0, z: 0}
+  correctDirectionVector: {x: 0, y: 0, z: 0}
+  currentDirectionVector: {x: 0, y: 0, z: 0}
   startPositionText: {fileID: 1572663849590939908}
   directionVectorText: {fileID: 5193353325130870273}
+  tScalarText: {fileID: 8259592890246603557}
   EndPointTF: {fileID: 0}
   rayHitPoint: {x: 0, y: 0, z: 0}
   cargoImage: {fileID: 1397566124574582598}
@@ -16130,16 +16098,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50f243c9212a513468c5163e03c645d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mathProblem:
-    type: 0
-    cargo: 0
-    spaceshipPosition: {x: 0, y: 0, z: 0}
-    targetPosition: {x: 0, y: 0, z: 0}
-    targetID: 
-    directionSolution: {x: 0, y: 0, z: 0}
-    collisionSolution: 0
-    scaleSolution: 0
-    pinCode: 
+  mathProblem: {fileID: 0}
   problemID: 0
   FollowOffset: {x: 0, y: 0, z: 0}
   player: {fileID: 0}

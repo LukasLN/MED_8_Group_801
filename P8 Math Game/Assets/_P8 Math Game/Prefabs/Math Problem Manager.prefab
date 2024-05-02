@@ -59,8 +59,8 @@ MonoBehaviour:
   maxDirectionDistance: 100
   minCollisionDistance: -50
   maxCollisionDistance: 50
-  minScaleDistance: 0
-  maxScaleDistance: 100
+  minScaleDistance: -50
+  maxScaleDistance: 50
   minParkingDistance: 0
   maxParkingDistance: 0
   minAsteroidDistance: 75

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8151455165145132717}
   - component: {fileID: 9125671250214101296}
   - component: {fileID: 2665206823359114420}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PF_Spaceship
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,25 +59,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d46d032983a31e44887b6e87788339d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBeforeDestroy: 1
-  directionVector: {x: 0, y: 0, z: 0}
-  isSelected: 0
-  hasTarget: 0
-  targetGO: {fileID: 0}
-  lineVisible: 0
+  mathProblem: {fileID: 0}
+  correctDirectionVector: {x: 0, y: 0, z: 0}
+  currentDirectionVector: {x: 0, y: 0, z: 0}
   interactableSpaceship: {fileID: 5870112889687925688}
   infoPanelGO: {fileID: 8922363973198462111}
-  infoPanel: {fileID: 0}
-  lineGO: {fileID: 0}
-  lineStartPoint: {fileID: 0}
-  lineEndPoint: {fileID: 0}
-  sphere: {fileID: 677933863437574896}
-  maxDistance: 10
-  layerMaskToIgnore:
-    serializedVersion: 2
-    m_Bits: 64
-  correctGO: {fileID: 4237680624966223448}
-  wrongGO: {fileID: 8870528408290649190}
+  infoPanel: {fileID: 8276325748405543942}
 --- !u!1001 &1284321137331091101
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -86,6 +73,81 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8151455165145132717}
     m_Modifications:
+    - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
+      propertyPath: _whenUnselect.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 8276325748405543942}
+    - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
+      propertyPath: _whenUnselect.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
+      propertyPath: _whenUnselect.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 8276325748405543942}
+    - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: SetIsSelected
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
+      propertyPath: _whenUnselect.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
+      propertyPath: _whenUnselect.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: SetIsSelected
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: AstroMath.InfoPanel, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
+      propertyPath: _whenUnselect.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: AstroMath.InfoPanel, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
+      propertyPath: _whenUnselect.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2946021569488790138, guid: 103e6fec921da714e8be053d5d204530,
         type: 3}
       propertyPath: m_Enabled
@@ -106,6 +168,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4657856536711746853, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
+      propertyPath: spaceship
+      value: 
+      objectReference: {fileID: 2665206823359114420}
+    - target: {fileID: 4657856536711746853, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
+      propertyPath: infoPanelGO
+      value: 
+      objectReference: {fileID: 8922363973198462111}
     - target: {fileID: 6799107395553818876, guid: 103e6fec921da714e8be053d5d204530,
         type: 3}
       propertyPath: m_Name
@@ -141,18 +213,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 103e6fec921da714e8be053d5d204530, type: 3}
---- !u!1 &677933863437574896 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1781826783323264109, guid: 103e6fec921da714e8be053d5d204530,
-    type: 3}
-  m_PrefabInstance: {fileID: 1284321137331091101}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &4237680624966223448 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3106805716037398725, guid: 103e6fec921da714e8be053d5d204530,
-    type: 3}
-  m_PrefabInstance: {fileID: 1284321137331091101}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5731282847047765601 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6799107395553818876, guid: 103e6fec921da714e8be053d5d204530,
@@ -174,12 +234,6 @@ MonoBehaviour:
 --- !u!4 &8681550918360565319 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7613831965388320986, guid: 103e6fec921da714e8be053d5d204530,
-    type: 3}
-  m_PrefabInstance: {fileID: 1284321137331091101}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &8870528408290649190 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7694577894362305275, guid: 103e6fec921da714e8be053d5d204530,
     type: 3}
   m_PrefabInstance: {fileID: 1284321137331091101}
   m_PrefabAsset: {fileID: 0}
@@ -272,6 +326,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89eddb845a838cc4fae6beda7ec8055b, type: 3}
+--- !u!114 &8276325748405543942 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 587329779659254739, guid: 89eddb845a838cc4fae6beda7ec8055b,
+    type: 3}
+  m_PrefabInstance: {fileID: 8862511468968972245}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8922363973198462111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13846c4c1a03494429d80895cff77d5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8922363973198462107 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 85407844870140750, guid: 89eddb845a838cc4fae6beda7ec8055b,

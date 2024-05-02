@@ -90,10 +90,10 @@ namespace AstroMath
 
         private void Update()
         {
-            //if(Input.GetKeyDown(KeyCode.C))
-            //{
-            //    CreateMathProblem();
-            //}
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                CreateMathProblem();
+            }
 
             //if(Input.GetKeyDown(KeyCode.R))
             //{
@@ -103,12 +103,13 @@ namespace AstroMath
 
         public void CreateMathProblem()
         {
-            if(currentMathProblem == null)
+            if(currentMathProblem != null)
             {
-                GameObject newMathProblem = Instantiate(mathProblemPF, Vector3.zero, Quaternion.identity);
-                currentMathProblem = newMathProblem.GetComponent<MathProblem>();
+                Destroy(currentMathProblem.gameObject);
             }
 
+            GameObject newMathProblem = Instantiate(mathProblemPF, Vector3.zero, Quaternion.identity);
+            currentMathProblem = newMathProblem.GetComponent<MathProblem>();
             currentMathProblem.GetComponent<MathProblem>().New();
         }
 
@@ -208,7 +209,7 @@ namespace AstroMath
             //GameObject newParkingSpot = Instantiate(parkingSpotPF, spawnPosition, Quaternion.identity, parkingSpotsParentTF);
             //newParkingSpot.name = "Parking Spot " + mathProblem.targetPosition;
 
-            //newParkingSpot.GetComponent<HoloParkingSpot>().SetMathProblem(mathProblem);
+            //newParkingSpot.GetComponent<ParkingSpot>().SetMathProblem(mathProblem);
         }
 
         void SpawnAsteroid(MathProblem mathProblem)
@@ -224,7 +225,6 @@ namespace AstroMath
         public Vector3 MapProblemSpaceToCookieSpace(Vector3 problemPosition)
         {
             Vector2 spaceBounds = new Vector2(-maxDirectionDistance, maxDirectionDistance);
-
             Vector2 cookieBounds = new Vector2(-bounds.extents.x, bounds.extents.x);
 
             float x = PositionGenerator.Map(problemPosition.x, spaceBounds.x, spaceBounds.y, cookieBounds.x, cookieBounds.y);

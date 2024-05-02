@@ -7,13 +7,29 @@ namespace AstroMath
     public class InfoPanel : MonoBehaviour
     {
         public MathProblem mathProblem;
-        //public int problemID;
 
+        #region Booleans
+        [Header("Booleans")]
+        public bool alsoUnlockDirectionVectorWithPinCode;
         [SerializeField] bool isSelected;
-        [HideInInspector] public Vector3 directionVector;
+        #endregion
 
+        #region Math Problem
+        [Header("Math Problem")]
+        [SerializeField] Vector3 startPosition;
+        [SerializeField] Vector3 correctDirectionVector;
+        [SerializeField] Vector3 directionVector;
+        [SerializeField] float correctTScalar;
+        [SerializeField] float tScalar;
+        #endregion
+
+        #region Texts
+        [Header("Texts")]
         public TMP_Text startPositionText;
         public TMP_Text directionVectorText;
+        public TMP_Text tScalarText;
+        #endregion
+
         public Transform EndPointTF;
 
         public Vector3 rayHitPoint;
@@ -48,6 +64,7 @@ namespace AstroMath
             audioPlayer = GetComponent<AudioPlayer>();
 
             directionVector = new Vector3(0, 0, 0);
+            SetTScalar(1);
         }
 
         private void Update()
@@ -60,31 +77,61 @@ namespace AstroMath
 
         public void ConfirmAnswer()
         {
-            spaceshipGO.GetComponent<Spaceship>().LockInAnswer();
+            spaceshipGO.GetComponent<InteractableSpaceship>().LockInAnswer();
         }
 
         public void UpdateGraphics(int type, int cargo)
         {
+            #region Problem and Cargo
             UpdateProblemTypeText(type);
             UpdateCargoImage(cargo);
-            
-            //Debug.Log("Start Position: " + mathProblem.spaceshipPosition);
-            //startPositionText.text = $"{mathProblem.spaceshipPosition.x}\n" +
-                                    //$"{mathProblem.spaceshipPosition.y}\n" +
-                                    //$"{mathProblem.spaceshipPosition.z}";
+            #endregion
 
-            if(changePanelColor == true)
+            #region Formula Locks
+            HideStartPosition();
+            HideDirectionVector();
+            HideTScalar();
+            #endregion
+
+            #region Pin Code / Keypad
+            keypad.Clear();
+            #endregion
+
+            #region Mini Game
+
+            #endregion
+
+            #region Colors
+            if (changePanelColor == true)
             {
                 UpdatePanelColor();
                 UpdateConfirmButtonColor();
             }
+            #endregion
         }
 
-        public void UpdatePuzzleInformation()
+
+
+        public void UpdatePuzzleInformation(MathProblem mathProblem)
         {
-            //keypad.correctCode = mathProblem.pinCode;
-            //Debug.Log("The pin code of this math problem is: " + mathProblem.pinCode);
-            //keypad.targetIDText.text = "# " + mathProblem.targetName;
+            #region Pin Code / Keypad
+            //> Correct pin code
+            keypad.SetCorectCode(mathProblem.GetPinCode());
+
+            //> What locks that the correct pin code with unlock
+            alsoUnlockDirectionVectorWithPinCode = mathProblem.GetType() != 0; //if we are doing collision or scaling problem, this will be true
+
+            //> Target Name and Image
+            var targetName = $"# {mathProblem.GetTargetName()}"; //assuming we are dealing with a direction problem and therefore a parking spot number
+            var targetImageIndex = 0;
+            if ((int)mathProblem.GetType() == 1) //if we are dealing with a collision problem
+            {
+                targetName = mathProblem.GetTargetName(); //then the target name is that of an asteroid, which should not have a hashtag '#' in front of it
+                targetImageIndex = 1;
+            }
+            keypad.SetTargetNameText(targetName);
+            keypad.SetTargetImageSprite(targetImageIndex);
+            #endregion
         }
 
         void UpdateProblemTypeText(int type)
@@ -135,6 +182,25 @@ namespace AstroMath
             }
         }
 
+        public void SetStartPosition(Vector3 position)
+        {
+            startPosition = position;
+            startPositionText.text = $"{startPosition.x}\n" +
+                                    $"{startPosition.y}\n" +
+                                    $"{startPosition.z}";
+        }
+
+        public void SetCorrectDirectionVector(Vector3 direction)
+        {
+            correctDirectionVector = direction;
+        }
+
+        public void SetCurrentDirectionVector(Vector3 direction)
+        {
+            directionVector = direction;
+            UpdateDirectionVectorText();
+        }
+
         public void UpdateDirectionVectorText()
         {
             // magic numbers are limits of holorgram 'cookie' and spawning sphere
@@ -146,6 +212,22 @@ namespace AstroMath
             directionVectorText.text = $"{directionVector.x}\n" +
                                        $"{directionVector.y}\n" +
                                        $"{directionVector.z}";
+        }
+
+        public void SetCorrectTScalar(int tScalar)
+        {
+            correctTScalar = tScalar;
+        }
+
+        public void SetTScalar(int tScalar)
+        {
+            this.tScalar = tScalar;
+            UpdateTScalarText();
+        }
+
+        public void UpdateTScalarText()
+        {
+            tScalarText.text = tScalar.ToString();
         }
 
         public void SetIsSelected(bool newBool)
@@ -161,6 +243,26 @@ namespace AstroMath
         public void ShowDirectionVector()
         {
             SetActivation(directionVectorLock, false);
+        }
+
+        public void ShowTScalar()
+        {
+            SetActivation(tScalarLock, false);
+        }
+
+        public void HideStartPosition()
+        {
+            SetActivation(startPositionLock, true);
+        }
+
+        public void HideDirectionVector()
+        {
+            SetActivation(directionVectorLock, true);
+        }
+
+        public void HideTScalar()
+        {
+            SetActivation(tScalarLock, true);
         }
 
         void SetActivation(GameObject gameObject, bool newBool)
