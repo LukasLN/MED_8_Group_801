@@ -64,7 +64,7 @@ namespace AstroMath
 
         #region Ray Parameters
         [Header("Ray Parameters")]
-        [SerializeField] PointerShape pointerShape;
+        public PointerShape pointerShape;
         [SerializeField] LayerMask layerMaskToIgnore;
         [SerializeField] float rayMaxDistance;
         [SerializeField] float cylinderRadius;
@@ -72,6 +72,11 @@ namespace AstroMath
         [SerializeField] int coneResolution;
         Ray ray;
         RaycastHit hit;
+        #endregion
+
+        #region Cone Parameters
+        [Header("Cone Parameters")]
+        [SerializeField] GameObject coneGO;
         #endregion
 
         #region Line Graphics
@@ -190,6 +195,7 @@ namespace AstroMath
             float raylength = rayMaxDistance;
             Color rayColor = Color.green;
 
+            #region Raycasting
             if (Physics.Raycast(startPosition, direction, out hit, rayMaxDistance, ~layerMaskToIgnore))
             {
                 //Debug.Log("Hit object: " + hit.collider.gameObject.name);
@@ -222,6 +228,15 @@ namespace AstroMath
                 infoPanel.confirmButton.interactable = false;
             }
             //Debug.DrawRay(startPoint.position, rayDirection * rayMaxDistance, rayColor);
+            #endregion
+
+            #region Cylinder
+
+            #endregion
+
+            #region Cone
+
+            #endregion
 
             endPoint.localPosition = new Vector3(startPoint.localPosition.x,
                                                  startPoint.localPosition.y,
