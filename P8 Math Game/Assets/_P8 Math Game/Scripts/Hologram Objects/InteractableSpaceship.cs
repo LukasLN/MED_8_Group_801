@@ -110,15 +110,10 @@ namespace AstroMath
 
         void Update()
         {
-            if (hasTarget == true)
-            {
-                transform.LookAt(targetGO.transform);
-            }
-
             if (isSelected)
             {
-                targetGO = null;
-                hasTarget = false;
+                //targetGO = null;
+                //hasTarget = false;
 
                 #region Pointing
                 switch (pointerShape)
@@ -162,7 +157,17 @@ namespace AstroMath
                 UpdateCurrentDirectionVector();
                 infoPanel.SetCurrentDirectionVector(currentDirectionVector);
             }
-            
+
+            //################################################################################################
+            //    > IDK WHY, BUT FOR SOME REASON, THIS PLACEMENT OF THIS IF-STATEMENT CREATES (in Laus opinion)
+            //      THE FEELING OF ROTATING THE SPACESHIP :,)
+            //################################################################################################
+            if (hasTarget == true) 
+            {
+                transform.LookAt(targetGO.transform);
+            }
+            //################################################################################################
+
             if (isMoving == true)
             {
                 MoveForward();
@@ -191,8 +196,13 @@ namespace AstroMath
 
                 if (CheckForTarget())
                 {
+                    if(targetGO != null)
+                    {
+                        targetGO.GetComponent<TargetGameObject>().SetHighlightActivation(false);
+                    }
                     hasTarget = true;
                     targetGO = hit.collider.gameObject;
+                    targetGO.GetComponent<TargetGameObject>().SetHighlightActivation(true);
                     infoPanel.confirmButton.interactable = true;
                 }
 
@@ -201,6 +211,12 @@ namespace AstroMath
             }
             else
             {
+                Debug.Log("We are not hitting anything...");
+                if(targetGO != null)
+                {
+                    Debug.Log("Already have a target, so disabling its activation...");
+                    targetGO.GetComponent<TargetGameObject>().SetHighlightActivation(false);
+                }
                 hasTarget = false;
                 targetGO = null;
                 infoPanel.confirmButton.interactable = false;

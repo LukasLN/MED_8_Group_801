@@ -11,9 +11,10 @@ namespace AstroMath
         [SerializeField] Vector3 wristWatchOffset;
         [SerializeField] Vector3 wristWatchRotation;
 
+        public int unlockingType;
+
         #region Booleans
         [Header("Booleans")]
-        public bool alsoUnlockDirectionVectorWithPinCode;
         [SerializeField] bool isSelected;
         #endregion
 
@@ -133,7 +134,7 @@ namespace AstroMath
             keypad.SetCorectCode(mathProblem.GetPinCode());
 
             //> What locks that the correct pin code with unlock
-            alsoUnlockDirectionVectorWithPinCode = mathProblem.GetType() != 0; //if we are doing collision or scaling problem, this will be true
+            unlockingType = (int)mathProblem.GetType(); //0 = Direction, 1 = Collision, 2 = Scalar
 
             //> Target Name and Image
             var targetName = $"# {mathProblem.GetTargetName()}"; //assuming we are dealing with a direction problem and therefore a parking spot number

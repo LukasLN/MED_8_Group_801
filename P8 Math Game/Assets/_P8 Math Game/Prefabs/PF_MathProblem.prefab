@@ -888,11 +888,6 @@ PrefabInstance:
       propertyPath: mathProblem
       value: 
       objectReference: {fileID: 2845715081367178913}
-    - target: {fileID: 7617531283412645417, guid: 3099e165679b6c444b9c314ed3289134,
-        type: 3}
-      propertyPath: m_Interactable
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8151455165145132717, guid: 3099e165679b6c444b9c314ed3289134,
         type: 3}
       propertyPath: m_LocalPosition.x
