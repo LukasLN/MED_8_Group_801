@@ -16053,11 +16053,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mathProblem: {fileID: 0}
+  wristWatchOffset: {x: 0, y: 0.05, z: -0.21}
+  wristWatchRotation: {x: -90, y: 0, z: 0}
   alsoUnlockDirectionVectorWithPinCode: 0
   isSelected: 0
   startPosition: {x: 0, y: 0, z: 0}
   correctDirectionVector: {x: 0, y: 0, z: 0}
-  currentDirectionVector: {x: 0, y: 0, z: 0}
+  directionVector: {x: 0, y: 0, z: 0}
+  correctTScalar: 0
+  tScalar: 0
   startPositionText: {fileID: 1572663849590939908}
   directionVectorText: {fileID: 5193353325130870273}
   tScalarText: {fileID: 8259592890246603557}

@@ -9,6 +9,11 @@ namespace AstroMath
         [SerializeField] GameObject mathProblemPF;
         [SerializeField] MathProblem currentMathProblem;
 
+        #region SUI Stuff
+        [Header("SUI Stuff")]
+        public bool isForSUIDJK;
+        #endregion
+
         #region Enums
         public enum MathProblemType
         {
