@@ -8,6 +8,9 @@ namespace AstroMath
     {
         public MathProblem mathProblem;
 
+        [SerializeField] Vector3 wristWatchOffset;
+        [SerializeField] Vector3 wristWatchRotation;
+
         #region Booleans
         [Header("Booleans")]
         public bool alsoUnlockDirectionVectorWithPinCode;
@@ -65,6 +68,17 @@ namespace AstroMath
 
             directionVector = new Vector3(0, 0, 0);
             SetTScalar(1);
+
+            if(MathProblemManager.instance.isForSUIDJK == true)
+            {
+                WristWatch wristWatch = FindObjectOfType<WristWatch>();
+
+                #region Parenting and Positioning
+                transform.parent = wristWatch.gameObject.transform;
+                transform.localPosition = wristWatchOffset;
+                transform.localRotation = Quaternion.Euler(wristWatchRotation);
+                #endregion
+            }
         }
 
         private void Update()
