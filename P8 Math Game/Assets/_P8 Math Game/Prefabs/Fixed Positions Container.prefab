@@ -44,68 +44,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfe189d72781ccf4ca7643c9846fbcec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfSamplesToCreate: 1
+  numberOfSamplesToCreate: 5
   parkingTargets:
   - type: 0
     name: 1
     position: {x: 37, y: -86, z: 72}
   - type: 0
-    name: 1
-    position: {x: 37, y: -86, z: 72}
+    name: 2
+    position: {x: -53, y: 70, z: 21}
   - type: 0
-    name: 1
-    position: {x: 37, y: -86, z: 72}
+    name: 3
+    position: {x: 85, y: 64, z: -12}
   - type: 0
-    name: 1
-    position: {x: 37, y: -86, z: 72}
+    name: 4
+    position: {x: -66, y: 39, z: -76}
   - type: 0
-    name: 1
-    position: {x: 37, y: -86, z: 72}
-  - type: 0
-    name: 1
-    position: {x: 37, y: -86, z: 72}
-  - type: 0
-    name: 1
-    position: {x: 37, y: -86, z: 72}
-  - type: 0
-    name: 1
-    position: {x: 37, y: -86, z: 72}
-  - type: 0
-    name: 1
-    position: {x: 37, y: -86, z: 72}
-  - type: 0
-    name: 1
-    position: {x: 37, y: -86, z: 72}
-  - type: 0
-    name: 1
-    position: {x: 37, y: -86, z: 72}
-  - type: 0
-    name: 1
-    position: {x: 37, y: -86, z: 72}
-  - type: 0
-    name: 1
-    position: {x: 37, y: -86, z: 72}
-  - type: 0
-    name: 1
-    position: {x: 37, y: -86, z: 72}
-  - type: 0
-    name: 1
-    position: {x: 37, y: -86, z: 72}
-  - type: 0
-    name: 1
-    position: {x: 37, y: -86, z: 72}
-  - type: 0
-    name: 1
-    position: {x: 37, y: -86, z: 72}
-  - type: 0
-    name: 1
-    position: {x: 37, y: -86, z: 72}
-  - type: 0
-    name: 1
-    position: {x: 37, y: -86, z: 72}
-  - type: 0
-    name: 1
-    position: {x: 37, y: -86, z: 72}
+    name: 5
+    position: {x: -97, y: 48, z: 33}
   asteroidTargets:
   - type: 1
     name: "\u03B1"
@@ -119,5 +74,8 @@ MonoBehaviour:
   - type: 1
     name: "\u03B4"
     position: {x: 83, y: 96, z: 84}
+  - type: 1
+    name: "\u03B5"
+    position: {x: 80, y: 85, z: 96}
   sampledParkingTargets: []
   sampledAsteroidTargets: []

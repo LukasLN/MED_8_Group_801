@@ -44,7 +44,7 @@ namespace AstroMath
             #endregion
 
             #region Setting POSITIONS and DIRECTION answer of the MATH PROBLEM
-            //newMathProblem.spaceshipPosition = PositionGenerator.DiscreteRingPosition((int)minDistance, (int)maxDistance);
+            //newMathProblem.spaceshipPosition = PositionGenerator.DiscreteRingPosition((int)minDistance, (int)rayMaxDistance);
 
             var targetIndex = 0;
             //if(newMathProblem.m_type == MathProblem.Type.Collision)

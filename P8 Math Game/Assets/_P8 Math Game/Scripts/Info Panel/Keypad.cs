@@ -1,29 +1,46 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using AstroMath;
 
 public class Keypad : MonoBehaviour
 {
-	[SerializeField] bool isSolved, isOccupied;
-
 	[SerializeField] InfoPanel infoPanel;
 
+    #region Booleans
+    [Header("Booleans")]
+    [SerializeField] bool isSolved, isOccupied;
+    #endregion
+
+    #region Slots
+    [Header("Slots")]
     [SerializeField] Transform pinCodeSlotsTF; //TF = Transform
-	
-	public string correctCode;
-    public string[] enteredCode;
-
-	[SerializeField] GameObject targetIDGroupGO;
-	public TMP_Text targetIDText;
-
-	[SerializeField] TMP_Text[] slotTexts;
+    [SerializeField] TMP_Text[] slotTexts;
     [SerializeField] int currentSlotIndex;
+    #endregion
 
-	[SerializeField] float assessmentVisibilityTime;
+    #region Code
+    [Header("Code")]
+    [SerializeField] string correctCode;
+    public string[] enteredCode;
+    #endregion
+
+    #region Target
+    [Header("Target")]
+    [SerializeField] GameObject targetNameGroupGO;
+	[SerializeField] TMP_Text targetNameText;
+    [SerializeField] Image targetImage;
+    [SerializeField] Sprite[] targetSprites;
+    #endregion
+
+    #region Assessment
+    [Header("Assessment")]
+    [SerializeField] float assessmentVisibilityTime;
 	[SerializeField] GameObject assessmentBackgroundImageGO;
     [SerializeField] GameObject correctImageGO;
     [SerializeField] GameObject wrongImageGO;
+    #endregion
 
     AudioPlayer audioPlayer;
 
@@ -120,9 +137,19 @@ public class Keypad : MonoBehaviour
 		{
             //Debug.Log("Correct Code Entered!");
             isSolved = true;
-            correctImageGO.SetActive(true);
-            targetIDGroupGO.SetActive(true);
-			infoPanel.ShowStartPosition();
+            correctImageGO.SetActive(true); //telling the user they entered the correct pin code
+            targetNameGroupGO.SetActive(true); //showing the target name
+			
+            infoPanel.ShowStartPosition(); //showing the start position of the spaceship
+            if(infoPanel.unlockingType == 1 ||
+               infoPanel.unlockingType == 2)
+            {
+                infoPanel.ShowDirectionVector();
+            }
+            else
+            {
+                infoPanel.ShowTScalar();
+            }
 
             audioPlayer.PlaySoundEffect("Correct");
             ProgressManager.instance.step = 2;
@@ -145,5 +172,51 @@ public class Keypad : MonoBehaviour
         isOccupied = false;
         imageToShow.SetActive(false);
         assessmentBackgroundImageGO.SetActive(false);
+    }
+
+    public void Clear()
+    {
+        #region Booleans
+        isSolved = false;
+        isOccupied = false;
+        #endregion
+
+        #region Slots
+        for (int i = 0; i < slotTexts.Length; i++)
+        {
+            slotTexts[i].text = "";
+        }
+        currentSlotIndex = 0;
+        #endregion
+
+        #region Code
+        correctCode = "";
+        enteredCode = new string[pinCodeSlotsTF.childCount];
+        #endregion
+
+        #region Target
+        targetNameGroupGO.SetActive(false);
+        #endregion
+
+        #region Assessment
+        assessmentBackgroundImageGO.SetActive(false);
+        correctImageGO.SetActive(false);
+        wrongImageGO.SetActive(false);
+        #endregion
+    }
+
+    public void SetCorectCode(string code)
+    {
+        correctCode = code;
+    }
+
+    public void SetTargetNameText(string targetName)
+    {
+        targetNameText.text = targetName;
+    }
+
+    public void SetTargetImageSprite(int index) //0 = Parking Spot, 1 = Asteroid
+    {
+        targetImage.sprite = targetSprites[index];
     }
 }
