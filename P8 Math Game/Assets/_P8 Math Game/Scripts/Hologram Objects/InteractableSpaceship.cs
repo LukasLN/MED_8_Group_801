@@ -196,51 +196,60 @@ namespace AstroMath
             Color rayColor = Color.green;
 
             #region Raycasting
-            if (Physics.Raycast(startPosition, direction, out hit, rayMaxDistance, ~layerMaskToIgnore))
+            if(pointerShape == PointerShape.Ray)
             {
-                //Debug.Log("Hit object: " + hit.collider.gameObject.name);
-
-                if (CheckForTarget())
+                if (Physics.Raycast(startPosition, direction, out hit, rayMaxDistance, ~layerMaskToIgnore))
                 {
-                    if(targetGO != null)
+                    //Debug.Log("Hit object: " + hit.collider.gameObject.name);
+
+                    if (CheckForTarget())
                     {
+                        if (targetGO != null)
+                        {
+                            targetGO.GetComponent<TargetGameObject>().SetHighlightActivation(false);
+                        }
+                        hasTarget = true;
+                        targetGO = hit.collider.gameObject;
+                        targetGO.GetComponent<TargetGameObject>().SetHighlightActivation(true);
+                        infoPanel.confirmButton.interactable = true;
+                    }
+
+                    raylength = Vector3.Distance(startPoint.position, hit.point);
+                    rayColor = Color.red;
+                }
+                else
+                {
+                    Debug.Log("We are not hitting anything...");
+                    if (targetGO != null)
+                    {
+                        Debug.Log("Already have a target, so disabling its activation...");
                         targetGO.GetComponent<TargetGameObject>().SetHighlightActivation(false);
                     }
-                    hasTarget = true;
-                    targetGO = hit.collider.gameObject;
-                    targetGO.GetComponent<TargetGameObject>().SetHighlightActivation(true);
-                    infoPanel.confirmButton.interactable = true;
+                    hasTarget = false;
+                    targetGO = null;
+                    infoPanel.confirmButton.interactable = false;
                 }
-
-                raylength = Vector3.Distance(startPoint.position, hit.point);
-                rayColor = Color.red;
+                //Debug.DrawRay(startPoint.position, rayDirection * rayMaxDistance, rayColor);
             }
-            else
-            {
-                Debug.Log("We are not hitting anything...");
-                if(targetGO != null)
-                {
-                    Debug.Log("Already have a target, so disabling its activation...");
-                    targetGO.GetComponent<TargetGameObject>().SetHighlightActivation(false);
-                }
-                hasTarget = false;
-                targetGO = null;
-                infoPanel.confirmButton.interactable = false;
-            }
-            //Debug.DrawRay(startPoint.position, rayDirection * rayMaxDistance, rayColor);
             #endregion
 
             #region Cylinder
+            if (pointerShape == PointerShape.Cylinder)
+            {
 
+            }
             #endregion
 
             #region Cone
+            if (pointerShape == PointerShape.Cone)
+            {
 
+            }
             #endregion
 
             endPoint.localPosition = new Vector3(startPoint.localPosition.x,
-                                                 startPoint.localPosition.y,
-                                                 startPoint.localPosition.z + raylength);
+                                            startPoint.localPosition.y,
+                                            startPoint.localPosition.z + raylength);
 
             lineRenderer.SetPosition(1, endPoint.position);
         }
