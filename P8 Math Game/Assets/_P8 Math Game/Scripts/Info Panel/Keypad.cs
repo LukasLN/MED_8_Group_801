@@ -139,8 +139,17 @@ public class Keypad : MonoBehaviour
             isSolved = true;
             correctImageGO.SetActive(true); //telling the user they entered the correct pin code
             targetNameGroupGO.SetActive(true); //showing the target name
-			infoPanel.ShowStartPosition(); //showing the start position of the spaceship
-            if (infoPanel.alsoUnlockDirectionVectorWithPinCode) { infoPanel.ShowDirectionVector(); } //showing the direction vector if the pin code is also supposed to unlock that
+			
+            infoPanel.ShowStartPosition(); //showing the start position of the spaceship
+            if(infoPanel.unlockingType == 1 ||
+               infoPanel.unlockingType == 2)
+            {
+                infoPanel.ShowDirectionVector();
+            }
+            else
+            {
+                infoPanel.ShowTScalar();
+            }
 
             audioPlayer.PlaySoundEffect("Correct");
             ProgressManager.instance.step = 2;

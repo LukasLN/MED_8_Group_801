@@ -5199,9 +5199,9 @@ MonoBehaviour:
   coneResolution: 1
   startPoint: {fileID: 7556445098123570703}
   endPoint: {fileID: 4202808388884571100}
-  correctGO: {fileID: 0}
-  wrongGO: {fileID: 0}
-  timeBeforeDestroy: 0
+  correctGO: {fileID: 3106805716037398725}
+  wrongGO: {fileID: 7694577894362305275}
+  timeBeforeDestroy: 1
 --- !u!120 &4774918789256578490
 LineRenderer:
   serializedVersion: 2
@@ -5952,6 +5952,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2872450520117857684}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3106805716037398725 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b5f06ba3c7e6c2249b2d094cffa1b7ba,
+    type: 3}
+  m_PrefabInstance: {fileID: 2872450520117857684}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5278144545552969351
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6162,6 +6168,12 @@ PrefabInstance:
 --- !u!4 &7026584635257227329 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0fdec6ee9d03f2449a6df0438ce2799f,
+    type: 3}
+  m_PrefabInstance: {fileID: 7352627778346610602}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7694577894362305275 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0fdec6ee9d03f2449a6df0438ce2799f,
     type: 3}
   m_PrefabInstance: {fileID: 7352627778346610602}
   m_PrefabAsset: {fileID: 0}

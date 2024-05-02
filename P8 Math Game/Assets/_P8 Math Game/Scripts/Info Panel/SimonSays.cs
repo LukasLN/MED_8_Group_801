@@ -260,7 +260,20 @@ namespace AstroMath
             if (currentRound > numberOfRounds) //if we reached the end of the game
             {
                 assessmentGO.SetActive(true); //we show that the game is over
-                infoPanel.ShowDirectionVector(); //we show the direction vector
+
+                switch(infoPanel.unlockingType)
+                {
+                    case 0:
+                        infoPanel.ShowDirectionVector();
+                        break;
+                    case 1:
+                        infoPanel.ShowTScalar();
+                        //unhide shoot/go buttons
+                        break;
+                    case 2:
+                        infoPanel.ShowTScalar();
+                        break;
+                }
             }
             else
             {
