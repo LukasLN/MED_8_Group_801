@@ -46,7 +46,7 @@ namespace AstroMath
         #region Target
         [Header("Target")]
         [SerializeField] bool hasTarget;
-        [SerializeField] GameObject targetGO;
+        public GameObject targetGO;
         [SerializeField] string[] tagsToLookFor;
         #endregion
 
