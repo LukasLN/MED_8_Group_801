@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
+using TMPro;
 
 namespace AstroMath
 {
@@ -9,6 +11,8 @@ namespace AstroMath
         [SerializeField] int Step;
         [SerializeField] int[] ShapeArray = new int[3];
         [SerializeField] List<int> tempList = new List<int>();
+        [SerializeField] TMP_Text pointerShapeText;
+        [SerializeField] float timeBeforeHideText;
 
         void Start()
         {
@@ -29,6 +33,16 @@ namespace AstroMath
         public void UpdatePointerShape()
         {
             Spaceship.pointerShape = (InteractableSpaceship.PointerShape)ShapeArray[Step];
+            pointerShapeText.gameObject.SetActive(true);
+            pointerShapeText.text = Spaceship.pointerShape.ToString();
+            StartCoroutine(WaitBeforeHideText());
+
+        }
+
+        IEnumerator WaitBeforeHideText()
+        {
+            yield return new WaitForSeconds(timeBeforeHideText);
+            pointerShapeText.gameObject.SetActive(false);
         }
 
         public void IncreaseStep(int increaseAmount)

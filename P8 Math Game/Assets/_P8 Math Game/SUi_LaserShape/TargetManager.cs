@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 namespace AstroMath
@@ -9,10 +11,17 @@ namespace AstroMath
         public int currentStep = 0;
 
         [SerializeField] InteractableSpaceship spaceship;
+        [SerializeField] TMP_Text progressText;
 
         public void NextTarget()
         {
             currentStep++;
+            if(currentStep > 12)
+            {
+                currentStep = 1;
+            }
+
+            progressText.text = $"{currentStep} / 12";
 
             switch (currentStep)
             {
@@ -63,8 +72,15 @@ namespace AstroMath
                 case (12): // Done 
                     targets[2].SetActive(false);
                     targets[4].SetActive(true);
+                    StartCoroutine(WaitBeforeGoOn());
                     break;
             }
+        }
+
+        IEnumerator WaitBeforeGoOn()
+        {
+            yield return new WaitForSeconds(10);
+            NextTarget();
         }
     }
 }
