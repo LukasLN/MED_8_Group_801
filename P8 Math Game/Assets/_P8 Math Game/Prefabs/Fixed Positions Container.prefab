@@ -61,6 +61,51 @@ MonoBehaviour:
   - type: 0
     name: 5
     position: {x: -97, y: 48, z: 33}
+  - type: 0
+    name: 6
+    position: {x: -45, y: -89, z: -55}
+  - type: 0
+    name: 7
+    position: {x: -72, y: -28, z: -91}
+  - type: 0
+    name: 8
+    position: {x: -84, y: -71, z: 54}
+  - type: 0
+    name: 9
+    position: {x: 29, y: -74, z: 92}
+  - type: 0
+    name: 10
+    position: {x: 63, y: -20, z: -89}
+  - type: 0
+    name: 11
+    position: {x: 81, y: -42, z: 53}
+  - type: 0
+    name: 12
+    position: {x: -93, y: 81, z: -38}
+  - type: 0
+    name: 13
+    position: {x: -58, y: -49, z: 87}
+  - type: 0
+    name: 14
+    position: {x: 46, y: 65, z: 78}
+  - type: 0
+    name: 15
+    position: {x: -60, y: 85, z: -43}
+  - type: 0
+    name: 16
+    position: {x: -76, y: -17, z: -67}
+  - type: 0
+    name: 17
+    position: {x: 28, y: 96, z: 14}
+  - type: 0
+    name: 18
+    position: {x: -12, y: 83, z: -88}
+  - type: 0
+    name: 19
+    position: {x: -98, y: -32, z: 61}
+  - type: 0
+    name: 20
+    position: {x: 79, y: -56, z: 46}
   asteroidTargets:
   - type: 1
     name: "\u03B1"
@@ -77,5 +122,62 @@ MonoBehaviour:
   - type: 1
     name: "\u03B5"
     position: {x: 80, y: 85, z: 96}
+  - type: 1
+    name: "\u03B6"
+    position: {x: 84, y: 97, z: 88}
+  - type: 1
+    name: "\u03B7"
+    position: {x: -88, y: 84, z: 79}
+  - type: 1
+    name: "\u03B8"
+    position: {x: -97, y: 98, z: 82}
+  - type: 1
+    name: "\u03B9"
+    position: {x: -91, y: 89, z: 93}
+  - type: 1
+    name: "\u03BA"
+    position: {x: -85, y: 95, z: 88}
+  - type: 1
+    name: "\u03BB"
+    position: {x: -83, y: 76, z: 92}
+  - type: 1
+    name: "\u03BC"
+    position: {x: -94, y: 90, z: 79}
+  - type: 1
+    name: "\u03BD"
+    position: {x: -93, y: -81, z: -92}
+  - type: 1
+    name: "\u03BE"
+    position: {x: -96, y: -99, z: -90}
+  - type: 1
+    name: o
+    position: {x: -99, y: -92, z: -91}
+  - type: 1
+    name: "\u03C0"
+    position: {x: -97, y: -94, z: -82}
+  - type: 1
+    name: "\u03C1"
+    position: {x: -94, y: -88, z: -97}
+  - type: 1
+    name: "\u03C3"
+    position: {x: -95, y: -79, z: -91}
+  - type: 1
+    name: "\u03C4"
+    position: {x: 79, y: -81, z: -93}
+  - type: 1
+    name: "\u03C5"
+    position: {x: 82, y: -98, z: -78}
+  - type: 1
+    name: "\u03C6"
+    position: {x: 88, y: -84, z: -98}
+  - type: 1
+    name: "\u03C7"
+    position: {x: 95, y: -79, z: -91}
+  - type: 1
+    name: "\u03C8"
+    position: {x: 99, y: -90, z: -83}
+  - type: 1
+    name: "\u03C9"
+    position: {x: 97, y: -94, z: -82}
   sampledParkingTargets: []
   sampledAsteroidTargets: []
