@@ -55,13 +55,19 @@ namespace AstroMath
 
         #region LEDs
         [Header("LEDs")]
-        [SerializeField] Transform ledsParent;
-        Image[] LEDs;
+        [SerializeField] Transform sequenceLedsParent;
+        Image[] sequenceLEDs;
+        [SerializeField] Image waitImage;
+        [SerializeField] Image pressImage;
 
-        [SerializeField] Color ledOnColor;
-        [SerializeField] Color ledOffColor;
-        [SerializeField] Color ledWrongColor;
-        [SerializeField] Color ledDisabledColor;
+        [SerializeField] Color waitLedOnColor;
+        [SerializeField] Color waitLedOffColor;
+        [SerializeField] Color waitLedDisabledColor;
+
+        [SerializeField] Color pressLedOnColor;
+        [SerializeField] Color pressLedOffColor;
+        [SerializeField] Color pressLedDisabledColor;
+        [SerializeField] Color pressLedWrongColor;
         #endregion
 
         #region Symbols
@@ -125,12 +131,13 @@ namespace AstroMath
             #endregion
 
             #region Setting LEDs Array
-            LEDs = new Image[ledsParent.childCount];
-            for (int i = 0; i < ledsParent.childCount; i++)
+            sequenceLEDs = new Image[sequenceLedsParent.childCount];
+            for (int i = 0; i < sequenceLedsParent.childCount; i++)
             {
-                LEDs[i] = ledsParent.GetChild(i).GetComponent<Image>();
+                sequenceLEDs[i] = sequenceLedsParent.GetChild(i).GetComponent<Image>();
             }
-            TurnOffAllLEDs();
+            TurnOffAllSequenceLEDs();
+            TurnOnWaitLED();
             #endregion
         }
 
@@ -155,6 +162,7 @@ namespace AstroMath
                         activeLightUpIndexInSequence = 0; //we reset the active button index
                         
                         isWaitingForInput = true; //we set this to true, meaning that we are waiting for the player to input the sequence
+                        TurnOnActiveSequenceLEDsAsPressLEDColor();
 
                     }
                     else //if we haven't reached the end of the sequence
@@ -172,6 +180,7 @@ namespace AstroMath
                 if(timeBetweenLightUpTimer <= 0)
                 {
                     TurnOnActiveButtonLight(activeLightUpIndexInSequence);
+
                     isLightedUp = true;
                     isWaitingForNextLightUp = false;
                     timeBetweenLightUpTimer = timeBetweenLightUp;
@@ -183,28 +192,48 @@ namespace AstroMath
 
                 waitForInputTimer -= Time.deltaTime;
 
-                //> turn off all the LEDs
+                //> turn off all the sequenceLEDs
                 if (waitForInputTimer <= 0)
                 {
                     waitForInputTimer = waitForInputDuration;
                     isWaitingForInput = false;
                     isWaitingForNextLightUp = true;
-                    TurnOffAllLEDs();
+                    TurnOffAllSequenceLEDs();
+                    TurnOnWaitLED();
                     DisableAllButtons();
-                }
-
-                //> blink the LEDs
-                if (waitForInputTimer % 0.5f < 0.25f)
-                {
-                    TurnOffActiveLEDs();
                 }
                 else
                 {
-                    TurnOnActiveLEDs();
+                    TurnOnPressLED();
+
+                    //> blink the sequenceLEDs
+                    if(waitForInputTimer <= waitForInputDuration / 2)
+                    {
+                        if (waitForInputTimer % 0.5f < 0.25f)
+                        {
+                            TurnOffActiveSequenceLEDsAsPressLEDColor();
+                        }
+                        else
+                        {
+                            TurnOnActiveSequenceLEDsAsPressLEDColor();
+                        }
+                        //TurnOnActiveSequenceLEDs();
+                        //TurnOffActiveSequenceLEDs();
+                    }
                 }
-                //TurnOnActiveLEDs();
-                //TurnOffActiveLEDs();
             }
+        }
+
+        void TurnOnPressLED()
+        {
+            pressImage.color = pressLedOnColor;
+            waitImage.color = waitLedDisabledColor;
+        }
+
+        void TurnOnWaitLED()
+        {
+            pressImage.color = pressLedDisabledColor;
+            waitImage.color = waitLedOnColor;
         }
 
         public void PressSymbol(int buttonIndex)
@@ -214,7 +243,7 @@ namespace AstroMath
             if(hasStartedInput == false) //if we haven't started inputting the sequence yet
             {
                 hasStartedInput = true;
-                TurnOffAllLEDs();
+                TurnOffAllSequenceLEDsAsPressLEDColor();
             }
 
             isLightedUp = false;
@@ -224,7 +253,7 @@ namespace AstroMath
 
             if (buttonIndex == sequence[activeInputIndexInSequence]) //if our input is CORRECT
             {
-                LEDs[activeInputIndexInSequence].color = ledOnColor; //we turn on the next LED
+                sequenceLEDs[activeInputIndexInSequence].color = pressLedOnColor; //we turn on the next LED
 
                 activeInputIndexInSequence++; //we increase the active input index
 
@@ -245,7 +274,7 @@ namespace AstroMath
             {
                 audioPlayer.PlaySoundEffect("Wrong");
 
-                LEDs[activeInputIndexInSequence].color = ledWrongColor; //we turn on the next LED, but this was a mistake so we turn it red
+                sequenceLEDs[activeInputIndexInSequence].color = pressLedWrongColor; //we turn on the next LED, but this was a mistake so we turn it red
 
                 activeInputIndexInSequence = 0;
                 hasStartedInput = false;
@@ -275,12 +304,12 @@ namespace AstroMath
                         break;
                 }
             }
-            else
+            else //if we are still going
             {
                 ClearSequence(); //we clear the sequence
                 CreateSequence(); //we create a new sequence
                 TurnOffAllButtonLights(); //we turn off all button lights
-                TurnOffAllLEDs(); //we turn off all LEDs
+                TurnOffAllSequenceLEDs(); //we turn off all sequenceLEDs
 
                 if(useRandomSymbols)
                 {
@@ -297,12 +326,13 @@ namespace AstroMath
         void CloseGate()
         {
             gateAnimator.SetTrigger("Close");
+            TurnOnWaitLED();
         }
 
         void TurnOnActiveButtonLight(int activeIndex)
         {
             buttons[sequence[activeIndex]].image.color = buttonLightUpColor;
-            LEDs[activeIndex].color = ledOnColor;
+            sequenceLEDs[activeIndex].color = waitLedOnColor;
         }
 
         void TurnOffAllButtonLights()
@@ -313,39 +343,76 @@ namespace AstroMath
             }
         }
 
-        void TurnOnActiveLEDs()
+        void TurnOnActiveSequenceLEDs()
         {
-            for (int i = 0; i < LEDs.Length; i++)
+            for (int i = 0; i < sequenceLEDs.Length; i++)
             {
                 if (i < sequence.Count)
                 {
-                    LEDs[i].color = ledOnColor;
+                    sequenceLEDs[i].color = waitLedOnColor;
                 }
             }
         }
 
-        void TurnOffActiveLEDs()
+        void TurnOffActiveSequenceLEDs()
         {
-            for (int i = 0; i < LEDs.Length; i++)
+            for (int i = 0; i < sequenceLEDs.Length; i++)
             {
                 if (i < sequence.Count)
                 {
-                    LEDs[i].color = ledOffColor;
+                    sequenceLEDs[i].color = waitLedOffColor;
                 }
             }
         }
 
-        void TurnOffAllLEDs()
+        void TurnOnActiveSequenceLEDsAsPressLEDColor()
         {
-            for(int i = 0; i < LEDs.Length; i++)
+            for (int i = 0; i < sequenceLEDs.Length; i++)
+            {
+                if (i < sequence.Count)
+                {
+                    sequenceLEDs[i].color = pressLedOnColor;
+                }
+            }
+        }
+
+        void TurnOffActiveSequenceLEDsAsPressLEDColor()
+        {
+            for (int i = 0; i < sequenceLEDs.Length; i++)
+            {
+                if (i < sequence.Count)
+                {
+                    sequenceLEDs[i].color = pressLedOffColor;
+                }
+            }
+        }
+
+        void TurnOffAllSequenceLEDs()
+        {
+            for(int i = 0; i < sequenceLEDs.Length; i++)
             {
                 if(i < sequence.Count)
                 {
-                    LEDs[i].color = ledOffColor;
+                    sequenceLEDs[i].color = waitLedOffColor;
                 }
                 else
                 {
-                    LEDs[i].color = ledDisabledColor;
+                    sequenceLEDs[i].color = waitLedDisabledColor;
+                }
+            }
+        }
+
+        void TurnOffAllSequenceLEDsAsPressLEDColor()
+        {
+            for (int i = 0; i < sequenceLEDs.Length; i++)
+            {
+                if (i < sequence.Count)
+                {
+                    sequenceLEDs[i].color = pressLedOffColor;
+                }
+                else
+                {
+                    sequenceLEDs[i].color = pressLedDisabledColor;
                 }
             }
         }

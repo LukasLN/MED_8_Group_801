@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace AstroMath
@@ -118,13 +119,14 @@ namespace AstroMath
             target = FixedPositionsContainer.instance.TakeSampleTarget(targetIndex);
             m_targetPosition = target.position;
             m_targetName = target.name;
+            //Debug.Log("Target Name: " + m_targetName + ", Target Position: " + m_targetPosition);
             #endregion
 
             #region Setting Solutions
             switch (m_type)
             {
                 case Type.Direction:
-                    //m_directionSolution = m_targetPosition - m_spaceshipPosition;
+                    m_directionSolution = m_targetPosition - m_spaceshipPosition;
                     m_collisionSolution = true;
                     m_scaleSolution = 1;
                     break;
@@ -133,21 +135,21 @@ namespace AstroMath
                     if (chance == 0)
                     {
                         m_collisionSolution = false;
-                        m_scaleSolution = 0;
+                        m_scaleSolution = 1;
+                        var extraDummyTarget = FixedPositionsContainer.instance.TakeSampleTarget(1);
+                        m_directionSolution = extraDummyTarget.position - m_spaceshipPosition;
                     }
                     else
                     {
                         m_collisionSolution = true;
-                        m_scaleSolution = GenerateTScalar();
+                        m_scaleSolution = GenerateTScalar(true);
                     }
                     break;
                 case Type.Scale:
                     m_collisionSolution = true;
-                    m_scaleSolution = GenerateTScalar();
+                    m_scaleSolution = GenerateTScalar(true);
                     break;
             }
-
-            m_directionSolution = m_targetPosition - m_spaceshipPosition;
 
             #endregion
         }
@@ -197,8 +199,13 @@ namespace AstroMath
             m_correctTargetGO.transform.position = MathProblemManager.instance.MapProblemSpaceToCookieSpace(m_targetPosition);
             
             //> parking spots
-            for (int i = 1; i < m_parkingSpotsParentTF.childCount; i++)
+            for (int i = 0; i < m_parkingSpotsParentTF.childCount; i++)
             {
+                if(i == 0 && m_type == Type.Direction)
+                {
+                    continue;
+                }
+
                 var parkingSpot = m_parkingSpotsParentTF.GetChild(i);
                 var holoTarget = FixedPositionsContainer.instance.TakeSampleTarget(0); //0 = Parking Spot Sample
                 parkingSpot.position = MathProblemManager.instance.MapProblemSpaceToCookieSpace(holoTarget.position);
@@ -207,8 +214,14 @@ namespace AstroMath
             }
 
             //> asteroids
-            for (int i = 1; i < m_asteroidsParentTF.childCount; i++)
+            for (int i = 0; i < m_asteroidsParentTF.childCount; i++)
             {
+                if (i == 0 && m_type != Type.Direction)
+                {
+                    continue;
+                }
+
+                //Debug.Log("i: " + i);               
                 var asteroid = m_asteroidsParentTF.GetChild(i);
                 var holoTarget = FixedPositionsContainer.instance.TakeSampleTarget(1); //1 = Asteroid Sample
                 asteroid.position = MathProblemManager.instance.MapProblemSpaceToCookieSpace(holoTarget.position);
@@ -219,6 +232,7 @@ namespace AstroMath
 
             #region Setting Target Information
             m_correctTargetGO.GetComponent<TargetGameObject>().problemPosition = m_targetPosition;
+            m_correctTargetGO.gameObject.name = m_targetName + " (Correct)";
             #endregion
         }
 
@@ -239,89 +253,36 @@ namespace AstroMath
         int GenerateTScalar(bool debug = false)
         {
             #region Generating a Direction Vector
-            var minDistance = (int)(MathProblemManager.instance.minAsteroidDistance -
-                              MathProblemManager.instance.maxCollisionDistance) + 1;
-
-            var directionVectorX = Random.Range(1, minDistance);
-            if (m_targetPosition.x > 0) { directionVectorX = -directionVectorX; }
-
-            var directionVectorY = Random.Range(1, minDistance);
-            if (m_targetPosition.y > 0) { directionVectorY = -directionVectorY; }
-
-            var directionVectorZ = Random.Range(1, minDistance);
-            if (m_targetPosition.z > 0) { directionVectorZ = -directionVectorZ; }
-
-            m_directionSolution = new Vector3(directionVectorX, directionVectorY, directionVectorZ);
-            if (debug) Debug.Log("Direction Vector: " + m_directionSolution);
+            m_directionSolution = GenerateDirectionVector();
+            if(debug) Debug.Log("Direction Vector: " + m_directionSolution);
             #endregion
 
-            #region Calculating Difference between Asteroid Positions and Direction Vector Extremes
-            var minSpaceshipCoordinate = MathProblemManager.instance.minCollisionDistance;
-            var maxSpaceshipCoordinate = MathProblemManager.instance.maxCollisionDistance;
-            var selectedCoordinate = 0f;
+            #region Calculating Largest and Smallest Distances between Spaceship and Target positions
+            Vector3 smallestDistances = CalculateSpaceshipTargetDistance(0);
+            Vector3 largestDistances = CalculateSpaceshipTargetDistance(1);
 
-            var highestX = 0f;
-            var highestY = 0f;
-            var highestZ = 0f;
-
-            var lowestX = 0f;
-            var lowestY = 0f;
-            var lowestZ = 0f;
-
-            selectedCoordinate = m_targetPosition.x < 0 ? maxSpaceshipCoordinate : minSpaceshipCoordinate;
-            highestX = m_targetPosition.x - selectedCoordinate;
-            lowestX  = m_targetPosition.x + selectedCoordinate;
-
-            if (debug) Debug.Log("HighestX = " + m_targetPosition.x + " + " + selectedCoordinate);
-            if (debug) Debug.Log("HighestX = " + highestX);
-            if (debug) Debug.Log("LowestX = " + m_targetPosition.x + " - " + selectedCoordinate);
-            if (debug) Debug.Log("LowestX = " + lowestX);
-
-            selectedCoordinate = m_targetPosition.y < 0 ? maxSpaceshipCoordinate : minSpaceshipCoordinate;
-            highestY = m_targetPosition.y - selectedCoordinate;
-            lowestY  = m_targetPosition.y + selectedCoordinate;
-
-            selectedCoordinate = m_targetPosition.z < 0 ? maxSpaceshipCoordinate : minSpaceshipCoordinate;
-            highestZ = m_targetPosition.z - selectedCoordinate;
-            lowestZ  = m_targetPosition.z + selectedCoordinate;
-
-            Vector3 highest = new Vector3(highestX, highestY, highestZ);
-            Vector3 lowest = new Vector3(lowestX, lowestY, lowestZ);
-
-            if (debug) Debug.Log("Highest: " + highest);
-            if (debug) Debug.Log("Lowest: " + lowest);
+            if (debug) Debug.Log("Smallest Distances: " + smallestDistances);
+            if (debug) Debug.Log("Largest Distances: " + largestDistances);
             #endregion
 
-            #region Calculating Quotients and the final T Scalar
-            var highQuotientX = Mathf.Floor(highest.x / Mathf.Abs(m_directionSolution.x));
-            var highQuotientY = Mathf.Floor(highest.y / Mathf.Abs(m_directionSolution.y));
-            var highQuotientZ = Mathf.Floor(highest.z / Mathf.Abs(m_directionSolution.z));
+            #region Calculating Quotients
+            Vector3 lowQuotients  = CalculateQuotients(true, smallestDistances, m_directionSolution);
+            Vector3 highQuotients = CalculateQuotients(false, largestDistances, m_directionSolution);
 
-            var lowQuotientX = Mathf.Ceil(lowest.x / Mathf.Abs(m_directionSolution.x));
-            var lowQuotientY = Mathf.Ceil(lowest.y / Mathf.Abs(m_directionSolution.y));
-            var lowQuotientZ = Mathf.Ceil(lowest.z / Mathf.Abs(m_directionSolution.z));
+            if (debug) Debug.Log("Low Quotients: " + lowQuotients);
+            if (debug) Debug.Log("High Quotients: " + highQuotients);
+            #endregion
 
-            Vector3 highQuotientsVector = new Vector3(highQuotientX, highQuotientY, highQuotientZ);
-            Vector3 lowQuotientsVector = new Vector3(lowQuotientX, lowQuotientY, lowQuotientZ);
+            #region Calculating the final T Scalar
+            int t = 0;
 
-            if (debug) Debug.Log("High Quotients: " + highQuotientsVector);
-            if (debug) Debug.Log("Low Quotients: " + lowQuotientsVector);
+            var maxT = Mathf.Min(highQuotients.x, highQuotients.y, highQuotients.z);
+            var minT = Mathf.Max(lowQuotients.x, lowQuotients.y, lowQuotients.z);
 
-            var highestPossibleT = Mathf.Min(highQuotientX, highQuotientY, highQuotientZ);
-            var lowestPossibleT = Mathf.Max(lowQuotientX, lowQuotientY, lowQuotientZ);
+            if (debug) { Debug.Log("Highest Possible T: " + maxT); }
+            if (debug) { Debug.Log("Lowest Possible T: " + minT); }
 
-            if (debug) Debug.Log("Highest Possible T: " + highestPossibleT);
-            if (debug) Debug.Log("Lowest Possible T: " + lowestPossibleT);
-
-            var t = 0;
-            if (highestPossibleT <= lowestPossibleT)
-            {
-                t = (int)highestPossibleT;
-            }
-            else
-            {
-                t = Random.Range((int)lowestPossibleT, (int)highestPossibleT + 1);
-            }
+            t = Random.Range((int)minT, (int)maxT + 1);
             if (debug) Debug.Log("T = " + t);
             #endregion
 
@@ -330,6 +291,79 @@ namespace AstroMath
             #endregion
 
             return t;
+        }
+
+        Vector3 GenerateDirectionVector()
+        {
+            var minDistanceBetweenSpaceshipAndTarget = MathProblemManager.instance.minAsteroidDistance -
+                              MathProblemManager.instance.maxCollisionDistance;
+            
+            var directionVectorX = GenerateDirectionVectorCoordinate((int)m_targetPosition.x, minDistanceBetweenSpaceshipAndTarget);
+            var directionVectorY = GenerateDirectionVectorCoordinate((int)m_targetPosition.y, minDistanceBetweenSpaceshipAndTarget);
+            var directionVectorZ = GenerateDirectionVectorCoordinate((int)m_targetPosition.z, minDistanceBetweenSpaceshipAndTarget);
+
+            return new Vector3(directionVectorX, directionVectorY, directionVectorZ);
+        }
+
+        int GenerateDirectionVectorCoordinate(int targetCoordinate, int minDistance)
+        {
+            var directionCoordinate = Random.Range(MathProblemManager.instance.minDirectionVectorCoordinate,
+                                                   minDistance + 1); //would be 25, but this is exlusive random range, so we add 1 to include 25
+            if (targetCoordinate > 0) { directionCoordinate = -directionCoordinate; }
+
+            return directionCoordinate;
+        }
+
+        Vector3 CalculateSpaceshipTargetDistance(int type)
+        {
+            Vector3 distances = Vector3.zero;
+
+            distances.x = CalculateDistance(type, m_targetPosition.x);
+            distances.y = CalculateDistance(type, m_targetPosition.y);
+            distances.z = CalculateDistance(type, m_targetPosition.z);
+
+            return distances;
+        }
+
+        float CalculateDistance(int type, float targetCoordinate)
+        {
+            float distance = 0;
+
+            var minSpaceshipCoordinate = MathProblemManager.instance.minCollisionDistance;
+            var maxSpaceshipCoordinate = MathProblemManager.instance.maxCollisionDistance;
+
+            var selectedCoordinate = targetCoordinate < 0 ? maxSpaceshipCoordinate : minSpaceshipCoordinate; //finding the targetCoordinate to use for calculatingthe largest and smallest selectedCoordinate on the X axis
+            if(type == 1) { selectedCoordinate = -selectedCoordinate; }
+            distance = Mathf.Abs(targetCoordinate + selectedCoordinate); //the largest selectedCoordinate is target position minus the selected position (e.g. 100 - 50 = 50)
+
+            return distance;
+        }
+
+        Vector3 CalculateQuotients(bool ceil, Vector3 distances, Vector3 directions)
+        {
+            Vector3 quotients = Vector3.zero;
+
+            quotients.x = CalculateSingleQuotientComponent(ceil, distances.x, directions.x);
+            quotients.y = CalculateSingleQuotientComponent(ceil, distances.y, directions.y);
+            quotients.z = CalculateSingleQuotientComponent(ceil, distances.z, directions.z);
+
+            return quotients;
+        }
+
+        float CalculateSingleQuotientComponent(bool ceil, float distance, float direction)
+        {
+            float quotientComponent = 0f;
+
+            if(ceil)
+            {
+                quotientComponent = Mathf.Ceil(distance / Mathf.Abs(direction));
+            }
+            else
+            {
+                quotientComponent = Mathf.Floor(distance / Mathf.Abs(direction));
+            }
+
+            return quotientComponent;
         }
 
         public string GetPinCode()

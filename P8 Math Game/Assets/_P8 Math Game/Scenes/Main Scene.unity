@@ -338,81 +338,6 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
---- !u!1001 &731764975
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 2126242064}
-    m_Modifications:
-    - target: {fileID: 4894110980261810912, guid: 6999aab6207f0434f8ab48333898ebae,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4894110980261810912, guid: 6999aab6207f0434f8ab48333898ebae,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4894110980261810912, guid: 6999aab6207f0434f8ab48333898ebae,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4894110980261810912, guid: 6999aab6207f0434f8ab48333898ebae,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4894110980261810912, guid: 6999aab6207f0434f8ab48333898ebae,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4894110980261810912, guid: 6999aab6207f0434f8ab48333898ebae,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4894110980261810912, guid: 6999aab6207f0434f8ab48333898ebae,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4894110980261810912, guid: 6999aab6207f0434f8ab48333898ebae,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4894110980261810912, guid: 6999aab6207f0434f8ab48333898ebae,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4894110980261810912, guid: 6999aab6207f0434f8ab48333898ebae,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4894110980261810926, guid: 6999aab6207f0434f8ab48333898ebae,
-        type: 3}
-      propertyPath: m_Name
-      value: Math Problem Button
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4843374408582005157, guid: 6999aab6207f0434f8ab48333898ebae, type: 3}
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6999aab6207f0434f8ab48333898ebae, type: 3}
---- !u!4 &731764976 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4894110980261810912, guid: 6999aab6207f0434f8ab48333898ebae,
-    type: 3}
-  m_PrefabInstance: {fileID: 731764975}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &776548363
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -475,6 +400,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Fixed Positions Container
+      objectReference: {fileID: 0}
+    - target: {fileID: 3537408941255061900, guid: 6e046121fcef84b44ae974580b0b86aa,
+        type: 3}
+      propertyPath: numberOfSamplesToCreate
+      value: 24
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -855,7 +785,6 @@ Transform:
   m_Children:
   - {fileID: 1005245895}
   - {fileID: 1962763126}
-  - {fileID: 2126242064}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1962763125
@@ -980,38 +909,6 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: a6560a915ef98420e9faacc1c7438823, type: 2}
---- !u!1 &2126242063
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2126242064}
-  m_Layer: 0
-  m_Name: Settings Buttons
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &2126242064
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2126242063}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.2, z: -4}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 731764976}
-  m_Father: {fileID: 1917170020}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3321672625928459163
 PrefabInstance:
   m_ObjectHideFlags: 0

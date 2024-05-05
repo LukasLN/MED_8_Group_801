@@ -22,13 +22,16 @@ namespace AstroMath
     {
         public static FixedPositionsContainer instance;
 
-        public int numberOfSamplesToCreate;
+        public int numberOfParkingSamplesToCreate;
+        public int numberOfAsteroidSamplesToCreate;
 
         [SerializeField] HoloTarget[] parkingTargets;
         [SerializeField] HoloTarget[] asteroidTargets;
 
         public List<HoloTarget> sampledParkingTargets;
         public List<HoloTarget> sampledAsteroidTargets;
+
+        [SerializeField] GameObject asteroidPF;
 
         private void Awake()
         {
@@ -42,10 +45,31 @@ namespace AstroMath
             CreateSampleAsteroidTargets();
         }
 
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                SpawnAsteroids();
+            }
+        }
+
+        void SpawnAsteroids()
+        {
+            for (int i = 0; i < numberOfAsteroidSamplesToCreate; i++)
+            {
+                var mappedPosition = sampledAsteroidTargets[i].position;
+                mappedPosition = MathProblemManager.instance.MapProblemSpaceToCookieSpace(sampledAsteroidTargets[i].position);
+                var asteroid = Instantiate(asteroidPF, mappedPosition, Quaternion.identity);
+                asteroid.name = sampledAsteroidTargets[i].name;
+                asteroid.transform.SetParent(transform);
+            }
+        }
+
         public HoloTarget TakeSampleTarget(int type = 0, bool random = true, int index = 0)
         {
             var list = sampledParkingTargets;
-            if(type == 1) { list = sampledAsteroidTargets; }
+            var listName = "sampledParkingTargets";
+            if (type == 1) { list = sampledAsteroidTargets; listName = "sampledAsteroidTargets"; }
 
             var chosenIndex = 0;
             if(random) { chosenIndex = UnityEngine.Random.Range(0, list.Count); }
@@ -54,17 +78,19 @@ namespace AstroMath
             var sample = list[chosenIndex];
             list.RemoveAt(chosenIndex);
 
+            //Debug.Log("Took sample " + sample.name + " at index " + chosenIndex + " from " + listName + " with position " + sample.position);
+
             return sample;
         }
 
         public void CreateSampleParkingTargets()
         {
-            sampledParkingTargets = GetSampleTargets(numberOfSamplesToCreate, HoloTarget.Type.Parking).ToList();
+            sampledParkingTargets = GetSampleTargets(numberOfParkingSamplesToCreate, HoloTarget.Type.Parking).ToList();
         }
 
         public void CreateSampleAsteroidTargets()
         {
-            sampledAsteroidTargets = GetSampleTargets(numberOfSamplesToCreate, HoloTarget.Type.Asteroid).ToList();
+            sampledAsteroidTargets = GetSampleTargets(numberOfAsteroidSamplesToCreate, HoloTarget.Type.Asteroid).ToList();
         }
 
         HoloTarget[] GetSampleTargets(int sampleSize, HoloTarget.Type type)

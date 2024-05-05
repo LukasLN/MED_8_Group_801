@@ -36,20 +36,22 @@ namespace AstroMath
 
         #region Spaceship Spawning Coordinates
         [Header("Spaceship Spawning Coordinates")]
-        public float minDirectionDistance;
-        public float maxDirectionDistance;
-        public float minCollisionDistance;
-        public float maxCollisionDistance;
-        public float minScaleDistance;
-        public float maxScaleDistance;
+        public int minDirectionDistance;
+        public int maxDirectionDistance;
+        public int minCollisionDistance;
+        public int maxCollisionDistance;
+        public int minScaleDistance;
+        public int maxScaleDistance;
+        [Tooltip("This is for the Collision and Scale problems, NOT for the Direction Problem.")]
+        public int minDirectionVectorCoordinate;
         #endregion
 
         #region Parking and Asteroid Spawning Coordinates
         [Header("Parking and Asteroid Spawning Coordinates")]
-        public float minParkingDistance;
-        public float maxParkingDistance;
-        public float minAsteroidDistance;
-        public float maxAsteroidDistance;
+        public int minParkingDistance;
+        public int maxParkingDistance;
+        public int minAsteroidDistance;
+        public int maxAsteroidDistance;
         #endregion
 
         #region Spaceships

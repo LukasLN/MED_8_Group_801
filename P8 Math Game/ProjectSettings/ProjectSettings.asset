@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: Group801
-  productName: Astro Math
+  productName: SUI A
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -139,11 +139,9 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
-  bundleVersion: 0.4.5
+  bundleVersion: 0.9.0
   preloadedAssets:
   - {fileID: 11400000, guid: 3e28a6e35e26dc04ba398515c0597e4b, type: 2}
-  - {fileID: 2316728400665889537, guid: 12e67e927fcbc8641b8ff954c4d0ffbb, type: 2}
-  - {fileID: 11400000, guid: 30a6d75fc8155854c961831f60fab718, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -164,7 +162,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.Group801.AstroMath
+    Android: com.Group801.SUIA
     Standalone: com.Unity-Technologies.com.unity.template.urp-blank
     iPhone: com.Unity-Technologies.com.unity.template.urp-blank
   buildNumber:
@@ -291,7 +289,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: bd24a119517d06c4ea84de0cf5bd7ae3, type: 3}
+      m_Icon: {fileID: 2800000, guid: 56727cab3d2e8ec419f4da481dacd575, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0

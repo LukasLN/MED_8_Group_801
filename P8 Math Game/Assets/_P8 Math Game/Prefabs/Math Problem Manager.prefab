@@ -47,6 +47,7 @@ MonoBehaviour:
   mathProblemPF: {fileID: 55766031746427333, guid: 37afa348423fcbf47b0306acb41ec1c7,
     type: 3}
   currentMathProblem: {fileID: 0}
+  isForSUIDJK: 0
   mathProblemType: 0
   spawnAtStart: 0
   problemSpaceMaxCoordinate: 100
@@ -61,6 +62,7 @@ MonoBehaviour:
   maxCollisionDistance: 50
   minScaleDistance: -50
   maxScaleDistance: 50
+  minDirectionVectorCoordinate: 10
   minParkingDistance: 0
   maxParkingDistance: 0
   minAsteroidDistance: 75
