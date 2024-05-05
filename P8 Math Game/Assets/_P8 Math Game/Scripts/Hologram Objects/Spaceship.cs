@@ -70,6 +70,7 @@ namespace AstroMath
         {
             Debug.Log("Got to Spaceship!");
             interactableSpaceship.SetCorrectTScalar(tScalar);
+            infoPanel.SetCorrectTScalar(tScalar);
         }
 
         public void SetProblemPosition(Vector3 position)

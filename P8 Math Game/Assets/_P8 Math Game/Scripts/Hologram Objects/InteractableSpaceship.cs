@@ -39,7 +39,7 @@ namespace AstroMath
         #region Info Panel
         [Header("Info Panel")]
         [SerializeField] GameObject infoPanelGO; //GO = GameObject
-        InfoPanel infoPanel;
+        [SerializeField] InfoPanel infoPanel;
         #endregion
 
         #region Interaction
@@ -117,6 +117,7 @@ namespace AstroMath
             UpdateCurrentDirectionVector();
             infoPanel.SetCurrentDirectionVector(currentDirectionVector);
 
+            sphere.transform.localPosition = transform.position + MathProblemManager.instance.MapProblemSpaceToCookieSpace(currentDirectionVector);
             UpdateEndPoint(sphere.transform.position);
 
             SetTScalar(1);
@@ -519,7 +520,6 @@ namespace AstroMath
         {
             Debug.Log("Got to Interactable Spaceship!");
             correctTScalar = tScalar;
-            infoPanel.SetCorrectTScalar(tScalar);
         }
 
         public void SetProblemPosition(Vector3 position)
@@ -592,7 +592,7 @@ namespace AstroMath
 
         public void LookAt(Transform target)
         {
-            transform.LookAt(target);
+            transform.LookAt(MathProblemManager.instance.MapProblemSpaceToCookieSpace(target.position));
         }
     }
 }
