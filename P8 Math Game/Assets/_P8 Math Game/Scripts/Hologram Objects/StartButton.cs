@@ -9,6 +9,7 @@ namespace AstroMath
         bool hasStartedCountdown;
         float timer;
         int seconds;
+      
 
         #region GUI Elements
         [Header("GUI Elements")]
@@ -38,14 +39,16 @@ namespace AstroMath
             if(timer <= 0)
             {
                 MathProblemManager.instance.CreateMathProblem(false, MathProblem.Type.Collision);
+                WristWatch.instance.countingDown = true;
                 countdownText.gameObject.SetActive(false);
                 gameObject.SetActive(false);
+                ProgressManager.instance.PlayTutorialLine(1);
             }
         }
 
         public void StartGame()
         {
-            ProgressManager.instance.PlayTutorialLine(1);
+            //audio shit
             hasStartedCountdown = true;
             countdownText.gameObject.SetActive(true);
             HologramController.instance.Toggle();

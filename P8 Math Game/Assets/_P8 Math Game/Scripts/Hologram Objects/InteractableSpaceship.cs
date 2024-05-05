@@ -20,16 +20,20 @@ namespace AstroMath
         [SerializeField] Spaceship spaceship;
         #endregion
 
-
         #region Problem Information
         [Header("Problem Information")]
         [SerializeField] Vector3 problemPosition;
         #endregion
 
-        #region Direction Vector
-        [Header("Direction Vector")]
+        #region Answer
+        [Header("Answers")]
         [SerializeField] Vector3 correctDirectionVector;
         [SerializeField] Vector3 currentDirectionVector;
+        [SerializeField] bool correctCollisionAnswer;
+        [SerializeField] bool chosenCollisionAnswer;
+        [SerializeField] GameObject correctTargetGO;
+        [SerializeField] int correctTScalar;
+        [SerializeField] int chosenTScalar;
         #endregion
 
         #region Info Panel
@@ -105,10 +109,7 @@ namespace AstroMath
 
         private void Start()
         {
-            if(infoPanelGO != null)
-            {
-                infoPanel = infoPanelGO.GetComponent<InfoPanel>();
-            }
+            infoPanel = infoPanelGO.GetComponent<InfoPanel>();
 
             lineRenderer = GetComponent<LineRenderer>();
             lineRenderer.SetPosition(0, startPoint.position);
@@ -143,7 +144,7 @@ namespace AstroMath
             }
             else
             {
-                if(targetGO != null)
+                if(hasTarget)
                 {
                     transform.LookAt(targetGO.transform);
                 }
@@ -161,7 +162,7 @@ namespace AstroMath
 
             if (isMoving == true)
             {
-                MoveForward();
+                MoveTowardsTarget();
 
                 if (Vector3.Distance(transform.position, targetGO.transform.position) < 0.1f) //if we are not at the target position
                 {
@@ -235,7 +236,7 @@ namespace AstroMath
             targetGO = target;
             targetGO.GetComponent<TargetGameObject>().SetHighlightActivation(true);
 
-            infoPanel.confirmButton.interactable = true;
+            SetConfirmButtonsInteractability(true);
         }
 
         public void RemoveOldTarget()
@@ -251,7 +252,20 @@ namespace AstroMath
             }
             targetGO = null;
 
-            infoPanel.confirmButton.interactable = false;
+            SetConfirmButtonsInteractability(false);
+        }
+
+        void SetConfirmButtonsInteractability(bool isInteractable)
+        {
+            if(spaceship.mathProblem.GetType() == MathProblem.Type.Collision)
+            {
+                infoPanel.collisionShootButton.interactable = isInteractable;
+                //infoPanel.collisionFlyButton.interactable = isInteractable;
+            }
+            else
+            {
+                infoPanel.flyButton.interactable = isInteractable;
+            }
         }
 
         public void CompareDistanceDifference()
@@ -272,8 +286,9 @@ namespace AstroMath
             return false;
         }
 
-        void MoveForward()
+        void MoveTowardsTarget()
         {
+            transform.LookAt(targetGO.transform);
             transform.position += transform.forward * moveSpeed * Time.deltaTime;
             //Vector3.MoveTowards(transform.position, targetPosition, 2); //moves spaceship
         }
@@ -281,29 +296,58 @@ namespace AstroMath
 
         public void SetTarget(GameObject targetGO) //Activated when confirm button is pressed
         {
+            if(this.targetGO != null && this.targetGO.GetComponent<TargetGameObject>().isAsteroid)
+            {
+                this.targetGO.GetComponent<TargetGameObject>().SetHighlightActivation(false);
+            }
             this.targetGO = targetGO;
+            this.targetGO.GetComponent<TargetGameObject>().SetHighlightActivation(true);
 
-            var distanceToTravel = Vector3.Distance(transform.position, this.targetGO.transform.position);
-            moveSpeed = distanceToTravel / timeToMove;
-
-            //transform.position = Vector3.MoveTowards(interactableSpaceshipGO.transform.position, target.transform.position, step); //moves spaceship
-
-            isMoving = true;
+            SetConfirmButtonsInteractability(true);
         }
 
-        public void LockInAnswer()
+        public void UnsetTarget(GameObject targetGO)
         {
-            SetTarget(targetGO);
+            targetGO.GetComponent<TargetGameObject>().SetHighlightActivation(false);
+            this.targetGO = correctTargetGO;
+        }
+
+        void CalculateMoveSpeed()
+        {
+            var distanceToTravel = Vector3.Distance(transform.position, targetGO.transform.position);
+            moveSpeed = distanceToTravel / timeToMove;
+        }
+
+        public void FlyToTarget()
+        {
+            CalculateMoveSpeed();
 
             relevantExhaustPlumeGO.SetActive(true);
             infoPanelGO.SetActive(false);
 
             GetComponent<InteractableUnityEventWrapper>().enabled = false;
-            lineRenderer.enabled = true;
+            //lineRenderer.enabled = true;
 
             isMoving = true;
             hasTarget = false;
             isSelected = false;
+        }
+
+        public void ShootTarget()
+        {
+            chosenCollisionAnswer = true;
+
+            //Shoot
+            //wait some time
+
+            FlyToTarget();
+        }
+
+        public void CollisionFlyToTarget()
+        {
+            FlyToTarget();
+
+            chosenCollisionAnswer = false;
         }
 
         public void ShowResult()
@@ -322,7 +366,10 @@ namespace AstroMath
                     break;
                 case MathProblem.Type.Collision:
                     // Check if the collision is correct
-                    Debug.LogWarning("Not implemented yet!");
+                    if(chosenCollisionAnswer == correctCollisionAnswer && targetGO == correctTargetGO)
+                    {
+                        isCorrect = true;
+                    }
                     break;
                 case MathProblem.Type.Scale:
                     // Check if the scale is correct
@@ -335,12 +382,14 @@ namespace AstroMath
             if (isCorrect == true)
             {
                 //success sound
+
                 correctGO.SetActive(true);
                 StartCoroutine(WaitBeforeIncrementSolved()); //wait before incrementing score
             }
             else
             {
                 //failure sound
+
                 wrongGO.SetActive(true);
             }
             #endregion
@@ -363,6 +412,21 @@ namespace AstroMath
         public void SetCorrectDirectionVector(Vector3 direction)
         {
             correctDirectionVector = direction;
+        }
+
+        public void SetCorrectCollisionAnswer(bool collisionAnswer)
+        {
+            correctCollisionAnswer = collisionAnswer;
+        }
+
+        public void SetTargetGO(GameObject targetGO)
+        {
+            this.targetGO = targetGO;
+        }
+
+        public void SetCorrectTargetGO(GameObject correctTargetGO)
+        {
+            this.correctTargetGO = correctTargetGO;
         }
 
         void UpdateCurrentDirectionVector()
@@ -410,6 +474,13 @@ namespace AstroMath
             currentDirectionVector = newDirectionVector;
         }
 
+        public void SetCorrectTScalar(int tScalar)
+        {
+            Debug.Log("Got to Interactable Spaceship!");
+            correctTScalar = tScalar;
+            //infoPanel.SetCorrectTScalar(tScalar);
+        }
+
         public void SetProblemPosition(Vector3 position)
         {
             problemPosition = position;
@@ -445,7 +516,6 @@ namespace AstroMath
             {
                 coneGO.SetActive(newBool);
             }
-
         }
 
         public bool GetIsSelected()
@@ -453,9 +523,25 @@ namespace AstroMath
             return isSelected;
         }
 
-        void UpdateEndPoint()
+        void UpdateEndPoint(Vector3 position)
         {
+            endPoint.position = position;
             lineRenderer.SetPosition(1, endPoint.position);
+        }
+
+        public void SetRandomRotation()
+        {
+            transform.rotation = Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
+        }
+
+        public void LookUp()
+        {
+            transform.rotation = Quaternion.Euler(-90, 0, 0);
+        }
+
+        public void LookAt(Transform target)
+        {
+            transform.LookAt(target);
         }
     }
 }

@@ -108,5 +108,11 @@ MonoBehaviour:
   - name: SimonSaysBeep4
     loop: 0
     audioClip: {fileID: 8300000, guid: d0b53c92442e9864f9e815fc12ee7250, type: 3}
+  - name: HoloBootUp
+    loop: 0
+    audioClip: {fileID: 8300000, guid: b3868d5ca4ccb754589bc5abaec5f7e1, type: 3}
+  - name: 5sCountdown
+    loop: 0
+    audioClip: {fileID: 8300000, guid: 14a0d9c7df2632a408e3ea36c8cb38db, type: 3}
   dialogues: []
   music: []

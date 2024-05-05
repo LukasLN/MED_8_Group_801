@@ -320,6 +320,11 @@ PrefabInstance:
       propertyPath: spaceshipGO
       value: 
       objectReference: {fileID: 5731282847047765601}
+    - target: {fileID: 587329779659254739, guid: 89eddb845a838cc4fae6beda7ec8055b,
+        type: 3}
+      propertyPath: interactableSpaceshipGO
+      value: 
+      objectReference: {fileID: 5731282847047765601}
     - target: {fileID: 7668502357141303519, guid: 89eddb845a838cc4fae6beda7ec8055b,
         type: 3}
       propertyPath: isActive

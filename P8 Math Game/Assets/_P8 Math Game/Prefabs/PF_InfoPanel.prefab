@@ -4527,7 +4527,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 587329779659254739}
         m_TargetAssemblyTypeName: AstroMath.InfoPanel, Assembly-CSharp
-        m_MethodName: ConfirmAnswer
+        m_MethodName: FlyToTarget
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10199,7 +10199,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &9059357601321889582
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10316,7 +10316,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 587329779659254739}
         m_TargetAssemblyTypeName: AstroMath.InfoPanel, Assembly-CSharp
-        m_MethodName: ConfirmAnswer
+        m_MethodName: ShootTarget
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11006,7 +11006,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6887726950260346755
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11104,7 +11104,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 2763562384355065095}
   m_OnClick:
     m_PersistentCalls:
@@ -11123,7 +11123,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 587329779659254739}
         m_TargetAssemblyTypeName: AstroMath.InfoPanel, Assembly-CSharp
-        m_MethodName: ConfirmAnswer
+        m_MethodName: CollisionFlyToTarget
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13562,12 +13562,12 @@ GameObject:
   m_Component:
   - component: {fileID: 5986588155674594589}
   m_Layer: 0
-  m_Name: Collision Asnwer Buttons
+  m_Name: Collision Answer Buttons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5986588155674594589
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17215,6 +17215,8 @@ MonoBehaviour:
   - {fileID: 4438985909180627732}
   confirmButtonImages:
   - {fileID: 3976321226084890242}
+  - {fileID: 3540300645078866552}
+  - {fileID: 2763562384355065095}
   panelColors:
   - {r: 0, g: 0.8352941, b: 1, a: 1}
   - {r: 0, g: 1, b: 0.078431375, a: 1}
@@ -17223,8 +17225,10 @@ MonoBehaviour:
   directionVectorLock: {fileID: 4919796381943356943}
   tScalarLock: {fileID: 2991524856109735615}
   keypad: {fileID: 4251130389849148256}
-  confirmButton: {fileID: 1390239469168556540}
-  spaceshipGO: {fileID: 0}
+  flyButton: {fileID: 1390239469168556540}
+  collisionShootButton: {fileID: 3100851178354861598}
+  collisionFlyButton: {fileID: 7755009912412622701}
+  interactableSpaceshipGO: {fileID: 0}
 --- !u!114 &7668502357141303519
 MonoBehaviour:
   m_ObjectHideFlags: 0
