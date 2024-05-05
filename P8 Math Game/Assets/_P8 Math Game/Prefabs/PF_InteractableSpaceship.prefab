@@ -5210,6 +5210,11 @@ MonoBehaviour:
   problemPosition: {x: 0, y: 0, z: 0}
   correctDirectionVector: {x: 0, y: 0, z: 0}
   currentDirectionVector: {x: 0, y: 0, z: 0}
+  correctCollisionAnswer: 0
+  chosenCollisionAnswer: 0
+  correctTargetGO: {fileID: 0}
+  correctTScalar: 0
+  chosenTScalar: 0
   infoPanelGO: {fileID: 0}
   isSelected: 0
   hasTarget: 0
@@ -16029,6 +16034,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 7291860892040521583}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4d741d3e4d8a8044387b81475eedb9b2,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3660125082148171727}
   m_SourcePrefab: {fileID: 100100000, guid: 4d741d3e4d8a8044387b81475eedb9b2, type: 3}
 --- !u!4 &5785480332599485996 stripped
 Transform:
@@ -16077,6 +16086,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spaceship: {fileID: 4657856536711746853}
+--- !u!114 &3660125082148171727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6557794220066323606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92064ddfc8e30314aa330a96972092f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7352627778346610602
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -114,5 +114,8 @@ MonoBehaviour:
   - name: 5sCountdown
     loop: 0
     audioClip: {fileID: 8300000, guid: 14a0d9c7df2632a408e3ea36c8cb38db, type: 3}
+  - name: targetLocked
+    loop: 0
+    audioClip: {fileID: 8300000, guid: 2238daeee80c10442a07e4bbb5874261, type: 3}
   dialogues: []
   music: []
