@@ -78,6 +78,17 @@ namespace AstroMath
             infoPanel.SetStartPosition(position);
         }
 
+        public void SetPointerToRay()
+        {
+            interactableSpaceship.pointerShape = InteractableSpaceship.PointerShape.Ray;
+        }
+
+        public void SetLineRendererActivation(bool activation)
+        {
+            interactableSpaceship.gameObject.GetComponent<LineRenderer>().enabled = activation;
+        }
+
+
         public void UpdateGraphics(int type, int cargo)
         {
             interactableSpaceship.SetActiveModel(cargo);

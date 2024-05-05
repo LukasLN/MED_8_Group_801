@@ -106,12 +106,6 @@ namespace AstroMath
         GameObject sphereInstance;
         public bool isSphereActive = false;
 
-        private void Awake()
-        {
-            
-            
-        }
-
 
         private void Start()
         {
@@ -123,17 +117,9 @@ namespace AstroMath
             UpdateCurrentDirectionVector();
             infoPanel.SetCurrentDirectionVector(currentDirectionVector);
 
-            if (transform.parent.gameObject.GetComponent<Spaceship>().mathProblem.GetType() == MathProblem.Type.Scale)
-            {
-                //sphereInstance =  Instantiate(sphere,endPoint);
-                pointerShape = PointerShape.Ray;
+            UpdateEndPoint(sphere.transform.position);
 
-                //var sphereInstance =  Instantiate(sphere,lineEndPoint);
-                //sphereInstance.transform.SetParent(transform);
-
-                UpdateEndPoint(sphere.transform.position);
-
-            }
+            SetTScalar(1);
         }
 
         void Update()
@@ -524,11 +510,16 @@ namespace AstroMath
             currentDirectionVector = newDirectionVector;
         }
 
+        public void SetTScalar(int newT)
+        {
+            chosenTScalar = newT;
+        }
+
         public void SetCorrectTScalar(int tScalar)
         {
             Debug.Log("Got to Interactable Spaceship!");
             correctTScalar = tScalar;
-            //infoPanel.SetCorrectTScalar(tScalar);
+            infoPanel.SetCorrectTScalar(tScalar);
         }
 
         public void SetProblemPosition(Vector3 position)
@@ -584,16 +575,9 @@ namespace AstroMath
             UpdateEndPoint(sphere.transform.position);
         }
 
-        public void setIsSphereActive()
+        public void setIsSphereActive(bool activation)
         {
-            if (isSphereActive == true)
-            {
-                isSphereActive = false;
-            }
-            else
-            {
-                isSphereActive = true;
-            }
+            isSphereActive = activation;
         }
 
         public void SetRandomRotation()
