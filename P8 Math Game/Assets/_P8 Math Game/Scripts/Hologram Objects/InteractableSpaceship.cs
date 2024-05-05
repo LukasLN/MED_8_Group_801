@@ -66,6 +66,8 @@ namespace AstroMath
         [SerializeField] bool isMoving;
         [SerializeField] float timeToMove;
         [SerializeField] float moveSpeed;
+        [SerializeField] GameObject bulletGO;
+        [SerializeField] bool isShooting;
         #endregion
 
         #region Ray Pointer Parameters
@@ -169,6 +171,18 @@ namespace AstroMath
                     isMoving = false;
 
                     ShowResult();
+                }
+            }
+
+            if(isShooting == true)
+            {
+                ShootTowardsTarget();
+
+                if (Vector3.Distance(transform.position, targetGO.transform.position) < 0.1f) //if we are not at the target position
+                {
+                    isShooting = false;
+
+                    FlyToTarget();
                 }
             }
 
@@ -337,11 +351,27 @@ namespace AstroMath
         {
             chosenCollisionAnswer = true;
 
-            //Shoot
-            //wait some time
+            CalculateMoveSpeed();
 
-            FlyToTarget();
+            infoPanelGO.SetActive(false);
+            bulletGO.SetActive(true);
+
+            isShooting = true;
+            hasTarget = false;
+            isSelected = false;
         }
+
+        public void ShootTowardsTarget()
+        {
+            bulletGO.transform.LookAt(targetGO.transform);
+            bulletGO.transform.position += transform.forward * moveSpeed * Time.deltaTime;
+        }
+
+        //IEnumerator WaitBeforeFlyToTarget()
+        //{
+        //    yield return new WaitForSeconds();
+        //    FlyToTarget();
+        //}
 
         public void CollisionFlyToTarget()
         {
