@@ -50,9 +50,11 @@ namespace AstroMath
         [SerializeField] string[] tagsToLookFor;
         #endregion
 
-        #region 3D Models
+        #region 3D Models and Exhaust Plumes
         [Header("3D Models")]
         [SerializeField] GameObject[] modelsGO; //GO = GameObject
+        [SerializeField] GameObject[] exhaustPlumesGO;
+        GameObject relevantExhaustPlumeGO;
         #endregion
 
         #region Movement
@@ -62,8 +64,8 @@ namespace AstroMath
         [SerializeField] float moveSpeed;
         #endregion
 
-        #region Ray Parameters
-        [Header("Ray Parameters")]
+        #region Ray Pointer Parameters
+        [Header("Ray Pointer Parameters")]
         public PointerShape pointerShape;
         [SerializeField] LayerMask layerMaskToIgnore;
         [SerializeField] float rayMaxDistance;
@@ -71,13 +73,13 @@ namespace AstroMath
         RaycastHit hit;
         #endregion
 
-        #region Cylinder Parameters
-        [Header("Cylinder Parameters")]
+        #region Cylinder Pointer Parameters
+        [Header("Cylinder Pointer Parameters")]
         [SerializeField] GameObject cylinderGO;
         #endregion
 
-        #region Cone Parameters
-        [Header("Cone Parameters")]
+        #region Cone Pointer Parameters
+        [Header("Cone Pointer Parameters")]
         [SerializeField] GameObject coneGO;
         #endregion
 
@@ -292,12 +294,16 @@ namespace AstroMath
         public void LockInAnswer()
         {
             SetTarget(targetGO);
+
+            relevantExhaustPlumeGO.SetActive(true);
+            infoPanelGO.SetActive(false);
+
+            GetComponent<InteractableUnityEventWrapper>().enabled = false;
+            //lineRenderer.enabled = false;
+
             isMoving = true;
             hasTarget = false;
             isSelected = false;
-            GetComponent<InteractableUnityEventWrapper>().enabled = false;
-            infoPanelGO.SetActive(false);
-            lineRenderer.enabled = false;
         }
 
         public void ShowResult()
@@ -414,6 +420,10 @@ namespace AstroMath
             for (int i = 0; i < modelsGO.Length; i++)
             {
                 modelsGO[i].SetActive(cargo == i);
+                if(cargo == i)
+                {
+                    relevantExhaustPlumeGO = exhaustPlumesGO[i];
+                }
             }
         }
 
