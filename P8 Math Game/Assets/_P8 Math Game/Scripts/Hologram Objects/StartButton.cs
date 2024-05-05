@@ -49,7 +49,7 @@ namespace AstroMath
             hasStartedCountdown = true;
             countdownText.gameObject.SetActive(true);
             HologramController.instance.Toggle();
-            WristWatch.instance.countDownHasStarted = true;
+            WristWatch.instance.countingDown = true;
         }
     }
 }
