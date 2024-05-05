@@ -70,7 +70,7 @@ namespace AstroMath
             directionVector = new Vector3(0, 0, 0);
             SetTScalar(1);
 
-            if(MathProblemManager.instance.isForSUIDJK == true)
+            if(FindAnyObjectByType<MathProblemManager>() != null && MathProblemManager.instance.isForSUIDJK == true)
             {
                 WristWatch wristWatch = FindObjectOfType<WristWatch>();
 

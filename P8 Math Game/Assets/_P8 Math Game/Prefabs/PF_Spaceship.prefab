@@ -75,19 +75,14 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
         type: 3}
-      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
-        type: 3}
-      propertyPath: _whenUnselect.m_PersistentCalls.m_Calls.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
-        type: 3}
       propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 8276325748405543942}
     - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
         type: 3}
       propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[2].m_Target
@@ -98,6 +93,11 @@ PrefabInstance:
       propertyPath: _whenUnselect.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
+      propertyPath: _whenUnselect.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 8276325748405543942}
     - target: {fileID: 1843231209155682316, guid: 103e6fec921da714e8be053d5d204530,
         type: 3}
       propertyPath: _whenUnselect.m_PersistentCalls.m_Calls.Array.data[2].m_Target
@@ -178,6 +178,11 @@ PrefabInstance:
       propertyPath: infoPanelGO
       value: 
       objectReference: {fileID: 8922363973198462111}
+    - target: {fileID: 6557794220066323606, guid: 103e6fec921da714e8be053d5d204530,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6799107395553818876, guid: 103e6fec921da714e8be053d5d204530,
         type: 3}
       propertyPath: m_Name

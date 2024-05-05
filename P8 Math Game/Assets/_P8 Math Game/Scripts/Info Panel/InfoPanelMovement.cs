@@ -23,8 +23,7 @@ namespace AstroMath
 
         private void Update()
         {
-            if(MathProblemManager.instance.isForSUIDJK == false &&
-                isActive == true)
+            if(isActive == true && MathProblemManager.instance.isForSUIDJK == false)
             {
                 LookAtPlayer();
             }

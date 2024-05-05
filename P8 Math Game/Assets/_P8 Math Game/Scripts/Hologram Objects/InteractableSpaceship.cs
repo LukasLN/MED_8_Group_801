@@ -46,7 +46,7 @@ namespace AstroMath
         #region Target
         [Header("Target")]
         [SerializeField] bool hasTarget;
-        [SerializeField] GameObject targetGO;
+        public GameObject targetGO;
         [SerializeField] string[] tagsToLookFor;
         #endregion
 
@@ -64,21 +64,28 @@ namespace AstroMath
 
         #region Ray Parameters
         [Header("Ray Parameters")]
-        [SerializeField] PointerShape pointerShape;
+        public PointerShape pointerShape;
         [SerializeField] LayerMask layerMaskToIgnore;
         [SerializeField] float rayMaxDistance;
-        [SerializeField] float cylinderRadius;
-        [SerializeField] float coneAngle;
-        [SerializeField] int coneResolution;
         Ray ray;
         RaycastHit hit;
         #endregion
 
+        #region Cylinder Parameters
+        [Header("Cylinder Parameters")]
+        [SerializeField] GameObject cylinderGO;
+        #endregion
+
+        #region Cone Parameters
+        [Header("Cone Parameters")]
+        [SerializeField] GameObject coneGO;
+        #endregion
+
         #region Line Graphics
         [Header("Line Graphics")]
-        LineRenderer lineRenderer;
         [SerializeField] Transform startPoint;
         [SerializeField] Transform endPoint;
+        LineRenderer lineRenderer;
         #endregion
 
         #region Assessment
@@ -114,58 +121,40 @@ namespace AstroMath
             {
                 //targetGO = null;
                 //hasTarget = false;
-
-                #region Pointing
-                switch (pointerShape)
+                if (pointerShape == PointerShape.Ray)
                 {
-                    case PointerShape.Ray:
-                        #region Ray
-
-                        #endregion
-                        break;
-                    case PointerShape.Cylinder:
-                        #region Cylinder
-
-                        #endregion
-                        break;
-                    case PointerShape.Cone:
-                        #region Cone
-                        
-                        float horizontalStepAngle = coneAngle / coneResolution - 1;
-                        float verticalStepAngle   = coneAngle / coneResolution - 1;
-
-                        for(int i = 0; i < coneResolution; i++)
-                        {
-                            Quaternion horizontalRotation = Quaternion.AngleAxis(-coneAngle / 2 + i * horizontalStepAngle, transform.up);
-
-                            for(int j = 0; j < coneResolution; j++)
-                            {
-                                Quaternion verticalRotation = Quaternion.AngleAxis(-90 + j * verticalStepAngle, transform.right);
-
-                                Vector3 rayDirection = verticalRotation * horizontalRotation * transform.forward;
-
-                                ShootRay(startPoint.position, rayDirection); //shoots rays from the spaceship in a cone shape
-                            }
-                        }
-                        #endregion
-                        break;
+                    ShootRay(startPoint.position, startPoint.forward); //shoots ray from spaceship in its forward direction
                 }
-
-                ShootRay(startPoint.position, startPoint.forward); //shoots ray from spaceship in its forward direction
-                #endregion
+                else if (pointerShape == PointerShape.Cylinder)
+                {
+                    ShootCylinder(startPoint.position, startPoint.forward);
+                    //ShootRay(startPoint.position, startPoint.forward);
+                }
+                else if (pointerShape == PointerShape.Cone)
+                {
+                    ShootCone(startPoint.position, startPoint.forward);
+                    //ShootRay(startPoint.position, startPoint.forward);
+                }
 
                 UpdateCurrentDirectionVector();
                 infoPanel.SetCurrentDirectionVector(currentDirectionVector);
+            }
+            else
+            {
+                if(targetGO != null)
+                {
+                    transform.LookAt(targetGO.transform);
+                }
             }
 
             //################################################################################################
             //    > IDK WHY, BUT FOR SOME REASON, THIS PLACEMENT OF THIS IF-STATEMENT CREATES (in Laus opinion)
             //      THE FEELING OF ROTATING THE SPACESHIP :,)
             //################################################################################################
-            if (hasTarget == true) 
-            {
-                transform.LookAt(targetGO.transform);
-            }
+            //if (hasTarget == true) 
+            //{
+            //    transform.LookAt(targetGO.transform);
+            //}
             //################################################################################################
 
             if (isMoving == true)
@@ -194,40 +183,78 @@ namespace AstroMath
             {
                 //Debug.Log("Hit object: " + hit.collider.gameObject.name);
 
-                if (CheckForTarget())
-                {
-                    if(targetGO != null)
-                    {
-                        targetGO.GetComponent<TargetGameObject>().SetHighlightActivation(false);
-                    }
-                    hasTarget = true;
-                    targetGO = hit.collider.gameObject;
-                    targetGO.GetComponent<TargetGameObject>().SetHighlightActivation(true);
-                    infoPanel.confirmButton.interactable = true;
-                }
-
                 raylength = Vector3.Distance(startPoint.position, hit.point);
                 rayColor = Color.red;
+
+                if (pointerShape == PointerShape.Ray)
+                {
+                    if (CheckForTarget())
+                    {
+                        AddNewTarget(hit.collider.gameObject);
+                    }
+                }
+
             }
             else
             {
-                Debug.Log("We are not hitting anything...");
-                if(targetGO != null)
+                if (pointerShape == PointerShape.Ray)
                 {
-                    Debug.Log("Already have a target, so disabling its activation...");
-                    targetGO.GetComponent<TargetGameObject>().SetHighlightActivation(false);
+                    RemoveOldTarget();
                 }
-                hasTarget = false;
-                targetGO = null;
-                infoPanel.confirmButton.interactable = false;
             }
             //Debug.DrawRay(startPoint.position, rayDirection * rayMaxDistance, rayColor);
 
             endPoint.localPosition = new Vector3(startPoint.localPosition.x,
-                                                 startPoint.localPosition.y,
-                                                 startPoint.localPosition.z + raylength);
+                                            startPoint.localPosition.y,
+                                            startPoint.localPosition.z + raylength);
 
             lineRenderer.SetPosition(1, endPoint.position);
+        }
+
+        void ShootCylinder(Vector3 position, Vector3 direction)
+        {
+            //cylinderGO.transform.position = position; //MIGHT BE OBSOLETE :)
+            cylinderGO.transform.rotation = Quaternion.LookRotation(direction);
+        }
+
+        void ShootCone(Vector3 position, Vector3 direction)
+        {
+            coneGO.transform.rotation = Quaternion.LookRotation(direction);
+        }
+
+        public void AddNewTarget(GameObject target)
+        {
+            hasTarget = true;
+
+            if (targetGO != null)
+            {
+                targetGO.GetComponent<TargetGameObject>().SetHighlightActivation(false);
+            }
+            targetGO = target;
+            targetGO.GetComponent<TargetGameObject>().SetHighlightActivation(true);
+
+            infoPanel.confirmButton.interactable = true;
+        }
+
+        public void RemoveOldTarget()
+        {
+            //Debug.Log("We are not hitting anything...");
+
+            hasTarget = false;
+
+            if (targetGO != null)
+            {
+                //Debug.Log("Already have a target, so disabling its activation...");
+                targetGO.GetComponent<TargetGameObject>().SetHighlightActivation(false);
+            }
+            targetGO = null;
+
+            infoPanel.confirmButton.interactable = false;
+        }
+
+        public void CompareDistanceDifference()
+        {
+
         }
 
         bool CheckForTarget()
@@ -392,7 +419,28 @@ namespace AstroMath
 
         public void SetIsSelected(bool newBool)
         {
+
             isSelected = newBool;
+            //lineRenderer.enabled = newBool;
+
+            if (pointerShape == PointerShape.Ray) //Ray
+            {
+                lineRenderer.enabled = newBool;
+            }
+            else if (pointerShape == PointerShape.Cylinder) //Cylinder
+            {
+                cylinderGO.SetActive(newBool);
+            }
+            else if (pointerShape == PointerShape.Cone) //Cone
+            {
+                coneGO.SetActive(newBool);
+            }
+
+        }
+
+        public bool GetIsSelected()
+        {
+            return isSelected;
         }
 
         void UpdateEndPoint()
