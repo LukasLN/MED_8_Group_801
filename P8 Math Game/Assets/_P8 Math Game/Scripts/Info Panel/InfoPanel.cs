@@ -82,6 +82,7 @@ namespace AstroMath
                 transform.localRotation = Quaternion.Euler(wristWatchRotation);
                 #endregion
             }
+            audioPlayer.PlaySoundEffect("accesInfopanel");
         }
 
         private void Update()

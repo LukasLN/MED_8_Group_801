@@ -44,6 +44,9 @@ namespace AstroMath
         float distanceToTravel; //the distance between 'startPointTF' and 'endPointTF'
         float travelSpeed; //the speed at which the 'startUpController' will travel
         #endregion
+        #region audio
+        AudioPlayer audioPlayer;
+        #endregion
 
         private void Awake()
         {
@@ -89,8 +92,11 @@ namespace AstroMath
             //> calculate distance and travel speed of the 'controller point' of the hologram
             distanceToTravel = Vector3.Distance(startPointTF.position, endPointTF.position); 
             travelSpeed = distanceToTravel / timeToChange;
-            
+
             //Toggle();
+            audioPlayer = GetComponent<AudioPlayer>();
+            audioPlayer.PlaySoundEffect("ambient");
+
         }
 
         private void Update()

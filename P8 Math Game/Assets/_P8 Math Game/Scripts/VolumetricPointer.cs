@@ -5,8 +5,15 @@ namespace AstroMath
     public class VolumetricPointer : MonoBehaviour
     {
         [SerializeField] InteractableSpaceship spaceship;
+        AudioPlayer audioPlayer;
 
-        private void OnTriggerEnter(Collider other)
+        void Start()
+        {
+            audioPlayer = GetComponent<AudioPlayer>();
+
+        }
+
+            private void OnTriggerEnter(Collider other)
         {
             //Debug.Log("Entered " + other.gameObject.tag);
             if (other.gameObject.tag == "Parking" ||
@@ -25,6 +32,7 @@ namespace AstroMath
             if (other.gameObject.tag == "Parking" ||
                 other.gameObject.tag == "Asteroid")
             {
+                audioPlayer.PlaySoundEffect("targetLocked");
                 if (spaceship.targetGO == null)
                 {
                     spaceship.AddNewTarget(other.gameObject);
