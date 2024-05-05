@@ -13,7 +13,7 @@ namespace AstroMath
         AudioPlayer audioPlayer;
         int solvedCounter = 0;
         bool countDownHasPlayed = false;
-        public bool countDownHasStarted = false;
+        public bool countingDown = false;
 
         #region Info Panel
         [Header("Info Panel")]
@@ -38,7 +38,7 @@ namespace AstroMath
 
         void Update()
         {
-            if (countDownHasStarted)
+            if (countingDown)
             {
                 if (remainingTime > 0)
                 {
@@ -73,6 +73,14 @@ namespace AstroMath
         {
             infoPanelIsVisible = !infoPanelIsVisible;
             infoPanelGO.SetActive(infoPanelIsVisible);
+        }
+        public void PauseCountDown()
+        {
+            countingDown = false;
+        }
+        public void ResumeCountDown()
+        {
+            countingDown = true;
         }
     }
 }
