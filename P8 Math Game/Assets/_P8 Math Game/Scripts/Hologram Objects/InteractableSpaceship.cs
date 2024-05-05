@@ -1,4 +1,5 @@
 using System.Collections;
+using Meta.Voice.Audio;
 using Oculus.Interaction;
 using UnityEngine;
 
@@ -106,6 +107,10 @@ namespace AstroMath
         GameObject sphereInstance;
         public bool isSphereActive = false;
 
+        #region Audio
+        AudioPlayer audioPlayer;
+        #endregion
+
 
         private void Start()
         {
@@ -119,6 +124,8 @@ namespace AstroMath
 
             sphere.transform.localPosition = transform.position + MathProblemManager.instance.MapProblemSpaceToCookieSpace(currentDirectionVector);
             UpdateEndPoint(sphere.transform.position);
+
+            audioPlayer = GetComponent<AudioPlayer>();
 
             SetTScalar(1);
         }
@@ -352,6 +359,7 @@ namespace AstroMath
             isMoving = true;
             hasTarget = false;
             isSelected = false;
+            audioPlayer.PlaySoundEffect("takeOff");
         }
 
         public void ShootTarget()

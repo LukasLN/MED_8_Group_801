@@ -5081,6 +5081,7 @@ GameObject:
   - component: {fileID: 8615118160535198225}
   - component: {fileID: 9060221703286031219}
   - component: {fileID: 6720611894314862146}
+  - component: {fileID: 3515736945298558573}
   m_Layer: 6
   m_Name: PF_InteractableSpaceship
   m_TagString: Untagged
@@ -5509,6 +5510,18 @@ MonoBehaviour:
   _movementProvider: {fileID: 0}
   _handAligment: 0
   _handGrabPoses: []
+--- !u!114 &3515736945298558573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6799107395553818876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92064ddfc8e30314aa330a96972092f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7299990956918727939
 GameObject:
   m_ObjectHideFlags: 0
