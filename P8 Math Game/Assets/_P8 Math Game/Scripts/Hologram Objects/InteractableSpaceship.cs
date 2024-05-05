@@ -108,17 +108,8 @@ namespace AstroMath
 
         private void Awake()
         {
-            if(this.GetComponent<Spaceship>().mathProblem.GetType() == MathProblem.Type.Scale)
-            {
-                //sphereInstance =  Instantiate(sphere,endPoint);
-                pointerShape = PointerShape.Ray;
-
-                //var sphereInstance =  Instantiate(sphere,lineEndPoint);
-                //sphereInstance.transform.SetParent(transform);
-
-                UpdateEndPoint(sphere.transform.position);
-
-            }
+            
+            
         }
 
 
@@ -131,6 +122,18 @@ namespace AstroMath
 
             UpdateCurrentDirectionVector();
             infoPanel.SetCurrentDirectionVector(currentDirectionVector);
+
+            if (transform.parent.gameObject.GetComponent<Spaceship>().mathProblem.GetType() == MathProblem.Type.Scale)
+            {
+                //sphereInstance =  Instantiate(sphere,endPoint);
+                pointerShape = PointerShape.Ray;
+
+                //var sphereInstance =  Instantiate(sphere,lineEndPoint);
+                //sphereInstance.transform.SetParent(transform);
+
+                UpdateEndPoint(sphere.transform.position);
+
+            }
         }
 
         void Update()
