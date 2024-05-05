@@ -58,8 +58,10 @@ namespace AstroMath
         #endregion
 
         public Keypad keypad;
-        public Button confirmButton;
-        [SerializeField] GameObject spaceshipGO;
+        public Button flyButton;
+        public Button collisionShootButton;
+        public Button collisionFlyButton;
+        [SerializeField] GameObject interactableSpaceshipGO;
 
         AudioPlayer audioPlayer;
 
@@ -92,7 +94,17 @@ namespace AstroMath
 
         public void FlyToTarget()
         {
-            spaceshipGO.GetComponent<InteractableSpaceship>().LockInAnswer();
+            interactableSpaceshipGO.GetComponent<InteractableSpaceship>().FlyToTarget();
+        }
+
+        public void CollisionFlyToTarget()
+        {
+            interactableSpaceshipGO.GetComponent<InteractableSpaceship>().CollisionFlyToTarget();
+        }
+
+        public void ShootTarget()
+        {
+            interactableSpaceshipGO.GetComponent<InteractableSpaceship>().ShootTarget();
         }
 
         public void UpdateGraphics(int type, int cargo)
@@ -123,9 +135,13 @@ namespace AstroMath
                 UpdateConfirmButtonColor();
             }
             #endregion
+
+            #region Confirm Button
+            flyButton.gameObject.SetActive(type == 0 || type == 2); //Direction or Scale problem
+            collisionShootButton.gameObject.SetActive(type == 1); //Collision problem
+            collisionFlyButton.gameObject.SetActive(type == 1); //Collision problem
+            #endregion
         }
-
-
 
         public void UpdatePuzzleInformation(MathProblem mathProblem)
         {
@@ -231,6 +247,7 @@ namespace AstroMath
 
         public void SetCorrectTScalar(int tScalar)
         {
+            Debug.Log("Got to InfoPanel!");
             correctTScalar = tScalar;
         }
 

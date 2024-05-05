@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace AstroMath
@@ -44,9 +45,10 @@ namespace AstroMath
         [Header("Holo Objects")]
         [SerializeField] GameObject m_spaceshipGO;
         [Tooltip("Could be a Parking Spot or an Asteroid")]
-        [SerializeField] GameObject m_correctTargetGO;
+        [SerializeField] GameObject m_targetGO;
         [SerializeField] Transform m_parkingSpotsParentTF; //TF = Transform
         [SerializeField] Transform m_asteroidsParentTF;
+        [SerializeField] GameObject faultyAsteroidPF; //PF = Prefab
         #endregion
 
         public void New(bool random = true, Type type = 0)
@@ -134,8 +136,8 @@ namespace AstroMath
                     {
                         m_collisionSolution = false;
                         m_scaleSolution = 1;
-                        var extraDummyTarget = FixedPositionsContainer.instance.TakeSampleTarget(1);
-                        m_directionSolution = extraDummyTarget.position - m_spaceshipPosition;
+                        var faultySample = FixedPositionsContainer.instance.TakeSampleTarget(1);
+                        m_directionSolution = faultySample.position - m_spaceshipPosition;
                     }
                     else
                     {
@@ -170,11 +172,11 @@ namespace AstroMath
             #region Enabling/Disabling Target Objects (Parking Spots or Asteroids)
             if (m_type == Type.Direction)
             {
-                m_correctTargetGO = m_parkingSpotsParentTF.GetChild(0).gameObject;
+                m_targetGO = m_parkingSpotsParentTF.GetChild(0).gameObject;
             }
             else if(m_type == Type.Collision || m_type == Type.Scale)
             {
-                m_correctTargetGO = m_asteroidsParentTF.GetChild(0).gameObject;
+                m_targetGO = m_asteroidsParentTF.GetChild(0).gameObject;
             }
 
             m_parkingSpotsParentTF.gameObject.SetActive(m_type == Type.Direction);
@@ -186,16 +188,35 @@ namespace AstroMath
             #endregion
 
             #region Setting Spaceship and Info Panel Information
+            m_spaceshipGO.GetComponent<Spaceship>().UpdateInteractions();
             m_spaceshipGO.GetComponent<Spaceship>().UpdatePuzzleInformation(this);
             m_spaceshipGO.GetComponent<Spaceship>().SetCorrectDirectionVector(m_directionSolution);
-            m_spaceshipGO.GetComponent<Spaceship>().SetCorrectTScalar(m_scaleSolution);
+            m_spaceshipGO.GetComponent<Spaceship>().SetCorrectCollisionAnswer(m_collisionSolution);
+            //Debug.Log("Scale Solution: " + m_scaleSolution);
+            //m_spaceshipGO.GetComponent<Spaceship>().SetCorrectTScalar(m_scaleSolution);
             m_spaceshipGO.GetComponent<Spaceship>().SetProblemPosition(m_spaceshipPosition);
+
+            
             #endregion
 
-            #region Setting Positions
-            m_spaceshipGO.transform.position     = MathProblemManager.instance.MapProblemSpaceToCookieSpace(m_spaceshipPosition);
-            m_correctTargetGO.transform.position = MathProblemManager.instance.MapProblemSpaceToCookieSpace(m_targetPosition);
-            
+            #region Setting Position and Rotation
+            m_spaceshipGO.transform.position = MathProblemManager.instance.MapProblemSpaceToCookieSpace(m_spaceshipPosition);
+            if (m_type == Type.Direction)
+            {
+                m_spaceshipGO.GetComponent<Spaceship>().SetRandomRotation();
+            }
+            else if(m_type == Type.Collision)
+            {
+                m_spaceshipGO.GetComponent<Spaceship>().LookUp();
+            }
+            else if(m_type == Type.Scale)
+            {
+                m_spaceshipGO.GetComponent<Spaceship>().LookAt(m_targetGO.transform);
+            }
+
+            m_targetGO.transform.position = MathProblemManager.instance.MapProblemSpaceToCookieSpace(m_targetPosition);
+            m_targetGO.GetComponent<TargetGameObject>().problemPosition = m_targetPosition;
+
             //> parking spots
             for (int i = 0; i < m_parkingSpotsParentTF.childCount; i++)
             {
@@ -229,8 +250,22 @@ namespace AstroMath
             #endregion
 
             #region Setting Target Information
-            m_correctTargetGO.GetComponent<TargetGameObject>().problemPosition = m_targetPosition;
-            m_correctTargetGO.gameObject.name = m_targetName + " (Correct)";
+            if(m_type == Type.Collision)
+            {
+                if(m_collisionSolution == false)
+                {
+                    m_targetGO = Instantiate(faultyAsteroidPF, MathProblemManager.instance.MapProblemSpaceToCookieSpace(m_directionSolution + m_spaceshipPosition), Quaternion.identity);
+                    m_targetGO.name = "Faulty Asteroid (" + m_targetPosition + ")";
+                    //m_targetGO.SetActive(false);
+                }
+
+                m_spaceshipGO.GetComponent<Spaceship>().SetCorrectTargetGO(m_targetGO);
+                m_spaceshipGO.GetComponent<Spaceship>().SetTargetGO(m_targetGO);
+            }
+            else
+            {
+                m_targetGO.name = m_targetName + " (Correct)";
+            }
             #endregion
         }
 

@@ -1,3 +1,5 @@
+using Oculus.Interaction;
+using Oculus.Interaction.HandGrab;
 using UnityEngine;
 
 namespace AstroMath
@@ -49,9 +51,25 @@ namespace AstroMath
             infoPanel.SetCorrectDirectionVector(direction);
         }
 
+        public void SetCorrectCollisionAnswer(bool collisionAnswer)
+        {
+            interactableSpaceship.SetCorrectCollisionAnswer(collisionAnswer );
+        }
+
+        public void SetCorrectTargetGO(GameObject targetGO)
+        {
+            interactableSpaceship.SetCorrectTargetGO(targetGO);
+        }
+
+        public void SetTargetGO(GameObject targetGO)
+        {
+            interactableSpaceship.SetTargetGO(targetGO);
+        }
+
         public void SetCorrectTScalar(int tScalar)
         {
-            //interactableSpaceship.SetCorrectTScalar(tScalar);
+            Debug.Log("Got to Spaceship!");
+            interactableSpaceship.SetCorrectTScalar(tScalar);
         }
 
         public void SetProblemPosition(Vector3 position)
@@ -73,11 +91,27 @@ namespace AstroMath
 
         public void UpdateInteractions()
         {
-            //if(mathProblem.m_type == MathProblem.Type.Scale)
-            //{
-            //    GetComponent<Grabbable>().enabled = false;
-            //    GetComponent<HandGrabInteractable>().enabled = false;
-            //}
+            if (mathProblem.GetType() == MathProblem.Type.Collision ||
+               mathProblem.GetType() == MathProblem.Type.Scale)
+            {
+                interactableSpaceship.GetComponent<Grabbable>().enabled = false;
+                interactableSpaceship.GetComponent<HandGrabInteractable>().enabled = false;
+            }
+        }
+
+        public void SetRandomRotation()
+        {
+            interactableSpaceship.SetRandomRotation();
+        }
+
+        public void LookUp()
+        {
+            interactableSpaceship.LookUp();
+        }
+
+        public void LookAt(Transform target)
+        {
+            interactableSpaceship.LookAt(target);
         }
     }
 }

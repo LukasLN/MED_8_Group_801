@@ -57,9 +57,11 @@ MonoBehaviour:
   m_collisionSolution: 0
   m_scaleSolution: 0
   m_spaceshipGO: {fileID: 2644452533692330164}
-  m_correctTargetGO: {fileID: 6871714624629349059}
+  m_targetGO: {fileID: 0}
   m_parkingSpotsParentTF: {fileID: 463605450521915147}
   m_asteroidsParentTF: {fileID: 1477997977725410732}
+  faultyAsteroidPF: {fileID: 8568054942438417985, guid: 858442666921a6d469330171f89e23e5,
+    type: 3}
 --- !u!1 &828190370555922229
 GameObject:
   m_ObjectHideFlags: 0
@@ -463,6 +465,86 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7843697187771147975}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7843697187771147975}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetTarget
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UnsetTarget
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AstroMath.InteractableSpaceship, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AstroMath.InteractableSpaceship, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 5401973931135985841}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 5401973931135985841}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5119548883578603487, guid: 791756fa5923b10419d288d9c5611ae2,
         type: 3}
       propertyPath: m_Name
@@ -473,6 +555,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 791756fa5923b10419d288d9c5611ae2, type: 3}
+--- !u!1 &5401973931135985841 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5119548883578603487, guid: 791756fa5923b10419d288d9c5611ae2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1007645501303336814}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8345940326317291480 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9090899288401860790, guid: 791756fa5923b10419d288d9c5611ae2,
@@ -616,6 +704,86 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7843697187771147975}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7843697187771147975}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetTarget
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UnsetTarget
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AstroMath.InteractableSpaceship, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AstroMath.InteractableSpaceship, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 6491371992340720522}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 6491371992340720522}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5119548883578603487, guid: 791756fa5923b10419d288d9c5611ae2,
         type: 3}
       propertyPath: m_Name
@@ -626,6 +794,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 791756fa5923b10419d288d9c5611ae2, type: 3}
+--- !u!1 &6491371992340720522 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5119548883578603487, guid: 791756fa5923b10419d288d9c5611ae2,
+    type: 3}
+  m_PrefabInstance: {fileID: 2096908290327850069}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7147470196576056547 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9090899288401860790, guid: 791756fa5923b10419d288d9c5611ae2,
@@ -706,12 +880,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2734400886877630588}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &6871714624629349059 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8840485896273341119, guid: 33f5c9e8c41e9624b935aad0a251e17d,
-    type: 3}
-  m_PrefabInstance: {fileID: 2734400886877630588}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2828984529445768730
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -775,6 +943,86 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7843697187771147975}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7843697187771147975}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetTarget
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UnsetTarget
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AstroMath.InteractableSpaceship, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AstroMath.InteractableSpaceship, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 6939722554542361029}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 6939722554542361029}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5119548883578603487, guid: 791756fa5923b10419d288d9c5611ae2,
         type: 3}
       propertyPath: m_Name
@@ -788,6 +1036,12 @@ PrefabInstance:
 --- !u!4 &6443471068907411116 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9090899288401860790, guid: 791756fa5923b10419d288d9c5611ae2,
+    type: 3}
+  m_PrefabInstance: {fileID: 2828984529445768730}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6939722554542361029 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5119548883578603487, guid: 791756fa5923b10419d288d9c5611ae2,
     type: 3}
   m_PrefabInstance: {fileID: 2828984529445768730}
   m_PrefabAsset: {fileID: 0}
@@ -854,6 +1108,86 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7843697187771147975}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7843697187771147975}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetTarget
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UnsetTarget
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AstroMath.InteractableSpaceship, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AstroMath.InteractableSpaceship, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 9126472424631813896}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 9126472424631813896}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5119548883578603487, guid: 791756fa5923b10419d288d9c5611ae2,
         type: 3}
       propertyPath: m_Name
@@ -867,6 +1201,12 @@ PrefabInstance:
 --- !u!4 &5152866163917314145 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9090899288401860790, guid: 791756fa5923b10419d288d9c5611ae2,
+    type: 3}
+  m_PrefabInstance: {fileID: 4155684208886448343}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &9126472424631813896 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5119548883578603487, guid: 791756fa5923b10419d288d9c5611ae2,
     type: 3}
   m_PrefabInstance: {fileID: 4155684208886448343}
   m_PrefabAsset: {fileID: 0}
@@ -965,6 +1305,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4444135404511036799}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7843697187771147975 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5870112889687925688, guid: 3099e165679b6c444b9c314ed3289134,
+    type: 3}
+  m_PrefabInstance: {fileID: 4444135404511036799}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25e62a2de8347bd4db2d9de50e8bf558, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4451498082596287627
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1250,6 +1602,86 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7843697187771147975}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7843697187771147975}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetTarget
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UnsetTarget
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AstroMath.InteractableSpaceship, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AstroMath.InteractableSpaceship, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 3730733052224163059}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 3730733052224163059}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenHover.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177145505635510409, guid: 791756fa5923b10419d288d9c5611ae2,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5119548883578603487, guid: 791756fa5923b10419d288d9c5611ae2,
         type: 3}
       propertyPath: m_Name
@@ -1263,6 +1695,12 @@ PrefabInstance:
 --- !u!4 &784523367676466074 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9090899288401860790, guid: 791756fa5923b10419d288d9c5611ae2,
+    type: 3}
+  m_PrefabInstance: {fileID: 8415665727537810220}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3730733052224163059 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5119548883578603487, guid: 791756fa5923b10419d288d9c5611ae2,
     type: 3}
   m_PrefabInstance: {fileID: 8415665727537810220}
   m_PrefabAsset: {fileID: 0}

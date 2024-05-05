@@ -7,6 +7,7 @@ namespace AstroMath
         public Vector3 problemPosition;
 
         public bool highlightIsActive;
+        public bool isAsteroid;
         [SerializeField] Renderer modelRenderer;
         [SerializeField] Material defaultMaterial;
         [SerializeField] Material highlightMaterial;
