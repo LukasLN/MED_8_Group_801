@@ -11,6 +11,8 @@ namespace AstroMath
         [SerializeField] float remainingTime; //we use 600 secs as default
         [SerializeField] TMP_Text solvedText;
         [SerializeField] TMP_Text failedText;
+        [SerializeField] TMP_Text scoreText;
+        [SerializeField] GameObject endScreen;
         AudioPlayer audioPlayer;
         int solvedCounter = 0;
         int failedCounter = 0;
@@ -57,6 +59,9 @@ namespace AstroMath
                     remainingTime = 0;
                     //Game over
                     timerText.color = Color.red;
+
+                    scoreText.SetText(solvedCounter.ToString()+" Missioner fuldført"+"\n"+ "\n" + failedCounter.ToString()+" Missioner fejlet");
+                    endScreen.SetActive(true);
                 }
                 int minutes = Mathf.FloorToInt(remainingTime / 60);
                 int seconds = Mathf.FloorToInt(remainingTime % 60);
