@@ -197,13 +197,17 @@ namespace AstroMath
             m_spaceshipGO.GetComponent<Spaceship>().UpdatePuzzleInformation(this);
             m_spaceshipGO.GetComponent<Spaceship>().SetCorrectDirectionVector(m_directionSolution);
             m_spaceshipGO.GetComponent<Spaceship>().SetCorrectCollisionAnswer(m_collisionSolution);
-            //Debug.Log("Scale Solution: " + m_scaleSolution);
-            //m_spaceshipGO.GetComponent<Spaceship>().SetCorrectTScalar(m_scaleSolution);
+            Debug.Log("Scale Solution: " + m_scaleSolution);
+            m_spaceshipGO.GetComponent<Spaceship>().SetCorrectTScalar(m_scaleSolution);
             m_spaceshipGO.GetComponent<Spaceship>().SetProblemPosition(m_spaceshipPosition);
 
-            
+            if(m_type == Type.Scale)
+            {
+                m_spaceshipGO.GetComponent<Spaceship>().SetLineRendererActivation(true);
+                m_spaceshipGO.GetComponent<Spaceship>().SetPointerToRay();
+            }
             #endregion
-
+                 
             #region Setting Position and Rotation
             m_spaceshipGO.transform.position = MathProblemManager.instance.MapProblemSpaceToCookieSpace(m_spaceshipPosition);
             if (m_type == Type.Direction)
