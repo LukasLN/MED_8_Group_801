@@ -100,12 +100,25 @@ namespace AstroMath
         [SerializeField] GameObject wrongGO;
         [SerializeField] float timeBeforeDestroy;
         #endregion
+        [SerializeField] GameObject sphere;
+        GameObject sphereInstance;
+        public bool isSphereActive = false;
 
         private void Awake()
         {
-            //var sphereInstance =  Instantiate(sphere,lineEndPoint);
-            //sphereInstance.transform.SetParent(transform);
+            if(this.GetComponent<Spaceship>().mathProblem.GetType() == MathProblem.Type.Scale)
+            {
+                //sphereInstance =  Instantiate(sphere,endPoint);
+                pointerShape = PointerShape.Ray;
+
+                //var sphereInstance =  Instantiate(sphere,lineEndPoint);
+                //sphereInstance.transform.SetParent(transform);
+
+                UpdateEndPoint(sphere.transform.position);
+
+            }
         }
+
 
         private void Start()
         {
@@ -120,6 +133,10 @@ namespace AstroMath
 
         void Update()
         {
+            if (isSphereActive == true)
+            {
+                sphereinteraction();
+            }
             if (isSelected)
             {
                 //targetGO = null;
@@ -527,6 +544,23 @@ namespace AstroMath
         {
             endPoint.position = position;
             lineRenderer.SetPosition(1, endPoint.position);
+        }
+
+        public void sphereinteraction()
+        {
+            UpdateEndPoint(sphere.transform.position);
+        }
+
+        public void setIsSphereActive()
+        {
+            if (isSphereActive == true)
+            {
+                isSphereActive = false;
+            }
+            else
+            {
+                isSphereActive = true;
+            }
         }
 
         public void SetRandomRotation()
