@@ -10,8 +10,10 @@ namespace AstroMath
         [SerializeField] TextMeshProUGUI timerText;
         [SerializeField] float remainingTime; //we use 600 secs as default
         [SerializeField] TMP_Text solvedText;
+        [SerializeField] TMP_Text failedText;
         AudioPlayer audioPlayer;
         int solvedCounter = 0;
+        int failedCounter = 0;
         bool countDownHasPlayed = false;
         public bool countingDown = false;
 
@@ -67,6 +69,12 @@ namespace AstroMath
         {
             solvedCounter++;
             solvedText.SetText(solvedCounter.ToString());
+        }
+
+        public void IncrementFailed()
+        {
+            failedCounter++;
+            failedText.SetText(failedCounter.ToString());
         }
 
         public void ToggleInfoPanel()

@@ -441,6 +441,7 @@ namespace AstroMath
                 //failure sound
 
                 wrongGO.SetActive(true);
+                StartCoroutine(WaitBeforeIncrementFailed());
             }
             #endregion
 
@@ -457,6 +458,12 @@ namespace AstroMath
         {
             yield return new WaitForSeconds(timeBeforeDestroy);
             WristWatch.instance.IncrementSolved();
+        }
+
+        IEnumerator WaitBeforeIncrementFailed()
+        {
+            yield return new WaitForSeconds(timeBeforeDestroy);
+            WristWatch.instance.IncrementFailed();
         }
 
         public void SetCorrectDirectionVector(Vector3 direction)
