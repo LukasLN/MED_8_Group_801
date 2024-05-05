@@ -299,7 +299,7 @@ namespace AstroMath
             infoPanelGO.SetActive(false);
 
             GetComponent<InteractableUnityEventWrapper>().enabled = false;
-            //lineRenderer.enabled = false;
+            lineRenderer.enabled = true;
 
             isMoving = true;
             hasTarget = false;

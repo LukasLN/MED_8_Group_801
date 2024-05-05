@@ -49,23 +49,15 @@ namespace AstroMath
         [SerializeField] Transform m_asteroidsParentTF;
         #endregion
 
-        private void Update()
+        public void New(bool random = true, Type type = 0)
         {
-            if(Input.GetKeyDown(KeyCode.O))
-            {
-                New();
-            }
-        }
-
-        public void New()
-        {
-            GenerateNewCharacteristics();
+            GenerateNewCharacteristics(random, type);
             UpdateHoloObjects();
         }
 
-        public void GenerateNewCharacteristics()
+        public void GenerateNewCharacteristics(bool random = true, Type type = 0)
         {
-            Debug.Log("Generating new Characteristics for Math Problem...");
+            //Debug.Log("Generating new Characteristics for Math Problem...");
 
             ClearCharacteristics();
 
@@ -73,7 +65,14 @@ namespace AstroMath
             FixedPositionsContainer.instance.CreateSampleAsteroidTargets();
 
             #region Setting Type and Cargo
-            m_type = RandomType();
+            if(random)
+            {
+                m_type = RandomType();
+            }
+            else
+            {
+                m_type = type;
+            }
             m_cargo = RandomCargo();
             #endregion
 
@@ -85,16 +84,16 @@ namespace AstroMath
             switch (m_type)
             {
                 case Type.Direction:
-                    m_spaceshipPosition = PositionGenerator.DiscreteRingPosition((int)MathProblemManager.instance.minDirectionDistance,
-                                                                                 (int)MathProblemManager.instance.maxDirectionDistance);
+                    m_spaceshipPosition = PositionGenerator.DiscreteRingPosition(MathProblemManager.instance.minDirectionDistance,
+                                                                                 MathProblemManager.instance.maxDirectionDistance);
                     break;
                 case Type.Collision:
-                    m_spaceshipPosition = PositionGenerator.DiscreteRingPosition((int)MathProblemManager.instance.minCollisionDistance,
-                                                                                 (int)MathProblemManager.instance.maxCollisionDistance);
+                    m_spaceshipPosition = PositionGenerator.DiscreteRingPosition(MathProblemManager.instance.minCollisionDistance,
+                                                                                 MathProblemManager.instance.maxCollisionDistance);
                     break;
                 case Type.Scale:
-                    m_spaceshipPosition = PositionGenerator.DiscreteRingPosition((int)MathProblemManager.instance.minScaleDistance,
-                                                                                 (int)MathProblemManager.instance.maxScaleDistance);
+                    m_spaceshipPosition = PositionGenerator.DiscreteRingPosition(MathProblemManager.instance.minScaleDistance,
+                                                                                 MathProblemManager.instance.maxScaleDistance);
                     break;
             }
             #endregion

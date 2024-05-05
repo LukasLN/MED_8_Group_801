@@ -37,7 +37,7 @@ namespace AstroMath
 
             if(timer <= 0)
             {
-                MathProblemManager.instance.CreateMathProblem();
+                MathProblemManager.instance.CreateMathProblem(false, MathProblem.Type.Collision);
                 countdownText.gameObject.SetActive(false);
                 gameObject.SetActive(false);
             }

@@ -90,7 +90,7 @@ namespace AstroMath
             }
         }
 
-        public void ConfirmAnswer()
+        public void FlyToTarget()
         {
             spaceshipGO.GetComponent<InteractableSpaceship>().LockInAnswer();
         }

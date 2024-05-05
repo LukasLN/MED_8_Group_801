@@ -97,7 +97,19 @@ namespace AstroMath
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.C))
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                CreateMathProblem(false, MathProblem.Type.Direction);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                CreateMathProblem(false, MathProblem.Type.Collision);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                CreateMathProblem(false, MathProblem.Type.Scale);
+            }
+            else if(Input.GetKeyDown(KeyCode.R))
             {
                 CreateMathProblem();
             }
@@ -108,7 +120,7 @@ namespace AstroMath
             //}
         }
 
-        public void CreateMathProblem()
+        public void CreateMathProblem(bool random = true, MathProblem.Type type = 0)
         {
             if(currentMathProblem != null)
             {
@@ -117,7 +129,7 @@ namespace AstroMath
 
             GameObject newMathProblem = Instantiate(mathProblemPF, Vector3.zero, Quaternion.identity);
             currentMathProblem = newMathProblem.GetComponent<MathProblem>();
-            currentMathProblem.GetComponent<MathProblem>().New();
+            currentMathProblem.GetComponent<MathProblem>().New(random, type);
         }
 
         //public void CreateMathProblem()
