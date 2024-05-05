@@ -123,5 +123,8 @@ MonoBehaviour:
   - name: pageSwap
     loop: 0
     audioClip: {fileID: 8300000, guid: 021f3c77f72a72b49b72bfd858fa7dfa, type: 3}
+  - name: ambient
+    loop: 1
+    audioClip: {fileID: 8300000, guid: da80f7b865d37114085faa6bb472baa0, type: 3}
   dialogues: []
   music: []
