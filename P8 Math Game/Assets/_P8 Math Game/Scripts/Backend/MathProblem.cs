@@ -142,12 +142,12 @@ namespace AstroMath
                     else
                     {
                         m_collisionSolution = true;
-                        m_scaleSolution = GenerateTScalar(true);
+                        m_scaleSolution = GenerateTScalar(false);
                     }
                     break;
                 case Type.Scale:
                     m_collisionSolution = true;
-                    m_scaleSolution = GenerateTScalar(true);
+                    m_scaleSolution = GenerateTScalar(false);
                     break;
             }
 
@@ -156,6 +156,11 @@ namespace AstroMath
 
         void ClearCharacteristics()
         {
+            if (m_type == Type.Collision && m_collisionSolution == false && m_targetGO != null)
+            {
+                Destroy(m_targetGO);
+            }
+
             m_type = Type.Direction;
             m_cargo = Cargo.Water;
             m_spaceshipPosition = Vector3.zero;
@@ -256,7 +261,7 @@ namespace AstroMath
                 {
                     m_targetGO = Instantiate(faultyAsteroidPF, MathProblemManager.instance.MapProblemSpaceToCookieSpace(m_directionSolution + m_spaceshipPosition), Quaternion.identity);
                     m_targetGO.name = "Faulty Asteroid (" + m_targetPosition + ")";
-                    //m_targetGO.SetActive(false);
+                    m_targetGO.SetActive(false);
                 }
 
                 m_spaceshipGO.GetComponent<Spaceship>().SetCorrectTargetGO(m_targetGO);
