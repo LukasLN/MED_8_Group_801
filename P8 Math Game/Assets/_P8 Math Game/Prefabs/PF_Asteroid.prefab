@@ -54,6 +54,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   problemPosition: {x: 0, y: 0, z: 0}
   highlightIsActive: 0
+  isAsteroid: 1
   modelRenderer: {fileID: 5132848600821408424}
   defaultMaterial: {fileID: 2100000, guid: c6356ce5b8526954c817855121d8ff7e, type: 2}
   highlightMaterial: {fileID: 2100000, guid: b98a894573f802249bb0c47a3a5d2843, type: 2}
