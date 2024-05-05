@@ -88,6 +88,7 @@ namespace AstroMath
         #endregion
 
         AudioPlayer audioPlayer;
+        bool isPlayingBlinking;
 
         private void Start()
         {
@@ -198,6 +199,7 @@ namespace AstroMath
                     waitForInputTimer = waitForInputDuration;
                     isWaitingForInput = false;
                     isWaitingForNextLightUp = true;
+                    isPlayingBlinking = false;
                     TurnOffAllSequenceLEDs();
                     TurnOnWaitLED();
                     DisableAllButtons();
@@ -209,6 +211,12 @@ namespace AstroMath
                     //> blink the sequenceLEDs
                     if(waitForInputTimer <= waitForInputDuration / 2)
                     {
+                        if(isPlayingBlinking == false)
+                        {
+                            isPlayingBlinking = true;
+                            audioPlayer.PlaySoundEffect("Blinking");
+                        }
+
                         if (waitForInputTimer % 0.5f < 0.25f)
                         {
                             TurnOffActiveSequenceLEDsAsPressLEDColor();
@@ -238,9 +246,10 @@ namespace AstroMath
 
         public void PressSymbol(int buttonIndex)
         {
-            audioPlayer.PlaySoundEffect("ButtonPress");
+            //audioPlayer.PlaySoundEffect("ButtonPress");
+            PlayBeep("SimonSaysBeep" + (buttonIndex + 1));
 
-            if(hasStartedInput == false) //if we haven't started inputting the sequence yet
+            if (hasStartedInput == false) //if we haven't started inputting the sequence yet
             {
                 hasStartedInput = true;
                 TurnOffAllSequenceLEDsAsPressLEDColor();
@@ -310,8 +319,9 @@ namespace AstroMath
                 CreateSequence(); //we create a new sequence
                 TurnOffAllButtonLights(); //we turn off all button lights
                 TurnOffAllSequenceLEDs(); //we turn off all sequenceLEDs
+                isPlayingBlinking = false;
 
-                if(useRandomSymbols)
+                if (useRandomSymbols)
                 {
                     SelectRandomSymbols();
                     SetButtonsSymbol();
@@ -333,6 +343,7 @@ namespace AstroMath
         {
             buttons[sequence[activeIndex]].image.color = buttonLightUpColor;
             sequenceLEDs[activeIndex].color = waitLedOnColor;
+            PlayBeep("SimonSaysBeep" + (sequence[activeIndex] + 1));
         }
 
         void TurnOffAllButtonLights()
@@ -487,6 +498,11 @@ namespace AstroMath
             {
                 buttons[i].interactable = false;
             }
+        }
+
+        public void PlayBeep(string beepName)
+        {
+            audioPlayer.PlaySoundEffect(beepName);
         }
     }
 }

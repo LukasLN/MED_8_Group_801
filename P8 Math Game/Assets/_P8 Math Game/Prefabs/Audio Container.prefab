@@ -93,5 +93,20 @@ MonoBehaviour:
   - name: countDown
     loop: 0
     audioClip: {fileID: 8300000, guid: 318a814b56a0b4b46bb40a96b98920dd, type: 3}
+  - name: Blinking
+    loop: 0
+    audioClip: {fileID: 8300000, guid: 332cecd3cd580f240be5c80bd8adaaa6, type: 3}
+  - name: SimonSaysBeep1
+    loop: 0
+    audioClip: {fileID: 8300000, guid: 958db47724fa1e347954a72acb6b98fa, type: 3}
+  - name: SimonSaysBeep2
+    loop: 0
+    audioClip: {fileID: 8300000, guid: d349b305c7391ab479f2e86311acdce2, type: 3}
+  - name: SimonSaysBeep3
+    loop: 0
+    audioClip: {fileID: 8300000, guid: bf2fcc140bfa0684f8e74565d4c214b5, type: 3}
+  - name: SimonSaysBeep4
+    loop: 0
+    audioClip: {fileID: 8300000, guid: d0b53c92442e9864f9e815fc12ee7250, type: 3}
   dialogues: []
   music: []
