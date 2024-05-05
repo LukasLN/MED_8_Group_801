@@ -114,8 +114,14 @@ MonoBehaviour:
   - name: 5sCountdown
     loop: 0
     audioClip: {fileID: 8300000, guid: 14a0d9c7df2632a408e3ea36c8cb38db, type: 3}
+  - name: accesInfopanel
+    loop: 0
+    audioClip: {fileID: 8300000, guid: 17e1aa7c61414824da91e75c3593ae7b, type: 3}
   - name: targetLocked
     loop: 0
     audioClip: {fileID: 8300000, guid: 2238daeee80c10442a07e4bbb5874261, type: 3}
+  - name: pageSwap
+    loop: 0
+    audioClip: {fileID: 8300000, guid: 021f3c77f72a72b49b72bfd858fa7dfa, type: 3}
   dialogues: []
   music: []
