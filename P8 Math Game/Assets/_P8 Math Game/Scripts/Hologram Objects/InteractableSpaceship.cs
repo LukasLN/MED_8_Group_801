@@ -1,5 +1,6 @@
 using System.Collections;
 using Oculus.Interaction;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 namespace AstroMath
@@ -202,7 +203,7 @@ namespace AstroMath
                     bulletGO.transform.position = bulletStartPosition;
                     bulletGO.SetActive(false);
                     isShooting = false;
-
+                    audioPlayer.PlaySoundEffect("asteroidBang");
                     FlyToTarget();
                 }
             }
@@ -386,6 +387,8 @@ namespace AstroMath
             isShooting = true;
             hasTarget = false;
             isSelected = false;
+
+            audioPlayer.PlaySoundEffect("laser");
         }
 
         public void ShootTowardsTarget()
@@ -469,12 +472,40 @@ namespace AstroMath
         {
             yield return new WaitForSeconds(timeBeforeDestroy);
             WristWatch.instance.IncrementSolved();
+            
+                audioPlayer.PlaySoundEffect("Correct");
+           
         }
 
         IEnumerator WaitBeforeIncrementFailed()
         {
             yield return new WaitForSeconds(timeBeforeDestroy);
             WristWatch.instance.IncrementFailed();
+
+            if (spaceship.mathProblem.GetType() == MathProblem.Type.Direction)
+            {
+                audioPlayer.PlaySoundEffect("asteroidBang");
+            }
+
+            else if (spaceship.mathProblem.GetType() == MathProblem.Type.Collision)
+            {
+                if (correctCollisionAnswer = true)
+                {
+                    audioPlayer.PlaySoundEffect("asteroidBang");
+                }
+
+                if (correctCollisionAnswer = false)
+                {
+                    audioPlayer.PlaySoundEffect("Wrong");
+                }
+            }
+
+            else 
+                {
+                    audioPlayer.PlaySoundEffect("Wrong");
+                }
+            
+
         }
 
         public void SetCorrectDirectionVector(Vector3 direction)
