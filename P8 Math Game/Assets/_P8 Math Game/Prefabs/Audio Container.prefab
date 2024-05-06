@@ -129,5 +129,11 @@ MonoBehaviour:
   - name: takeOff
     loop: 1
     audioClip: {fileID: 8300000, guid: 7e1f46184764ff1439c239fa997e0e8f, type: 3}
+  - name: laser
+    loop: 1
+    audioClip: {fileID: 8300000, guid: 0b815a5067c28c64ab250079c71abfe4, type: 3}
+  - name: asteroidBang
+    loop: 1
+    audioClip: {fileID: 8300000, guid: 14e6075caa151c04dab67bb18c9d5fcf, type: 3}
   dialogues: []
   music: []
