@@ -70,6 +70,7 @@ namespace AstroMath
         {
             Debug.Log("Got to Spaceship!");
             interactableSpaceship.SetCorrectTScalar(tScalar);
+            infoPanel.SetCorrectTScalar(tScalar);
         }
 
         public void SetProblemPosition(Vector3 position)
@@ -77,6 +78,17 @@ namespace AstroMath
             interactableSpaceship.SetProblemPosition(position);
             infoPanel.SetStartPosition(position);
         }
+
+        public void SetPointerToRay()
+        {
+            interactableSpaceship.pointerShape = InteractableSpaceship.PointerShape.Ray;
+        }
+
+        public void SetLineRendererActivation(bool activation)
+        {
+            interactableSpaceship.gameObject.GetComponent<LineRenderer>().enabled = activation;
+        }
+
 
         public void UpdateGraphics(int type, int cargo)
         {

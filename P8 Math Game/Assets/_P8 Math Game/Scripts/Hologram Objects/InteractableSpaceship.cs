@@ -1,4 +1,5 @@
 using System.Collections;
+using Meta.Voice.Audio;
 using Oculus.Interaction;
 using UnityEngine;
 
@@ -39,7 +40,7 @@ namespace AstroMath
         #region Info Panel
         [Header("Info Panel")]
         [SerializeField] GameObject infoPanelGO; //GO = GameObject
-        InfoPanel infoPanel;
+        [SerializeField] InfoPanel infoPanel;
         #endregion
 
         #region Interaction
@@ -106,11 +107,9 @@ namespace AstroMath
         GameObject sphereInstance;
         public bool isSphereActive = false;
 
-        private void Awake()
-        {
-            
-            
-        }
+        #region Audio
+        AudioPlayer audioPlayer;
+        #endregion
 
 
         private void Start()
@@ -123,17 +122,12 @@ namespace AstroMath
             UpdateCurrentDirectionVector();
             infoPanel.SetCurrentDirectionVector(currentDirectionVector);
 
-            if (transform.parent.gameObject.GetComponent<Spaceship>().mathProblem.GetType() == MathProblem.Type.Scale)
-            {
-                //sphereInstance =  Instantiate(sphere,endPoint);
-                pointerShape = PointerShape.Ray;
+            sphere.transform.localPosition = transform.position + MathProblemManager.instance.MapProblemSpaceToCookieSpace(currentDirectionVector);
+            UpdateEndPoint(sphere.transform.position);
 
-                //var sphereInstance =  Instantiate(sphere,lineEndPoint);
-                //sphereInstance.transform.SetParent(transform);
+            audioPlayer = GetComponent<AudioPlayer>();
 
-                UpdateEndPoint(sphere.transform.position);
-
-            }
+            SetTScalar(1);
         }
 
         void Update()
@@ -365,6 +359,7 @@ namespace AstroMath
             isMoving = true;
             hasTarget = false;
             isSelected = false;
+            audioPlayer.PlaySoundEffect("takeOff");
         }
 
         public void ShootTarget()
@@ -441,6 +436,7 @@ namespace AstroMath
                 //failure sound
 
                 wrongGO.SetActive(true);
+                StartCoroutine(WaitBeforeIncrementFailed());
             }
             #endregion
 
@@ -457,6 +453,12 @@ namespace AstroMath
         {
             yield return new WaitForSeconds(timeBeforeDestroy);
             WristWatch.instance.IncrementSolved();
+        }
+
+        IEnumerator WaitBeforeIncrementFailed()
+        {
+            yield return new WaitForSeconds(timeBeforeDestroy);
+            WristWatch.instance.IncrementFailed();
         }
 
         public void SetCorrectDirectionVector(Vector3 direction)
@@ -524,11 +526,15 @@ namespace AstroMath
             currentDirectionVector = newDirectionVector;
         }
 
+        public void SetTScalar(int newT)
+        {
+            chosenTScalar = newT;
+        }
+
         public void SetCorrectTScalar(int tScalar)
         {
             Debug.Log("Got to Interactable Spaceship!");
             correctTScalar = tScalar;
-            //infoPanel.SetCorrectTScalar(tScalar);
         }
 
         public void SetProblemPosition(Vector3 position)
@@ -584,16 +590,9 @@ namespace AstroMath
             UpdateEndPoint(sphere.transform.position);
         }
 
-        public void setIsSphereActive()
+        public void setIsSphereActive(bool activation)
         {
-            if (isSphereActive == true)
-            {
-                isSphereActive = false;
-            }
-            else
-            {
-                isSphereActive = true;
-            }
+            isSphereActive = activation;
         }
 
         public void SetRandomRotation()
@@ -608,7 +607,7 @@ namespace AstroMath
 
         public void LookAt(Transform target)
         {
-            transform.LookAt(target);
+            transform.LookAt(MathProblemManager.instance.MapProblemSpaceToCookieSpace(target.position));
         }
     }
 }

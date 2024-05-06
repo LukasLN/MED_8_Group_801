@@ -10,10 +10,9 @@ namespace AstroMath
         void Start()
         {
             audioPlayer = GetComponent<AudioPlayer>();
-
         }
 
-            private void OnTriggerEnter(Collider other)
+        private void OnTriggerEnter(Collider other)
         {
             //Debug.Log("Entered " + other.gameObject.tag);
             if (other.gameObject.tag == "Parking" ||
@@ -22,6 +21,7 @@ namespace AstroMath
                 if (spaceship.targetGO == null)
                 {
                     spaceship.AddNewTarget(other.gameObject);
+                    audioPlayer.PlaySoundEffect("ButtonPress");
                 }
             }
         }
@@ -32,7 +32,6 @@ namespace AstroMath
             if (other.gameObject.tag == "Parking" ||
                 other.gameObject.tag == "Asteroid")
             {
-                audioPlayer.PlaySoundEffect("targetLocked");
                 if (spaceship.targetGO == null)
                 {
                     spaceship.AddNewTarget(other.gameObject);
