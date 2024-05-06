@@ -135,5 +135,8 @@ MonoBehaviour:
   - name: asteroidBang
     loop: 1
     audioClip: {fileID: 8300000, guid: 14e6075caa151c04dab67bb18c9d5fcf, type: 3}
+  - name: gameComplete
+    loop: 1
+    audioClip: {fileID: 8300000, guid: 5a6158ba2aebf7540adf967d38aba9fc, type: 3}
   dialogues: []
   music: []

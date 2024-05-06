@@ -65,6 +65,8 @@ namespace AstroMath
 
                     scoreText.SetText(solvedCounter.ToString()+" Missioner fuldført"+"\n"+ "\n" + failedCounter.ToString()+" Missioner fejlet");
                     endScreen.SetActive(true);
+                    audioPlayer.PlaySoundEffect("gameComplete");
+
                 }
                 int minutes = Mathf.FloorToInt(remainingTime / 60);
                 int seconds = Mathf.FloorToInt(remainingTime % 60);
