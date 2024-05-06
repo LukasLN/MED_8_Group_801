@@ -610,7 +610,6 @@ namespace AstroMath
 
         public void SetIsSelected(bool newBool)
         {
-
             isSelected = newBool;
             //lineRenderer.enabled = newBool;
 

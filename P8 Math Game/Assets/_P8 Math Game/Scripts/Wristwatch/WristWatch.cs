@@ -48,7 +48,8 @@ namespace AstroMath
                 {
                     remainingTime -= Time.deltaTime;
                 }
-                else if (remainingTime < 10 && !countDownHasPlayed)
+
+                if (remainingTime < 10 && !countDownHasPlayed)
                 {
                     //play da countdown audio
                     audioPlayer.PlaySoundEffect("countDown");
@@ -56,6 +57,8 @@ namespace AstroMath
                 }
                 else if (remainingTime < 0)
                 {
+                    audioPlayer.StopAudio();
+                    countingDown = false;
                     remainingTime = 0;
                     //Game over
                     timerText.color = Color.red;
