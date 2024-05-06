@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1951844306539441302}
   m_Layer: 0
   m_Name: Faulty Asteroid Prefab
-  m_TagString: Untagged
+  m_TagString: FaultyAsteroid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,6 +120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   problemPosition: {x: 0, y: 0, z: 0}
   highlightIsActive: 0
+  isAsteroid: 0
   modelRenderer: {fileID: 0}
   defaultMaterial: {fileID: 0}
   highlightMaterial: {fileID: 0}

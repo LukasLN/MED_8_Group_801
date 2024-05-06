@@ -38,7 +38,7 @@ namespace AstroMath
 
             if(timer <= 0)
             {
-                MathProblemManager.instance.CreateMathProblem();
+                MathProblemManager.instance.CreateMathProblem(false, MathProblem.Type.Direction);
                 WristWatch.instance.countingDown = true;
                 countdownText.gameObject.SetActive(false);
                 gameObject.SetActive(false);

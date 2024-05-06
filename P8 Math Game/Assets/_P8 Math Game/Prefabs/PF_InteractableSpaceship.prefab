@@ -5139,6 +5139,9 @@ MonoBehaviour:
   isSelected: 0
   hasTarget: 0
   targetGO: {fileID: 0}
+  scaleTargetGO: {fileID: 0}
+  scaleTargetPF: {fileID: 8568054942438417985, guid: 858442666921a6d469330171f89e23e5,
+    type: 3}
   tagsToLookFor:
   - Parking
   - Asteroid
@@ -15961,37 +15964,37 @@ PrefabInstance:
     - target: {fileID: 2198169917299434495, guid: 33d889314a7b0014eb4a8fa15658deca,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0089
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2198169917299434495, guid: 33d889314a7b0014eb4a8fa15658deca,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.0052000284
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2198169917299434495, guid: 33d889314a7b0014eb4a8fa15658deca,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.374
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 2198169917299434495, guid: 33d889314a7b0014eb4a8fa15658deca,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2198169917299434495, guid: 33d889314a7b0014eb4a8fa15658deca,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2198169917299434495, guid: 33d889314a7b0014eb4a8fa15658deca,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2198169917299434495, guid: 33d889314a7b0014eb4a8fa15658deca,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2198169917299434495, guid: 33d889314a7b0014eb4a8fa15658deca,
         type: 3}

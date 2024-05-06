@@ -55,6 +55,8 @@ namespace AstroMath
         [SerializeField] GameObject startPositionLock;
         [SerializeField] GameObject directionVectorLock;
         [SerializeField] GameObject tScalarLock;
+        [SerializeField] int unlockingProgress;
+        public bool hasUnlockedAll;
         #endregion
 
         public Keypad keypad;
@@ -91,6 +93,32 @@ namespace AstroMath
             {
                 UpdateDirectionVectorText();
             }
+
+            if(hasUnlockedAll == false)
+            {
+                if(unlockingProgress >= 3)
+                {
+                    hasUnlockedAll = true;
+                }
+                else
+                {
+                    DisableAllConfirmButtons();
+                }
+            }
+        }
+
+        public void EnableAllConfirmButtons()
+        {
+            flyButton.interactable = true;
+            collisionShootButton.interactable = true;
+            collisionFlyButton.interactable = true;
+        }
+
+        public void DisableAllConfirmButtons()
+        {
+            flyButton.interactable = false;
+            collisionShootButton.interactable = false;
+            collisionFlyButton.interactable = false;
         }
 
         public void FlyToTarget()
@@ -271,16 +299,19 @@ namespace AstroMath
         public void ShowStartPosition()
         {
             SetActivation(startPositionLock, false);
+            unlockingProgress++;
         }
 
         public void ShowDirectionVector()
         {
             SetActivation(directionVectorLock, false);
+            unlockingProgress++;
         }
 
         public void ShowTScalar()
         {
             SetActivation(tScalarLock, false);
+            unlockingProgress++;
         }
 
         public void HideStartPosition()

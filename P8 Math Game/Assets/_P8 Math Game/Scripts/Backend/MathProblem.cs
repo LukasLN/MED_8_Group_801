@@ -64,9 +64,10 @@ namespace AstroMath
 
             FixedPositionsContainer.instance.CreateSampleParkingTargets();
             FixedPositionsContainer.instance.CreateSampleAsteroidTargets();
+            FixedPositionsContainer.instance.CreateSampleBountyTargets();
 
             #region Setting Type and Cargo
-            if(random)
+            if (random)
             {
                 m_type = RandomType();
             }
@@ -111,7 +112,7 @@ namespace AstroMath
                     targetIndex = 1;
                     break;
                 case Type.Scale:
-                    targetIndex = 2;
+                    targetIndex = 1;
                     break;
             }
 
@@ -184,11 +185,11 @@ namespace AstroMath
             }
             else if(m_type == Type.Scale)
             {
-                m_targetGO = m_parkingSpotsParentTF.GetChild(0).gameObject;
+                m_targetGO = m_asteroidsParentTF.GetChild(0).gameObject;
             }
 
-            m_parkingSpotsParentTF.gameObject.SetActive(m_type == Type.Direction || m_type == Type.Scale);
-            m_asteroidsParentTF.gameObject.SetActive(m_type == Type.Collision);
+            m_parkingSpotsParentTF.gameObject.SetActive(m_type == Type.Direction);
+            m_asteroidsParentTF.gameObject.SetActive(m_type == Type.Collision || m_type == Type.Scale);
             #endregion
 
             #region Setting Graphics of Spaceship and Info Panel
@@ -240,7 +241,7 @@ namespace AstroMath
 
                 if(i == 0)
                 {
-                    if(m_type == Type.Direction || m_type == Type.Scale)
+                    if(m_type == Type.Direction)
                     continue;
                 }
 
@@ -255,6 +256,11 @@ namespace AstroMath
             //> asteroids
             for (int i = 0; i < m_asteroidsParentTF.childCount; i++)
             {
+                if(m_type == Type.Scale)
+                {
+                    m_asteroidsParentTF.GetChild(i).gameObject.SetActive(false);
+                }
+
                 if (i == 0 && m_type != Type.Direction)
                 {
                     continue;

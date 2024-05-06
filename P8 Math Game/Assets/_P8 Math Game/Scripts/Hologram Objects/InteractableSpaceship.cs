@@ -52,6 +52,8 @@ namespace AstroMath
         [Header("Target")]
         [SerializeField] bool hasTarget;
         public GameObject targetGO;
+        [SerializeField] GameObject scaleTargetGO;
+        [SerializeField] GameObject scaleTargetPF;
         [SerializeField] string[] tagsToLookFor;
         #endregion
 
@@ -168,13 +170,25 @@ namespace AstroMath
             {
                 if(hasTarget)
                 {
-                    transform.LookAt(targetGO.transform);
+                    if(spaceship.mathProblem.GetType() != MathProblem.Type.Collision)
+                    {
+                        transform.LookAt(targetGO.transform);
+                    }
+
+                    if(infoPanel.hasUnlockedAll)
+                    {
+                        infoPanel.EnableAllConfirmButtons();
+                    }
+                    else
+                    {
+                        infoPanel.DisableAllConfirmButtons();
+                    }
                 }
             }
 
             //################################################################################################
             //    > IDK WHY, BUT FOR SOME REASON, THIS PLACEMENT OF THIS IF-STATEMENT CREATES (in Laus opinion)
-            //      THE FEELING OF ROTATING THE SPACESHIP :,)
+            //      THE BEST FEELING OF ROTATING THE SPACESHIP :,)
             //################################################################################################
             //if (hasTarget == true) 
             //{
@@ -189,7 +203,10 @@ namespace AstroMath
                 if (Vector3.Distance(transform.position, targetGO.transform.position) < 0.1f) //if we are not at the target position
                 {
                     isMoving = false;
-
+                    if (targetGO.tag == "FaultyAsteroid")
+                    {
+                        Destroy(targetGO);
+                    }
                     ShowResult();
                 }
             }
@@ -209,6 +226,11 @@ namespace AstroMath
             }
 
             infoPanel.SetIsSelected(isSelected);
+
+            if(spaceship.mathProblem.GetType() == MathProblem.Type.Collision)
+            {
+                infoPanel.SetCurrentDirectionVector(correctDirectionVector);
+            }
         }
 
         void ShootRay(Vector3 startPosition, Vector3 direction)
@@ -356,6 +378,13 @@ namespace AstroMath
 
         public void FlyToTarget()
         {
+            if (targetGO.tag == "Parking" ||
+                targetGO.tag == "Asteroid" ||
+                targetGO.tag == "Bounty") 
+            {
+                targetGO.SetActive(true);
+            }
+
             CalculateMoveSpeed();
 
             relevantExhaustPlumeGO.SetActive(true);
@@ -364,9 +393,16 @@ namespace AstroMath
             GetComponent<InteractableUnityEventWrapper>().enabled = false;
             //lineRenderer.enabled = true;
 
-            if(targetGO.tag == "Parking") //for bounty (and parking I guess)
+            if (spaceship.mathProblem.GetType() == MathProblem.Type.Scale)
             {
-                targetGO.SetActive(true);
+                //if(sphere.transform.position != targetGO.transform.position)
+                //{
+                //    scaleTargetGO = Instantiate(scaleTargetPF, sphere.transform.position, Quaternion.identity);
+                //    targetGO = scaleTargetGO;
+                //    targetGO.SetActive(false);
+                //}
+
+                sphere.SetActive(false);
             }
 
             isMoving = true;
@@ -489,12 +525,12 @@ namespace AstroMath
 
             else if (spaceship.mathProblem.GetType() == MathProblem.Type.Collision)
             {
-                if (correctCollisionAnswer = true)
+                if (correctCollisionAnswer == true)
                 {
                     audioPlayer.PlaySoundEffect("asteroidBang");
                 }
 
-                if (correctCollisionAnswer = false)
+                if (correctCollisionAnswer == false)
                 {
                     audioPlayer.PlaySoundEffect("Wrong");
                 }
@@ -521,8 +557,7 @@ namespace AstroMath
         public void SetTargetGO(GameObject targetGO)
         {
             this.targetGO = targetGO;
-            //infoPanel.flyButton.interactable = true;
-            SetConfirmButtonsInteractability(true);
+            hasTarget = true;
         }
 
         public void SetCorrectTargetGO(GameObject correctTargetGO)
@@ -578,6 +613,10 @@ namespace AstroMath
         public void SetTScalar(int newT)
         {
             chosenTScalar = newT;
+            if(chosenTScalar <= 0)
+            {
+                chosenTScalar = 1;
+            }
         }
 
         public void SetCorrectTScalar(int tScalar)
@@ -647,6 +686,8 @@ namespace AstroMath
             var t_ratio = distanceToSphere / distanceToForward;
             SetTScalar((int)t_ratio);
             infoPanel.SetTScalar((int)t_ratio);
+
+            //targetGO = sphere;
         }
 
         public void setIsSphereActive(bool activation)
