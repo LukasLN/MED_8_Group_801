@@ -1,5 +1,4 @@
 using System.Collections;
-using Meta.Voice.Audio;
 using Oculus.Interaction;
 using UnityEngine;
 
@@ -68,6 +67,7 @@ namespace AstroMath
         [SerializeField] float timeToMove;
         [SerializeField] float moveSpeed;
         [SerializeField] GameObject bulletGO;
+        Vector3 bulletStartPosition;
         [SerializeField] bool isShooting;
         #endregion
 
@@ -103,18 +103,22 @@ namespace AstroMath
         [SerializeField] GameObject wrongGO;
         [SerializeField] float timeBeforeDestroy;
         #endregion
-        [SerializeField] GameObject sphere;
-        GameObject sphereInstance;
+        
+        public  GameObject sphere;
         public bool isSphereActive = false;
 
         #region Audio
         AudioPlayer audioPlayer;
         #endregion
 
+        private void Awake()
+        {
+            infoPanel = infoPanelGO.GetComponent<InfoPanel>();
+        }
 
         private void Start()
         {
-            infoPanel = infoPanelGO.GetComponent<InfoPanel>();
+            bulletStartPosition = bulletGO.transform.position;
 
             lineRenderer = GetComponent<LineRenderer>();
             lineRenderer.SetPosition(0, startPoint.position);
@@ -122,12 +126,13 @@ namespace AstroMath
             UpdateCurrentDirectionVector();
             infoPanel.SetCurrentDirectionVector(currentDirectionVector);
 
-            sphere.transform.localPosition = transform.position + MathProblemManager.instance.MapProblemSpaceToCookieSpace(currentDirectionVector);
+            sphere.transform.position = transform.position + transform.forward;
             UpdateEndPoint(sphere.transform.position);
 
             audioPlayer = GetComponent<AudioPlayer>();
 
             SetTScalar(1);
+            infoPanel.SetTScalar(chosenTScalar);
         }
 
         void Update()
@@ -192,8 +197,10 @@ namespace AstroMath
             {
                 ShootTowardsTarget();
 
-                if (Vector3.Distance(transform.position, targetGO.transform.position) < 0.1f) //if we are not at the target position
+                if (Vector3.Distance(bulletGO.transform.position, targetGO.transform.position) < 0.1f) //if we are not at the target position
                 {
+                    bulletGO.transform.position = bulletStartPosition;
+                    bulletGO.SetActive(false);
                     isShooting = false;
 
                     FlyToTarget();
@@ -356,6 +363,11 @@ namespace AstroMath
             GetComponent<InteractableUnityEventWrapper>().enabled = false;
             //lineRenderer.enabled = true;
 
+            if(targetGO.tag == "Parking") //for bounty (and parking I guess)
+            {
+                targetGO.SetActive(true);
+            }
+
             isMoving = true;
             hasTarget = false;
             isSelected = false;
@@ -378,6 +390,7 @@ namespace AstroMath
 
         public void ShootTowardsTarget()
         {
+            transform.LookAt(targetGO.transform);
             bulletGO.transform.LookAt(targetGO.transform);
             bulletGO.transform.position += transform.forward * moveSpeed * Time.deltaTime;
         }
@@ -418,7 +431,10 @@ namespace AstroMath
                     break;
                 case MathProblem.Type.Scale:
                     // Check if the scale is correct
-                    Debug.LogWarning("Not implemented yet!");
+                    if(chosenTScalar == correctTScalar)
+                    {
+                        isCorrect = true;
+                    }
                     break;
             }
             #endregion
@@ -474,6 +490,8 @@ namespace AstroMath
         public void SetTargetGO(GameObject targetGO)
         {
             this.targetGO = targetGO;
+            //infoPanel.flyButton.interactable = true;
+            SetConfirmButtonsInteractability(true);
         }
 
         public void SetCorrectTargetGO(GameObject correctTargetGO)
@@ -533,13 +551,18 @@ namespace AstroMath
 
         public void SetCorrectTScalar(int tScalar)
         {
-            Debug.Log("Got to Interactable Spaceship!");
+            //Debug.Log("Got to Interactable Spaceship!");
             correctTScalar = tScalar;
         }
 
         public void SetProblemPosition(Vector3 position)
         {
             problemPosition = position;
+        }
+
+        public void SetHasTarget(bool newBool)
+        {
+            hasTarget = newBool;
         }
 
         public void SetActiveModel(int cargo)
@@ -588,6 +611,12 @@ namespace AstroMath
         public void sphereinteraction()
         {
             UpdateEndPoint(sphere.transform.position);
+            var distanceToSphere = Vector3.Distance(transform.position, sphere.transform.position);
+            var distanceToForward = Vector3.Distance(transform.position, transform.position + transform.forward);
+
+            var t_ratio = distanceToSphere / distanceToForward;
+            SetTScalar((int)t_ratio);
+            infoPanel.SetTScalar((int)t_ratio);
         }
 
         public void setIsSphereActive(bool activation)
@@ -607,7 +636,7 @@ namespace AstroMath
 
         public void LookAt(Transform target)
         {
-            transform.LookAt(MathProblemManager.instance.MapProblemSpaceToCookieSpace(target.position));
+            transform.LookAt(target);
         }
     }
 }

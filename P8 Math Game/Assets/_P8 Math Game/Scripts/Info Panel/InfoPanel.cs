@@ -248,7 +248,7 @@ namespace AstroMath
 
         public void SetCorrectTScalar(int tScalar)
         {
-            Debug.Log("Got to InfoPanel!");
+            //Debug.Log("Got to InfoPanel!");
             correctTScalar = tScalar;
         }
 

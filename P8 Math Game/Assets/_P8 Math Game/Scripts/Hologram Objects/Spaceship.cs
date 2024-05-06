@@ -68,7 +68,7 @@ namespace AstroMath
 
         public void SetCorrectTScalar(int tScalar)
         {
-            Debug.Log("Got to Spaceship!");
+            //Debug.Log("Got to Spaceship!");
             interactableSpaceship.SetCorrectTScalar(tScalar);
             infoPanel.SetCorrectTScalar(tScalar);
         }
@@ -84,9 +84,15 @@ namespace AstroMath
             interactableSpaceship.pointerShape = InteractableSpaceship.PointerShape.Ray;
         }
 
+        public void SetHasTarget(bool newBool)
+        {
+            interactableSpaceship.SetHasTarget(newBool);
+        }
+
         public void SetLineRendererActivation(bool activation)
         {
             interactableSpaceship.gameObject.GetComponent<LineRenderer>().enabled = activation;
+            interactableSpaceship.sphere.SetActive(true);
         }
 
 

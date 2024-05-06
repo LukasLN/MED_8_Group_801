@@ -11,7 +11,8 @@ namespace AstroMath
         public enum Type
         {
             Parking = 0,
-            Asteroid = 1
+            Asteroid = 1,
+            Bounty = 2
         }
         public Type type;
         public string name;
@@ -24,12 +25,15 @@ namespace AstroMath
 
         public int numberOfParkingSamplesToCreate;
         public int numberOfAsteroidSamplesToCreate;
+        public int numberOfBountySamplesToCreate;
 
         [SerializeField] HoloTarget[] parkingTargets;
         [SerializeField] HoloTarget[] asteroidTargets;
+        [SerializeField] HoloTarget[] bountyTargets;
 
         public List<HoloTarget> sampledParkingTargets;
         public List<HoloTarget> sampledAsteroidTargets;
+        public List<HoloTarget> sampledBountyTargets;
 
         [SerializeField] GameObject asteroidPF;
 
@@ -43,6 +47,7 @@ namespace AstroMath
             //> THIS SHOULD BE CHANGED SO THAT IT HAPPENS WHENEVER A MATH PROBLEM IS GENERATED
             CreateSampleParkingTargets();
             CreateSampleAsteroidTargets();
+            CreateSampleBountyTargets();
         }
 
         private void Update()
@@ -70,6 +75,7 @@ namespace AstroMath
             var list = sampledParkingTargets;
             var listName = "sampledParkingTargets";
             if (type == 1) { list = sampledAsteroidTargets; listName = "sampledAsteroidTargets"; }
+            if (type == 2) { list = sampledBountyTargets; listName = "sampledBountyTargets"; }
 
             var chosenIndex = 0;
             if(random) { chosenIndex = UnityEngine.Random.Range(0, list.Count); }
@@ -93,10 +99,17 @@ namespace AstroMath
             sampledAsteroidTargets = GetSampleTargets(numberOfAsteroidSamplesToCreate, HoloTarget.Type.Asteroid).ToList();
         }
 
+        public void CreateSampleBountyTargets()
+        {
+            sampledBountyTargets = GetSampleTargets(numberOfBountySamplesToCreate, HoloTarget.Type.Bounty).ToList();
+        }
         HoloTarget[] GetSampleTargets(int sampleSize, HoloTarget.Type type)
         {
             HoloTarget[] array = new HoloTarget[sampleSize];
-            List<HoloTarget> list = type == HoloTarget.Type.Parking ? parkingTargets.ToList() : asteroidTargets.ToList();
+            List<HoloTarget> list = new List<HoloTarget>();
+            if      (type == HoloTarget.Type.Parking)  { list = parkingTargets.ToList(); }
+            else if (type == HoloTarget.Type.Asteroid) { list = asteroidTargets.ToList(); }
+            else if (type == HoloTarget.Type.Bounty)   { list = bountyTargets.ToList();}
 
             for (int i = 0; i < sampleSize; i++)
             {
